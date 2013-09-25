@@ -1,0 +1,42 @@
+{
+	"name" : "sonatra/bootstrap-bundle",
+	"description" : "Sonatra Bootstrap Bundle",
+	"type" : "symfony-bundle",
+	"authors" : [{
+			"name" : "François Pluchino",
+			"email" : "francois.pluchino@sonatra.com"
+		}
+	],
+	"keywords" : [
+		"Twitter Bootstrap 3",
+		"block",
+		"DSL",
+		"Template"
+	],
+	"homepage" : "http://sonatra.com",
+	"license" : [
+		"MIT"
+	],
+	"require" : {
+		"sonatra/block-bundle" : "~1.0",
+		"php" : ">=5.3.2",
+		"symfony/framework-bundle" : "~2.3",
+		"twitter/bootstrap" : "~3.0"
+	},
+	"require-dev" : {
+		"symfony/console" : "~2.3",
+		"symfony/finder" : "~2.3"
+	},
+	"autoload" : {
+		"psr-0" : {
+			"Sonatra\\Bundle\\BootstrapBundle" : ""
+		}
+	},
+	"target-dir" : "Sonatra/Bundle/BootstrapBundle",
+	"minimum-stability" : "dev",
+	"extra" : {
+		"branch-alias" : {
+			"dev-master" : "1.0.x-dev"
+		}
+	}
+}
