@@ -51,6 +51,9 @@ Features include:
   * Collapse
   * Carousel
   * Affix
+- Renderer Twig tag for config assets in debug or prod mod
+- Assetic fonts loader (for dump command and use controller)
+- Configures javascripts to be added on the common base page 
 
 Documentation
 -------------

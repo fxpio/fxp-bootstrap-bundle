@@ -7,11 +7,12 @@ This version of the bundle requires Symfony 2.3+.
 
 ## Installation
 
-Installation is a quick, 2 step process:
+Installation is a quick, 3 step process:
 
 1. Download Sonatra BootstrapBundle using composer
 2. Enable the bundle
-3. Configure the bundle (optionnal)
+3. Configure your application's config.yml
+4. Configure the bundle (optionnal)
 
 ### Step 1: Download Sonatra BootstrapBundle using composer
 
@@ -50,7 +51,21 @@ public function registerBundles()
 }
 ```
 
-### Step 3: Configure the bundle (optionnal)
+### Step 3: Configure your application's config.yml
+
+Add the following configuration to your `config.yml`.
+
+``` yaml
+# app/config/config.yml
+assetic:
+    bundles: [ "SonatraBootstrapBundle" ]
+    filters:
+        lessphp:
+            file:     "%kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php"
+            apply_to: '\.less$'
+```
+
+### Step 4: Configure the bundle (optionnal)
 
 You can override the default configuration adding `sonatra_bootstrap` tree in `app/config/config.yml`.
 For see the reference of Sonatra Bootstrap Configuration, execute command:
