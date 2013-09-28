@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\BootstrapBundle\Assetic;
+namespace Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource;
 
 use Assetic\Factory\Resource\CoalescingDirectoryResource;
 use Assetic\Factory\Resource\DirectoryResource;

@@ -5,8 +5,8 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="sonatra_bootstrap.assetic.font_loader.class">Sonatra\Bundle\BootstrapBundle\Assetic\FontLoader</parameter>
-        <parameter key="sonatra_bootstrap.assetic.font_resource.class">Sonatra\Bundle\BootstrapBundle\Assetic\FontResource</parameter>
+        <parameter key="sonatra_bootstrap.assetic.font_loader.class">Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Loader\FontLoader</parameter>
+        <parameter key="sonatra_bootstrap.assetic.font_resource.class">Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource\FontResource</parameter>
         <parameter key="sonatra_bootstrap.assetic.config_loader.class">Symfony\Bundle\AsseticBundle\Factory\Loader\ConfigurationLoader</parameter>
         <parameter key="sonatra_bootstrap.assetic.config_resource.class">Symfony\Bundle\AsseticBundle\Factory\Resource\ConfigurationResource</parameter>
         <parameter key="sonatra_bootstrap.assetic.font_paths" type="collection"></parameter>
