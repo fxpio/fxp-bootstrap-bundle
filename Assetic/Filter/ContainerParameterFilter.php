@@ -43,6 +43,7 @@ class ContainerParameterFilter implements FilterInterface
      */
     public function filterLoad(AssetInterface $asset)
     {
+        $this->filterDump($asset);
     }
 
     /**
