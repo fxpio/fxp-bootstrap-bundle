@@ -11,6 +11,9 @@
         <parameter key="sonatra_bootstrap.assetic.config_resource.class">Symfony\Bundle\AsseticBundle\Factory\Resource\ConfigurationResource</parameter>
         <parameter key="sonatra_bootstrap.assetic.font_paths" type="collection"></parameter>
         <parameter key="sonatra_bootstrap.assetic.font_output"></parameter>
+
+        <parameter key="sonatra_bootstrap.assetic.container_parameter_filter.class">Sonatra\Bundle\BootstrapBundle\Assetic\Filter\ContainerParameterFilter</parameter>
+        <parameter key="sonatra_bootstrap.assetic.path_relative_filter.class">Sonatra\Bundle\BootstrapBundle\Assetic\Filter\PathRelativeFilter</parameter>
     </parameters>
 
     <services>
@@ -31,6 +34,15 @@
         <service id="sonatra_bootstrap.assetic.config_resource" class="%sonatra_bootstrap.assetic.config_resource.class%" public="false">
             <tag name="assetic.formula_resource" loader="sonatra_bootstrap_config" />
             <argument type="collection" /> <!-- configured formulae -->
+        </service>
+
+        <service id="sonatra_bootstrap.assetic.container_parameter_filter" class="%sonatra_bootstrap.assetic.container_parameter_filter.class%">
+            <tag name="assetic.filter" alias="containerparameter"></tag>
+            <argument type="service" id="service_container" />
+        </service>
+
+        <service id="sonatra_bootstrap.assetic.path_relative_filter" class="%sonatra_bootstrap.assetic.path_relative_filter.class%">
+            <tag name="assetic.filter" alias="relative"></tag>
         </service>
     </services>
 </container>

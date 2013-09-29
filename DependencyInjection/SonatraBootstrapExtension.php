@@ -37,11 +37,11 @@ class SonatraBootstrapExtension extends Extension
 
         // fonts config
         $container->setParameter('sonatra_bootstrap.assetic.font_paths', $config['font']['paths']);
-        $container->setParameter('sonatra_bootstrap.assetic.font_output', $config['font']['output_dir']);
+        $container->setParameter('sonatra_bootstrap.assetic.font_output', trim($config['font']['output_dir'], '/'));
 
         //assets config
         $config['common_assets']['stylesheets']['inputs'] = array(
-            '%kernel.root_dir%/../vendor/twitter/bootstrap/less/bootstrap.less',
+            '@SonatraBootstrapBundle/Resources/assetic/less/bootstrap.less',
         );
 
         $btConfig = $config['common_assets']['javascripts']['bootstrap'];

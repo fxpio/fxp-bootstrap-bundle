@@ -53,6 +53,8 @@ Features include:
   * Affix
 - Renderer Twig tag for config assets in debug or prod mod
 - Assetic fonts loader (for dump command and use controller)
+- Assetic filter for replace the string parameter ('%foo.bar%')  by the value in parameter of the service container
+- Assetic filter for replace the target path by the path starting since the current asset directory
 - Configures javascripts to be added on the common base page 
 
 Documentation
