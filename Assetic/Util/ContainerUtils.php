@@ -20,7 +20,8 @@ use Assetic\Util\CssUtils;
  */
 abstract class ContainerUtils
 {
-    const REGEX_CONTAINER_PARAMETER = '/%([a-z._-]+)%/';
+    const REGEX_PARAMETER_BAG = '/%([a-z._-]+)%/';
+    const REGEX_BUNDLE        = '/@([A-Za-z]+)Bundle/';
 
     /**
      * Filters all CSS url()'s through a callable.
@@ -32,7 +33,24 @@ abstract class ContainerUtils
      */
     public static function filterParameters($content, $callback)
     {
-        $pattern = static::REGEX_CONTAINER_PARAMETER;
+        $pattern = static::REGEX_PARAMETER_BAG;
+
+        return CssUtils::filterCommentless($content, function($part) use (& $callback, $pattern) {
+            return preg_replace_callback($pattern, $callback, $part);
+        });
+    }
+
+    /**
+     * Filters all CSS bundle's through a callable.
+     *
+     * @param string   $content  The CSS
+     * @param callable $callback A PHP callable
+     *
+     * @return string The filtered CSS
+     */
+    public static function filterBundles($content, $callback)
+    {
+        $pattern = static::REGEX_BUNDLE;
 
         return CssUtils::filterCommentless($content, function($part) use (& $callback, $pattern) {
             return preg_replace_callback($pattern, $callback, $part);
