@@ -35,55 +35,91 @@ class SonatraBootstrapExtension extends Extension
         $loader->load('assetic.xml');
         $loader->load('templating_twig.xml');
 
-        // fonts config
-        $container->setParameter('sonatra_bootstrap.assetic.font_paths', $config['font']['paths']);
-        $container->setParameter('sonatra_bootstrap.assetic.font_output', trim($config['font']['output_dir'], '/'));
+        $this->configFonts($config['font'], $container);
+        $this->configCommonStylesheets($config['common_assets']['stylesheets'], $container);
+        $this->configCommonJavascripts($config['common_assets']['javascripts'], $container);
+        $this->configHackIe($config['common_assets']['hack_lt_ie_9'], $container);
+    }
 
-        //assets config
-        $config['common_assets']['stylesheets']['inputs'] = array(
-            '@SonatraBootstrapBundle/Resources/assetic/less/bootstrap.less',
-        );
+    /**
+     * Configures the fonts resource.
+     *
+     * @param array            $config
+     * @param ContainerBuilder $container
+     */
+    protected function configFonts(array &$config, ContainerBuilder $container)
+    {
+        $container->setParameter('sonatra_bootstrap.assetic.font_output', trim($config['output_dir'], '/'));
+        $container->getDefinition('sonatra_bootstrap.assetic.font_resource')->replaceArgument(0, $config['paths']);
+    }
 
-        $btConfig = $config['common_assets']['javascripts']['bootstrap'];
-        $btPath = $btConfig['path'];
+    /**
+     * Configures the common stylesheets resource.
+     *
+     * @param array            $config
+     * @param ContainerBuilder $container
+     */
+    protected function configCommonStylesheets(array &$config, ContainerBuilder $container)
+    {
+        $btConfig = &$config['bootstrap'];
+
+        if ($container->hasDefinition('sonatra_bootstrap.builder.stylesheet')) {
+            if ($btConfig['build']) {
+                $container->getDefinition('sonatra_bootstrap.builder.stylesheet')->replaceArgument(0, $btConfig['cache_path']);
+                $container->getDefinition('sonatra_bootstrap.builder.stylesheet')->replaceArgument(1, $btConfig['directory']);
+                $container->getDefinition('sonatra_bootstrap.builder.stylesheet')->replaceArgument(2, $btConfig['components']);
+
+                $builder = $container->get('sonatra_bootstrap.builder.stylesheet');
+                $builder->compile();
+
+                array_unshift($config['inputs'], $builder->getPath());
+
+            } else {
+                $container->removeDefinition('sonatra_bootstrap.builder.stylesheet');
+            }
+        }
+
+        $container->getDefinition('sonatra_bootstrap.assetic.common_stylesheets_resource')->replaceArgument(1, $config['inputs']);
+        $container->getDefinition('sonatra_bootstrap.assetic.common_stylesheets_resource')->replaceArgument(2, $config['filters']);
+        $container->getDefinition('sonatra_bootstrap.assetic.common_stylesheets_resource')->replaceArgument(3, $config['options']);
+    }
+
+    /**
+     * Configures the common javascripts resource.
+     *
+     * @param array            $config
+     * @param ContainerBuilder $container
+     */
+    protected function configCommonJavascripts(array &$config, ContainerBuilder $container)
+    {
+        $btConfig = &$config['bootstrap'];
         $jsInputs = array(
-            $config['common_assets']['javascripts']['jquery']['path'],
+            $config['jquery']['path'],
         );
 
         foreach ($btConfig['components'] as $component => $value) {
             if ($value) {
-                $jsInputs[] = rtrim($btPath, '/') . '/' . $component . '.js';
+                $jsInputs[] = sprintf('%s/%s.js', rtrim($btConfig['directory'], '/'), $component);
             }
         }
 
-        $config['common_assets']['javascripts']['inputs'] = array_merge($jsInputs,
-            $config['common_assets']['javascripts']['inputs']);
+        $config['inputs'] = array_merge($jsInputs, $config['inputs']);
 
-        $assets = array(
-            'sonatra_bootstrap_common_stylesheets' => array(
-                'inputs'  => $config['common_assets']['stylesheets']['inputs'],
-                'filters' => $config['common_assets']['stylesheets']['filters'],
-                'options' => $config['common_assets']['stylesheets']['options'],
-            ),
-            'sonatra_bootstrap_common_javascripts' => array(
-                'inputs'  => $config['common_assets']['javascripts']['inputs'],
-                'filters' => $config['common_assets']['javascripts']['filters'],
-                'options' => $config['common_assets']['javascripts']['options'],
-            ),
-            'sonatra_bootstrap_head_hack_lt_ie_9' => array(
-                'inputs'  => $config['common_assets']['hack_lt_ie_9']['inputs'],
-                'filters' => $config['common_assets']['hack_lt_ie_9']['filters'],
-                'options' => $config['common_assets']['hack_lt_ie_9']['options'],
-            ),
-        );
+        $container->getDefinition('sonatra_bootstrap.assetic.common_javascripts_resource')->replaceArgument(1, $config['inputs']);
+        $container->getDefinition('sonatra_bootstrap.assetic.common_javascripts_resource')->replaceArgument(2, $config['filters']);
+        $container->getDefinition('sonatra_bootstrap.assetic.common_javascripts_resource')->replaceArgument(3, $config['options']);
+    }
 
-        // register assetic formulae
-        $formulae = array();
-
-        foreach ($assets as $name => $formula) {
-            $formulae[$name] = array($formula['inputs'], $formula['filters'], $formula['options']);
-        }
-
-        $container->getDefinition('sonatra_bootstrap.assetic.config_resource')->replaceArgument(0, $formulae);
+    /**
+     * Configures the hack ie resource.
+     *
+     * @param array            $config
+     * @param ContainerBuilder $container
+     */
+    protected function configHackIe(array &$config, ContainerBuilder $container)
+    {
+        $container->getDefinition('sonatra_bootstrap.assetic.hack_lt_ie_9_resource')->replaceArgument(1, $config['inputs']);
+        $container->getDefinition('sonatra_bootstrap.assetic.hack_lt_ie_9_resource')->replaceArgument(2, $config['filters']);
+        $container->getDefinition('sonatra_bootstrap.assetic.hack_lt_ie_9_resource')->replaceArgument(3, $config['options']);
     }
 }

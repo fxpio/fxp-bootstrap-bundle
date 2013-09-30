@@ -1,0 +1,23 @@
+<?php
+
+/*
+ * This file is part of the Sonatra package.
+ *
+ * (c) François Pluchino <francois.pluchino@sonatra.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Sonatra\Bundle\BootstrapBundle\Exception;
+
+use Assetic\Exception\Exception;
+
+/**
+ * Compile exception.
+ *
+ * @author François Pluchino <francois.pluchino@sonatra.com>
+ */
+class CompileException extends \RuntimeException implements Exception
+{
+}
