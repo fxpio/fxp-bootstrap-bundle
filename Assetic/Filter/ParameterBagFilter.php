@@ -13,29 +13,30 @@ namespace Sonatra\Bundle\BootstrapBundle\Assetic\Filter;
 
 use Assetic\Filter\FilterInterface;
 use Assetic\Asset\AssetInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\Container;
 use Sonatra\Bundle\BootstrapBundle\Assetic\Util\ContainerUtils;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 /**
- * Replace the container parameter tag (%foo.bar%) in asset.
+ * Replace the parameter bag tag (%foo.bar%) in asset.
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class ContainerParameterFilter implements FilterInterface
+class ParameterBagFilter implements FilterInterface
 {
     /**
-     * @var ContainerInterface
+     * @var ParameterBagInterface
      */
-    private $container;
+    private $parameterBag;
 
     /**
      * Constructor.
      *
      * @param ContainerInterface $container
      */
-    public function __construct(ContainerInterface $container)
+    public function __construct(Container $container)
     {
-        $this->container = $container;
+        $this->parameterBag = $container->getParameterBag();
     }
 
     /**
@@ -52,7 +53,7 @@ class ContainerParameterFilter implements FilterInterface
     public function filterDump(AssetInterface $asset)
     {
         $content = ContainerUtils::filterParameters($asset->getContent(), function($matches) {
-            return $this->container->getParameter(strtolower($matches[1]));
+            return $this->parameterBag->get(strtolower($matches[1]));
         });
 
         $asset->setContent($content);

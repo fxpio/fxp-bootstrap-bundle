@@ -13,7 +13,7 @@
         <parameter key="sonatra_bootstrap.assetic.common_javascripts_resource.class">Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource\SingleConfigurationResource</parameter>
         <parameter key="sonatra_bootstrap.assetic.hack_lt_ie_9_resource.class">Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource\SingleConfigurationResource</parameter>
 
-        <parameter key="sonatra_bootstrap.assetic.container_parameter_filter.class">Sonatra\Bundle\BootstrapBundle\Assetic\Filter\ContainerParameterFilter</parameter>
+        <parameter key="sonatra_bootstrap.assetic.parameter_bag_filter.class">Sonatra\Bundle\BootstrapBundle\Assetic\Filter\ParameterBagFilter</parameter>
         <parameter key="sonatra_bootstrap.assetic.path_relative_filter.class">Sonatra\Bundle\BootstrapBundle\Assetic\Filter\PathRelativeFilter</parameter>
 
         <parameter key="sonatra_bootstrap.builder.stylesheet.class">Sonatra\Bundle\BootstrapBundle\Builder\StylesheetBuilder</parameter>
@@ -59,8 +59,8 @@
             <argument type="collection" />
         </service>
 
-        <service id="sonatra_bootstrap.assetic.container_parameter_filter" class="%sonatra_bootstrap.assetic.container_parameter_filter.class%">
-            <tag name="assetic.filter" alias="containerparameter"></tag>
+        <service id="sonatra_bootstrap.assetic.parameter_bag_filter" class="%sonatra_bootstrap.assetic.parameter_bag_filter.class%">
+            <tag name="assetic.filter" alias="parameterbag"></tag>
             <argument type="service" id="service_container" />
         </service>
 

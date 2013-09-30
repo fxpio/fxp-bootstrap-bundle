@@ -146,7 +146,7 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('filters')
                             ->fixXmlConfig('filter')
                             ->prototype('scalar')->end()
-                            ->defaultValue(array('containerparameter', 'relative', 'cssrewrite', 'lessphp'))
+                            ->defaultValue(array('parameterbag', 'relative', 'cssrewrite', 'lessphp'))
                         ->end()
                         ->arrayNode('options')
                             ->addDefaultsIfNotSet()
