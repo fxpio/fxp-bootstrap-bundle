@@ -9,7 +9,7 @@
         <parameter key="sonatra_bootstrap.assetic.config_loader.class">Symfony\Bundle\AsseticBundle\Factory\Loader\ConfigurationLoader</parameter>
 
         <parameter key="sonatra_bootstrap.assetic.font_resource.class">Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource\FontResource</parameter>
-        <parameter key="sonatra_bootstrap.assetic.common_stylesheets_resource.class">Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource\SingleConfigurationResource</parameter>
+        <parameter key="sonatra_bootstrap.assetic.common_stylesheets_resource.class">Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource\CommonStylesheetsResource</parameter>
         <parameter key="sonatra_bootstrap.assetic.common_javascripts_resource.class">Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource\SingleConfigurationResource</parameter>
         <parameter key="sonatra_bootstrap.assetic.hack_lt_ie_9_resource.class">Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource\SingleConfigurationResource</parameter>
 
@@ -41,6 +41,7 @@
             <argument type="collection" />
             <argument type="collection" />
             <argument type="collection" />
+            <argument type="service" id="sonatra_bootstrap.builder.stylesheet" on-invalid="null" />
         </service>
 
         <service id="sonatra_bootstrap.assetic.common_javascripts_resource" class="%sonatra_bootstrap.assetic.common_javascripts_resource.class%" public="false">

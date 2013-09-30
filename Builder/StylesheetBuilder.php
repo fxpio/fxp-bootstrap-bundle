@@ -11,7 +11,6 @@
 
 namespace Sonatra\Bundle\BootstrapBundle\Builder;
 
-use Sonatra\Bundle\BootstrapBundle\Exception\CompileException;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
@@ -56,15 +55,9 @@ class StylesheetBuilder
      * Get the path of the bootstrap.less file.
      *
      * @return string The path
-     *
-     * @throws LogicException When the less file is not compiled
      */
     public function getPath()
     {
-        if (!file_exists($this->cachePath)) {
-            throw new CompileException(sprintf('The stylesheet of bootstrap file must be compiled before, at the "%s" path', $this->cachePath));
-        }
-
         return $this->cachePath;
     }
 

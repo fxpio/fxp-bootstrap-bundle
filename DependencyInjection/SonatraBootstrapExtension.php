@@ -69,11 +69,6 @@ class SonatraBootstrapExtension extends Extension
                 $container->getDefinition('sonatra_bootstrap.builder.stylesheet')->replaceArgument(1, $btConfig['directory']);
                 $container->getDefinition('sonatra_bootstrap.builder.stylesheet')->replaceArgument(2, $btConfig['components']);
 
-                $builder = $container->get('sonatra_bootstrap.builder.stylesheet');
-                $builder->compile();
-
-                array_unshift($config['inputs'], $builder->getPath());
-
             } else {
                 $container->removeDefinition('sonatra_bootstrap.builder.stylesheet');
             }
