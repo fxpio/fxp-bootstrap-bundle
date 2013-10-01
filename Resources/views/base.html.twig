@@ -4,24 +4,32 @@
 
 {% block html %}
 {% spaceless %}
+
 {% block html_tag %}
 <html>
 {% endblock html_tag %}
+
 {% block head %}
 <head>
     {% block metadata %}
     <meta charset="UTF-8" />
+    {% block viewport %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% endblock viewport %}
     {% endblock metadata %}
+    
     <title>{% block title %}Welcome!{% endblock %}</title>
+    
     {% block links %}
     <link rel="icon" type="image/x-icon" href="{% block favicon %}{{ asset('favicon.ico') }}{% endblock favicon %}" />
     {% endblock links %}
+    
     {% block stylesheets %}
         {% assetstylesheets 'sonatra_bootstrap_common_stylesheets' %}
 	        <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
 	    {% endassetstylesheets %}
     {% endblock stylesheets %}
+    
     {% block style %}
     <style type="text/css">
         {{ block_global_stylesheets() }}
@@ -54,6 +62,7 @@
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endassetjavascripts %}
     {% endblock javascripts %}
+    
     {% block jquery %}
     <script type="text/javascript">
     $( document ).ready( function() {
