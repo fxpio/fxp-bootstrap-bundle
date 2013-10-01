@@ -18,6 +18,7 @@
         <parameter key="sonatra_bootstrap.assetic.bundle_filter.class">Sonatra\Bundle\BootstrapBundle\Assetic\Filter\BundleFilter</parameter>
 
         <parameter key="sonatra_bootstrap.builder.stylesheet.class">Sonatra\Bundle\BootstrapBundle\Builder\StylesheetBuilder</parameter>
+        <parameter key="sonatra_bootstrap.builder.stylesheet_theme.class">Sonatra\Bundle\BootstrapBundle\Builder\StylesheetThemeBuilder</parameter>
         <parameter key="sonatra_bootstrap.assetic.font_output"></parameter>
     </parameters>
 
@@ -43,6 +44,7 @@
             <argument type="collection" />
             <argument type="collection" />
             <argument type="service" id="sonatra_bootstrap.builder.stylesheet" on-invalid="null" />
+            <argument type="service" id="sonatra_bootstrap.builder.stylesheet_theme" on-invalid="null" />
         </service>
 
         <service id="sonatra_bootstrap.assetic.common_javascripts_resource" class="%sonatra_bootstrap.assetic.common_javascripts_resource.class%" public="false">
@@ -79,6 +81,12 @@
             <argument />
             <argument />
             <argument type="collection" />
+        </service>
+
+        <service id="sonatra_bootstrap.builder.stylesheet_theme" class="%sonatra_bootstrap.builder.stylesheet_theme.class%" public="false">
+            <argument />
+            <argument />
+            <argument />
         </service>
     </services>
 </container>

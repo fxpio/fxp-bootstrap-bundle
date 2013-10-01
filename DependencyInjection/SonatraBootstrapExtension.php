@@ -63,14 +63,27 @@ class SonatraBootstrapExtension extends Extension
     {
         $btConfig = &$config['bootstrap'];
 
+        // bootstrap
         if ($container->hasDefinition('sonatra_bootstrap.builder.stylesheet')) {
             if ($btConfig['build']) {
-                $container->getDefinition('sonatra_bootstrap.builder.stylesheet')->replaceArgument(0, $btConfig['cache_path']);
+                $container->getDefinition('sonatra_bootstrap.builder.stylesheet')->replaceArgument(0, $btConfig['cache_directory']);
                 $container->getDefinition('sonatra_bootstrap.builder.stylesheet')->replaceArgument(1, $btConfig['directory']);
                 $container->getDefinition('sonatra_bootstrap.builder.stylesheet')->replaceArgument(2, $btConfig['components']);
 
             } else {
                 $container->removeDefinition('sonatra_bootstrap.builder.stylesheet');
+            }
+        }
+
+        //theme
+        if ($container->hasDefinition('sonatra_bootstrap.builder.stylesheet_theme')) {
+            if ($btConfig['build'] && $btConfig['theme']) {
+                $container->getDefinition('sonatra_bootstrap.builder.stylesheet_theme')->replaceArgument(0, $btConfig['cache_directory']);
+                $container->getDefinition('sonatra_bootstrap.builder.stylesheet_theme')->replaceArgument(1, $btConfig['directory']);
+                $container->getDefinition('sonatra_bootstrap.builder.stylesheet_theme')->replaceArgument(2, $btConfig['theme']);
+
+            } else {
+                $container->removeDefinition('sonatra_bootstrap.builder.stylesheet_theme');
             }
         }
 

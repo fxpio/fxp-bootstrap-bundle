@@ -23,7 +23,7 @@ class StylesheetBuilder
     /**
      * @var string
      */
-    protected $cachePath;
+    protected $compilePath;
 
     /**
      * @var string
@@ -87,10 +87,14 @@ class StylesheetBuilder
 
     /**
      * Constructor.
+     *
+     * @param string $cacheDir   The cache directory
+     * @param string $directory  The bootstrap less directory
+     * @param array  $components The bootstrap less components configuration
      */
-    public function __construct($cachePath, $directory, array $components)
+    public function __construct($cacheDir, $directory, array $components)
     {
-        $this->cachePath = $cachePath;
+        $this->compilePath = sprintf('%s/bootstrap.less', $cacheDir);
         $this->directory = rtrim($directory, '/');
         $this->components = $components;
         $this->filesystem = new Filesystem();
@@ -103,7 +107,7 @@ class StylesheetBuilder
      */
     public function getPath()
     {
-        return $this->cachePath;
+        return $this->compilePath;
     }
 
     /**
@@ -117,7 +121,7 @@ class StylesheetBuilder
             $content = $this->addImport($content, $component, $this->components[$component]);
         }
 
-        $this->filesystem->dumpFile($this->cachePath, $content);
+        $this->filesystem->dumpFile($this->compilePath, $content);
     }
 
     /**
