@@ -58,7 +58,7 @@ class Configuration implements ConfigurationInterface
                     ->example(array('%kernel.root_dir%/../vendor/twitter/bootstrap/fonts', '%kernel.root_dir%/../vendor/foo/bar/fonts'))
                     ->validate()
                         ->ifTrue(function($v) { return !in_array('%kernel.root_dir%/../vendor/twitter/bootstrap/fonts', $v); })
-                        ->then(function($v){
+                        ->then(function($v) {
                             return array_merge(array('%kernel.root_dir%/../vendor/twitter/bootstrap/fonts'), $v);
                         })
                     ->end()
@@ -148,6 +148,28 @@ class Configuration implements ConfigurationInterface
                             ->fixXmlConfig('filter')
                             ->prototype('scalar')->end()
                             ->defaultValue(array('parameterbag', 'bundle', 'relative', 'cssrewrite', 'lessphp'))
+                            ->validate()
+                                ->always()
+                                ->then(function($v) {
+                                    if (!in_array('less', $v) && !in_array('lessphp', $v)) {
+                                        array_unshift($v, 'lessphp');
+                                    }
+
+                                    if (!in_array('relative', $v)) {
+                                        array_unshift($v, 'relative');
+                                    }
+
+                                    if (!in_array('bundle', $v)) {
+                                        array_unshift($v, 'bundle');
+                                    }
+
+                                    if (!in_array('parameterbag', $v)) {
+                                        array_unshift($v, 'parameterbag');
+                                    }
+
+                                    return $v;
+                                })
+                            ->end()
                         ->end()
                         ->arrayNode('options')
                             ->addDefaultsIfNotSet()
