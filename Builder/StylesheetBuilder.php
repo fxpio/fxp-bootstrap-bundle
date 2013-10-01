@@ -41,6 +41,51 @@ class StylesheetBuilder
     protected $filesystem;
 
     /**
+     * Preserves the order of loading of twitter bootstrap.
+     * @var array
+     */
+    protected $orderComponents = array(
+        'variables', 'default_variables', 'custom_variables',
+        'mixins', 'custom_mixins',
+        'normalize',
+        'print',
+        'scaffolding',
+        'type',
+        'code',
+        'grid',
+        'tables',
+        'forms',
+        'buttons',
+        'component_animations',
+        'glyphicons',
+        'dropdowns',
+        'button_groups',
+        'input_groups',
+        'navs',
+        'navbar',
+        'breadcrumbs',
+        'pagination',
+        'pager',
+        'labels',
+        'badges',
+        'jumbotron',
+        'thumbnails',
+        'alerts',
+        'progress_bars',
+        'media',
+        'list_group',
+        'panels',
+        'wells',
+        'close',
+        'modals',
+        'tooltip',
+        'popovers',
+        'carousel',
+        'utilities',
+        'responsive_utilities',
+    );
+
+    /**
      * Constructor.
      */
     public function __construct($cachePath, $directory, array $components)
@@ -66,19 +111,35 @@ class StylesheetBuilder
      */
     public function compile()
     {
-        $data = '';
+        $content = '';
 
-        foreach ($this->components as $component => $value) {
-            if (is_string($value)) {
-                $data .= sprintf('@import "relative(%s)";', $value);
-                $data .= PHP_EOL;
-
-            } elseif ($value) {
-                $data .= sprintf('@import "relative(%s/%s.less)";', $this->directory, $component);
-                $data .= PHP_EOL;
-            }
+        foreach ($this->orderComponents as $component) {
+            $content = $this->addImport($content, $component, $this->components[$component]);
         }
 
-        $this->filesystem->dumpFile($this->cachePath, $data);
+        $this->filesystem->dumpFile($this->cachePath, $content);
+    }
+
+    /**
+     * Add import file in content.
+     *
+     * @param string      $content   The content
+     * @param string      $component The name of component
+     * @param string|bool $value     The value of component
+     *
+     * @return string The content
+     */
+    protected function addImport($content, $component, $value)
+    {
+        if (is_string($value)) {
+            $content .= sprintf('@import "relative(%s)";', $value);
+            $content .= PHP_EOL;
+
+        } elseif ($value) {
+            $content .= sprintf('@import "relative(%s/%s.less)";', $this->directory, str_replace('_', '-', $component));
+            $content .= PHP_EOL;
+        }
+
+        return $content;
     }
 }
