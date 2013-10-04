@@ -26,14 +26,16 @@
 
     {% block stylesheets %}
         {% assetstylesheets 'sonatra_bootstrap_common_stylesheets' %}
-	        <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
-	    {% endassetstylesheets %}
+            <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+        {% endassetstylesheets %}
     {% endblock stylesheets %}
 
     {% block style %}
     <style type="text/css">
+        {% block style_global %}
         {{ block_global_stylesheets() }}
-        {{ form_global_stylesheets() }}
+        {% endblock style_global %}
+
         {% block style_content %}
         {% endblock style_content %}
     </style>
@@ -43,9 +45,9 @@
     {#}HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries{#}
     <!--[if lt IE 9]>
         {% block hack_lt_ie_9 %}
-		{% assetjavascripts 'sonatra_bootstrap_head_hack_lt_ie_9' %}
-	        <script type="text/javascript" src="{{ asset_url }}"></script>
-	    {% endassetjavascripts %}
+        {% assetjavascripts 'sonatra_bootstrap_head_hack_lt_ie_9' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endassetjavascripts %}
         {% endblock hack_lt_ie_9 %}
     <![endif]-->
     {% endblock conditional_comments %}
@@ -66,8 +68,10 @@
     {% block jquery %}
     <script type="text/javascript">
     $( document ).ready( function() {
+        {% block javascript_global %}
         {{ block_global_javascripts() }}
-        {{ form_global_javascripts() }}
+        {% endblock javascript_global %}
+
         {% block jquery_content %}
         {% endblock jquery_content %}
     });
