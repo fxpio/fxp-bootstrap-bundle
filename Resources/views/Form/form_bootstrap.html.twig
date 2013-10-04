@@ -1,0 +1,129 @@
+{% use 'form_div_layout.html.twig' with form_widget_simple as base_form_widget_simple,
+                                        form_label as base_form_label,
+                                        form_start as base_form_start,
+                                        textarea_widget as base_textarea_widget,
+                                        choice_widget_collapsed as base_choice_widget_collapsed,
+                                        money_widget as base_money_widget,
+                                        datetime_widget as base_datetime_widget,
+                                        date_widget as base_date_widget,
+                                        time_widget as base_time_widget,
+                                        button_widget as base_button_widget %}
+
+{% block form_widget_simple %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
+    {{ block('base_form_widget_simple') }}
+{% endblock form_widget_simple %}
+
+
+{% block form_row %}
+{% spaceless %}
+    <div class="form-group">
+        {{ form_label(form) }}
+        {{ form_widget(form) }}
+        {{ form_errors(form) }}
+    </div>
+{% endspaceless %}
+{% endblock form_row %}
+
+
+{% block form_label %}
+    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control-label')|trim}) %}
+    {{ block('base_form_label') }}
+{% endblock form_label %}
+
+
+{% block form_start %}
+    {% set attr = attr|merge({'role': 'form'}) %}
+    {{ block('base_form_start') }}
+{% endblock form_start %}
+
+
+{% block textarea_widget %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
+    {{ block('base_textarea_widget') }}
+{% endblock textarea_widget %}
+
+
+{% block checkbox_row %}
+{% spaceless %}
+     <div class="form-group">
+	    <div class="checkbox">
+	        {{ form_widget(form) }}
+	        {{ form_label(form) }}
+	        {{ form_errors(form) }}
+	    </div>
+    </div>
+{% endspaceless %}
+{% endblock checkbox_row %}
+
+
+{% block radio_row %}
+{% spaceless %}
+    <div class="form-group">
+	    <div class="radio">
+	        {{ form_widget(form) }}
+	        {{ form_label(form) }}
+	        {{ form_errors(form) }}
+	    </div>
+    </div>
+{% endspaceless %}
+{% endblock radio_row %}
+
+
+{% block choice_widget_collapsed %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
+    {{ block('base_choice_widget_collapsed') }}
+{% endblock choice_widget_collapsed %}
+
+
+{% block percent_widget %}
+{% spaceless %}
+    <div class="input-group">
+        {% set type = type|default('text') %}
+        {{ block('form_widget_simple') }}
+        <span class="input-group-addon">%</span>
+	</div>
+{% endspaceless %}
+{% endblock percent_widget %}
+
+
+{% block money_widget %}
+{% spaceless %}
+    <div class="input-group">
+	    {{ block('base_money_widget') }}
+	</div>
+{% endspaceless %}
+{% endblock money_widget %}
+
+
+{% block datetime_widget %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-inline')|trim}) %}
+    {{ block('base_datetime_widget') }}
+{% endblock datetime_widget %}
+
+
+{% block date_widget %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-inline date')|trim}) %}
+    {{ block('base_date_widget') }}
+{% endblock date_widget %}
+
+
+{% block time_widget %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-inline time')|trim}) %}
+    {{ block('base_time_widget') }}
+{% endblock time_widget %}
+
+
+{% block button_widget %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn')|trim}) %}
+    {{ block('base_button_widget') }}
+{% endblock button_widget %}
+
+
+{% block button_row %}
+{% spaceless %}
+    <div class="form-group">
+        {{ form_widget(form) }}
+    </div>
+{% endspaceless %}
+{% endblock button_row %}

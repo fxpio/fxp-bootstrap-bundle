@@ -15,13 +15,14 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 
 /**
  * This is the class that loads and manages your bundle configuration.
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class SonatraBootstrapExtension extends Extension
+class SonatraBootstrapExtension extends Extension implements PrependExtensionInterface
 {
     /**
      * {@inheritdoc}
@@ -34,6 +35,7 @@ class SonatraBootstrapExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('assetic.xml');
         $loader->load('templating_twig.xml');
+        $loader->load('form.xml');
 
         $this->configFonts($config['font'], $container);
         $this->configCommonStylesheets($config['common_assets']['stylesheets'], $container);
@@ -129,5 +131,26 @@ class SonatraBootstrapExtension extends Extension
         $container->getDefinition('sonatra_bootstrap.assetic.hack_lt_ie_9_resource')->replaceArgument(1, $config['inputs']);
         $container->getDefinition('sonatra_bootstrap.assetic.hack_lt_ie_9_resource')->replaceArgument(2, $config['filters']);
         $container->getDefinition('sonatra_bootstrap.assetic.hack_lt_ie_9_resource')->replaceArgument(3, $config['options']);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function prepend(ContainerBuilder $container)
+    {
+        $exts = $container->getExtensions();
+
+        if (isset($exts['twig'])) {
+            $resources = array();
+
+            foreach (array('div') as $template) {
+                $resources[] = 'SonatraBootstrapBundle:Form:form_bootstrap.html.twig';
+            }
+
+            $container->prependExtensionConfig(
+                    'twig',
+                    array('form'  => array('resources' => $resources))
+            );
+        }
     }
 }
