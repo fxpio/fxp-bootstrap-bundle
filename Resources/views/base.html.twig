@@ -34,6 +34,7 @@
     <style type="text/css">
         {% block style_global %}
         {{ block_global_stylesheets() }}
+        {{ form_global_stylesheets() }}
         {% endblock style_global %}
 
         {% block style_content %}
@@ -70,6 +71,7 @@
     $( document ).ready( function() {
         {% block javascript_global %}
         {{ block_global_javascripts() }}
+        {{ form_global_javascripts() }}
         {% endblock javascript_global %}
 
         {% block jquery_content %}
