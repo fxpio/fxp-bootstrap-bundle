@@ -1,23 +1,62 @@
 {% use 'form_div_layout.html.twig' with form_widget_simple as base_form_widget_simple,
                                         form_label as base_form_label,
                                         form_start as base_form_start,
+                                        collection_widget as base_collection_widget,
                                         textarea_widget as base_textarea_widget,
                                         choice_widget_collapsed as base_choice_widget_collapsed,
-                                        money_widget as base_money_widget,
                                         datetime_widget as base_datetime_widget,
                                         date_widget as base_date_widget,
-                                        time_widget as base_time_widget,
-                                        button_widget as base_button_widget %}
+                                        time_widget as base_time_widget %}
+
+{% block addon_start %}
+{% spaceless %}
+    {% if prepend_string is defined or prepend_form is defined or prepend_block is defined or append_string is defined or append_form is defined or append_block is defined %}
+        <div class="input-group">
+    {% endif %}
+	    {% if prepend_string is defined %}
+	        <span class="input-group-addon">{{ prepend_string }}</span>
+	    {% endif %}
+	    {% if prepend_form is defined %}
+	        <div class="input-group-btn">{{ form_assets_widget(prepend_form) }}</div>
+	    {% endif %}
+	    {% if prepend_block is defined %}
+	        <div class="input-group-addon">{{ block_assets_widget(prepend_block) }}</div>
+	    {% endif %}
+{% endspaceless %}
+{% endblock addon_start %}
+
+
+{% block addon_end %}
+{% spaceless %}
+	    {% if append_string is defined %}
+	        <span class="input-group-addon">{{ append_string }}</span>
+	    {% endif %}
+	    {% if append_form is defined %}
+	        <div class="input-group-btn">{{ form_assets_widget(append_form) }}</div>
+	    {% endif %}
+	    {% if append_block is defined %}
+	        <div class="input-group-addon">{{ block_assets_widget(append_block) }}</div>
+	    {% endif %}
+    {% if prepend_string is defined or prepend_form is defined or prepend_block is defined or append_string is defined or append_form is defined or append_block is defined %}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock addon_end %}
+
 
 {% block form_widget_simple %}
+{% spaceless %}
+    {{ block('addon_start') }}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
     {{ block('base_form_widget_simple') }}
+	{{ block('addon_end') }}
+{% endspaceless %}
 {% endblock form_widget_simple %}
 
 
 {% block form_row %}
 {% spaceless %}
-    <div class="form-group">
+    <div class="form-group" {% if row_id is defined %} id="{{ row_id }}"{% endif %}>
         {{ form_label(form) }}
         {{ form_widget(form) }}
         {{ form_errors(form) }}
@@ -38,9 +77,47 @@
 {% endblock form_start %}
 
 
+{% block collection_widget %}
+    {{ block('base_collection_widget') }}
+
+    {% if btn_add is defined %}
+        {{ form_assets_widget(btn_add) }}
+    {% endif %}
+{% endblock collection_widget %}
+
+
+{% block collection_javascript %}
+    {% if btn_add is defined and prototype is defined %}
+	    $('#{{ btn_add.vars.id }}').click(function(event) {
+            var inc = $(this).data('inc');
+                inc = undefined !== inc ? inc : 0;
+		    var collectionHolder = $('#' + $(this).attr('data-target'));
+		    var prototype = collectionHolder.attr('data-prototype');
+		    var form = prototype.replace(/__data_related__/g, "{{ id }}_{{ prototype_name }}_row");
+		        form = form.replace(/{{ prototype_name }}/g, inc);
+
+		    collectionHolder.append(form);
+		    $(this).data('inc', ++inc);
+
+		    return false;
+		});
+	{% endif %}
+
+	{% if allow_delete and prototype is defined %}
+	   $('#{{ id }}').on('click', 'button.btn-remove', null, function(event) {
+		    $('#'+$(this).attr('data-related')).remove();
+
+		    return false;
+	   });
+	{% endif %}
+{% endblock collection_javascript %}
+
+
 {% block textarea_widget %}
+    {{ block('addon_start') }}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
     {{ block('base_textarea_widget') }}
+    {{ block('addon_end') }}
 {% endblock textarea_widget %}
 
 
@@ -77,23 +154,11 @@
 
 
 {% block percent_widget %}
-{% spaceless %}
-    <div class="input-group">
-        {% set type = type|default('text') %}
-        {{ block('form_widget_simple') }}
-        <span class="input-group-addon">%</span>
-	</div>
-{% endspaceless %}
+    {% if append_string is not defined and append_form is not defined and append_block is not defined %}
+        {% set append_string = '%' %}
+    {% endif %}
+    {{ block('form_widget_simple') }}
 {% endblock percent_widget %}
-
-
-{% block money_widget %}
-{% spaceless %}
-    <div class="input-group">
-	    {{ block('base_money_widget') }}
-	</div>
-{% endspaceless %}
-{% endblock money_widget %}
 
 
 {% block datetime_widget %}
@@ -115,8 +180,12 @@
 
 
 {% block button_widget %}
-    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn')|trim}) %}
-    {{ block('base_button_widget') }}
+{% spaceless %}
+    {% if label is empty and label != '' %}
+        {% set label = name|humanize %}
+    {% endif %}
+    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{% if glyphicon is defined %}<span class="glyphicon glyphicon-{{ glyphicon }}"></span> {% endif %}{{ label|trans({}, translation_domain) }}</button>
+{% endspaceless %}
 {% endblock button_widget %}
 
 

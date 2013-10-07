@@ -5,8 +5,24 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <service id="form.type_extension.sonatra_form" class="Sonatra\Bundle\BootstrapBundle\Form\Extension\FormExtension">
+            <tag name="form.type_extension" alias="form" />
+        </service>
+
         <service id="form.type_extension.sonatra_money" class="Sonatra\Bundle\BootstrapBundle\Form\Extension\MoneyExtension">
             <tag name="form.type_extension" alias="money" />
+        </service>
+
+        <service id="form.type_extension.sonatra_collection" class="Sonatra\Bundle\BootstrapBundle\Form\Extension\CollectionExtension">
+            <tag name="form.type_extension" alias="collection" />
+        </service>
+
+        <service id="form.type_extension.sonatra_button" class="Sonatra\Bundle\BootstrapBundle\Form\Extension\ButtonExtension">
+            <tag name="form.type_extension" alias="button" />
+        </service>
+
+        <service id="form.type_extension.sonatra_addon" class="Sonatra\Bundle\BootstrapBundle\Form\Extension\AddonExtension">
+            <tag name="form.type_extension" alias="form" />
         </service>
     </services>
 </container>

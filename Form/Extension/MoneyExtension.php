@@ -14,6 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Form\Extension;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Money Form Extension.
@@ -29,7 +30,30 @@ class MoneyExtension extends AbstractTypeExtension
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['money_pattern'] = self::getPattern($options['currency']);
+        list($pattern, $position, $currency) = self::getPattern($options['currency']);
+
+        if ('prepend' === $position) {
+            $view->vars['prepend_string'] = $currency;
+            unset($view->vars['prepend_form']);
+            unset($view->vars['prepend_block']);
+
+        } elseif ('append' === $position) {
+            $view->vars['append_string'] = $currency;
+            unset($view->vars['append_form']);
+            unset($view->vars['append_block']);
+        }
+
+        $view->vars['money_pattern'] = $pattern;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->addAllowedTypes(array(
+            'prepend'    => array('null'),
+        ));
     }
 
     /**
@@ -41,15 +65,17 @@ class MoneyExtension extends AbstractTypeExtension
     }
 
     /**
-     * Returns the pattern for this locale
+     * Returns the pattern/position/currency for this locale.
      *
      * The pattern contains the placeholder "{{ widget }}" where the HTML tag should
-     * be inserted
+     * be inserted.
+     *
+     * @return array The pattern, position and currency variables
      */
     protected static function getPattern($currency)
     {
         if (!$currency) {
-            return '{{ widget }}';
+            return array('{{ widget }}', null, null);
         }
 
         $locale = \Locale::getDefault();
@@ -70,15 +96,12 @@ class MoneyExtension extends AbstractTypeExtension
 
             preg_match('/^([^\s\xc2\xa0]*)[\s\xc2\xa0]*123(?:[,.]0+)?[\s\xc2\xa0]*([^\s\xc2\xa0]*)$/u', $pattern, $matches);
 
-            $start = '<span class="input-group-addon">';
-            $end = '</span>';
-
             if (!empty($matches[1])) {
-                self::$patterns[$locale][$currency] = $start.$matches[1].$end.'{{ widget }}';
+                self::$patterns[$locale][$currency] = array('{{ widget }}', 'prepend', $matches[1]);
             } elseif (!empty($matches[2])) {
-                self::$patterns[$locale][$currency] = '{{ widget }}'.$start.$matches[2].$end;
+                self::$patterns[$locale][$currency] = array('{{ widget }}', 'append', $matches[2]);
             } else {
-                self::$patterns[$locale][$currency] = '{{ widget }}';
+                self::$patterns[$locale][$currency] = array('{{ widget }}', null, null);
             }
         }
 
