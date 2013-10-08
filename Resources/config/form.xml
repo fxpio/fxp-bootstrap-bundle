@@ -17,6 +17,10 @@
             <tag name="form.type_extension" alias="email" />
         </service>
 
+        <service id="form.type_extension.sonatra_url" class="Sonatra\Bundle\BootstrapBundle\Form\Extension\UrlExtension">
+            <tag name="form.type_extension" alias="url" />
+        </service>
+
         <service id="form.type_extension.sonatra_collection" class="Sonatra\Bundle\BootstrapBundle\Form\Extension\CollectionExtension">
             <tag name="form.type_extension" alias="collection" />
             <argument type="service" id="form.factory" />
