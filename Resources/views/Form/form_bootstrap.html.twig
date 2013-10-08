@@ -13,30 +13,30 @@
     {% if prepend_string is defined or prepend_form is defined or prepend_block is defined or append_string is defined or append_form is defined or append_block is defined %}
         <div class="input-group">
     {% endif %}
-	    {% if prepend_string is defined %}
-	        <span class="input-group-addon">{{ prepend_string }}</span>
-	    {% endif %}
-	    {% if prepend_form is defined %}
-	        <div class="input-group-btn">{{ form_assets_widget(prepend_form) }}</div>
-	    {% endif %}
-	    {% if prepend_block is defined %}
-	        <div class="input-group-addon">{{ block_assets_widget(prepend_block) }}</div>
-	    {% endif %}
+        {% if prepend_string is defined %}
+            <span class="input-group-addon">{{ prepend_string }}</span>
+        {% endif %}
+        {% if prepend_form is defined %}
+            <div class="input-group-btn">{{ form_assets_widget(prepend_form) }}</div>
+        {% endif %}
+        {% if prepend_block is defined %}
+            <div class="input-group-addon">{{ block_assets_widget(prepend_block) }}</div>
+        {% endif %}
 {% endspaceless %}
 {% endblock addon_start %}
 
 
 {% block addon_end %}
 {% spaceless %}
-	    {% if append_string is defined %}
-	        <span class="input-group-addon">{{ append_string }}</span>
-	    {% endif %}
-	    {% if append_form is defined %}
-	        <div class="input-group-btn">{{ form_assets_widget(append_form) }}</div>
-	    {% endif %}
-	    {% if append_block is defined %}
-	        <div class="input-group-addon">{{ block_assets_widget(append_block) }}</div>
-	    {% endif %}
+        {% if append_string is defined %}
+            <span class="input-group-addon">{{ append_string }}</span>
+        {% endif %}
+        {% if append_form is defined %}
+            <div class="input-group-btn">{{ form_assets_widget(append_form) }}</div>
+        {% endif %}
+        {% if append_block is defined %}
+            <div class="input-group-addon">{{ block_assets_widget(append_block) }}</div>
+        {% endif %}
     {% if prepend_string is defined or prepend_form is defined or prepend_block is defined or append_string is defined or append_form is defined or append_block is defined %}
         </div>
     {% endif %}
@@ -49,7 +49,7 @@
     {{ block('addon_start') }}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
     {{ block('base_form_widget_simple') }}
-	{{ block('addon_end') }}
+    {{ block('addon_end') }}
 {% endspaceless %}
 {% endblock form_widget_simple %}
 
@@ -90,27 +90,27 @@
 
 {% block collection_javascript %}
     {% if btn_add is defined and prototype is defined %}
-	    $('#{{ btn_add.vars.id }}').click(function(event) {
+        $('#{{ btn_add.vars.id }}').click(function(event) {
             var inc = $(this).data('inc');
                 inc = undefined !== inc ? inc : {{ form|length }};
-		    var collectionHolder = $('#' + $(this).attr('data-target'));
-		    var prototype = collectionHolder.attr('data-prototype');
-		    var form = prototype.replace(/{{ prototype_name }}/g, inc);
+            var collectionHolder = $('#' + $(this).attr('data-target'));
+            var prototype = collectionHolder.attr('data-prototype');
+            var form = prototype.replace(/{{ prototype_name }}/g, inc);
 
-		    collectionHolder.append(form);
-		    $(this).data('inc', ++inc);
+            collectionHolder.append(form);
+            $(this).data('inc', ++inc);
 
-		    return false;
-		});
-	{% endif %}
+            return false;
+        });
+    {% endif %}
 
-	{% if allow_delete and prototype is defined %}
-	   $('#{{ id }}').on('click', 'button.btn-remove', null, function(event) {
-		    $(this).parents('.form-collection-row').remove();
+    {% if allow_delete and prototype is defined %}
+       $('#{{ id }}').on('click', 'button.btn-remove', null, function(event) {
+            $(this).parents('.form-collection-row').remove();
 
-		    return false;
-	   });
-	{% endif %}
+            return false;
+       });
+    {% endif %}
 {% endblock collection_javascript %}
 
 
@@ -124,12 +124,13 @@
 
 {% block checkbox_row %}
 {% spaceless %}
-     <div class="form-group">
-	    <div class="checkbox">
-	        {{ form_widget(form) }}
-	        {{ form_label(form) }}
-	        {{ form_errors(form) }}
-	    </div>
+    
+    <div class="form-group">
+        <div class="checkbox">
+            {{ form_widget(form) }}
+            {{ form_label(form) }}
+            {{ form_errors(form) }}
+        </div>
     </div>
 {% endspaceless %}
 {% endblock checkbox_row %}
@@ -138,11 +139,11 @@
 {% block radio_row %}
 {% spaceless %}
     <div class="form-group">
-	    <div class="radio">
-	        {{ form_widget(form) }}
-	        {{ form_label(form) }}
-	        {{ form_errors(form) }}
-	    </div>
+        <div class="radio">
+            {{ form_widget(form) }}
+            {{ form_label(form) }}
+            {{ form_errors(form) }}
+        </div>
     </div>
 {% endspaceless %}
 {% endblock radio_row %}
