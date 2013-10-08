@@ -11,16 +11,20 @@
 {% block addon_start %}
 {% spaceless %}
     {% if prepend_string is defined or prepend_form is defined or prepend_block is defined or append_string is defined or append_form is defined or append_block is defined %}
-        <div class="input-group">
+        {% set addon_attr = addon_attr|default({})|merge({'class': ('input-group ' ~ (addon_attr.class|default('')))|trim}) %}
+
+        <div {% for attrname, attrvalue in addon_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
     {% endif %}
+        {% set prepend_attr = prepend_attr|default({})|merge({'class': ('input-group-' ~ prepend_type ~ ' ' ~ (prepend_attr.class|default('')))|trim}) %}
+
         {% if prepend_string is defined %}
-            <span class="input-group-addon">{{ prepend_string }}</span>
+            <span {% for attrname, attrvalue in prepend_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ prepend_string }}</span>
         {% endif %}
         {% if prepend_form is defined %}
-            <div class="input-group-btn">{{ form_assets_widget(prepend_form) }}</div>
+            <div {% for attrname, attrvalue in prepend_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ form_assets_widget(prepend_form) }}</div>
         {% endif %}
         {% if prepend_block is defined %}
-            <div class="input-group-addon">{{ block_assets_widget(prepend_block) }}</div>
+            <div {% for attrname, attrvalue in prepend_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ block_assets_widget(prepend_block) }}</div>
         {% endif %}
 {% endspaceless %}
 {% endblock addon_start %}
@@ -28,14 +32,16 @@
 
 {% block addon_end %}
 {% spaceless %}
+        {% set append_attr = append_attr|default({})|merge({'class': ('input-group-' ~ append_type ~ ' ' ~ (append_attr.class|default('')))|trim}) %}
+
         {% if append_string is defined %}
-            <span class="input-group-addon">{{ append_string }}</span>
+            <span {% for attrname, attrvalue in append_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ append_string }}</span>
         {% endif %}
         {% if append_form is defined %}
-            <div class="input-group-btn">{{ form_assets_widget(append_form) }}</div>
+            <div {% for attrname, attrvalue in append_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ form_assets_widget(append_form) }}</div>
         {% endif %}
         {% if append_block is defined %}
-            <div class="input-group-addon">{{ block_assets_widget(append_block) }}</div>
+            <div {% for attrname, attrvalue in append_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ block_assets_widget(append_block) }}</div>
         {% endif %}
     {% if prepend_string is defined or prepend_form is defined or prepend_block is defined or append_string is defined or append_form is defined or append_block is defined %}
         </div>
