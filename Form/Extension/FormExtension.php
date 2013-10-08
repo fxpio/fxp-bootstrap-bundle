@@ -28,9 +28,7 @@ class FormExtension extends AbstractTypeExtension
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        if ($options['row_id']) {
-            $view->vars['row_id'] = $view->vars['id'] . '_row';
-        }
+        $view->vars['row_attr'] = $options['row_attr'];
     }
 
     /**
@@ -40,12 +38,12 @@ class FormExtension extends AbstractTypeExtension
     {
         $resolver->setDefaults(
             array(
-                'row_id' => false,
+                'row_attr' => array(),
             )
         );
 
         $resolver->addAllowedTypes(array(
-            'row_id' => array('bool'),
+            'row_attr' => array('array'),
         ));
     }
 

@@ -56,7 +56,9 @@
 
 {% block form_row %}
 {% spaceless %}
-    <div class="form-group" {% if row_id is defined %} id="{{ row_id }}"{% endif %}>
+    {% set row_attr = row_attr|default({})|merge({'class': 'form-group ' ~ (row_attr.class|default(''))|trim}) %}
+
+    <div {% for attrname, attrvalue in row_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
         {{ form_label(form) }}
         {{ form_widget(form) }}
         {{ form_errors(form) }}
