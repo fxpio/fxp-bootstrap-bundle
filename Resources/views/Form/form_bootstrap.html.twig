@@ -69,6 +69,9 @@
 
 {% block form_label %}
     {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control-label')|trim}) %}
+    {% if display_label == false %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' sr-only')|trim}) %}
+    {% endif %}
     {{ block('base_form_label') }}
 {% endblock form_label %}
 

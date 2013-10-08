@@ -28,7 +28,10 @@ class FormExtension extends AbstractTypeExtension
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['row_attr'] = $options['row_attr'];
+        $view->vars = array_replace($view->vars, array(
+            'row_attr'      => $options['row_attr'],
+            'display_label' => $options['display_label'],
+        ));
     }
 
     /**
@@ -38,12 +41,14 @@ class FormExtension extends AbstractTypeExtension
     {
         $resolver->setDefaults(
             array(
-                'row_attr' => array(),
+                'row_attr'      => array(),
+                'display_label' => true,
             )
         );
 
         $resolver->addAllowedTypes(array(
-            'row_attr' => array('array'),
+            'row_attr'      => array('array'),
+            'display_label' => array('bool'),
         ));
     }
 
