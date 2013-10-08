@@ -124,8 +124,9 @@
 
 {% block checkbox_row %}
 {% spaceless %}
+    {% set row_attr = row_attr|default({})|merge({'class': 'form-group ' ~ (row_attr.class|default(''))|trim}) %}
 
-    <div class="form-group">
+    <div {% for attrname, attrvalue in row_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
         <div class="checkbox">
             {{ form_widget(form) }}
             {{ form_label(form) }}
@@ -138,7 +139,9 @@
 
 {% block radio_row %}
 {% spaceless %}
-    <div class="form-group">
+    {% set row_attr = row_attr|default({})|merge({'class': 'form-group ' ~ (row_attr.class|default(''))|trim}) %}
+
+    <div {% for attrname, attrvalue in row_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
         <div class="radio">
             {{ form_widget(form) }}
             {{ form_label(form) }}
@@ -193,7 +196,9 @@
 
 {% block button_row %}
 {% spaceless %}
-    <div class="form-group">
+    {% set row_attr = row_attr|default({})|merge({'class': 'form-group ' ~ (row_attr.class|default(''))|trim}) %}
+
+    <div {% for attrname, attrvalue in row_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
         {{ form_widget(form) }}
     </div>
 {% endspaceless %}
