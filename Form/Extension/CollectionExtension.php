@@ -12,6 +12,7 @@
 namespace Sonatra\Bundle\BootstrapBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -26,6 +27,21 @@ use Symfony\Component\OptionsResolver\Options;
 class CollectionExtension extends AbstractTypeExtension
 {
     /**
+     * @var FormFactory
+     */
+    protected $factory;
+
+    /**
+     * Constructor.
+     *
+     * @param FormFactory $factory
+     */
+    public function __construct(FormFactory $factory)
+    {
+        $this->factory = $factory;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -38,21 +54,6 @@ class CollectionExtension extends AbstractTypeExtension
             }
 
             $builder->setAttribute('btn_add', $btnAdd);
-
-            if ($options['allow_delete'] && $options['prototype']) {
-                $btnDelete = $options['btn_delete'];
-
-                if (is_array($btnDelete)) {
-                    $btnDelete = $builder->create('delete', 'button', $options['btn_delete'])->getForm();
-                }
-
-                $prototype = $builder->create($options['prototype_name'], $options['type'], array_replace(array(
-                    'label' => $options['prototype_name'].'label__',
-                    'row_id' => true,
-                    'append' => $btnDelete,
-                ), $options['options']));
-                $builder->setAttribute('prototype', $prototype->getForm());
-            }
         }
     }
 
@@ -87,13 +88,6 @@ class CollectionExtension extends AbstractTypeExtension
             'btn_delete' => array('array', 'Symfony\Component\Form\Form'),
         ));
 
-        $optionsNormalizer = function (Options $options, $value) {
-            $value['label_attr'] = array('class' => 'sr-only');
-            $value['label'] = $options['prototype_name'];
-
-            return $value;
-        };
-
         $btnAddNormalizer = function (Options $options, $value) {
             if (is_array($value)) {
                 $value = array_merge(array('label' => '', 'glyphicon' => 'plus', 'size' => 'xs', 'style' => 'default'), $value);
@@ -102,18 +96,38 @@ class CollectionExtension extends AbstractTypeExtension
             return $value;
         };
 
-        $btnDeleteNormalizer = function (Options $options, $value) {
-            if (is_array($value)) {
-                $value = array_merge(array('label' => '', 'glyphicon' => 'remove', 'style' => 'danger', 'attr' => array('data-related' => '__data_related__', 'class' => 'btn-remove')), $value);
+        $optionsNormalizer = function (Options $options, $value) {
+            $value['label_attr'] = array('class' => 'sr-only');
+
+            // btn delete
+            if ($options['allow_delete'] && $options['prototype']) {
+                $value['append'] = $options['btn_delete'];
+
+                if (is_array($value['append'])) {
+                    $value['append'] = array_merge(
+                        array(
+                            'label' => '',
+                            'glyphicon' => 'remove',
+                            'style' => 'danger',
+                            'attr' => array(
+                                'class' => 'btn-remove'
+                                )
+                            ),
+                        $value['append']
+                    );
+
+                    $value['append'] = $this->factory->createNamed('delete', 'button', null, $value['append']);
+                }
+
+                $value['row_attr'] = array('class' => 'form-collection-row');
             }
 
             return $value;
         };
 
         $resolver->setNormalizers(array(
-            'options'    => $optionsNormalizer,
-            'btn_add'    => $btnAddNormalizer,
-            'btn_delete' => $btnDeleteNormalizer,
+            'btn_add' => $btnAddNormalizer,
+            'options' => $optionsNormalizer,
         ));
     }
 

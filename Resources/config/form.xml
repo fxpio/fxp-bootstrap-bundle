@@ -15,6 +15,7 @@
 
         <service id="form.type_extension.sonatra_collection" class="Sonatra\Bundle\BootstrapBundle\Form\Extension\CollectionExtension">
             <tag name="form.type_extension" alias="collection" />
+            <argument type="service" id="form.factory" />
         </service>
 
         <service id="form.type_extension.sonatra_button" class="Sonatra\Bundle\BootstrapBundle\Form\Extension\ButtonExtension">

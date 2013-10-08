@@ -95,8 +95,7 @@
                 inc = undefined !== inc ? inc : {{ form|length }};
 		    var collectionHolder = $('#' + $(this).attr('data-target'));
 		    var prototype = collectionHolder.attr('data-prototype');
-		    var form = prototype.replace(/__data_related__/g, "{{ id }}_{{ prototype_name }}_row");
-		        form = form.replace(/{{ prototype_name }}/g, inc);
+		    var form = prototype.replace(/{{ prototype_name }}/g, inc);
 
 		    collectionHolder.append(form);
 		    $(this).data('inc', ++inc);
@@ -107,7 +106,7 @@
 
 	{% if allow_delete and prototype is defined %}
 	   $('#{{ id }}').on('click', 'button.btn-remove', null, function(event) {
-		    $('#'+$(this).attr('data-related')).remove();
+		    $(this).parents('.form-collection-row').remove();
 
 		    return false;
 	   });
