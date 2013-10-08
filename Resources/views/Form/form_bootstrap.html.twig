@@ -134,34 +134,60 @@
 {% endblock textarea_widget %}
 
 
-{% block checkbox_row %}
+{% block checkbox_label %}
+{% endblock checkbox_label %}
+
+
+{% block checkbox_widget %}
 {% spaceless %}
-    {% set row_attr = row_attr|default({})|merge({'class': ('form-group ' ~ (row_attr.class|default('')))|trim}) %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+    {% set inline = inline|default(false) %}
+    {% if inline %}
+        {% set label_attr = label_attr|merge({'class': ('checkbox-inline ' ~ label_attr.class|default(''))|trim}) %}
+    {% endif %}
 
-    <div {% for attrname, attrvalue in row_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-        <div class="checkbox">
-            {{ form_widget(form) }}
-            {{ form_label(form) }}
-            {{ form_errors(form) }}
-        </div>
+     {% if inline == false %}
+    <div class="checkbox">
+    {% endif %}
+	    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+	        <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+	        {{ label|trans({}, translation_domain) }}
+	    </label>
+    {% if inline == false %}
     </div>
+    {% endif %}
 {% endspaceless %}
-{% endblock checkbox_row %}
+{% endblock checkbox_widget %}
 
 
-{% block radio_row %}
+{% block radio_label %}
+{% endblock radio_label %}
+
+
+{% block radio_widget %}
 {% spaceless %}
-    {% set row_attr = row_attr|default({})|merge({'class': ('form-group ' ~ (row_attr.class|default('')))|trim}) %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+    {% set inline = inline|default(false) %}
+    {% if inline %}
+        {% set label_attr = label_attr|merge({'class': ('radio-inline ' ~ label_attr.class|default(''))|trim}) %}
+    {% endif %}
 
-    <div {% for attrname, attrvalue in row_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-        <div class="radio">
-            {{ form_widget(form) }}
-            {{ form_label(form) }}
-            {{ form_errors(form) }}
-        </div>
+    {% if inline == false %}
+    <div class="radio">
+    {% endif %}
+	    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+	        <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+	        {{ label|trans({}, translation_domain) }}
+	    </label>
+    {% if inline == false %}
     </div>
+    {% endif %}
 {% endspaceless %}
-{% endblock radio_row %}
+{% endblock radio_widget %}
 
 
 {% block choice_widget_collapsed %}
