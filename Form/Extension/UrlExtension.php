@@ -32,6 +32,10 @@ class UrlExtension extends AbstractTypeExtension
                 $value = $options['default_protocol'] . '://';
             }
 
+            if ('' === $value) {
+                $value = null;
+            }
+
             return $value;
         };
 

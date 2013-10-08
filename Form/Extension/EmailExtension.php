@@ -13,6 +13,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\Options;
 
 /**
  * Email Form Extension.
@@ -26,11 +27,21 @@ class EmailExtension extends AbstractTypeExtension
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(
-            array(
-                'prepend' => '@',
-            )
-        );
+        $prependNormalizers = function (Options $options, $value) {
+            if (null === $value) {
+                $value = '@';
+            }
+
+            if ('' === $value) {
+                $value = null;
+            }
+
+            return $value;
+        };
+
+        $resolver->setNormalizers(array(
+            'prepend' => $prependNormalizers,
+        ));
     }
 
     /**
