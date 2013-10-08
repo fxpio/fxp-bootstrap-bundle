@@ -78,6 +78,9 @@
 
 {% block form_start %}
     {% set attr = attr|merge({'role': 'form'}) %}
+    {% if layout != null %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-' ~ layout)|trim}) %}
+    {% endif %}
     {{ block('base_form_start') }}
 {% endblock form_start %}
 
