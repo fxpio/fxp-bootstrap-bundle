@@ -21,6 +21,10 @@
             <tag name="form.type_extension" alias="url" />
         </service>
 
+        <service id="form.type_extension.sonatra_percent" class="Sonatra\Bundle\BootstrapBundle\Form\Extension\PercentExtension">
+            <tag name="form.type_extension" alias="percent" />
+        </service>
+
         <service id="form.type_extension.sonatra_collection" class="Sonatra\Bundle\BootstrapBundle\Form\Extension\CollectionExtension">
             <tag name="form.type_extension" alias="collection" />
             <argument type="service" id="form.factory" />

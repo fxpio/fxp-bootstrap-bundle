@@ -155,10 +155,10 @@
 
 
 {% block percent_widget %}
-    {% if append_string is not defined and append_form is not defined and append_block is not defined %}
-        {% set append_string = '%' %}
-    {% endif %}
+{% spaceless %}
+    {% set type = type|default('text') %}
     {{ block('form_widget_simple') }}
+{% endspaceless %}
 {% endblock percent_widget %}
 
 
