@@ -70,6 +70,7 @@ class CollectionExtension extends AbstractTypeExtension
             $add = $form->getConfig()->getAttribute('btn_add');
             $view->vars['btn_add'] = $add->createView($view);
             $view->vars['btn_add']->vars['attr']['data-target'] = $view->vars['id'];
+            $view->vars['btn_add']->vars['disabled'] = $view->vars['disabled'];
         }
     }
 
@@ -106,13 +107,14 @@ class CollectionExtension extends AbstractTypeExtension
                 if (is_array($value['append'])) {
                     $value['append'] = array_merge(
                         array(
-                            'label' => '',
+                            'label'     => '',
                             'glyphicon' => 'remove',
-                            'style' => 'danger',
-                            'attr' => array(
+                            'style'     => 'danger',
+                            'disabled'  =>  $options['disabled'],
+                            'attr'      => array(
                                 'class' => 'btn-remove'
-                                )
                             ),
+                        ),
                         $value['append']
                     );
 
