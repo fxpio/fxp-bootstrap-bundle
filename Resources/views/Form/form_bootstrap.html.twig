@@ -70,6 +70,9 @@
 {% block form_row %}
 {% spaceless %}
     {% set row_attr = row_attr|default({})|merge({'class': ('form-group ' ~ (row_attr.class|default('')))|trim}) %}
+    {% if validation_state is not empty %}
+        {% set row_attr = row_attr|default({})|merge({'class': ('has-' ~ validation_state ~ ' ' ~ (row_attr.class|default('')))|trim}) %}
+    {% endif %}
 
     <div {% for attrname, attrvalue in row_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
         {{ form_label(form) }}
@@ -317,3 +320,22 @@
     </div>
 {% endspaceless %}
 {% endblock button_row %}
+
+
+{% block form_errors %}
+{% spaceless %}
+    {% if errors|length > 0 %}
+    {% if form.parent is empty %}
+    <div class="alert alert-danger">
+    {% endif %}
+    <ul{% if form.parent is not empty %} class="help-block"{% endif %}>
+        {% for error in errors %}
+            <li>{{ error.message }}</li>
+        {% endfor %}
+    </ul>
+    {% if form.parent is empty %}
+    </div>
+    {% endif %}
+    {% endif %}
+{% endspaceless %}
+{% endblock form_errors %}

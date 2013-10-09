@@ -35,7 +35,12 @@ class FormExtension extends AbstractTypeExtension
             'layout_col_size'    => $options['layout_col_size'],
             'layout_col_label'   => $options['layout_col_label'],
             'layout_col_control' => $options['layout_col_control'],
+            'validation_state'   => $options['validation_state'],
         ));
+
+        if (count($form->getErrors()) > 0) {
+            $view->vars['validation_state'] = 'error';
+        }
     }
 
     /**
@@ -70,6 +75,7 @@ class FormExtension extends AbstractTypeExtension
                 'layout_col_size'    => 'lg',// only for horizontal layout
                 'layout_col_label'   => 3,// only for horizontal layout
                 'layout_col_control' => 9,// only for horizontal layout
+                'validation_state'   => null,
             )
         );
 
@@ -80,10 +86,12 @@ class FormExtension extends AbstractTypeExtension
             'layout_col_size'    => array('string'),
             'layout_col_label'   => array('int'),
             'layout_col_control' => array('int'),
+            'validation_state'   => array('null', 'string'),
         ));
 
         $resolver->addAllowedValues(array(
-            'layout' => array('inline', 'horizontal'),
+            'layout'           => array('inline', 'horizontal'),
+            'validation_state' => array('success', 'warning', 'error'),
         ));
     }
 
