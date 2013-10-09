@@ -91,6 +91,7 @@ class FormExtension extends AbstractTypeExtension
 
         $resolver->addAllowedValues(array(
             'layout'           => array('inline', 'horizontal'),
+            'layout_col_size'  => array('xs', 'sm', 'md', 'lg'),
             'validation_state' => array('success', 'warning', 'error'),
         ));
     }
