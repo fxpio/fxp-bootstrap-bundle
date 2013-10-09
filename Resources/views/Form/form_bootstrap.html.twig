@@ -4,6 +4,7 @@
                                         collection_widget as base_collection_widget,
                                         textarea_widget as base_textarea_widget,
                                         choice_widget_collapsed as base_choice_widget_collapsed,
+                                        choice_widget_expanded as base_choice_widget_expanded,
                                         datetime_widget as base_datetime_widget,
                                         date_widget as base_date_widget,
                                         time_widget as base_time_widget %}
@@ -52,10 +53,16 @@
 
 {% block form_widget_simple %}
 {% spaceless %}
+    {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
+        <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {% endif %}
     {{ block('addon_start') }}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
     {{ block('base_form_widget_simple') }}
     {{ block('addon_end') }}
+    {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
+        </div>
+    {% endif %}
 {% endspaceless %}
 {% endblock form_widget_simple %}
 
@@ -78,6 +85,9 @@
     {% if display_label == false %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' sr-only')|trim}) %}
     {% endif %}
+    {% if layout|default(null) == 'horizontal' %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ layout_col_label)|trim}) %}
+    {% endif %}
     {{ block('base_form_label') }}
 {% endblock form_label %}
 
@@ -92,10 +102,16 @@
 
 
 {% block collection_widget %}
+    {% if layout|default(null) == 'horizontal' %}
+        <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {% endif %}
     {{ block('base_collection_widget') }}
 
     {% if btn_add is defined %}
         {{ form_assets_widget(btn_add) }}
+    {% endif %}
+    {% if layout|default(null) == 'horizontal' %}
+        </div>
     {% endif %}
 {% endblock collection_widget %}
 
@@ -127,10 +143,16 @@
 
 
 {% block textarea_widget %}
+    {% if layout|default(null) == 'horizontal' %}
+        <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {% endif %}
     {{ block('addon_start') }}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
     {{ block('base_textarea_widget') }}
     {{ block('addon_end') }}
+    {% if layout|default(null) == 'horizontal' %}
+        </div>
+    {% endif %}
 {% endblock textarea_widget %}
 
 
@@ -148,7 +170,11 @@
         {% set label_attr = label_attr|merge({'class': ('checkbox-inline ' ~ label_attr.class|default(''))|trim}) %}
     {% endif %}
 
-     {% if inline == false %}
+    {% if layout|default(null) == 'horizontal' %}
+        <div class="col-{{ layout_col_size }}-offset-{{ layout_col_label }} col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {% endif %}
+
+    {% if inline == false %}
     <div class="checkbox">
     {% endif %}
 	    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
@@ -157,6 +183,10 @@
 	    </label>
     {% if inline == false %}
     </div>
+    {% endif %}
+
+    {% if layout|default(null) == 'horizontal' %}
+        </div>
     {% endif %}
 {% endspaceless %}
 {% endblock checkbox_widget %}
@@ -176,6 +206,10 @@
         {% set label_attr = label_attr|merge({'class': ('radio-inline ' ~ label_attr.class|default(''))|trim}) %}
     {% endif %}
 
+    {% if layout|default(null) == 'horizontal' %}
+        <div class="col-{{ layout_col_size }}-offset-{{ layout_col_label }} col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {% endif %}
+
     {% if inline == false %}
     <div class="radio">
     {% endif %}
@@ -186,14 +220,32 @@
     {% if inline == false %}
     </div>
     {% endif %}
+
+    {% if layout|default(null) == 'horizontal' %}
+        </div>
+    {% endif %}
 {% endspaceless %}
 {% endblock radio_widget %}
 
 
 {% block choice_widget_collapsed %}
+    {% if layout|default(null) == 'horizontal' %}
+        <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {% endif %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
     {{ block('base_choice_widget_collapsed') }}
+    {% if layout|default(null) == 'horizontal' %}
+        </div>
+    {% endif %}
 {% endblock choice_widget_collapsed %}
+
+
+{% block choice_widget_expanded %}
+    {% if layout|default(null) == 'horizontal' %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ layout_col_control)|trim}) %}
+    {% endif %}
+    {{ block('base_choice_widget_expanded') }}
+{% endblock choice_widget_expanded %}
 
 
 {% block percent_widget %}
@@ -206,28 +258,52 @@
 
 {% block datetime_widget %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-inline')|trim}) %}
+    {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
+        <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {% endif %}
     {{ block('base_datetime_widget') }}
+    {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
+        </div>
+    {% endif %}
 {% endblock datetime_widget %}
 
 
 {% block date_widget %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-inline date')|trim}) %}
+    {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
+        <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {% endif %}
     {{ block('base_date_widget') }}
+    {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
+        </div>
+    {% endif %}
 {% endblock date_widget %}
 
 
 {% block time_widget %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-inline time')|trim}) %}
+    {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
+        <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {% endif %}
     {{ block('base_time_widget') }}
+    {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
+        </div>
+    {% endif %}
 {% endblock time_widget %}
 
 
 {% block button_widget %}
 {% spaceless %}
+    {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
+        <div class="col-{{ layout_col_size }}-offset-{{ layout_col_label }} col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {% endif %}
     {% if label is empty and label != '' %}
         {% set label = name|humanize %}
     {% endif %}
     <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{% if glyphicon is defined %}<span class="glyphicon glyphicon-{{ glyphicon }}"></span> {% endif %}{{ label|trans({}, translation_domain) }}</button>
+    {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
+        </div>
+    {% endif %}
 {% endspaceless %}
 {% endblock button_widget %}
 

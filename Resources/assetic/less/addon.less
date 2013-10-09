@@ -3,8 +3,12 @@
         display: inline-block;
     }
 
-    .form-group .form-inline + .form-inline {
-        margin-left: 10px;
+    .form-group .form-inline {
+        margin-right: 10px;
+    }
+
+    .form-group .form-inline:last-child {
+        margin-right: 0;
     }
 
     .form-group .form-inline > select {
@@ -49,6 +53,11 @@
     .form-group .form-inline.time > select:last-child {
         margin-right: 0;
     }
+}
+
+.form-horizontal .form-group .form-group {
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .control-label.required::after {

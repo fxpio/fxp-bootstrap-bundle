@@ -57,6 +57,20 @@ class ButtonExtension extends AbstractTypeExtension
         }
 
         $view->vars['attr']['class'] = trim('btn ' . $class);
+
+        // layout
+        if (null !== $view->parent && isset($view->parent->vars['layout'])) {
+            $view->vars = array_replace($view->vars, array(
+                'layout'             => $view->parent->vars['layout'],
+                'layout_col_size'    => $view->parent->vars['layout_col_size'],
+                'layout_col_label'   => $view->parent->vars['layout_col_label'],
+                'layout_col_control' => $view->parent->vars['layout_col_control'],
+            ));
+
+            if ('inline' === $view->vars['layout']) {
+                $view->vars['display_label'] = false;
+            }
+        }
     }
 
     /**

@@ -15,7 +15,6 @@ use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Form\Exception\InvalidConfigurationException;
 
 /**
  * Form Form Extension.
@@ -30,9 +29,12 @@ class FormExtension extends AbstractTypeExtension
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'row_attr'      => $options['row_attr'],
-            'display_label' => $options['display_label'],
-            'layout'        => $options['layout'],
+            'row_attr'           => $options['row_attr'],
+            'display_label'      => $options['display_label'],
+            'layout'             => $options['layout'],
+            'layout_col_size'    => $options['layout_col_size'],
+            'layout_col_label'   => $options['layout_col_label'],
+            'layout_col_control' => $options['layout_col_control'],
         ));
     }
 
@@ -41,16 +43,16 @@ class FormExtension extends AbstractTypeExtension
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
-        if (null !== $options['layout']) {
-            if (null !== $view->parent) {
-                throw new InvalidConfigurationException('The layout option can be specified only that in the root of form');
-            }
+        if (null !== $view->parent) {
+            $view->vars = array_replace($view->vars, array(
+                'layout'             => $view->parent->vars['layout'],
+                'layout_col_size'    => $view->parent->vars['layout_col_size'],
+                'layout_col_label'   => $view->parent->vars['layout_col_label'],
+                'layout_col_control' => $view->parent->vars['layout_col_control'],
+            ));
 
-            // inline
-            if ('inline' === $options['layout']) {
-                foreach ($view->children as $child) {
-                    $child->vars['display_label'] = false;
-                }
+            if ('inline' === $view->vars['layout']) {
+                $view->vars['display_label'] = false;
             }
         }
     }
@@ -62,20 +64,26 @@ class FormExtension extends AbstractTypeExtension
     {
         $resolver->setDefaults(
             array(
-                'row_attr'      => array(),
-                'display_label' => true,
-                'layout'        => null,
+                'row_attr'           => array(),
+                'display_label'      => true,
+                'layout'             => null,
+                'layout_col_size'    => 'lg',// only for horizontal layout
+                'layout_col_label'   => 3,// only for horizontal layout
+                'layout_col_control' => 9,// only for horizontal layout
             )
         );
 
         $resolver->addAllowedTypes(array(
-            'row_attr'      => array('array'),
-            'display_label' => array('bool'),
-            'layout'        => array('null', 'string'),
+            'row_attr'           => array('array'),
+            'display_label'      => array('bool'),
+            'layout'             => array('null', 'string'),
+            'layout_col_size'    => array('string'),
+            'layout_col_label'   => array('int'),
+            'layout_col_control' => array('int'),
         ));
 
         $resolver->addAllowedValues(array(
-            'layout'        => array('inline'),
+            'layout' => array('inline', 'horizontal'),
         ));
     }
 

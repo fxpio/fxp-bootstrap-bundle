@@ -29,6 +29,11 @@
             <tag name="form.type_extension" alias="choice" />
         </service>
 
+        <service id="form.type_extension.sonatra_repeated" class="Sonatra\Bundle\BootstrapBundle\Form\Extension\RepeatedExtension">
+            <tag name="form.type_extension" alias="repeated" />
+            <argument type="service" id="form.factory" />
+        </service>
+
         <service id="form.type_extension.sonatra_collection" class="Sonatra\Bundle\BootstrapBundle\Form\Extension\CollectionExtension">
             <tag name="form.type_extension" alias="collection" />
             <argument type="service" id="form.factory" />
