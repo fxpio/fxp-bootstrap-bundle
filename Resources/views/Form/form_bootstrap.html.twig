@@ -13,6 +13,9 @@
 {% spaceless %}
     {% if prepend_string is defined or prepend_form is defined or prepend_block is defined or append_string is defined or append_form is defined or append_block is defined %}
         {% set addon_attr = addon_attr|default({})|merge({'class': ('input-group ' ~ (addon_attr.class|default('')))|trim}) %}
+        {% if size is not empty %}
+            {% set addon_attr = addon_attr|default({})|merge({'class': ('input-group-' ~ size ~ ' ' ~ (addon_attr.class|default('')))|trim}) %}
+        {% endif %}
 
         <div {% for attrname, attrvalue in addon_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
     {% endif %}
