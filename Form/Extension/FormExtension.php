@@ -31,6 +31,7 @@ class FormExtension extends AbstractTypeExtension
         $view->vars = array_replace($view->vars, array(
             'row_attr'           => $options['row_attr'],
             'display_label'      => $options['display_label'],
+            'size'               => $options['size'],
             'layout'             => $options['layout'],
             'layout_col_size'    => $options['layout_col_size'],
             'layout_col_label'   => $options['layout_col_label'],
@@ -71,6 +72,7 @@ class FormExtension extends AbstractTypeExtension
             array(
                 'row_attr'           => array(),
                 'display_label'      => true,
+                'size'               => null,
                 'layout'             => null,
                 'layout_col_size'    => 'lg',// only for horizontal layout
                 'layout_col_label'   => 3,// only for horizontal layout
@@ -82,6 +84,7 @@ class FormExtension extends AbstractTypeExtension
         $resolver->addAllowedTypes(array(
             'row_attr'           => array('array'),
             'display_label'      => array('bool'),
+            'size'               => array('null', 'string'),
             'layout'             => array('null', 'string'),
             'layout_col_size'    => array('string'),
             'layout_col_label'   => array('int'),
@@ -90,6 +93,7 @@ class FormExtension extends AbstractTypeExtension
         ));
 
         $resolver->addAllowedValues(array(
+            'size'             => array('sm', 'lg'),
             'layout'           => array('inline', 'horizontal'),
             'layout_col_size'  => array('xs', 'sm', 'md', 'lg'),
             'validation_state' => array('success', 'warning', 'error'),

@@ -58,6 +58,9 @@
     {% endif %}
     {{ block('addon_start') }}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
+    {% if size is not empty %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' input-' ~ size)|trim}) %}
+    {% endif %}
     {{ block('base_form_widget_simple') }}
     {{ block('addon_end') }}
     {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
@@ -151,6 +154,9 @@
     {% endif %}
     {{ block('addon_start') }}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
+    {% if size is not empty %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' input-' ~ size)|trim}) %}
+    {% endif %}
     {{ block('base_textarea_widget') }}
     {{ block('addon_end') }}
     {% if layout|default(null) == 'horizontal' %}
@@ -236,6 +242,9 @@
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
     {% endif %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
+    {% if size is not empty %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' input-' ~ size)|trim}) %}
+    {% endif %}
     {{ block('base_choice_widget_collapsed') }}
     {% if layout|default(null) == 'horizontal' %}
         </div>
