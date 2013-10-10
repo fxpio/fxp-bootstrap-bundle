@@ -54,18 +54,29 @@
 {% endblock addon_end %}
 
 
+{% block form_control_static_value %}
+<p class="form-control-static">{% if value is empty and static_control_empty is not empty %}<span class="form-static-empty">{{ static_control_empty|trans({}, translation_domain) }}</span>{% else %}{{ value|e }}{% endif %}</p>
+{% endblock form_control_static_value %}
+
+
 {% block form_widget_simple %}
 {% spaceless %}
     {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
     {% endif %}
-    {{ block('addon_start') }}
-    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
-    {% if size is not empty %}
-        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' input-' ~ size)|trim}) %}
-    {% endif %}
-    {{ block('base_form_widget_simple') }}
-    {{ block('addon_end') }}
+
+    {% if static_control and type|default('text') != 'hidden' %}
+        {{ block('form_control_static_value') }}
+    {% else %}
+	    {{ block('addon_start') }}
+	    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
+	    {% if size is not empty %}
+	        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' input-' ~ size)|trim}) %}
+	    {% endif %}
+	    {{ block('base_form_widget_simple') }}
+	    {{ block('addon_end') }}
+	{% endif %}
+
     {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
         </div>
     {% endif %}
@@ -97,7 +108,17 @@
     {% if layout|default(null) == 'horizontal' %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ layout_col_label)|trim}) %}
     {% endif %}
-    {{ block('base_form_label') }}
+    {% if static_control %}
+        {% if required %}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {% endif %}
+        {% if label is empty %}
+            {% set label = name|humanize %}
+        {% endif %}
+        <div{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</div>
+    {% else %}
+        {{ block('base_form_label') }}
+    {% endif %}
 {% endblock form_label %}
 
 
@@ -115,8 +136,11 @@
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
     {% endif %}
     {{ block('base_collection_widget') }}
+    {% if static_control and value is empty %}
+        {{ block('form_control_static_value') }}
+    {% endif %}
 
-    {% if btn_add is defined %}
+    {% if btn_add is defined and not(static_control) %}
         {{ form_assets_widget(btn_add) }}
     {% endif %}
     {% if layout|default(null) == 'horizontal' %}
@@ -155,13 +179,19 @@
     {% if layout|default(null) == 'horizontal' %}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
     {% endif %}
-    {{ block('addon_start') }}
-    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
-    {% if size is not empty %}
-        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' input-' ~ size)|trim}) %}
+
+    {% if static_control and type|default('text') != 'hidden' %}
+        {{ block('form_control_static_value') }}
+    {% else %}
+	    {{ block('addon_start') }}
+	    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
+	    {% if size is not empty %}
+	        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' input-' ~ size)|trim}) %}
+	    {% endif %}
+	    {{ block('base_textarea_widget') }}
+	    {{ block('addon_end') }}
     {% endif %}
-    {{ block('base_textarea_widget') }}
-    {{ block('addon_end') }}
+
     {% if layout|default(null) == 'horizontal' %}
         </div>
     {% endif %}
@@ -248,18 +278,49 @@
     {% if size is not empty %}
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' input-' ~ size)|trim}) %}
     {% endif %}
-    {{ block('base_choice_widget_collapsed') }}
+
+    {% if static_control %}
+        {{ block('choice_widget_collapsed_static_control') }}
+    {% else %}
+        {{ block('base_choice_widget_collapsed') }}
+    {% endif %}
+
     {% if layout|default(null) == 'horizontal' %}
         </div>
     {% endif %}
 {% endblock choice_widget_collapsed %}
 
+{% block choice_widget_collapsed_static_control %}
+    {% for choice in choices %}
+        {% if multiple %}
+            {% for val in data %}
+                {% if val == choice.value|default(choice) %}
+                    {% set value = choice.label|default(choice)|trans({}, translation_domain) %}
+                    {{ block('form_control_static_value') }}
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            {% if data == choice.value|default(choice) %}
+                {% set value = choice.label|default(choice)|trans({}, translation_domain) %}
+                {{ block('form_control_static_value') }}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    {% if data is empty %}
+        {% set value = null %}
+        {{ block('form_control_static_value') }}
+    {% endif %}
+{% endblock choice_widget_collapsed_static_control %}
 
 {% block choice_widget_expanded %}
-    {% if layout|default(null) == 'horizontal' %}
-        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ layout_col_control)|trim}) %}
+    {% if static_control %}
+        {{ block('choice_widget_collapsed') }}
+    {% else %}
+	    {% if layout|default(null) == 'horizontal' %}
+	        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ layout_col_control)|trim}) %}
+	    {% endif %}
+	    {{ block('base_choice_widget_expanded') }}
     {% endif %}
-    {{ block('base_choice_widget_expanded') }}
 {% endblock choice_widget_expanded %}
 
 
@@ -276,7 +337,14 @@
     {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
     {% endif %}
-    {{ block('base_datetime_widget') }}
+
+    {% if static_control %}
+        {% set value = data|block_formatter('datetime') %}
+        {{ block('form_control_static_value') }}
+    {% else %}
+        {{ block('base_datetime_widget') }}
+    {% endif %}
+
     {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
         </div>
     {% endif %}
@@ -288,7 +356,14 @@
     {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
     {% endif %}
-    {{ block('base_date_widget') }}
+
+    {% if static_control %}
+        {% set value = data|block_formatter('date') %}
+        {{ block('form_control_static_value') }}
+    {% else %}
+        {{ block('base_date_widget') }}
+    {% endif %}
+
     {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
         </div>
     {% endif %}
@@ -300,7 +375,14 @@
     {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
     {% endif %}
-    {{ block('base_time_widget') }}
+
+    {% if static_control %}
+        {% set value = data|block_formatter('time') %}
+        {{ block('form_control_static_value') }}
+    {% else %}
+        {{ block('base_time_widget') }}
+    {% endif %}
+
     {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
         </div>
     {% endif %}

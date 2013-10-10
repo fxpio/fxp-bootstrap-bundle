@@ -29,14 +29,16 @@ class FormExtension extends AbstractTypeExtension
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'row_attr'           => $options['row_attr'],
-            'display_label'      => $options['display_label'],
-            'size'               => $options['size'],
-            'layout'             => $options['layout'],
-            'layout_col_size'    => $options['layout_col_size'],
-            'layout_col_label'   => $options['layout_col_label'],
-            'layout_col_control' => $options['layout_col_control'],
-            'validation_state'   => $options['validation_state'],
+            'row_attr'             => $options['row_attr'],
+            'display_label'        => $options['display_label'],
+            'size'                 => $options['size'],
+            'layout'               => $options['layout'],
+            'layout_col_size'      => $options['layout_col_size'],
+            'layout_col_label'     => $options['layout_col_label'],
+            'layout_col_control'   => $options['layout_col_control'],
+            'validation_state'     => $options['validation_state'],
+            'static_control'       => $options['static_control'] && $options['disabled'],
+            'static_control_empty' => $options['static_control_empty'],
         ));
 
         if (count($form->getErrors()) > 0) {
@@ -70,26 +72,30 @@ class FormExtension extends AbstractTypeExtension
     {
         $resolver->setDefaults(
             array(
-                'row_attr'           => array(),
-                'display_label'      => true,
-                'size'               => null,
-                'layout'             => null,
-                'layout_col_size'    => 'lg',// only for horizontal layout
-                'layout_col_label'   => 3,// only for horizontal layout
-                'layout_col_control' => 9,// only for horizontal layout
-                'validation_state'   => null,
+                'row_attr'             => array(),
+                'display_label'        => true,
+                'size'                 => null,
+                'layout'               => null,
+                'layout_col_size'      => 'lg',// only for horizontal layout
+                'layout_col_label'     => 3,// only for horizontal layout
+                'layout_col_control'   => 9,// only for horizontal layout
+                'validation_state'     => null,
+                'static_control'       => false,// renders P tag when this form is read only
+                'static_control_empty' => 'null',
             )
         );
 
         $resolver->addAllowedTypes(array(
-            'row_attr'           => array('array'),
-            'display_label'      => array('bool'),
-            'size'               => array('null', 'string'),
-            'layout'             => array('null', 'string'),
-            'layout_col_size'    => array('string'),
-            'layout_col_label'   => array('int'),
-            'layout_col_control' => array('int'),
-            'validation_state'   => array('null', 'string'),
+            'row_attr'             => array('array'),
+            'display_label'        => array('bool'),
+            'size'                 => array('null', 'string'),
+            'layout'               => array('null', 'string'),
+            'layout_col_size'      => array('string'),
+            'layout_col_label'     => array('int'),
+            'layout_col_control'   => array('int'),
+            'validation_state'     => array('null', 'string'),
+            'static_control'       => array('bool'),
+            'static_control_empty' => array('null', 'string'),
         ));
 
         $resolver->addAllowedValues(array(
