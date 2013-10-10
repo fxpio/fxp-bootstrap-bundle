@@ -39,6 +39,8 @@ class FormExtension extends AbstractTypeExtension
             'validation_state'     => $options['validation_state'],
             'static_control'       => $options['static_control'] && $options['disabled'],
             'static_control_empty' => $options['static_control_empty'],
+            'help_text'            => $options['help_text'],
+            'help_attr'            => $options['help_attr'],
         ));
 
         if (count($form->getErrors()) > 0) {
@@ -82,6 +84,8 @@ class FormExtension extends AbstractTypeExtension
                 'validation_state'     => null,
                 'static_control'       => false,// renders P tag when this form is read only
                 'static_control_empty' => 'null',
+                'help_text'            => null,
+                'help_attr'            => array(),
             )
         );
 
@@ -96,6 +100,8 @@ class FormExtension extends AbstractTypeExtension
             'validation_state'     => array('null', 'string'),
             'static_control'       => array('bool'),
             'static_control_empty' => array('null', 'string'),
+            'help_text'            => array('null', 'string'),
+            'help_attr'            => array('array'),
         ));
 
         $resolver->addAllowedValues(array(

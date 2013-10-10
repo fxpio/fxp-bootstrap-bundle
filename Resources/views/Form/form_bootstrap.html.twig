@@ -7,7 +7,8 @@
                                         choice_widget_expanded as base_choice_widget_expanded,
                                         datetime_widget as base_datetime_widget,
                                         date_widget as base_date_widget,
-                                        time_widget as base_time_widget %}
+                                        time_widget as base_time_widget,
+                                        hidden_widget as base_hidden_widget %}
 
 {% block addon_start %}
 {% spaceless %}
@@ -59,6 +60,16 @@
 {% endblock form_control_static_value %}
 
 
+{% block help_text %}
+{% spaceless %}
+    {% if help_text is not empty %}
+        {% set help_attr = help_attr|default({})|merge({'class': ('help-block ' ~ (help_attr.class|default('')))|trim}) %}
+        <span{% for attrname, attrvalue in help_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ help_text|raw }}</span>
+    {% endif %}
+{% endspaceless %}
+{% endblock help_text %}
+
+
 {% block form_widget_simple %}
 {% spaceless %}
     {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
@@ -76,6 +87,7 @@
 	    {{ block('base_form_widget_simple') }}
 	    {{ block('addon_end') }}
 	{% endif %}
+	{{ block('help_text') }}
 
     {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
         </div>
@@ -143,6 +155,7 @@
     {% if btn_add is defined and not(static_control) %}
         {{ form_assets_widget(btn_add) }}
     {% endif %}
+    {{ block('help_text') }}
     {% if layout|default(null) == 'horizontal' %}
         </div>
     {% endif %}
@@ -191,6 +204,7 @@
 	    {{ block('base_textarea_widget') }}
 	    {{ block('addon_end') }}
     {% endif %}
+    {{ block('help_text') }}
 
     {% if layout|default(null) == 'horizontal' %}
         </div>
@@ -226,6 +240,7 @@
     {% if inline == false %}
     </div>
     {% endif %}
+    {{ block('help_text') }}
 
     {% if layout|default(null) == 'horizontal' %}
         </div>
@@ -262,6 +277,7 @@
     {% if inline == false %}
     </div>
     {% endif %}
+    {{ block('help_text') }}
 
     {% if layout|default(null) == 'horizontal' %}
         </div>
@@ -284,6 +300,7 @@
     {% else %}
         {{ block('base_choice_widget_collapsed') }}
     {% endif %}
+    {{ block('help_text') }}
 
     {% if layout|default(null) == 'horizontal' %}
         </div>
@@ -318,8 +335,10 @@
     {% else %}
 	    {% if layout|default(null) == 'horizontal' %}
 	        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ layout_col_control)|trim}) %}
+	        {% set help_attr = help_attr|merge({'class': (help_attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-offset-' ~ layout_col_label ~ ' col-' ~ layout_col_size ~ '-' ~ layout_col_control)|trim}) %}
 	    {% endif %}
 	    {{ block('base_choice_widget_expanded') }}
+	    {{ block('help_text') }}
     {% endif %}
 {% endblock choice_widget_expanded %}
 
@@ -344,6 +363,7 @@
     {% else %}
         {{ block('base_datetime_widget') }}
     {% endif %}
+    {{ block('help_text') }}
 
     {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
         </div>
@@ -363,6 +383,7 @@
     {% else %}
         {{ block('base_date_widget') }}
     {% endif %}
+    {{ block('help_text') }}
 
     {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
         </div>
@@ -382,6 +403,7 @@
     {% else %}
         {{ block('base_time_widget') }}
     {% endif %}
+    {{ block('help_text') }}
 
     {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
         </div>
@@ -437,3 +459,11 @@
     {% endif %}
 {% endspaceless %}
 {% endblock form_errors %}
+
+
+{% block hidden_widget %}
+{% spaceless %}
+    {% set help_text = null %}
+    {{ block('base_hidden_widget') }}
+{% endspaceless %}
+{% endblock hidden_widget %}
