@@ -411,6 +411,28 @@
 {% endblock time_widget %}
 
 
+{% block fieldset_label %}
+{% endblock fieldset_label %}
+
+{% block fieldset_widget %}
+{% spaceless %}
+    <fieldset {{ block('widget_attributes') }}>
+        {% if legend is not empty %}
+            {% if layout|default(null) == 'horizontal' %}
+		        {% set legend_attr = legend_attr|merge({'class': (legend_attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ (layout_col_label + layout_col_control))|trim}) %}
+		    {% endif %}
+            <legend{% for attrname, attrvalue in legend_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ legend }}</legend>
+        {% endif %}
+        {% if form.parent is empty %}
+            {{ form_errors(form) }}
+        {% endif %}
+        {{ block('form_rows') }}
+        {{ form_rest(form) }}
+    </fieldset>
+{% endspaceless %}
+{% endblock fieldset_widget %}
+
+
 {% block button_widget %}
 {% spaceless %}
     {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}

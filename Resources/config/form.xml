@@ -46,5 +46,9 @@
         <service id="form.type_extension.sonatra_addon" class="Sonatra\Bundle\BootstrapBundle\Form\Extension\AddonExtension">
             <tag name="form.type_extension" alias="form" />
         </service>
+
+        <service id="form.type.sonatra_fieldset" class="Sonatra\Bundle\BootstrapBundle\Form\Type\FieldsetType">
+            <tag name="form.type" alias="fieldset" />
+        </service>
     </services>
 </container>
