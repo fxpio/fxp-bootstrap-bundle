@@ -28,7 +28,7 @@ class PathRelativeFilter implements FilterInterface
      */
     public function filterLoad(AssetInterface $asset)
     {
-        $content = PathUtils::filterRelative($asset->getContent(), function($matches) use ($asset) {
+        $content = PathUtils::filterRelative($asset->getContent(), function ($matches) use ($asset) {
             $value = PathUtils::convertToRelative($asset, $matches['relative']);
 
             return str_replace($matches[0], $value, $matches[0]);

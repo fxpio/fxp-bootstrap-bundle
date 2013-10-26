@@ -50,7 +50,7 @@ class BundleFilter implements FilterInterface
      */
     public function filterDump(AssetInterface $asset)
     {
-        $content = ContainerUtils::filterBundles($asset->getContent(), function($matches) {
+        $content = ContainerUtils::filterBundles($asset->getContent(), function ($matches) {
             $name = sprintf('%sBundle', $matches[1]);
 
             if (array_key_exists($name, $this->bundles)) {

@@ -52,7 +52,7 @@ class ParameterBagFilter implements FilterInterface
      */
     public function filterDump(AssetInterface $asset)
     {
-        $content = ContainerUtils::filterParameters($asset->getContent(), function($matches) {
+        $content = ContainerUtils::filterParameters($asset->getContent(), function ($matches) {
             return $this->parameterBag->get(strtolower($matches[1]));
         });
 

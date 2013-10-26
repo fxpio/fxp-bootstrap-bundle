@@ -36,7 +36,7 @@ abstract class PathUtils
     {
         $pattern = static::REGEX_RELATIVES;
 
-        return CssUtils::filterCommentless($content, function($part) use (& $callback, $pattern) {
+        return CssUtils::filterCommentless($content, function ($part) use (& $callback, $pattern) {
             return preg_replace_callback($pattern, $callback, $part);
         });
     }
