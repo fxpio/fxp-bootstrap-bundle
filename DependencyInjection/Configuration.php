@@ -32,6 +32,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->append($this->getFontNode())
             ->append($this->getAssetNode())
+            ->append($this->getAsseticNode())
         ;
 
         return $treeBuilder;
@@ -57,8 +58,8 @@ class Configuration implements ConfigurationInterface
                     ->prototype('scalar')->defaultValue('%kernel.root_dir%/../vendor/twitter/bootstrap/fonts')->end()
                     ->example(array('%kernel.root_dir%/../vendor/twitter/bootstrap/fonts', '%kernel.root_dir%/../vendor/foo/bar/fonts'))
                     ->validate()
-                        ->ifTrue(function($v) { return !in_array('%kernel.root_dir%/../vendor/twitter/bootstrap/fonts', $v); })
-                        ->then(function($v) {
+                        ->ifTrue(function ($v) { return !in_array('%kernel.root_dir%/../vendor/twitter/bootstrap/fonts', $v); })
+                        ->then(function ($v) {
                             return array_merge(array('%kernel.root_dir%/../vendor/twitter/bootstrap/fonts'), $v);
                         })
                     ->end()
@@ -157,13 +158,13 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('filters')
                             ->fixXmlConfig('filter')
                             ->prototype('scalar')->end()
-                            ->defaultValue(array('parameterbag', 'bundle', 'relative', 'cssrewrite', 'lessphp'))
+                            ->defaultValue(array('parameterbag', 'bundle', 'relative', 'cssrewrite', 'oyejorge_lessphp'))
                             ->info('The filters "parameterbag", "bundle" and "relative" must be present in this order. Otherwise, they will automatically be added to first place')
                             ->validate()
                                 ->always()
-                                ->then(function($v) {
-                                    if (!in_array('less', $v) && !in_array('lessphp', $v)) {
-                                        array_unshift($v, 'lessphp');
+                                ->then(function ($v) {
+                                    if (!in_array('less', $v) && !in_array('lessphp', $v) && !in_array('oyejorge_lessphp', $v)) {
+                                        array_unshift($v, 'oyejorge_lessphp');
                                     }
 
                                     if (!in_array('relative', $v)) {
@@ -248,7 +249,7 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->arrayNode('inputs')
-                            ->fixXmlConfig('filter')
+                            ->fixXmlConfig('input')
                             ->prototype('scalar')->end()
                             ->defaultValue(array(
                                 '%kernel.root_dir%/../vendor/sonatra_afarkas/html5shiv/src/html5shiv.js',
@@ -266,6 +267,45 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('output')->defaultValue('js/shiv.js')->end()
                                 ->scalarNode('debug')->defaultNull()->end()
                                 ->scalarNode('combine')->defaultNull()->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
+
+        return $node;
+    }
+
+    /**
+     * Get assetic filter node.
+     *
+     * @return NodeDefinition
+     */
+    private function getAsseticNode()
+    {
+        $treeBuilder = new TreeBuilder();
+        $node = $treeBuilder->root('assetic');
+
+        $node
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->arrayNode('filters')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('oyejorge_lessphp')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->arrayNode('options')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->booleanNode('compress')->defaultFalse()->end()
+                                    ->end()
+                                ->end()
+                                ->arrayNode('paths')
+                                    ->fixXmlConfig('path')
+                                    ->prototype('scalar')->end()
+                                ->end()
                             ->end()
                         ->end()
                     ->end()

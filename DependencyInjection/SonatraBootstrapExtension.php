@@ -41,6 +41,7 @@ class SonatraBootstrapExtension extends Extension implements PrependExtensionInt
         $this->configCommonStylesheets($config['common_assets']['stylesheets'], $container);
         $this->configCommonJavascripts($config['common_assets']['javascripts'], $container);
         $this->configHackIe($config['common_assets']['hack_lt_ie_9'], $container);
+        $this->configAsseticFilters($config['assetic']['filters'], $container);
     }
 
     /**
@@ -131,6 +132,18 @@ class SonatraBootstrapExtension extends Extension implements PrependExtensionInt
         $container->getDefinition('sonatra_bootstrap.assetic.hack_lt_ie_9_resource')->replaceArgument(1, $config['inputs']);
         $container->getDefinition('sonatra_bootstrap.assetic.hack_lt_ie_9_resource')->replaceArgument(2, $config['filters']);
         $container->getDefinition('sonatra_bootstrap.assetic.hack_lt_ie_9_resource')->replaceArgument(3, $config['options']);
+    }
+
+    /**
+     * Configures the assetic filters resource.
+     *
+     * @param array            $config
+     * @param ContainerBuilder $container
+     */
+    protected function configAsseticFilters(array &$config, ContainerBuilder $container)
+    {
+        $container->getDefinition('sonatra_bootstrap.assetic.oyejorge_lessphp_filter')->replaceArgument(0, $config['oyejorge_lessphp']['options']);
+        $container->getDefinition('sonatra_bootstrap.assetic.oyejorge_lessphp_filter')->replaceArgument(1, $config['oyejorge_lessphp']['paths']);
     }
 
     /**

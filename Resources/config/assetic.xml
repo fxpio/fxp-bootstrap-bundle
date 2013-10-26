@@ -16,6 +16,7 @@
         <parameter key="sonatra_bootstrap.assetic.parameter_bag_filter.class">Sonatra\Bundle\BootstrapBundle\Assetic\Filter\ParameterBagFilter</parameter>
         <parameter key="sonatra_bootstrap.assetic.path_relative_filter.class">Sonatra\Bundle\BootstrapBundle\Assetic\Filter\PathRelativeFilter</parameter>
         <parameter key="sonatra_bootstrap.assetic.bundle_filter.class">Sonatra\Bundle\BootstrapBundle\Assetic\Filter\BundleFilter</parameter>
+        <parameter key="sonatra_bootstrap.assetic.oyejorge_lessphp_filter.class">Sonatra\Bundle\BootstrapBundle\Assetic\Filter\OyejorgeLessphpFilter</parameter>
 
         <parameter key="sonatra_bootstrap.builder.stylesheet.class">Sonatra\Bundle\BootstrapBundle\Builder\StylesheetBuilder</parameter>
         <parameter key="sonatra_bootstrap.builder.stylesheet_theme.class">Sonatra\Bundle\BootstrapBundle\Builder\StylesheetThemeBuilder</parameter>
@@ -75,6 +76,12 @@
         <service id="sonatra_bootstrap.assetic.bundle_filter" class="%sonatra_bootstrap.assetic.bundle_filter.class%">
             <tag name="assetic.filter" alias="bundle"></tag>
             <argument>%kernel.bundles%</argument>
+        </service>
+
+        <service id="sonatra_bootstrap.assetic.oyejorge_lessphp_filter" class="%sonatra_bootstrap.assetic.oyejorge_lessphp_filter.class%">
+            <tag name="assetic.filter" alias="oyejorge_lessphp"></tag>
+            <argument type="collection" />
+            <argument type="collection" />
         </service>
 
         <service id="sonatra_bootstrap.builder.stylesheet" class="%sonatra_bootstrap.builder.stylesheet.class%" public="false">
