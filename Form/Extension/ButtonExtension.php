@@ -90,6 +90,11 @@ class ButtonExtension extends AbstractTypeExtension
             'size'        => array('null', 'string'),
             'block_level' => 'bool',
         ));
+
+        $resolver->addAllowedValues(array(
+            'style' => array('default', 'primary', 'success', 'info', 'warning', 'danger', 'link'),
+            'size'  => array('xs', 'sm', 'lg'),
+        ));
     }
 
     /**
