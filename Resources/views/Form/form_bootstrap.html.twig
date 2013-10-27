@@ -438,7 +438,7 @@
     {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
         <div class="col-{{ layout_col_size }}-offset-{{ layout_col_label }} col-{{ layout_col_size }}-{{ layout_col_control }}">
     {% endif %}
-    {% if label is empty and label != '' %}
+    {% if label is null %}
         {% set label = name|humanize %}
     {% endif %}
     <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{% if glyphicon is defined %}<span class="glyphicon glyphicon-{{ glyphicon }}"></span> {% endif %}{{ label|trans({}, translation_domain) }}</button>
