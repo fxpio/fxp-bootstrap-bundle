@@ -1,0 +1,166 @@
+{% use 'block_div_layout.html.twig' with block_widget_simple as base_block_widget_simple,
+                                        block_widget_compound as base_block_widget_compound,
+                                        block_label as base_block_label,
+                                        choice_widget as base_choice_widget,
+                                        collection_widget as base_collection_widget,
+                                        form_content_widget as base_form_content_widget %}
+
+{% block block_widget_simple %}
+{% spaceless %}
+    {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
+        <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {% endif %}
+
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' block-control')|trim}) %}
+    {% set type = type|default('text') %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' block_' ~ type)|trim}) %}
+
+    <div {{ block('widget_attributes') }}>{{ value|raw }}</div>
+
+    {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock block_widget_simple %}
+
+{% block block_widget_compound %}
+{% spaceless %}
+    {% if layout != null %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' block-' ~ layout)|trim}) %}
+    {% endif %}
+    {{ block('base_block_widget_compound') }}
+{% endspaceless %}
+{% endblock block_widget_compound %}
+
+
+{% block block_row %}
+{% spaceless %}
+    {% set row_attr = row_attr|default({})|merge({'class': ('block-group ' ~ (row_attr.class|default('')))|trim}) %}
+
+    <div {% for attrname, attrvalue in row_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        {{ block_label(block) }}
+        {{ block_widget(block) }}
+    </div>
+{% endspaceless %}
+{% endblock block_row %}
+
+
+{% block block_label %}
+    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' block-label')|trim}) %}
+    {% if display_label == false %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' sr-only')|trim}) %}
+    {% endif %}
+    {% if layout|default(null) == 'horizontal' %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ layout_col_label)|trim}) %}
+    {% endif %}
+
+    {{ block('base_block_label') }}
+{% endblock block_label %}
+
+
+{% block choice_widget %}
+{% spaceless %}
+    {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
+        <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {% endif %}
+
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' block-control')|trim}) %}
+    {{ block('base_choice_widget') }}
+
+    {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock choice_widget %}
+
+
+{% block checkbox_widget %}
+{% spaceless %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+
+    {% if layout|default(null) == 'horizontal' %}
+        <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {% endif %}
+
+    <div class="checkbox">
+	    <div{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+	        {% if value %}
+	            {% set value = 'check' %}
+            {% else %}
+                {% set value = 'unchecked' %}
+	        {% endif %}
+	        {% set attr = attr|merge({'class': ('glyphicon glyphicon-' ~ value ~ ' ' ~ attr.class|default(''))|trim}) %}
+	        <span {{ block('widget_attributes') }}></span>
+	    </div>
+    </div>
+
+    {% if layout|default(null) == 'horizontal' %}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock checkbox_widget %}
+
+
+{% block radio_widget %}
+{% spaceless %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+
+    {% if layout|default(null) == 'horizontal' %}
+        <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {% endif %}
+
+    <div class="radio">
+	    <div{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+	        {% if value %}
+	            {% set value = 'check' %}
+            {% else %}
+                {% set value = 'unchecked' %}
+	        {% endif %}
+	        {% set attr = attr|merge({'class': ('glyphicon glyphicon-' ~ value ~ ' ' ~ attr.class|default(''))|trim}) %}
+	        <span {{ block('widget_attributes') }}></span>
+	    </div>
+    </div>
+
+    {% if layout|default(null) == 'horizontal' %}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock radio_widget %}
+
+
+{% block collection_widget %}
+    {% if layout|default(null) == 'horizontal' %}
+        <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {% endif %}
+    {{ block('base_collection_widget') }}
+    {% if layout|default(null) == 'horizontal' %}
+        </div>
+    {% endif %}
+{% endblock collection_widget %}
+
+
+{% block fieldset_label %}
+{% endblock fieldset_label %}
+
+{% block fieldset_widget %}
+{% spaceless %}
+    <fieldset {{ block('widget_attributes') }}>
+        {% if legend is not empty %}
+            {% if layout|default(null) == 'horizontal' %}
+		        {% set legend_attr = legend_attr|merge({'class': (legend_attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ (layout_col_label + layout_col_control))|trim}) %}
+		    {% endif %}
+            <legend{% for attrname, attrvalue in legend_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ legend }}</legend>
+        {% endif %}
+        {{ block('block_rows') }}
+    </fieldset>
+{% endspaceless %}
+{% endblock fieldset_widget %}
+
+
+{% block form_content_widget %}
+    {{ block('base_form_content_widget') }}
+{% endblock form_content_widget %}

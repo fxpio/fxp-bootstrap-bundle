@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="sonatra_block.type_extension.sonatra_block" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\BlockExtension">
+            <tag name="sonatra_block.type_extension" alias="block" />
+        </service>
+
+        <service id="sonatra_block.type_extension.sonatra_collection" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\CollectionExtension">
+            <tag name="sonatra_block.type_extension" alias="collection" />
+        </service>
+
+        <service id="sonatra_block.type_extension.sonatra_repeated" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\RepeatedExtension">
+            <tag name="sonatra_block.type_extension" alias="repeated" />
+        </service>
+
+        <service id="sonatra_block.type.sonatra_fieldset" class="Sonatra\Bundle\BootstrapBundle\Block\Type\FieldsetType">
+            <tag name="sonatra_block.type" alias="fieldset" />
+        </service>
+    </services>
+</container>

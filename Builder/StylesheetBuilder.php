@@ -83,6 +83,7 @@ class StylesheetBuilder
         'carousel',
         'utilities',
         'responsive_utilities',
+        'blocks',
         'addon'
     );
 

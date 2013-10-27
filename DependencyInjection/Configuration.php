@@ -145,6 +145,7 @@ class Configuration implements ConfigurationInterface
                                         ->booleanNode('carousel')->defaultTrue()->end()
                                         ->booleanNode('utilities')->defaultTrue()->end()
                                         ->booleanNode('responsive_utilities')->defaultTrue()->end()
+                                        ->scalarNode('blocks')->defaultValue('@SonatraBootstrapBundle/Resources/assetic/less/blocks.less')->end()
                                         ->scalarNode('addon')->defaultValue('@SonatraBootstrapBundle/Resources/assetic/less/addon.less')->end()
                                     ->end()
                                 ->end()

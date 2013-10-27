@@ -9,49 +9,39 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\BootstrapBundle\Form\Extension;
+namespace Sonatra\Bundle\BootstrapBundle\Block\Extension;
 
-use Symfony\Component\Form\AbstractTypeExtension;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormView;
+use Sonatra\Bundle\BlockBundle\Block\AbstractTypeExtension;
+use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
+use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Form Form Extension.
+ * Block Block Extension.
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class FormExtension extends AbstractTypeExtension
+class BlockExtension extends AbstractTypeExtension
 {
     /**
      * {@inheritdoc}
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
             'row_attr'             => $options['row_attr'],
             'display_label'        => $options['display_label'],
-            'size'                 => $options['size'],
             'layout'               => $options['layout'],
             'layout_col_size'      => $options['layout_col_size'],
             'layout_col_label'     => $options['layout_col_label'],
             'layout_col_control'   => $options['layout_col_control'],
-            'validation_state'     => $options['validation_state'],
-            'static_control'       => $options['static_control'] && $options['disabled'],
-            'static_control_empty' => $options['static_control_empty'],
-            'help_text'            => $options['help_text'],
-            'help_attr'            => $options['help_attr'],
         ));
-
-        if (count($form->getErrors()) > 0) {
-            $view->vars['validation_state'] = 'error';
-        }
     }
 
     /**
      * {@inheritdoc}
      */
-    public function finishView(FormView $view, FormInterface $form, array $options)
+    public function finishView(BlockView $view, BlockInterface $block, array $options)
     {
         if (null !== $view->parent) {
             $view->vars = array_replace($view->vars, array(
@@ -76,39 +66,25 @@ class FormExtension extends AbstractTypeExtension
             array(
                 'row_attr'             => array(),
                 'display_label'        => true,
-                'size'                 => null,
                 'layout'               => null,
                 'layout_col_size'      => 'lg',// only for horizontal layout
                 'layout_col_label'     => 4,// only for horizontal layout
                 'layout_col_control'   => 8,// only for horizontal layout
-                'validation_state'     => null,
-                'static_control'       => false,// renders P tag when this form is read only
-                'static_control_empty' => 'null',
-                'help_text'            => null,
-                'help_attr'            => array(),
             )
         );
 
         $resolver->addAllowedTypes(array(
             'row_attr'             => array('array'),
             'display_label'        => array('bool'),
-            'size'                 => array('null', 'string'),
             'layout'               => array('null', 'string'),
             'layout_col_size'      => array('string'),
             'layout_col_label'     => array('int'),
             'layout_col_control'   => array('int'),
-            'validation_state'     => array('null', 'string'),
-            'static_control'       => array('bool'),
-            'static_control_empty' => array('null', 'string'),
-            'help_text'            => array('null', 'string'),
-            'help_attr'            => array('array'),
         ));
 
         $resolver->addAllowedValues(array(
-            'size'             => array('sm', 'lg'),
             'layout'           => array('inline', 'horizontal'),
             'layout_col_size'  => array('xs', 'sm', 'md', 'lg'),
-            'validation_state' => array('success', 'warning', 'error'),
         ));
     }
 
@@ -117,6 +93,6 @@ class FormExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'form';
+        return 'block';
     }
 }

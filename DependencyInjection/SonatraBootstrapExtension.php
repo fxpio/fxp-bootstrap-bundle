@@ -36,6 +36,7 @@ class SonatraBootstrapExtension extends Extension implements PrependExtensionInt
         $loader->load('assetic.xml');
         $loader->load('templating_twig.xml');
         $loader->load('form.xml');
+        $loader->load('block.xml');
 
         $this->configFonts($config['font'], $container);
         $this->configCommonStylesheets($config['common_assets']['stylesheets'], $container);
@@ -162,7 +163,16 @@ class SonatraBootstrapExtension extends Extension implements PrependExtensionInt
 
             $container->prependExtensionConfig(
                     'twig',
-                    array('form'  => array('resources' => $resources))
+                    array('form' => array('resources' => $resources))
+            );
+        }
+
+        if (isset($exts['sonatra_block'])) {
+            $resources = array('SonatraBootstrapBundle:Block:block_bootstrap.html.twig');
+
+            $container->prependExtensionConfig(
+                'sonatra_block',
+                array('block' => array('resources' => $resources))
             );
         }
     }
