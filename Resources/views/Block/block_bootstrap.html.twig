@@ -164,3 +164,24 @@
 {% block form_content_widget %}
     {{ block('base_form_content_widget') }}
 {% endblock form_content_widget %}
+
+
+{% block image_widget %}
+{% spaceless %}
+    {% if style is not null %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' img-' ~ style)|trim}) %}
+    {% endif %}
+
+    {% if responsive %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' img-responsive')|trim}) %}
+    {% endif %}
+
+    {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
+        <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {% endif %}
+    <img {{ block('widget_attributes') }}>
+    {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock image_widget %}

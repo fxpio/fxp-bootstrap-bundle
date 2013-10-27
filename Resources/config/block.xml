@@ -20,5 +20,9 @@
         <service id="sonatra_block.type.sonatra_fieldset" class="Sonatra\Bundle\BootstrapBundle\Block\Type\FieldsetType">
             <tag name="sonatra_block.type" alias="fieldset" />
         </service>
+
+        <service id="sonatra_block.type.sonatra_image" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ImageType">
+            <tag name="sonatra_block.type" alias="image" />
+        </service>
     </services>
 </container>
