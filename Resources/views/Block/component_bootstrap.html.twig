@@ -43,3 +43,19 @@
     <span {{ block('widget_container_attributes') }}></span>
 {% endspaceless %}
 {% endblock glyphicon_widget %}
+
+
+{% block well_label %}
+{% endblock well_label %}
+
+{% block well_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('well ' ~ attr.class|default(''))|trim}) %}
+
+    {% if size is not null %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' well-' ~ size)|trim}) %}
+    {% endif %}
+
+    {{ block('block_widget_compound') }}
+{% endspaceless %}
+{% endblock well_widget %}

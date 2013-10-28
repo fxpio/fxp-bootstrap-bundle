@@ -36,5 +36,9 @@
         <service id="sonatra_block.type.button_toolbar" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ButtonToolbarType">
             <tag name="sonatra_block.type" alias="button_toolbar" />
         </service>
+
+        <service id="sonatra_block.type.well" class="Sonatra\Bundle\BootstrapBundle\Block\Type\WellType">
+            <tag name="sonatra_block.type" alias="well" />
+        </service>
     </services>
 </container>
