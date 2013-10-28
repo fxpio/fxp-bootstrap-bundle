@@ -132,6 +132,9 @@
 
 
 {% block collection_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('block-collection ' ~ attr.class|default(''))|trim}) %}
+
     {% if layout|default(null) == 'horizontal' %}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
     {% endif %}
@@ -139,6 +142,7 @@
     {% if layout|default(null) == 'horizontal' %}
         </div>
     {% endif %}
+{% endspaceless %}
 {% endblock collection_widget %}
 
 

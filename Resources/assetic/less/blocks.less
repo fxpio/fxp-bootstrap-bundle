@@ -24,7 +24,7 @@
   margin-bottom: 15px;
 }
 
-.block-group .block-group {
+.block-collection > .block-group {
   margin-bottom: 0px;
 }
 
@@ -52,6 +52,7 @@
 
 .block-horizontal {
   .block-label,
+  .form-label,
   .radio,
   .checkbox,
   .radio-inline,
@@ -61,7 +62,8 @@
     padding-top: (@padding-base-vertical + 1);
   }
 
-  .block-group {
+  .block-group,
+  .form-group {
     .make-row();
   }
 
