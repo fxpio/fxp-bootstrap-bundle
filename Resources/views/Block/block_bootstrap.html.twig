@@ -2,8 +2,7 @@
                                         block_widget_compound as base_block_widget_compound,
                                         block_label as base_block_label,
                                         choice_widget as base_choice_widget,
-                                        collection_widget as base_collection_widget,
-                                        form_content_widget as base_form_content_widget %}
+                                        collection_widget as base_collection_widget %}
 
 {% block block_widget_simple %}
 {% spaceless %}
@@ -162,7 +161,15 @@
 
 
 {% block form_content_widget %}
-    {{ block('base_form_content_widget') }}
+{% spaceless %}
+    {% set form_variables = {'row_attr': row_attr, 'display_label': display_label, 'layout': layout, 'layout_col_size': layout_col_size, 'layout_col_label': layout_col_label, 'layout_col_control': layout_col_control} %}
+
+    {% if block_form.parent is null and block.parent is not null %}
+        {{ form_row(block_form, form_variables) }}
+    {% else %}
+        {{ form_widget(block_form, form_variables) }}
+    {% endif %}
+{% endspaceless %}
 {% endblock form_content_widget %}
 
 
