@@ -31,3 +31,15 @@
     </div>
 {% endspaceless %}
 {% endblock button_toolbar_widget %}
+
+
+{% block glyphicon_label %}
+{% endblock glyphicon_label %}
+
+{% block glyphicon_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('glyphicon glyphicon-' ~ icon ~ ' ' ~ attr.class|default(''))|trim}) %}
+
+    <span {{ block('widget_container_attributes') }}></span>
+{% endspaceless %}
+{% endblock glyphicon_widget %}

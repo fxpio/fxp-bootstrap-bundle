@@ -25,6 +25,10 @@
             <tag name="sonatra_block.type" alias="image" />
         </service>
 
+        <service id="sonatra_block.type.glyphicon" class="Sonatra\Bundle\BootstrapBundle\Block\Type\GlyphiconType">
+            <tag name="sonatra_block.type" alias="glyphicon" />
+        </service>
+
         <service id="sonatra_block.type.button_group" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ButtonGroupType">
             <tag name="sonatra_block.type" alias="button_group" />
         </service>
