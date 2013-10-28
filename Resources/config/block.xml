@@ -24,5 +24,13 @@
         <service id="sonatra_block.type.image" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ImageType">
             <tag name="sonatra_block.type" alias="image" />
         </service>
+
+        <service id="sonatra_block.type.button_group" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ButtonGroupType">
+            <tag name="sonatra_block.type" alias="button_group" />
+        </service>
+
+        <service id="sonatra_block.type.button_toolbar" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ButtonToolbarType">
+            <tag name="sonatra_block.type" alias="button_toolbar" />
+        </service>
     </services>
 </container>

@@ -168,7 +168,10 @@ class SonatraBootstrapExtension extends Extension implements PrependExtensionInt
         }
 
         if (isset($exts['sonatra_block'])) {
-            $resources = array('SonatraBootstrapBundle:Block:block_bootstrap.html.twig');
+            $resources = array(
+                'SonatraBootstrapBundle:Block:block_bootstrap.html.twig',
+                'SonatraBootstrapBundle:Block:component_bootstrap.html.twig',
+            );
 
             $container->prependExtensionConfig(
                 'sonatra_block',

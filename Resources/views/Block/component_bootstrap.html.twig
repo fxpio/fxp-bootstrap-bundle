@@ -1,0 +1,33 @@
+{% block button_group_widget %}
+{% spaceless %}
+    {% if vertical %}
+        {% set vertical = '-vertical' %}
+    {% else %}
+        {% set vertical = '' %}
+    {% endif %}
+
+    {% set attr = attr|merge({'class': ('btn-group' ~ vertical ~ ' ' ~ attr.class|default(''))|trim}) %}
+
+    {% if size is not null %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn-group-' ~ size)|trim}) %}
+    {% endif %}
+
+    {% if justified %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn-group-justified')|trim}) %}
+    {% endif %}
+
+    {{ block('block_widget_compound') }}
+{% endspaceless %}
+{% endblock button_group_widget %}
+
+{% block button_toolbar_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ' btn-toolbar' ~ (attr.class|default(''))|trim}) %}
+
+    <div {{ block('widget_container_attributes') }}>
+	    {% for child in block %}
+	        {{ block_widget(child) }}
+	    {% endfor %}
+    </div>
+{% endspaceless %}
+{% endblock button_toolbar_widget %}
