@@ -44,5 +44,21 @@
         <service id="sonatra_block.type.button" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ButtonType">
             <tag name="sonatra_block.type" alias="button" />
         </service>
+
+        <service id="sonatra_block.type.dropdown" class="Sonatra\Bundle\BootstrapBundle\Block\Type\DropdownType">
+            <tag name="sonatra_block.type" alias="dropdown" />
+        </service>
+
+        <service id="sonatra_block.type.dropdown_item" class="Sonatra\Bundle\BootstrapBundle\Block\Type\DropdownItemType">
+            <tag name="sonatra_block.type" alias="dropdown_item" />
+        </service>
+
+        <service id="sonatra_block.type.divider" class="Sonatra\Bundle\BootstrapBundle\Block\Type\DropdownDividerType">
+            <tag name="sonatra_block.type" alias="dropdown_divider" />
+        </service>
+
+        <service id="sonatra_block.type.header" class="Sonatra\Bundle\BootstrapBundle\Block\Type\DropdownHeaderType">
+            <tag name="sonatra_block.type" alias="dropdown_header" />
+        </service>
     </services>
 </container>
