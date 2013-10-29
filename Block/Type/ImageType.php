@@ -12,12 +12,10 @@
 namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
-use Sonatra\Bundle\BlockBundle\Block\BlockBuilderInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Sonatra\Bundle\BlockBundle\Block\Extension\Core\DataMapper\WrapperMapper;
 
 /**
  * Image Block Type.
@@ -26,14 +24,6 @@ use Sonatra\Bundle\BlockBundle\Block\Extension\Core\DataMapper\WrapperMapper;
  */
 class ImageType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function buildBlock(BlockBuilderInterface $builder, array $options)
-    {
-        $builder->setDataMapper(new WrapperMapper());
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -79,16 +69,15 @@ class ImageType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'src'           => null,
-            'alt'           => null,
-            'style'         => null,
-            'responsive'    => false,
-            'crossorigin'   => null,
-            'height'        => null,
-            'ismap'         => null,
-            'usemap'        => null,
-            'width'         => null,
-            'display_label' => false,
+            'src'         => null,
+            'alt'         => null,
+            'style'       => null,
+            'responsive'  => false,
+            'crossorigin' => null,
+            'height'      => null,
+            'ismap'       => null,
+            'usemap'      => null,
+            'width'       => null,
         ));
 
         $resolver->setAllowedTypes(array(

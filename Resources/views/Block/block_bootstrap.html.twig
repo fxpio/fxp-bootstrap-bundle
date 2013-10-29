@@ -146,11 +146,10 @@
 {% endblock collection_widget %}
 
 
-{% block fieldset_label %}
-{% endblock fieldset_label %}
-
 {% block fieldset_widget %}
 {% spaceless %}
+    {% set attr = attr|merge({'class': ('block-group ' ~ attr.class|default(''))|trim}) %}
+
     <fieldset {{ block('widget_attributes') }}>
         {% if legend is not empty %}
             {% if layout|default(null) == 'horizontal' %}

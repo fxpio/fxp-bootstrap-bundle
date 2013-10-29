@@ -1,3 +1,5 @@
+{% use '@SonatraBootstrap/Block/block_bootstrap.html.twig' %}
+
 {% block button_group_widget %}
 {% spaceless %}
     {% if vertical %}
@@ -20,6 +22,7 @@
 {% endspaceless %}
 {% endblock button_group_widget %}
 
+
 {% block button_toolbar_widget %}
 {% spaceless %}
     {% set attr = attr|merge({'class': ' btn-toolbar' ~ (attr.class|default(''))|trim}) %}
@@ -33,9 +36,6 @@
 {% endblock button_toolbar_widget %}
 
 
-{% block glyphicon_label %}
-{% endblock glyphicon_label %}
-
 {% block glyphicon_widget %}
 {% spaceless %}
     {% set attr = attr|merge({'class': ('glyphicon glyphicon-' ~ icon ~ ' ' ~ attr.class|default(''))|trim}) %}
@@ -44,9 +44,6 @@
 {% endspaceless %}
 {% endblock glyphicon_widget %}
 
-
-{% block well_label %}
-{% endblock well_label %}
 
 {% block well_widget %}
 {% spaceless %}

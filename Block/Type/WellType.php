@@ -12,12 +12,9 @@
 namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
-use Sonatra\Bundle\BlockBundle\Block\BlockBuilderInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Sonatra\Bundle\BlockBundle\Block\Extension\Core\DataMapper\WrapperMapper;
 
 /**
  * Well Block Type.
@@ -26,14 +23,6 @@ use Sonatra\Bundle\BlockBundle\Block\Extension\Core\DataMapper\WrapperMapper;
  */
 class WellType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function buildBlock(BlockBuilderInterface $builder, array $options)
-    {
-        $builder->setDataMapper(new WrapperMapper());
-    }
-
     /**
      * {@inheritdoc}
      */
