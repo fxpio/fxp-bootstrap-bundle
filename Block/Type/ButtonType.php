@@ -30,11 +30,14 @@ class ButtonType extends AbstractType
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'tag'      => $options['tag'],
-            'disabled' => $options['disabled'],
-            'src'      => $options['src'],
-            'prepend'  => $options['prepend'],
-            'append'   => $options['append'],
+            'tag'         => $options['tag'],
+            'disabled'    => $options['disabled'],
+            'src'         => $options['src'],
+            'style'       => $options['style'],
+            'size'        => $options['size'],
+            'block_level' => $options['block_level'],
+            'prepend'     => $options['prepend'],
+            'append'      => $options['append'],
         ));
     }
 
@@ -43,27 +46,9 @@ class ButtonType extends AbstractType
      */
     public function finishView(BlockView $view, BlockInterface $block, array $options)
     {
-        $class = '';
-
-        if (isset($view->vars['attr']['class'])) {
-            $class = $view->vars['attr']['class'];
-        }
-
-        if ($options['block_level']) {
-            $class = 'btn-block ' . $class;
-        }
-
-        if (null !== $options['style']) {
-            $class = 'btn-' . $options['style'] . ' ' . $class;
-        }
-
-        if (null !== $options['size']) {
-            $class = 'btn-' . $options['size'] . ' ' . $class;
-        }
-
-        $view->vars['attr']['class'] = trim('btn ' . $class);
         $view->vars['prepend_is_string'] = true;
         $view->vars['append_is_string'] = true;
+        $view->vars['dropup'] = $options['dropup'];
 
         // layout
         if (null !== $view->parent && isset($view->parent->vars['layout'])) {
@@ -80,7 +65,12 @@ class ButtonType extends AbstractType
         }
 
         foreach ($view->children as $name => $child) {
-            if ('prepend' === $name) {
+            if (in_array('dropdown', $child->vars['block_prefixes'])) {
+                $child->vars['wrapper'] = false;
+                $view->vars['dropdown'] = $child;
+                unset($view->children[$name]);
+
+            } elseif ('prepend' === $name) {
                 $view->vars['prepend'] = $child;
                 $view->vars['prepend_is_string'] = false;
                 unset($view->children[$name]);
@@ -88,6 +78,10 @@ class ButtonType extends AbstractType
             } elseif ('append' === $name) {
                 $view->vars['append'] = $child;
                 $view->vars['append_is_string'] = false;
+                unset($view->children[$name]);
+
+            } elseif ('split' === $name) {
+                $view->vars['split'] = $child;
                 unset($view->children[$name]);
             }
         }
@@ -107,6 +101,7 @@ class ButtonType extends AbstractType
             'block_level' => false,
             'prepend'     => null,
             'append'      => null,
+            'dropup'      => false,
         ));
 
         $resolver->setAllowedTypes(array(
@@ -117,6 +112,7 @@ class ButtonType extends AbstractType
             'block_level' => 'bool',
             'prepend'     => array('null', 'string'),
             'append'      => array('null', 'string'),
+            'dropup'      => 'bool',
         ));
 
         $resolver->setAllowedValues(array(
