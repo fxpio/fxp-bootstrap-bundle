@@ -39,7 +39,8 @@ class DropdownHeaderType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'divider' => true,
+            'divider'       => true,
+            'chained_block' => true,
         ));
 
         $resolver->setAllowedTypes(array(

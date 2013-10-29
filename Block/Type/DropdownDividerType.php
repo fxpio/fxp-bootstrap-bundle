@@ -12,6 +12,7 @@
 namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Dropdown Divider Block Type.
@@ -20,6 +21,16 @@ use Sonatra\Bundle\BlockBundle\Block\AbstractType;
  */
 class DropdownDividerType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'chained_block' => true,
+        ));
+    }
+
     /**
      * {@inheritdoc}
      */

@@ -47,9 +47,10 @@ class DropdownItemType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'src'       => '#',
-            'link_attr' => array(),
-            'disabled'  => false,
+            'src'           => '#',
+            'link_attr'     => array(),
+            'disabled'      => false,
+            'chained_block' => true,
         ));
 
         $resolver->setAllowedTypes(array(
