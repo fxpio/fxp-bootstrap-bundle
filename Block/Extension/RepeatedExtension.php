@@ -22,7 +22,20 @@ use Sonatra\Bundle\BlockBundle\Block\BlockView;
  */
 class RepeatedExtension extends AbstractTypeExtension
 {
-     /**
+    /**
+     * {@inheritdoc}
+     */
+    public function buildView(BlockView $view, BlockInterface $block, array $options)
+    {
+        if (null !== $view->parent) {
+            $view->vars = array_replace($view->vars, array(
+                'row'       => $view->parent->vars['row'],
+                'row_label' => $view->parent->vars['row_label'],
+            ));
+        }
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function finishView(BlockView $view, BlockInterface $block, array $options)

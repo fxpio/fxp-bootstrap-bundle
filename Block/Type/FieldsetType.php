@@ -29,10 +29,15 @@ class FieldsetType extends AbstractType
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'legend'      => $options['legend'],
-            'legend_attr' => $options['legend_attr'],
             'compound'    => true,
         ));
+
+        if (null !== $view->parent) {
+            $view->vars = array_replace($view->vars, array(
+                'row'       => $view->parent->vars['row'],
+                'row_label' => $view->parent->vars['row_label'],
+            ));
+        }
     }
 
     /**
@@ -42,10 +47,10 @@ class FieldsetType extends AbstractType
     {
         foreach ($view->children as $child) {
             $child->vars = array_replace($child->vars, array(
-                'layout'               => $view->vars['layout'],
-                'layout_col_size'      => $view->vars['layout_col_size'],
-                'layout_col_label'     => $view->vars['layout_col_label'],
-                'layout_col_control'   => $view->vars['layout_col_control'],
+                'layout'             => $view->vars['layout'],
+                'layout_col_size'    => $view->vars['layout_col_size'],
+                'layout_col_label'   => $view->vars['layout_col_label'],
+                'layout_col_control' => $view->vars['layout_col_control'],
             ));
         }
     }
@@ -56,15 +61,8 @@ class FieldsetType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'legend'       => null,
-            'legend_attr'  => array(),
             'compound'     => true,
             'inherit_data' => true,
-        ));
-
-        $resolver->setAllowedTypes(array(
-            'legend'      => array('null', 'string'),
-            'legend_attr' => array('array'),
         ));
     }
 
