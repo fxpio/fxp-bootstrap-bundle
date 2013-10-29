@@ -56,3 +56,57 @@
     {{ block('block_widget_compound') }}
 {% endspaceless %}
 {% endblock well_widget %}
+
+
+{% block button_widget %}
+{% spaceless %}
+    {% if label is null %}
+        {% set label = name|humanize %}
+    {% endif %}
+
+    {% if tag == 'button' %}
+        <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain) }}
+    {% else %}
+        {% if disabled %}
+            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' disabled')|trim}) %}
+        {% endif %}
+        <a {{ block('widget_container_attributes') }}>
+    {% endif %}
+    {% if prepend is defined %}
+        {% if prepend_is_string %}
+            {{ prepend|raw }}
+        {% else %}
+            {{ block_assets_widget(prepend) }}
+        {% endif %}
+    {% endif %}
+    {{ label|trans({}, translation_domain) }}
+    {% if append is defined %}
+        {% if append_is_string %}
+            {{ append|raw }}
+        {% else %}
+            {{ block_assets_widget(append) }}
+        {% endif %}
+    {% endif %}
+    {% if tag == 'button' %}
+        </button>
+    {% else %}
+        </a>
+    {% endif %}
+{% endspaceless %}
+{% endblock button_widget %}
+
+{% block button_attributes %}
+{% spaceless %}
+    id="{{ id }}" name="{{ id }}"{% if disabled %} disabled="disabled"{% endif -%}
+    {%- for attrname, attrvalue in attr -%}
+        {{- " " -}}
+        {%- if attrname in ['placeholder', 'title'] -%}
+            {{- attrname }}="{{ attrvalue|trans({}, translation_domain) }}"
+        {%- elseif attrvalue is sameas(true) -%}
+            {{- attrname }}="{{ attrname }}"
+        {%- elseif attrvalue is not sameas(false) -%}
+            {{- attrname }}="{{ attrvalue }}"
+        {%- endif -%}
+    {%- endfor -%}
+{% endspaceless %}
+{% endblock button_attributes %}

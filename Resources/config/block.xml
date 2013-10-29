@@ -40,5 +40,9 @@
         <service id="sonatra_block.type.well" class="Sonatra\Bundle\BootstrapBundle\Block\Type\WellType">
             <tag name="sonatra_block.type" alias="well" />
         </service>
+
+        <service id="sonatra_block.type.button" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ButtonType">
+            <tag name="sonatra_block.type" alias="button" />
+        </service>
     </services>
 </container>
