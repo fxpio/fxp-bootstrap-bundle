@@ -60,5 +60,21 @@
         <service id="sonatra_block.type.header" class="Sonatra\Bundle\BootstrapBundle\Block\Type\DropdownHeaderType">
             <tag name="sonatra_block.type" alias="dropdown_header" />
         </service>
+
+        <service id="sonatra_block.type.nav" class="Sonatra\Bundle\BootstrapBundle\Block\Type\NavType">
+            <tag name="sonatra_block.type" alias="nav" />
+        </service>
+
+        <service id="sonatra_block.type.nav_item" class="Sonatra\Bundle\BootstrapBundle\Block\Type\NavItemType">
+            <tag name="sonatra_block.type" alias="nav_item" />
+        </service>
+
+        <service id="sonatra_block.type.tab_content" class="Sonatra\Bundle\BootstrapBundle\Block\Type\TabContentType">
+            <tag name="sonatra_block.type" alias="tab_content" />
+        </service>
+
+        <service id="sonatra_block.type.tab_pane" class="Sonatra\Bundle\BootstrapBundle\Block\Type\TabPaneType">
+            <tag name="sonatra_block.type" alias="tab_pane" />
+        </service>
     </services>
 </container>
