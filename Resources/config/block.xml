@@ -76,5 +76,13 @@
         <service id="sonatra_block.type.tab_pane" class="Sonatra\Bundle\BootstrapBundle\Block\Type\TabPaneType">
             <tag name="sonatra_block.type" alias="tab_pane" />
         </service>
+
+        <service id="sonatra_block.type.breadcrumb" class="Sonatra\Bundle\BootstrapBundle\Block\Type\BreadcrumbType">
+            <tag name="sonatra_block.type" alias="breadcrumb" />
+        </service>
+
+        <service id="sonatra_block.type.breadcrumb_item" class="Sonatra\Bundle\BootstrapBundle\Block\Type\BreadcrumbItemType">
+            <tag name="sonatra_block.type" alias="breadcrumb_item" />
+        </service>
     </services>
 </container>

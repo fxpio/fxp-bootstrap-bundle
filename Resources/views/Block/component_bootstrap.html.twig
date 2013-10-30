@@ -261,3 +261,30 @@
     {{ block('block_widget_compound') }}
 {% endspaceless %}
 {% endblock tab_pane_widget %}
+
+{% block breadcrumb_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('breadcrumb ' ~ attr.class|default(''))|trim}) %}
+    <ol {{ block('widget_container_attributes') }}>
+        {{ block('block_rows') }}
+    </ol>
+{% endspaceless %}
+{% endblock breadcrumb_widget %}
+
+{% block breadcrumb_item_widget %}
+{% spaceless %}
+    {% if active %}
+        {% set attr = attr|merge({'class': ('active ' ~ attr.class|default(''))|trim}) %}
+    {% endif %}
+    <li {{ block('widget_container_attributes') }}>
+        {% if not(active) %}
+	        <a{% for attrname, attrvalue in link_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+	    {% endif %}
+            {{ label|trans({}, translation_domain) }}
+            {{ block('block_rows') }}
+        {% if not(active) %}
+	        </a>
+	    {% endif %}
+    </li>
+{% endspaceless %}
+{% endblock breadcrumb_item_widget %}
