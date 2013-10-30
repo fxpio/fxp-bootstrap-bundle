@@ -230,11 +230,6 @@
     {% if disabled %}
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' disabled')|trim}) %}
     {% endif %}
-    {% if 'tabs' == style %}
-        {% set link_attr = link_attr|merge({'data-toggle': 'tab'}) %}
-    {% elseif 'pills' == style %}
-        {% set link_attr = link_attr|merge({'data-toggle': 'pill'}) %}
-    {% endif %}
     {% if is_item_dropdown %}
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' dropdown')|trim}) %}
         {% set link_attr = link_attr|merge({'class': (link_attr.class|default('') ~ ' dropdown-toggle')|trim, 'data-toggle': 'dropdown'}) %}
