@@ -40,7 +40,7 @@
 {% spaceless %}
     {% set attr = attr|merge({'class': ('glyphicon glyphicon-' ~ icon ~ ' ' ~ attr.class|default(''))|trim}) %}
 
-    <span {{ block('widget_container_attributes') }}></span>
+    <span {{ block('widget_container_attributes') }}>{{ block('block_rows') }}</span>
 {% endspaceless %}
 {% endblock glyphicon_widget %}
 
@@ -122,6 +122,8 @@
         {% endif %}
     {% endif %}
 
+    {{ block('block_rows') }}
+
     {% if dropdown is defined %}
          <span class="caret"></span>
     {% endif %}
@@ -178,7 +180,9 @@
 {% block dropdown_divider_widget %}
 {% spaceless %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' divider')|trim, role:'presentation'}) %}
-    <li {{ block('widget_container_attributes') }}></li>
+    <li {{ block('widget_container_attributes') }}>
+        {{ block('block_rows') }}
+    </li>
 {% endspaceless %}
 {% endblock dropdown_divider_widget %}
 
@@ -190,7 +194,10 @@
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' disabled')|trim}) %}
     {% endif %}
     <li {{ block('widget_container_attributes') }}>
-        <a{% for attrname, attrvalue in link_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</a>
+        <a{% for attrname, attrvalue in link_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+            {{ label|trans({}, translation_domain) }}
+            {{ block('block_rows') }}
+        </a>
     </li>
 {% endspaceless %}
 {% endblock dropdown_item_widget %}
@@ -201,7 +208,10 @@
         {{ sblock('dropdown_divider') }}
     {% endif %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' dropdown-header')|trim, role:'presentation'}) %}
-    <li {{ block('widget_container_attributes') }}>{{ label|trans({}, translation_domain) }}</li>
+    <li {{ block('widget_container_attributes') }}>
+        {{ label|trans({}, translation_domain) }}
+        {{ block('block_rows') }}
+    </li>
 {% endspaceless %}
 {% endblock dropdown_header_widget %}
 
@@ -235,8 +245,14 @@
         {% set link_attr = link_attr|merge({'class': (link_attr.class|default('') ~ ' dropdown-toggle')|trim, 'data-toggle': 'dropdown'}) %}
     {% endif %}
     <li {{ block('widget_container_attributes') }}>
-        <a{% for attrname, attrvalue in link_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}{% if is_item_dropdown %} <span class="caret"></span>{% endif %}</a>
-        {{ block('block_rows') }}
+        <a{% for attrname, attrvalue in link_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+            {{ label|trans({}, translation_domain) }}{% if is_item_dropdown %}
+            {{ block('block_rows') }}
+            <span class="caret"></span>{% endif %}
+        </a>
+        {% if dropdown is defined %}
+            {{ block_assets_widget(dropdown) }}
+        {% endif %}
     </li>
 {% endspaceless %}
 {% endblock nav_item_widget %}
