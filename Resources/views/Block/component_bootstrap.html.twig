@@ -480,3 +480,15 @@
     </{{ tag }}>
 {% endspaceless %}
 {% endblock list_item_widget %}
+
+
+{% block address_widget %}
+{% spaceless %}
+    <address {{ block('widget_container_attributes') }}>
+        {%- if label is not null %}
+        <strong>{{- label|trans({}, translation_domain) -}}</strong><br>
+        {% endif %}
+	    {{ block('block_rows') }}
+    </address>
+{% endspaceless %}
+{% endblock address_widget %}

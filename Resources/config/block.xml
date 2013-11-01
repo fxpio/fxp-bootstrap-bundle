@@ -128,5 +128,9 @@
         <service id="sonatra_block.type.list_item" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ListItemType">
             <tag name="sonatra_block.type" alias="list_item" />
         </service>
+
+        <service id="sonatra_block.type.address" class="Sonatra\Bundle\BootstrapBundle\Block\Type\AddressType">
+            <tag name="sonatra_block.type" alias="address" />
+        </service>
     </services>
 </container>
