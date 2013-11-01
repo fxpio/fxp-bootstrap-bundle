@@ -344,3 +344,12 @@
     <button {{ block('widget_container_attributes') }}>&times;</button>
 {% endspaceless %}
 {% endblock close_widget %}
+
+
+{% block caret_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('caret ' ~ attr.class|default(''))|trim}) %}
+
+    <span {{ block('widget_container_attributes') }}></span>
+{% endspaceless %}
+{% endblock caret_widget %}

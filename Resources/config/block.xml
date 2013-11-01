@@ -92,5 +92,9 @@
         <service id="sonatra_block.type.close" class="Sonatra\Bundle\BootstrapBundle\Block\Type\CloseType">
             <tag name="sonatra_block.type" alias="close" />
         </service>
+
+        <service id="sonatra_block.type.caret" class="Sonatra\Bundle\BootstrapBundle\Block\Type\CaretType">
+            <tag name="sonatra_block.type" alias="caret" />
+        </service>
     </services>
 </container>
