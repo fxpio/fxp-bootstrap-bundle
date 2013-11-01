@@ -116,5 +116,9 @@
         <service id="sonatra_block.type.abbreviation" class="Sonatra\Bundle\BootstrapBundle\Block\Type\AbbreviationType">
             <tag name="sonatra_block.type" alias="abbreviation" />
         </service>
+
+        <service id="sonatra_block.type.blockquote" class="Sonatra\Bundle\BootstrapBundle\Block\Type\BlockquoteType">
+            <tag name="sonatra_block.type" alias="blockquote" />
+        </service>
     </services>
 </container>

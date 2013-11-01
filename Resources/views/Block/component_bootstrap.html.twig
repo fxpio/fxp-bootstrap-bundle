@@ -433,3 +433,15 @@
     </abbr>
 {% endspaceless %}
 {% endblock abbreviation_widget %}
+
+
+{% block blockquote_widget %}
+{% spaceless %}
+    {% if pull_right %}
+        {% set attr = attr|merge({'class': ('pull-right ' ~ attr.class|default(''))|trim}) %}
+    {% endif %}
+    <blockquote {{ block('widget_container_attributes') }}>
+	    {{ block('block_rows') }}
+    </blockquote>
+{% endspaceless %}
+{% endblock blockquote_widget %}
