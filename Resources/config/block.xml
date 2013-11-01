@@ -89,5 +89,8 @@
             <tag name="sonatra_block.type" alias="progress_bar" />
         </service>
 
+        <service id="sonatra_block.type.close" class="Sonatra\Bundle\BootstrapBundle\Block\Type\CloseType">
+            <tag name="sonatra_block.type" alias="close" />
+        </service>
     </services>
 </container>

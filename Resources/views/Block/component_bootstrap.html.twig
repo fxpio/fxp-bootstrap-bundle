@@ -335,3 +335,12 @@
     {% endif %}
 {% endspaceless %}
 {% endblock progress_bar_widget %}
+
+
+{% block close_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'type': 'button', 'class': ('close ' ~ attr.class|default(''))|trim, 'aria-hidden': 'true'}) %}
+
+    <button {{ block('widget_container_attributes') }}>&times;</button>
+{% endspaceless %}
+{% endblock close_widget %}
