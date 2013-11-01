@@ -17,7 +17,7 @@
     {% if justified %}
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn-group-justified')|trim}) %}
     {% endif %}
-
+    {{- value|raw -}}
     {{ block('block_widget_compound') }}
 {% endspaceless %}
 {% endblock button_group_widget %}
@@ -26,7 +26,7 @@
 {% block button_toolbar_widget %}
 {% spaceless %}
     {% set attr = attr|merge({'class': ' btn-toolbar' ~ (attr.class|default(''))|trim}) %}
-
+    {{- value|raw -}}
     <div {{ block('widget_container_attributes') }}>
 	    {% for child in block %}
 	        {{ block_widget(child) }}
@@ -40,7 +40,7 @@
 {% spaceless %}
     {% set attr = attr|merge({'class': ('glyphicon glyphicon-' ~ icon ~ ' ' ~ attr.class|default(''))|trim}) %}
 
-    <span {{ block('widget_container_attributes') }}>{{ block('block_rows') }}</span>
+    <span {{ block('widget_container_attributes') }}>{{- value|raw -}}{{ block('block_rows') }}</span>
 {% endspaceless %}
 {% endblock glyphicon_widget %}
 
@@ -52,7 +52,7 @@
     {% if size is not null %}
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' well-' ~ size)|trim}) %}
     {% endif %}
-
+    {{- value|raw -}}
     {{ block('block_widget_compound') }}
 {% endspaceless %}
 {% endblock well_widget %}
@@ -122,6 +122,7 @@
         {% endif %}
     {% endif %}
 
+    {{- value|raw -}}
     {{ block('block_rows') }}
 
     {% if dropdown is defined %}
@@ -173,6 +174,7 @@
     {% endif %}
     <a {{ block('widget_container_attributes') }}>
         {{- label|trans({}, translation_domain) -}}
+        {{- value|raw -}}
         {{- block('block_rows') -}}
     </a>
 {% endspaceless %}
@@ -190,7 +192,8 @@
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' pull-right')|trim}) %}
     {% endif %}
     <ul {{ block('widget_container_attributes') }}>
-        {{ block('block_rows') }}
+        {{- value|raw -}}
+        {{- block('block_rows') -}}
     </ul>
     {% if wrapper %}
         </div>
@@ -202,7 +205,8 @@
 {% spaceless %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' divider')|trim, role:'presentation'}) %}
     <li {{ block('widget_container_attributes') }}>
-        {{ block('block_rows') }}
+        {{- value|raw -}}
+        {{- block('block_rows') -}}
     </li>
 {% endspaceless %}
 {% endblock dropdown_divider_widget %}
@@ -216,8 +220,9 @@
     {% endif %}
     <li {{ block('widget_container_attributes') }}>
         <a{% for attrname, attrvalue in link_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-            {{ label|trans({}, translation_domain) }}
-            {{ block('block_rows') }}
+            {{- label|trans({}, translation_domain) -}}
+            {{- value|raw -}}
+            {{- block('block_rows') -}}
         </a>
     </li>
 {% endspaceless %}
@@ -230,8 +235,9 @@
     {% endif %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' dropdown-header')|trim, role:'presentation'}) %}
     <li {{ block('widget_container_attributes') }}>
-        {{ label|trans({}, translation_domain) }}
-        {{ block('block_rows') }}
+        {{- label|trans({}, translation_domain) -}}
+        {{- value|raw -}}
+        {{- block('block_rows') -}}
     </li>
 {% endspaceless %}
 {% endblock dropdown_header_widget %}
@@ -246,6 +252,7 @@
     {% endif %}
 
     <ul {{ block('widget_container_attributes') }}>
+        {{ value|raw }}
         {{ block('block_rows') }}
     </ul>
 {% endspaceless %}
@@ -267,8 +274,9 @@
     {% endif %}
     <li {{ block('widget_container_attributes') }}>
         <a{% for attrname, attrvalue in link_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-            {{ label|trans({}, translation_domain) }}{% if is_item_dropdown %}
-            {{ block('block_rows') }}
+            {{- label|trans({}, translation_domain) }}{% if is_item_dropdown -%}
+            {{- value|raw -}}
+            {{- block('block_rows') -}}
             <span class="caret"></span>{% endif %}
         </a>
         {% if dropdown is defined %}
@@ -282,7 +290,7 @@
 {% block tab_content_widget %}
 {% spaceless %}
     {% set attr = attr|merge({'class': ('tab-content ' ~ attr.class|default(''))|trim}) %}
-
+    {{- value|raw -}}
     {{ block('block_widget_compound') }}
 {% endspaceless %}
 {% endblock tab_content_widget %}
@@ -295,6 +303,7 @@
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' active')|trim}) %}
     {% endif %}
 
+    {{- value|raw -}}
     {{ block('block_widget_compound') }}
 {% endspaceless %}
 {% endblock tab_pane_widget %}
@@ -317,8 +326,9 @@
         {% if not(active) %}
 	        <a{% for attrname, attrvalue in link_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
 	    {% endif %}
-            {{ label|trans({}, translation_domain) }}
-            {{ block('block_rows') }}
+            {{- label|trans({}, translation_domain) -}}
+            {{- value|raw -}}
+            {{- block('block_rows') -}}
         {% if not(active) %}
 	        </a>
 	    {% endif %}
@@ -362,7 +372,7 @@
 {% spaceless %}
     {% set attr = attr|merge({'type': 'button', 'class': ('close ' ~ attr.class|default(''))|trim, 'aria-hidden': 'true'}) %}
 
-    <button {{ block('widget_container_attributes') }}>&times;</button>
+    <button {{ block('widget_container_attributes') }}>&times;{{- value|raw -}}</button>
 {% endspaceless %}
 {% endblock close_widget %}
 
@@ -371,7 +381,7 @@
 {% spaceless %}
     {% set attr = attr|merge({'class': ('caret ' ~ attr.class|default(''))|trim}) %}
 
-    <span {{ block('widget_container_attributes') }}></span>
+    <span {{ block('widget_container_attributes') }}>{{- value|raw -}}</span>
 {% endspaceless %}
 {% endblock caret_widget %}
 
@@ -396,6 +406,7 @@
         {% if secondary is not null %}
             <small>{{ secondary|trans({}, translation_domain) }}</small>
         {% endif %}
+        {{- value|raw -}}
 	    {{ block('block_rows') }}
     </h{{ size }}>
 {% endspaceless %}
@@ -414,6 +425,7 @@
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' text-' ~ emphasis)|trim}) %}
     {% endif %}
     <p {{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
 	    {{ block('block_rows') }}
     </p>
 {% endspaceless %}
@@ -429,7 +441,8 @@
         {% set attr = attr|merge({'class': ('initialism ' ~ attr.class|default(''))|trim}) %}
     {% endif %}
     <abbr {{ block('widget_container_attributes') }}>
-	    {{ block('block_rows') }}
+        {{- value|raw -}}
+	    {{- block('block_rows') -}}
     </abbr>
 {% endspaceless %}
 {% endblock abbreviation_widget %}
@@ -441,6 +454,7 @@
         {% set attr = attr|merge({'class': ('pull-right ' ~ attr.class|default(''))|trim}) %}
     {% endif %}
     <blockquote {{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
 	    {{ block('block_rows') }}
     </blockquote>
 {% endspaceless %}
@@ -459,6 +473,7 @@
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' dl-horizontal')|trim}) %}
     {% endif %}
     <{{ tag }} {{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
         {{ block('block_rows') }}
     </{{ tag }}>
 {% endspaceless %}
@@ -476,6 +491,7 @@
     {% endif %}
     <{{ tag }} {{ block('widget_container_attributes') }}>
         {% if 'li' == tag %}{{- label|trans({}, translation_domain) -}}{% endif %}
+        {{- value|raw -}}
         {{- block('block_rows') -}}
     </{{ tag }}>
 {% endspaceless %}
@@ -488,6 +504,7 @@
         {%- if label is not null %}
         <strong>{{- label|trans({}, translation_domain) -}}</strong><br>
         {% endif %}
+        {{- value|raw -}}
 	    {{ block('block_rows') }}
     </address>
 {% endspaceless %}
