@@ -418,3 +418,18 @@
     </p>
 {% endspaceless %}
 {% endblock paragraph_widget %}
+
+
+{% block abbreviation_widget %}
+{% spaceless %}
+    {% if label is not null %}
+        {% set attr = attr|merge({'title': label|trans({}, translation_domain)}) %}
+    {% endif %}
+    {% if initialism %}
+        {% set attr = attr|merge({'class': ('initialism ' ~ attr.class|default(''))|trim}) %}
+    {% endif %}
+    <abbr {{ block('widget_container_attributes') }}>
+	    {{ block('block_rows') }}
+    </abbr>
+{% endspaceless %}
+{% endblock abbreviation_widget %}

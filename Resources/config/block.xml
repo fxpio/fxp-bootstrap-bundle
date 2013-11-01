@@ -112,5 +112,9 @@
         <service id="sonatra_block.type.paragraph" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ParagraphType">
             <tag name="sonatra_block.type" alias="paragraph" />
         </service>
+
+        <service id="sonatra_block.type.abbreviation" class="Sonatra\Bundle\BootstrapBundle\Block\Type\AbbreviationType">
+            <tag name="sonatra_block.type" alias="abbreviation" />
+        </service>
     </services>
 </container>
