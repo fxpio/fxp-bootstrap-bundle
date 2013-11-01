@@ -25,6 +25,18 @@
             <tag name="sonatra_block.type" alias="image" />
         </service>
 
+        <service id="sonatra_block.type.container" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ContainerType">
+            <tag name="sonatra_block.type" alias="container" />
+        </service>
+
+        <service id="sonatra_block.type.row" class="Sonatra\Bundle\BootstrapBundle\Block\Type\RowType">
+            <tag name="sonatra_block.type" alias="row" />
+        </service>
+
+        <service id="sonatra_block.type.column" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ColumnType">
+            <tag name="sonatra_block.type" alias="col" />
+        </service>
+
         <service id="sonatra_block.type.glyphicon" class="Sonatra\Bundle\BootstrapBundle\Block\Type\GlyphiconType">
             <tag name="sonatra_block.type" alias="glyphicon" />
         </service>
