@@ -29,7 +29,9 @@ class ParagraphType extends AbstractType
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'lead' => $options['lead'],
+            'lead'     => $options['lead'],
+            'align'    => $options['align'],
+            'emphasis' => $options['emphasis'],
         ));
     }
 
@@ -39,11 +41,20 @@ class ParagraphType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'lead'  => false,
+            'lead'     => false,
+            'align'    => null,
+            'emphasis' => null,
         ));
 
         $resolver->setAllowedTypes(array(
-            'lead'  => 'bool',
+            'lead'     => 'bool',
+            'align'    => array('null', 'string'),
+            'emphasis' => array('null', 'string'),
+        ));
+
+        $resolver->setAllowedValues(array(
+            'align'    => array('left', 'center', 'right'),
+            'emphasis' => array('muted', 'primary', 'success', 'info', 'warning', 'danger'),
         ));
     }
 

@@ -407,6 +407,12 @@
     {% if lead %}
         {% set attr = attr|merge({'class': ('lead ' ~ attr.class|default(''))|trim}) %}
     {% endif %}
+    {% if align is not null %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' text-' ~ align)|trim}) %}
+    {% endif %}
+    {% if emphasis is not null %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' text-' ~ emphasis)|trim}) %}
+    {% endif %}
     <p {{ block('widget_container_attributes') }}>
 	    {{ block('block_rows') }}
     </p>
