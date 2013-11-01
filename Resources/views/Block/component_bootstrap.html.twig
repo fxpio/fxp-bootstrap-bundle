@@ -400,3 +400,15 @@
     </h{{ size }}>
 {% endspaceless %}
 {% endblock heading_widget %}
+
+
+{% block paragraph_widget %}
+{% spaceless %}
+    {% if lead %}
+        {% set attr = attr|merge({'class': ('lead ' ~ attr.class|default(''))|trim}) %}
+    {% endif %}
+    <p {{ block('widget_container_attributes') }}>
+	    {{ block('block_rows') }}
+    </p>
+{% endspaceless %}
+{% endblock paragraph_widget %}
