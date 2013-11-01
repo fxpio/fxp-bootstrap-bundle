@@ -37,6 +37,10 @@
             <tag name="sonatra_block.type" alias="button_toolbar" />
         </service>
 
+        <service id="sonatra_block.type.link" class="Sonatra\Bundle\BootstrapBundle\Block\Type\LinkType">
+            <tag name="sonatra_block.type" alias="link" />
+        </service>
+
         <service id="sonatra_block.type.well" class="Sonatra\Bundle\BootstrapBundle\Block\Type\WellType">
             <tag name="sonatra_block.type" alias="well" />
         </service>

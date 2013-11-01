@@ -158,6 +158,27 @@
 {% endblock button_attributes %}
 
 
+{% block link_widget %}
+{% spaceless %}
+    {% if label is null %}
+        {% set label = attr.href %}
+    {% endif %}
+
+    {% if 'link' != style %}
+        {% set attr = attr|merge({'class': ('btn btn-' ~ style ~ attr.class|default(''))|trim}) %}
+
+        {% if size is not null %}
+	        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn-' ~ size)|trim}) %}
+	    {% endif %}
+    {% endif %}
+    <a {{ block('widget_container_attributes') }}>
+        {{- label|trans({}, translation_domain) -}}
+        {{- block('block_rows') -}}
+    </a>
+{% endspaceless %}
+{% endblock link_widget %}
+
+
 {% block dropdown_widget %}
 {% spaceless %}
     {% if wrapper %}
