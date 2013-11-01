@@ -14,18 +14,16 @@ Features include:
 - Assetic filter for replace the target path by the path starting since the current asset directory
 - Assetic filter for replace the bundle alias (@AcmeDemoBundle) by the real path
 - Renderer Twig tag for config assets in debug or prod mod
-- Twig template for fundamental HTML element
-  * HTML5 responsive container
+- Twig base template for the HTML5 responsive container
+- Block type for fundamental HTML element with responsive utilities
   * Grid system
   * Typography and links
   * Code
-  * Forms
-  * Helper classes
-  * Responsive utilities
-- Block type for fundamental HTML element
   * Tables
+  * Forms
   * Buttons
   * Images
+  * Helper classes
 - Block type for components
   * Glyphicons
   * Dropdowns
@@ -47,7 +45,7 @@ Features include:
   * List group
   * Panels
   * Wells
-- Block type for javascripts
+- Javascript comportment capability for all blocks
   * Transitions
   * Modals
   * Dropdowns
