@@ -100,5 +100,9 @@
         <service id="sonatra_block.type.code" class="Sonatra\Bundle\BootstrapBundle\Block\Type\CodeType">
             <tag name="sonatra_block.type" alias="code" />
         </service>
+
+        <service id="sonatra_block.type.heading" class="Sonatra\Bundle\BootstrapBundle\Block\Type\HeadingType">
+            <tag name="sonatra_block.type" alias="heading" />
+        </service>
     </services>
 </container>

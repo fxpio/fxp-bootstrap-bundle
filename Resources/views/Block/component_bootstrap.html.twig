@@ -367,3 +367,15 @@
     </{% if inline %}code{% else %}pre{% endif %}>
 {% endspaceless %}
 {% endblock code_widget %}
+
+{% block heading_widget %}
+{% spaceless %}
+    <h{{ size }} {{ block('widget_container_attributes') }}>
+        {{ label|trans({}, translation_domain) }}
+        {% if secondary is not null %}
+            <small>{{ secondary|trans({}, translation_domain) }}</small>
+        {% endif %}
+	    {{ block('block_rows') }}
+    </h{{ size }}>
+{% endspaceless %}
+{% endblock heading_widget %}
