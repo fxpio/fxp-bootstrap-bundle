@@ -120,5 +120,13 @@
         <service id="sonatra_block.type.blockquote" class="Sonatra\Bundle\BootstrapBundle\Block\Type\BlockquoteType">
             <tag name="sonatra_block.type" alias="blockquote" />
         </service>
+
+        <service id="sonatra_block.type.list" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ListType">
+            <tag name="sonatra_block.type" alias="list" />
+        </service>
+
+        <service id="sonatra_block.type.list_item" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ListItemType">
+            <tag name="sonatra_block.type" alias="list_item" />
+        </service>
     </services>
 </container>
