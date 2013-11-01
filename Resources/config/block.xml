@@ -84,5 +84,10 @@
         <service id="sonatra_block.type.breadcrumb_item" class="Sonatra\Bundle\BootstrapBundle\Block\Type\BreadcrumbItemType">
             <tag name="sonatra_block.type" alias="breadcrumb_item" />
         </service>
+
+        <service id="sonatra_block.type.progress_bar" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ProgressBarType">
+            <tag name="sonatra_block.type" alias="progress_bar" />
+        </service>
+
     </services>
 </container>
