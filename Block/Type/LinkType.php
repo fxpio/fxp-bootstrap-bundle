@@ -30,7 +30,6 @@ class LinkType extends AbstractType
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $attr = $options['attr'];
-        $attr['alt'] = $options['alt'];
 
         if (null !== $options['src']) {
             $attr['href'] = $options['src'];
