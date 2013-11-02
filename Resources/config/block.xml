@@ -160,5 +160,9 @@
         <service id="sonatra_block.type.badge" class="Sonatra\Bundle\BootstrapBundle\Block\Type\BadgeType">
             <tag name="sonatra_block.type" alias="badge" />
         </service>
+
+        <service id="sonatra_block.type.jumbotron" class="Sonatra\Bundle\BootstrapBundle\Block\Type\JumbotronType">
+            <tag name="sonatra_block.type" alias="jumbotron" />
+        </service>
     </services>
 </container>
