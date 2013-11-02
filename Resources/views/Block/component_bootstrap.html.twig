@@ -216,10 +216,6 @@
 
 {% block link_widget %}
 {% spaceless %}
-    {% if label is null %}
-        {% set label = attr.href %}
-    {% endif %}
-
     {% if 'link' != style %}
         {% set attr = attr|merge({'class': ('btn btn-' ~ style ~ attr.class|default(''))|trim}) %}
 
@@ -518,15 +514,51 @@
 {% endblock blockquote_widget %}
 
 
+{% block list_group_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('list-group ' ~ attr.class|default(''))|trim}) %}
+    {{ block('list_widget') }}
+{% endspaceless %}
+{% endblock list_group_widget %}
+
+{% block list_group_item_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('list-group-item ' ~ attr.class|default(''))|trim}) %}
+    {% set tag = tag|default('li') %}
+    {% if is_link %}
+        {% set tag = 'a' %}
+    {% endif %}
+    {% if active %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' active')|trim}) %}
+    {% endif %}
+    {{ block('list_item_widget') }}
+{% endspaceless %}
+{% endblock list_group_item_widget %}
+
+{% block list_group_item_heading_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('list-group-item-heading ' ~ attr.class|default(''))|trim}) %}
+    {{ block('heading_widget') }}
+{% endspaceless %}
+{% endblock list_group_item_heading_widget %}
+
+{% block list_group_item_text_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('list-group-item-text ' ~ attr.class|default(''))|trim}) %}
+    {{ block('paragraph_widget') }}
+{% endspaceless %}
+{% endblock list_group_item_text_widget %}
+
+
 {% block list_widget %}
 {% spaceless %}
-    {% if unstyled %}
+    {% if unstyled is defined and unstyled %}
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' list-unstyled')|trim}) %}
     {% endif %}
-    {% if inline %}
+    {% if inline is defined and inline %}
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' list-inline')|trim}) %}
     {% endif %}
-    {% if horizontal %}
+    {% if horizontal is defined and horizontal %}
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' dl-horizontal')|trim}) %}
     {% endif %}
     <{{ tag }} {{ block('widget_container_attributes') }}>
@@ -538,7 +570,7 @@
 
 {% block list_item_widget %}
 {% spaceless %}
-    {% set tag = 'li' %}
+    {% set tag = tag|default('li') %}
     {% if 'dl' == block.parent.vars.tag|default(null) %}
         {% set tag = 'dd' %}
     {% endif %}
@@ -547,7 +579,7 @@
     <dt>{{- label|trans({}, translation_domain) -}}</dt>
     {% endif %}
     <{{ tag }} {{ block('widget_container_attributes') }}>
-        {% if 'li' == tag %}{{- label|trans({}, translation_domain) -}}{% endif %}
+        {% if 'li' == tag or is_link|default(false) %}{{- label|trans({}, translation_domain) -}}{% endif %}
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </{{ tag }}>

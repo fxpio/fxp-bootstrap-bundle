@@ -141,6 +141,22 @@
             <tag name="sonatra_block.type" alias="blockquote" />
         </service>
 
+        <service id="sonatra_block.type.list_group" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ListGroupType">
+            <tag name="sonatra_block.type" alias="list_group" />
+        </service>
+
+        <service id="sonatra_block.type.list_group_item" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ListGroupItemType">
+            <tag name="sonatra_block.type" alias="list_group_item" />
+        </service>
+
+        <service id="sonatra_block.type.list_group_item_heading" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ListGroupItemHeadingType">
+            <tag name="sonatra_block.type" alias="list_group_item_heading" />
+        </service>
+
+        <service id="sonatra_block.type.list_group_item_text" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ListGroupItemTextType">
+            <tag name="sonatra_block.type" alias="list_group_item_text" />
+        </service>
+
         <service id="sonatra_block.type.list" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ListType">
             <tag name="sonatra_block.type" alias="list" />
         </service>
