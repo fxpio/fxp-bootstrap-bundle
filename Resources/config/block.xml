@@ -125,6 +125,10 @@
             <tag name="sonatra_block.type" alias="code" />
         </service>
 
+        <service id="sonatra_block.type.page_header" class="Sonatra\Bundle\BootstrapBundle\Block\Type\PageHeaderType">
+            <tag name="sonatra_block.type" alias="page_header" />
+        </service>
+
         <service id="sonatra_block.type.heading" class="Sonatra\Bundle\BootstrapBundle\Block\Type\HeadingType">
             <tag name="sonatra_block.type" alias="heading" />
         </service>

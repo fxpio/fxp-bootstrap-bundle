@@ -452,6 +452,18 @@
 {% endspaceless %}
 {% endblock code_widget %}
 
+{% block page_header_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('page-header ' ~ attr.class|default(''))|trim}) %}
+    <div {{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
+	    {% for child in block %}
+	        {{ block_widget(child) }}
+	    {% endfor %}
+    </div>
+{% endspaceless %}
+{% endblock page_header_widget %}
+
 {% block heading_widget %}
 {% spaceless %}
     <h{{ size }} {{ block('widget_container_attributes') }}>
