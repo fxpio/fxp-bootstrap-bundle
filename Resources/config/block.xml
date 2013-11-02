@@ -17,6 +17,10 @@
             <tag name="sonatra_block.type_extension" alias="repeated" />
         </service>
 
+        <service id="sonatra_block.type_extension.responsive" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\ResponsiveExtension">
+            <tag name="sonatra_block.type_extension" alias="block" />
+        </service>
+
         <service id="sonatra_block.type.fieldset" class="Sonatra\Bundle\BootstrapBundle\Block\Type\FieldsetType">
             <tag name="sonatra_block.type" alias="fieldset" />
         </service>

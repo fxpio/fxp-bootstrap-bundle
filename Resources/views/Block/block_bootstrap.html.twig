@@ -2,7 +2,8 @@
                                         block_widget_compound as base_block_widget_compound,
                                         block_label as base_block_label,
                                         choice_widget as base_choice_widget,
-                                        collection_widget as base_collection_widget %}
+                                        collection_widget as base_collection_widget,
+                                        widget_container_attributes as base_widget_container_attributes %}
 
 {% block block_widget_simple %}
 {% spaceless %}
@@ -207,3 +208,20 @@
     {% endif %}
 {% endspaceless %}
 {% endblock image_widget %}
+
+
+{% block widget_container_attributes %}
+{% spaceless %}
+    {% if visibility|length > 0 %}
+	    {% set visibility_class = '' %}
+	    {% for item in visibility %}
+	        {% set visibility_class = ' ' ~ visibility_class ~ ' ' ~ item %}
+	    {% endfor %}
+	    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ visibility_class|trim)|trim}) %}
+	{% endif %}
+	{% if print is not null %}
+	    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ print ~ '-print')|trim}) %}
+	{% endif %}
+    {{ block('base_widget_container_attributes') }}
+{% endspaceless %}
+{% endblock widget_container_attributes %}
