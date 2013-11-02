@@ -156,5 +156,9 @@
         <service id="sonatra_block.type.label" class="Sonatra\Bundle\BootstrapBundle\Block\Type\LabelType">
             <tag name="sonatra_block.type" alias="label" />
         </service>
+
+        <service id="sonatra_block.type.badge" class="Sonatra\Bundle\BootstrapBundle\Block\Type\BadgeType">
+            <tag name="sonatra_block.type" alias="badge" />
+        </service>
     </services>
 </container>

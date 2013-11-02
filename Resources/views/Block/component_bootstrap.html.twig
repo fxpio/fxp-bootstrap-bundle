@@ -329,10 +329,12 @@
     {% endif %}
     <li {{ block('widget_container_attributes') }}>
         <a{% for attrname, attrvalue in link_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-            {{- label|trans({}, translation_domain) }}{% if is_item_dropdown -%}
+            {{- label|trans({}, translation_domain) }}
             {{- value|raw -}}
             {{- block('block_rows') -}}
-            <span class="caret"></span>{% endif %}
+            {% if is_item_dropdown %}
+	            <span class="caret"></span>
+            {% endif %}
         </a>
         {% if dropdown is defined %}
             {{ block_assets_widget(dropdown) }}
@@ -576,3 +578,18 @@
     </span>
 {% endspaceless %}
 {% endblock label_widget %}
+
+
+{% block badge_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('badge ' ~ attr.class|default(''))|trim}) %}
+    {% if pull_right %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' pull-right')|trim}) %}
+    {% endif %}
+    <span {{ block('widget_container_attributes') }}>
+        {{- label|trans({}, translation_domain) -}}
+        {{- value|raw -}}
+	    {{- block('block_rows') -}}
+    </span>
+{% endspaceless %}
+{% endblock badge_widget %}
