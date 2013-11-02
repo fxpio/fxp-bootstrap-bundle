@@ -29,7 +29,8 @@ class AlertType extends AbstractType
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'style' => $options['style'],
+            'style'       => $options['style'],
+            'dismissable' => $options['dismissable'],
         ));
     }
 
@@ -39,11 +40,13 @@ class AlertType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'style' => 'info',
+            'style'       => 'info',
+            'dismissable' => false,
         ));
 
         $resolver->setAllowedTypes(array(
-            'style' => 'string',
+            'style'       => 'string',
+            'dismissable' => 'bool',
         ));
 
         $resolver->setAllowedValues(array(

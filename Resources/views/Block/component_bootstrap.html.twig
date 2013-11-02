@@ -657,7 +657,13 @@
 {% block alert_widget %}
 {% spaceless %}
     {% set attr = attr|merge({'class': ('alert alert-' ~ style ~ ' ' ~ attr.class|default(''))|trim}) %}
+    {% if dismissable %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' alert-dismissable')|trim}) %}
+    {% endif %}
     <div {{ block('widget_container_attributes') }}>
+        {% if dismissable %}
+	        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	    {% endif %}
         {{- value|raw -}}
 	    {% for child in block %}
 	        {{ block_widget(child) }}
