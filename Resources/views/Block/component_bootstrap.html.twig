@@ -29,11 +29,11 @@
     {% set col_class = '' %}
 
     {% for item in grid %}
-        {% set col_class = col_class ~ ' ' ~ item ~ ' ' %}
+        {% set col_class = col_class ~ item ~ ' ' %}
     {% endfor %}
 
     {% for item in offset %}
-        {% set col_class = col_class ~ ' ' ~ item ~ ' ' %}
+        {% set col_class = col_class ~ item ~ ' ' %}
     {% endfor %}
 
     {% set attr = attr|merge({'class': (col_class ~ ' ' ~ attr.class|default(''))|trim}) %}
