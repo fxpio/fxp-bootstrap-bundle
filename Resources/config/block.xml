@@ -152,5 +152,9 @@
         <service id="sonatra_block.type.address" class="Sonatra\Bundle\BootstrapBundle\Block\Type\AddressType">
             <tag name="sonatra_block.type" alias="address" />
         </service>
+
+        <service id="sonatra_block.type.label" class="Sonatra\Bundle\BootstrapBundle\Block\Type\LabelType">
+            <tag name="sonatra_block.type" alias="label" />
+        </service>
     </services>
 </container>

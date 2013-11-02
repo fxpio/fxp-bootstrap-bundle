@@ -564,3 +564,15 @@
     </address>
 {% endspaceless %}
 {% endblock address_widget %}
+
+
+{% block label_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('label label-' ~ style ~ ' ' ~ attr.class|default(''))|trim}) %}
+    <span {{ block('widget_container_attributes') }}>
+        {{- label|trans({}, translation_domain) -}}
+        {{- value|raw -}}
+	    {{- block('block_rows') -}}
+    </span>
+{% endspaceless %}
+{% endblock label_widget %}
