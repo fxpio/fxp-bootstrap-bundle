@@ -47,6 +47,13 @@
 {% endspaceless %}
 {% endblock col_widget %}
 
+{% block clearfix_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('clearfix' ~ ' ' ~ attr.class|default(''))|trim}) %}
+    <div {{ block('widget_container_attributes') }}></div>
+{% endspaceless %}
+{% endblock clearfix_widget %}
+
 
 {% block button_group_widget %}
 {% spaceless %}

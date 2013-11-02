@@ -41,6 +41,10 @@
             <tag name="sonatra_block.type" alias="col" />
         </service>
 
+        <service id="sonatra_block.type.clearfix" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ClearfixType">
+            <tag name="sonatra_block.type" alias="clearfix" />
+        </service>
+
         <service id="sonatra_block.type.glyphicon" class="Sonatra\Bundle\BootstrapBundle\Block\Type\GlyphiconType">
             <tag name="sonatra_block.type" alias="glyphicon" />
         </service>
