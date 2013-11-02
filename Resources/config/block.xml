@@ -184,5 +184,9 @@
         <service id="sonatra_block.type.jumbotron" class="Sonatra\Bundle\BootstrapBundle\Block\Type\JumbotronType">
             <tag name="sonatra_block.type" alias="jumbotron" />
         </service>
+
+        <service id="sonatra_block.type.alert" class="Sonatra\Bundle\BootstrapBundle\Block\Type\AlertType">
+            <tag name="sonatra_block.type" alias="alert" />
+        </service>
     </services>
 </container>

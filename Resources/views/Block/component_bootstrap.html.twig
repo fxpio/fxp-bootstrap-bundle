@@ -222,6 +222,8 @@
         {% if size is not null %}
 	        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn-' ~ size)|trim}) %}
 	    {% endif %}
+	{% elseif 'alert' in block.parent.vars.block_prefixes|default([]) %}
+	    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' alert-link')|trim}) %}
     {% endif %}
     <a {{ block('widget_container_attributes') }}>
         {{- label|trans({}, translation_domain) -}}
@@ -650,3 +652,16 @@
     </div>
 {% endspaceless %}
 {% endblock jumbotron_widget %}
+
+
+{% block alert_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('alert alert-' ~ style ~ ' ' ~ attr.class|default(''))|trim}) %}
+    <div {{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
+	    {% for child in block %}
+	        {{ block_widget(child) }}
+	    {% endfor %}
+    </div>
+{% endspaceless %}
+{% endblock alert_widget %}
