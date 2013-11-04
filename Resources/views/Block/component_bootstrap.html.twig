@@ -145,7 +145,7 @@
     {% endif %}
 
     {% if split is defined %}
-        {{ block_assets_widget(split, {tag: tag, style: style, size: size, block_level: block_level}) }}
+        {{ block_widget(split, {tag: tag, style: style, size: size, block_level: block_level}) }}
     {% endif %}
 
     {% if tag == 'button' %}
@@ -163,7 +163,7 @@
         {% if prepend_is_string %}
             {{ prepend|raw }}
         {% else %}
-            {{ block_assets_widget(prepend) }}
+            {{ block_widget(prepend) }}
         {% endif %}
     {% endif %}
     {% if split is not defined %}
@@ -173,7 +173,7 @@
         {% if append_is_string %}
             {{ append|raw }}
         {% else %}
-            {{ block_assets_widget(append) }}
+            {{ block_widget(append) }}
         {% endif %}
     {% endif %}
 
@@ -191,7 +191,7 @@
     {% endif %}
 
     {% if dropdown is defined %}
-        {{ block_assets_widget(dropdown) }}
+        {{ block_widget(dropdown) }}
         </div>
     {% endif %}
 {% endspaceless %}
@@ -335,7 +335,7 @@
             {% endif %}
         </a>
         {% if dropdown is defined %}
-            {{ block_assets_widget(dropdown) }}
+            {{ block_widget(dropdown) }}
         {% endif %}
     </li>
 {% endspaceless %}

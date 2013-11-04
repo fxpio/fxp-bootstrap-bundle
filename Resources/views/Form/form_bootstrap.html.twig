@@ -26,10 +26,10 @@
             <span {% for attrname, attrvalue in prepend_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ prepend_string }}</span>
         {% endif %}
         {% if prepend_form is defined %}
-            <div {% for attrname, attrvalue in prepend_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ form_assets_widget(prepend_form) }}</div>
+            <div {% for attrname, attrvalue in prepend_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ form_widget(prepend_form) }}</div>
         {% endif %}
         {% if prepend_block is defined %}
-            <div {% for attrname, attrvalue in prepend_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ block_assets_widget(prepend_block) }}</div>
+            <div {% for attrname, attrvalue in prepend_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ block_widget(prepend_block) }}</div>
         {% endif %}
 {% endspaceless %}
 {% endblock addon_start %}
@@ -43,10 +43,10 @@
             <span {% for attrname, attrvalue in append_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ append_string }}</span>
         {% endif %}
         {% if append_form is defined %}
-            <div {% for attrname, attrvalue in append_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ form_assets_widget(append_form) }}</div>
+            <div {% for attrname, attrvalue in append_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ form_widget(append_form) }}</div>
         {% endif %}
         {% if append_block is defined %}
-            <div {% for attrname, attrvalue in append_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ block_assets_widget(append_block) }}</div>
+            <div {% for attrname, attrvalue in append_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ block_widget(append_block) }}</div>
         {% endif %}
     {% if prepend_string is defined or prepend_form is defined or prepend_block is defined or append_string is defined or append_form is defined or append_block is defined %}
         </div>
@@ -153,39 +153,40 @@
     {% endif %}
 
     {% if btn_add is defined and not(static_control) %}
-        {{ form_assets_widget(btn_add) }}
+        {{ form_widget(btn_add) }}
     {% endif %}
     {{ block('help_text') }}
     {% if layout|default(null) == 'horizontal' %}
         </div>
     {% endif %}
-{% endblock collection_widget %}
 
-
-{% block collection_javascript %}
+    {% asset_javascript %}
+    <script type="text/javascript">
     {% if btn_add is defined and prototype is defined %}
-        $('#{{ btn_add.vars.id }}').click(function(event) {
-            var inc = $(this).data('inc');
-                inc = undefined !== inc ? inc : {{ form|length }};
-            var collectionHolder = $('#' + $(this).attr('data-target'));
-            var prototype = collectionHolder.attr('data-prototype');
-            var form = prototype.replace(/{{ prototype_name }}/g, inc);
+	    $('#{{ btn_add.vars.id }}').click(function(event) {
+	        var inc = $(this).data('inc');
+	            inc = undefined !== inc ? inc : {{ form|length }};
+	        var collectionHolder = $('#' + $(this).attr('data-target'));
+	        var prototype = collectionHolder.attr('data-prototype');
+	        var form = prototype.replace(/{{ prototype_name }}/g, inc);
 
-            collectionHolder.append(form);
-            $(this).data('inc', ++inc);
+	        collectionHolder.append(form);
+	        $(this).data('inc', ++inc);
 
-            return false;
-        });
-    {% endif %}
+	        return false;
+	    });
+	{% endif %}
 
-    {% if allow_delete and prototype is defined %}
-       $('#{{ id }}').on('click', 'button.btn-remove', null, function(event) {
-            $(this).parents('.form-collection-row').remove();
+	{% if allow_delete and prototype is defined %}
+	   $('#{{ id }}').on('click', 'button.btn-remove', null, function(event) {
+	        $(this).parents('.form-collection-row').remove();
 
-            return false;
-       });
-    {% endif %}
-{% endblock collection_javascript %}
+	        return false;
+	   });
+	{% endif %}
+    </script>
+    {% endasset %}
+{% endblock collection_widget %}
 
 
 {% block textarea_widget %}
