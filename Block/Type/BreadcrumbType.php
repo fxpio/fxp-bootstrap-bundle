@@ -28,7 +28,13 @@ class BreadcrumbType extends AbstractType
     public function finishView(BlockView $view, BlockInterface $block, array $options)
     {
         $names = array_keys($view->children);
-        $last = count($names) > 0 ? $view->children[$names[count($names) - 1]] : null;
+        $last = null;
+
+        foreach ($view->children as $i => $child) {
+            if (in_array('breadcrumb_item', $child->vars['block_prefixes'])) {
+                $last = $child;
+            }
+        }
 
         if (null !== $last) {
             $last->vars['active'] = true;
