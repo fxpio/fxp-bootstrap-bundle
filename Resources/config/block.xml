@@ -9,6 +9,10 @@
             <tag name="sonatra_block.type_extension" alias="block" />
         </service>
 
+        <service id="sonatra_block.type_extension.layout" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\LayoutExtension">
+            <tag name="sonatra_block.type_extension" alias="object" />
+        </service>
+
         <service id="sonatra_block.type_extension.collection" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\CollectionExtension">
             <tag name="sonatra_block.type_extension" alias="collection" />
         </service>

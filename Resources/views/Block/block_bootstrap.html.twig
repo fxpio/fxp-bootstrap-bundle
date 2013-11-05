@@ -1,35 +1,37 @@
 {% use 'block_div_layout.html.twig' with block_widget_simple as base_block_widget_simple,
-                                        block_widget_compound as base_block_widget_compound,
-                                        block_label as base_block_label,
-                                        choice_widget as base_choice_widget,
-                                        collection_widget as base_collection_widget,
-                                        widget_container_attributes as base_widget_container_attributes %}
+                                         block_widget_compound as base_block_widget_compound,
+                                         block_label as base_block_label,
+                                         choice_widget as base_choice_widget,
+                                         collection_widget as base_collection_widget,
+                                         widget_container_attributes as base_widget_container_attributes %}
 
 {% block block_widget_simple %}
 {% spaceless %}
-    {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
+    {% if layout is defined and layout == 'horizontal' %}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
     {% endif %}
 
     {% if block.parent.vars.row|default(false) %}
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' block-control')|trim}) %}
     {% endif %}
-    {% set type = type|default('text') %}
-    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' block_' ~ type)|trim}) %}
+    {{ block('base_block_widget_simple') }}
 
-    <div {{ block('widget_attributes') }}>{{ value|raw }}</div>
-
-    {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
+    {% if layout is defined and layout == 'horizontal' %}
         </div>
     {% endif %}
 {% endspaceless %}
 {% endblock block_widget_simple %}
 
+
 {% block block_widget_compound %}
 {% spaceless %}
-    {% if layout != null %}
-        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' block-' ~ layout)|trim}) %}
+    {% if layout is defined and layout != null %}
+        {% set attr = attr|merge({'class': (' block-' ~ layout ~ ' ' ~ attr.class|default(''))|trim}) %}
     {% endif %}
+    {% if block.parent.vars.row|default(false) %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' block-control')|trim}) %}
+    {% endif %}
+
     {{ block('base_block_widget_compound') }}
 {% endspaceless %}
 {% endblock block_widget_compound %}
@@ -52,12 +54,19 @@
 {% endblock block_row %}
 
 
+{% block closure_row %}
+{% spaceless %}
+    {{ block_widget(block) }}
+{% endspaceless %}
+{% endblock closure_row %}
+
+
 {% block block_label %}
     {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' block-label')|trim}) %}
     {% if display_label == false %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' sr-only')|trim}) %}
     {% endif %}
-    {% if layout|default(null) == 'horizontal' %}
+    {% if layout is defined and layout == 'horizontal' %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ layout_col_label)|trim}) %}
     {% endif %}
 
@@ -67,7 +76,7 @@
 
 {% block choice_widget %}
 {% spaceless %}
-    {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
+    {% if layout is defined and layout == 'horizontal' %}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
     {% endif %}
 
@@ -76,7 +85,7 @@
     {% endif %}
     {{ block('base_choice_widget') }}
 
-    {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
+    {% if layout is defined and layout == 'horizontal' %}
         </div>
     {% endif %}
 {% endspaceless %}
@@ -89,7 +98,7 @@
         {% set label = name|humanize %}
     {% endif %}
 
-    {% if layout|default(null) == 'horizontal' %}
+    {% if layout is defined and layout == 'horizontal' %}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
     {% endif %}
 
@@ -103,7 +112,7 @@
         <span {{ block('widget_attributes') }}></span>
     </div>
 
-    {% if layout|default(null) == 'horizontal' %}
+    {% if layout is defined and layout == 'horizontal' %}
         </div>
     {% endif %}
 {% endspaceless %}
@@ -116,7 +125,7 @@
         {% set label = name|humanize %}
     {% endif %}
 
-    {% if layout|default(null) == 'horizontal' %}
+    {% if layout is defined and layout == 'horizontal' %}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
     {% endif %}
 
@@ -130,7 +139,7 @@
         <span {{ block('widget_attributes') }}></span>
     </div>
 
-    {% if layout|default(null) == 'horizontal' %}
+    {% if layout is defined and layout == 'horizontal' %}
         </div>
     {% endif %}
 {% endspaceless %}
@@ -141,11 +150,11 @@
 {% spaceless %}
     {% set attr = attr|merge({'class': ('block-collection ' ~ attr.class|default(''))|trim}) %}
 
-    {% if layout|default(null) == 'horizontal' %}
+    {% if layout is defined and layout == 'horizontal' %}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
     {% endif %}
     {{ block('base_collection_widget') }}
-    {% if layout|default(null) == 'horizontal' %}
+    {% if layout is defined and layout == 'horizontal' %}
         </div>
     {% endif %}
 {% endspaceless %}
@@ -163,7 +172,7 @@
 
     <fieldset {{ block('widget_attributes') }}>
         {% if label is not empty %}
-            {% if layout|default(null) == 'horizontal' %}
+            {% if layout is defined and layout == 'horizontal' %}
 		        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ (layout_col_label + layout_col_control))|trim}) %}
 		    {% endif %}
             <legend{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</legend>
@@ -176,7 +185,12 @@
 
 {% block form_content_widget %}
 {% spaceless %}
-    {{ form_widget(block_form, {'row_attr': row_attr, 'display_label': display_label, 'layout': layout, 'layout_col_size': layout_col_size, 'layout_col_label': layout_col_label, 'layout_col_control': layout_col_control}) }}
+    {% set form_attr = {'row_attr': row_attr, 'display_label': display_label} %}
+    {% if layout is defined and layout_col_size is defined and layout_col_label is defined and layout_col_control is defined %}
+        {% set form_attr = form_attr|merge({'layout': layout, 'layout_col_size': layout_col_size, 'layout_col_label': layout_col_label, 'layout_col_control': layout_col_control}) %}
+    {% endif %}
+
+    {{ form_widget(block_form, form_attr) }}
 {% endspaceless %}
 {% endblock form_content_widget %}
 
@@ -195,11 +209,11 @@
         <div class="block-control">
     {% endif %}
 
-    {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
+    {% if layout is defined and layout == 'horizontal' %}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
     {% endif %}
     <img {{ block('widget_attributes') }}>
-    {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
+    {% if layout is defined and layout == 'horizontal' %}
         </div>
     {% endif %}
 
