@@ -40,12 +40,39 @@ class DropdownType extends AbstractType
      */
     public function finishView(BlockView $view, BlockInterface $block, array $options)
     {
-        foreach ($view->children as $name => $child) {
-            if (in_array('dropdown_header', $child->vars['block_prefixes'])) {
-                $child->vars['divider'] = false;
-            }
+        $firstHeader = null;
+        $lastDivider = null;
+        $hasItem = false;
 
-            break;
+        foreach ($view->children as $name => $child) {
+            if (in_array('dropdown_divider', $child->vars['block_prefixes'])) {
+                if (!$hasItem) {
+                    unset($view->children[$name]);
+
+                } else {
+                    $hasItem = true;
+                    $lastDivider = $name;
+                }
+
+            } elseif (in_array('dropdown_header', $child->vars['block_prefixes'])) {
+                if (!$hasItem && null === $firstHeader) {
+                    $firstHeader = $child;
+                }
+
+                $hasItem = true;
+
+            } elseif (in_array('dropdown_item', $child->vars['block_prefixes'])) {
+                $hasItem = true;
+                $lastDivider = null;
+            }
+        }
+
+        if (null !== $firstHeader) {
+            $firstHeader->vars['divider'] = false;
+        }
+
+        if (null !== $lastDivider) {
+            unset($view->children[$lastDivider]);
         }
     }
 
