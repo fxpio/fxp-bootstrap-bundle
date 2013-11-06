@@ -192,5 +192,17 @@
         <service id="sonatra_block.type.alert" class="Sonatra\Bundle\BootstrapBundle\Block\Type\AlertType">
             <tag name="sonatra_block.type" alias="alert" />
         </service>
+
+        <service id="sonatra_block.type.media_list" class="Sonatra\Bundle\BootstrapBundle\Block\Type\MediaListType">
+            <tag name="sonatra_block.type" alias="media_list" />
+        </service>
+
+        <service id="sonatra_block.type.media" class="Sonatra\Bundle\BootstrapBundle\Block\Type\MediaType">
+            <tag name="sonatra_block.type" alias="media" />
+        </service>
+
+        <service id="sonatra_block.type.media_body" class="Sonatra\Bundle\BootstrapBundle\Block\Type\MediaBodyType">
+            <tag name="sonatra_block.type" alias="media_body" />
+        </service>
     </services>
 </container>

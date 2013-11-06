@@ -671,3 +671,41 @@
     </div>
 {% endspaceless %}
 {% endblock alert_widget %}
+
+
+{% block media_list_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('media-list ' ~ attr.class|default(''))|trim}) %}
+    <ul {{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
+	    {% for child in block %}
+	        {{ block_widget(child) }}
+	    {% endfor %}
+    </ul>
+{% endspaceless %}
+{% endblock media_list_widget %}
+
+{% block media_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('media ' ~ attr.class|default(''))|trim}) %}
+    <{{ tag }} {{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
+	    {% for child in block %}
+	        {{ block_widget(child) }}
+	    {% endfor %}
+    </{{ tag }}>
+{% endspaceless %}
+{% endblock media_widget %}
+
+{% block media_body_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('media-body ' ~ attr.class|default(''))|trim}) %}
+    <div {{ block('widget_container_attributes') }}>
+        {% if label is not null %}<h4 class="media-heading">{{ label|trans({}, translation_domain) }}</h4>{% endif %}
+        {{- value|raw -}}
+	    {% for child in block %}
+	        {{ block_widget(child) }}
+	    {% endfor %}
+    </div>
+{% endspaceless %}
+{% endblock media_body_widget %}
