@@ -204,5 +204,13 @@
         <service id="sonatra_block.type.media_body" class="Sonatra\Bundle\BootstrapBundle\Block\Type\MediaBodyType">
             <tag name="sonatra_block.type" alias="media_body" />
         </service>
+
+        <service id="sonatra_block.type.thumbnail" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ThumbnailType">
+            <tag name="sonatra_block.type" alias="thumbnail" />
+        </service>
+
+        <service id="sonatra_block.type.thumbnail_caption" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ThumbnailCaptionType">
+            <tag name="sonatra_block.type" alias="thumbnail_caption" />
+        </service>
     </services>
 </container>
