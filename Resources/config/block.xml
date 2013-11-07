@@ -212,5 +212,9 @@
         <service id="sonatra_block.type.thumbnail_caption" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ThumbnailCaptionType">
             <tag name="sonatra_block.type" alias="thumbnail_caption" />
         </service>
+
+        <service id="sonatra_block.type.pager" class="Sonatra\Bundle\BootstrapBundle\Block\Type\PagerType">
+            <tag name="sonatra_block.type" alias="pager" />
+        </service>
     </services>
 </container>

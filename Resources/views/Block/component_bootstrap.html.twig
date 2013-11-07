@@ -735,3 +735,40 @@
     </div>
 {% endspaceless %}
 {% endblock thumbnail_caption_widget %}
+
+
+{% block pager_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('pager ' ~ attr.class|default(''))|trim}) %}
+    {% set previous_wrap_attr = {} %}
+    {% set next_wrap_attr = {} %}
+
+    {% if aligned %}
+        {% set previous_wrap_attr = previous_wrap_attr|merge({'class': ('previous ' ~ previous_wrap_attr.class|default(''))|trim}) %}
+        {% set next_wrap_attr = next_wrap_attr|merge({'class': ('next ' ~ next_wrap_attr.class|default(''))|trim}) %}
+    {% endif %}
+
+    {% if previous_src is not null %}
+        {% set previous_attr = previous_attr|merge({'href': previous_src}) %}
+    {% endif %}
+
+    {% if next_src is not null %}
+        {% set next_attr = next_attr|merge({'href': previous_src}) %}
+    {% endif %}
+
+    {% if previous_disabled %}
+        {% set previous_wrap_attr = previous_wrap_attr|merge({'class': (previous_wrap_attr.class|default('') ~ ' disabled')|trim}) %}
+    {% endif %}
+
+    {% if next_disabled %}
+        {% set next_wrap_attr = next_wrap_attr|merge({'class': (next_wrap_attr.class|default('') ~ ' disabled')|trim}) %}
+    {% endif %}
+
+    <ul {{ block('widget_container_attributes') }}>
+        <li{% for attrname, attrvalue in previous_wrap_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}><a{% for attrname, attrvalue in previous_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ previous_label|trans({}, translation_domain) }}</a></li>
+        <li{% for attrname, attrvalue in next_wrap_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}><a{% for attrname, attrvalue in next_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ next_label|trans({}, translation_domain) }}</a></li>
+        {{- value|raw -}}
+        {{ block('block_rows') }}
+    </ul>
+{% endspaceless %}
+{% endblock pager_widget %}
