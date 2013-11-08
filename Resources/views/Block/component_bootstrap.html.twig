@@ -772,3 +772,45 @@
     </ul>
 {% endspaceless %}
 {% endblock pager_widget %}
+
+{% block pagination_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('pagination ' ~ attr.class|default(''))|trim}) %}
+
+    {% if size is not null %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' pagination-' ~ size)|trim}) %}
+    {% endif %}
+
+    <ul {{ block('widget_container_attributes') }}>
+        {% if block_previous is defined %}{{ block_widget(block_previous) }}{% endif %}
+        {{- value|raw -}}
+        {{ block('block_rows') }}
+        {% if block_next is defined %}{{ block_widget(block_next) }}{% endif %}
+    </ul>
+{% endspaceless %}
+{% endblock pagination_widget %}
+
+{% block pagination_item_widget %}
+{% spaceless %}
+    {% if disabled %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' disabled')|trim}) %}
+    {% elseif active %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' active')|trim}) %}
+    {% endif %}
+    <li {{ block('widget_container_attributes') }}>
+        {% if disabled %}
+	        <span>
+	            {{- label|trans({}, translation_domain)|raw -}}
+	            {{- value|raw -}}
+	            {{- block('block_rows') -}}
+	        </span>
+        {% else %}
+            <a{% for attrname, attrvalue in link_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+	            {{- label|trans({}, translation_domain)|raw -}}
+	            {{- value|raw -}}
+	            {{- block('block_rows') -}}
+	        </a>
+        {% endif %}
+    </li>
+{% endspaceless %}
+{% endblock pagination_item_widget %}

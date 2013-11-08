@@ -216,5 +216,14 @@
         <service id="sonatra_block.type.pager" class="Sonatra\Bundle\BootstrapBundle\Block\Type\PagerType">
             <tag name="sonatra_block.type" alias="pager" />
         </service>
+
+        <service id="sonatra_block.type.pagination" class="Sonatra\Bundle\BootstrapBundle\Block\Type\PaginationType">
+            <argument type="service" id="sonatra_block.factory" />
+            <tag name="sonatra_block.type" alias="pagination" />
+        </service>
+
+        <service id="sonatra_block.type.pagination_item" class="Sonatra\Bundle\BootstrapBundle\Block\Type\PaginationItemType">
+            <tag name="sonatra_block.type" alias="pagination_item" />
+        </service>
     </services>
 </container>
