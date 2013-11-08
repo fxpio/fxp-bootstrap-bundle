@@ -469,12 +469,12 @@
 {% block heading_widget %}
 {% spaceless %}
     <h{{ size }} {{ block('widget_container_attributes') }}>
-        {{ label|trans({}, translation_domain) }}
+        {{- label|trans({}, translation_domain) -}}
         {% if secondary is not null %}
             <small>{{ secondary|trans({}, translation_domain) }}</small>
         {% endif %}
         {{- value|raw -}}
-	    {{ block('block_rows') }}
+	    {{- block('block_rows') -}}
     </h{{ size }}>
 {% endspaceless %}
 {% endblock heading_widget %}
@@ -814,3 +814,61 @@
     </li>
 {% endspaceless %}
 {% endblock pagination_item_widget %}
+
+
+{% block panel_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('panel ' ~ attr.class|default(''))|trim}) %}
+
+    {% if style is not null %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' panel-' ~ style)|trim}) %}
+    {% endif %}
+
+    <div {{ block('widget_container_attributes') }}>
+        {% if block_header is defined %}
+            {{- block_widget(block_header) -}}
+        {% endif %}
+        {{- value|raw -}}
+	    {% for child in block %}
+	        {{ block_widget(child) }}
+	    {% endfor %}
+    </div>
+{% endspaceless %}
+{% endblock panel_widget %}
+
+{% block panel_header_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('panel-heading ' ~ attr.class|default(''))|trim}) %}
+    <div {{ block('widget_container_attributes') }}>
+        {{- label|trans({}, translation_domain)|raw -}}
+        {{- value|raw -}}
+	    {% for child in block %}
+	        {{ block_widget(child) }}
+	    {% endfor %}
+    </div>
+{% endspaceless %}
+{% endblock panel_header_widget %}
+
+{% block panel_body_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('panel-body ' ~ attr.class|default(''))|trim}) %}
+    <div {{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
+	    {% for child in block %}
+	        {{ block_widget(child) }}
+	    {% endfor %}
+    </div>
+{% endspaceless %}
+{% endblock panel_body_widget %}
+
+{% block panel_footer_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('panel-footer ' ~ attr.class|default(''))|trim}) %}
+    <div {{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
+	    {% for child in block %}
+	        {{ block_widget(child) }}
+	    {% endfor %}
+    </div>
+{% endspaceless %}
+{% endblock panel_footer_widget %}
