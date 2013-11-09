@@ -130,7 +130,7 @@ class ButtonType extends AbstractType
                 return $value;
             },
             'tag' => function (Options $options, $value = null) {
-                if (isset($options['data']) || isset($options['src'])) {
+                if ((isset($options['data']) && null !== $options['data']) || (isset($options['src']) && null !== $options['src'])) {
                     return 'a';
                 }
 
