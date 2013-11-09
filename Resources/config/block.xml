@@ -242,5 +242,26 @@
         <service id="sonatra_block.type.panel_footer" class="Sonatra\Bundle\BootstrapBundle\Block\Type\PanelFooterType">
             <tag name="sonatra_block.type" alias="panel_footer" />
         </service>
+
+        <service id="sonatra_block.type.modal" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ModalType">
+            <tag name="sonatra_block.type" alias="modal" />
+            <argument type="service" id="sonatra_block.factory" />
+        </service>
+
+        <service id="sonatra_block.type.modal_header" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ModalHeaderType">
+            <tag name="sonatra_block.type" alias="modal_header" />
+        </service>
+
+        <service id="sonatra_block.type.modal_body" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ModalBodyType">
+            <tag name="sonatra_block.type" alias="modal_body" />
+        </service>
+
+        <service id="sonatra_block.type.modal_footer" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ModalFooterType">
+            <tag name="sonatra_block.type" alias="modal_footer" />
+        </service>
+
+        <service id="sonatra_block.type_extension.button_modal" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\ButtonModalExtension">
+            <tag name="sonatra_block.type_extension" alias="button" />
+        </service>
     </services>
 </container>
