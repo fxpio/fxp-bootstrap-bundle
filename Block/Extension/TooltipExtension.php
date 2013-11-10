@@ -66,7 +66,7 @@ class TooltipExtension extends AbstractTypeExtension
                 $tooltipResolver = new OptionsResolver();
 
                 $tooltipResolver->setDefaults(array(
-                    'toggle'    => 'tolltip',
+                    'toggle'    => 'tooltip',
                     'animation' => null,
                     'html'      => null,
                     'placement' => null,
