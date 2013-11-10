@@ -271,5 +271,9 @@
         <service id="sonatra_block.type_extension.popover" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\PopoverExtension">
             <tag name="sonatra_block.type_extension" alias="block" />
         </service>
+
+        <service id="sonatra_block.type_extension.affix" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\AffixExtension">
+            <tag name="sonatra_block.type_extension" alias="block" />
+        </service>
     </services>
 </container>
