@@ -46,7 +46,8 @@ class PanelType extends AbstractType
     public function buildBlock(BlockBuilderInterface $builder, array $options)
     {
         if (!empty($options['label'])) {
-            $blockHeader = $this->factory->createNamed('header', 'panel_header', null, array('label' => $options['label']));
+            $blockHeader = $this->factory->createNamed('header', 'panel_header', null, array());
+            $blockHeader->add(null, 'heading', array('size' => 4, 'label' => $options['label']));
 
             $builder->setAttribute('block_header', $blockHeader);
         }
@@ -65,6 +66,23 @@ class PanelType extends AbstractType
             $view->vars = array_replace($view->vars, array(
                 'block_header' => $block->getConfig()->getAttribute('block_header')->createView($view),
             ));
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function finishView(BlockView $view, BlockInterface $block, array $options)
+    {
+        foreach ($view->children as $name => $child) {
+            if (in_array('panel_header', $child->vars['block_prefixes'])) {
+                $view->vars['block_header'] = $child;
+                unset($view->children[$name]);
+
+            } elseif (in_array('panel_footer', $child->vars['block_prefixes'])) {
+                $view->vars['block_footer'] = $child;
+                unset($view->children[$name]);
+            }
         }
     }
 
