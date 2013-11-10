@@ -226,6 +226,10 @@
             <tag name="sonatra_block.type" alias="pagination_item" />
         </service>
 
+        <service id="sonatra_block.type.panel_group" class="Sonatra\Bundle\BootstrapBundle\Block\Type\PanelGroupType">
+            <tag name="sonatra_block.type" alias="panel_group" />
+        </service>
+
         <service id="sonatra_block.type.panel" class="Sonatra\Bundle\BootstrapBundle\Block\Type\PanelType">
             <tag name="sonatra_block.type" alias="panel" />
             <argument type="service" id="sonatra_block.factory" />

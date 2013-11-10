@@ -824,6 +824,19 @@
 {% endblock pagination_item_widget %}
 
 
+{% block panel_group_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('panel-group ' ~ attr.class|default(''))|trim}) %}
+    <div {{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
+	    {% for child in block %}
+	        {{ block_widget(child) }}
+	    {% endfor %}
+    </div>
+{% endspaceless %}
+{% endblock panel_group_widget %}
+
+
 {% block panel_widget %}
 {% spaceless %}
     {% set attr = attr|merge({'class': ('panel ' ~ attr.class|default(''))|trim}) %}
