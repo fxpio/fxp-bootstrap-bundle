@@ -849,10 +849,23 @@
         {% if block_header is defined %}
             {{- block_widget(block_header) -}}
         {% endif %}
+
+        {% if group_collapse|default(false) %}
+            <div id="{{ id }}Collapse" class="panel-collapse collapse{% if collapse_in %} in{% endif %}">
+        {% endif %}
+
         {{- value|raw -}}
 	    {% for child in block %}
 	        {{ block_widget(child) }}
 	    {% endfor %}
+
+	    {% if group_collapse|default(false) %}
+	       </div>
+        {% endif %}
+
+	    {% if block_footer is defined %}
+            {{- block_widget(block_footer) -}}
+        {% endif %}
     </div>
 {% endspaceless %}
 {% endblock panel_widget %}
