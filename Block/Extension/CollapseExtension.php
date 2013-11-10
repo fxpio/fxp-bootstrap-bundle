@@ -12,17 +12,17 @@
 namespace Sonatra\Bundle\BootstrapBundle\Block\Extension;
 
 use Sonatra\Bundle\BlockBundle\Block\AbstractTypeExtension;
-use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
+use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\Options;
 
 /**
- * Panel Collapse Block Extension.
+ * Collapse Block Extension.
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class PanelCollapseExtension extends AbstractTypeExtension
+class CollapseExtension extends AbstractTypeExtension
 {
     /**
      * {@inheritdoc}
@@ -31,14 +31,20 @@ class PanelCollapseExtension extends AbstractTypeExtension
     {
         $attr = $view->vars['attr'];
 
-        if (isset($attr['class'])) {
-            $attr['class'] = str_replace('collapse in', '', $attr['class']);
-            $attr['class'] = str_replace('collapse', '', $attr['class']);
-            $attr['class'] = trim($attr['class']);
+        if ($options['collapsible']) {
+            $class = isset($attr['class']) ? $attr['class'] : '';
+            $class .= ' collapse';
+
+            if ($options['collapse_in']) {
+                $class .= ' in';
+            }
+
+            $attr['class'] = trim($class);
         }
 
         $view->vars = array_replace($view->vars, array(
-            'attr' => $attr,
+            'attr'        => $attr,
+            'collapse_in' => $options['collapse_in'],
         ));
     }
 
@@ -48,7 +54,16 @@ class PanelCollapseExtension extends AbstractTypeExtension
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'collapsible' => true,
+            'collapsible' => false,
+            'collapse_in' => false,
+            'render_id'   => function (Options $options) {
+                return $options['collapsible'];
+            },
+        ));
+
+        $resolver->addAllowedTypes(array(
+            'collapsible' => 'bool',
+            'collapse_in' => 'bool',
         ));
     }
 
@@ -57,6 +72,6 @@ class PanelCollapseExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'panel';
+        return 'block';
     }
 }

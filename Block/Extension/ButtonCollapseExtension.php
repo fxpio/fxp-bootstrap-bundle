@@ -12,34 +12,30 @@
 namespace Sonatra\Bundle\BootstrapBundle\Block\Extension;
 
 use Sonatra\Bundle\BlockBundle\Block\AbstractTypeExtension;
-use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
+use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Panel Collapse Block Extension.
+ * Button Collapse Block Extension.
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class PanelCollapseExtension extends AbstractTypeExtension
+class ButtonCollapseExtension extends AbstractTypeExtension
 {
     /**
      * {@inheritdoc}
      */
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
-        $attr = $view->vars['attr'];
-
-        if (isset($attr['class'])) {
-            $attr['class'] = str_replace('collapse in', '', $attr['class']);
-            $attr['class'] = str_replace('collapse', '', $attr['class']);
-            $attr['class'] = trim($attr['class']);
+        if (null !== $options['collapse_id']) {
+            $view->vars = array_replace($view->vars, array(
+                'attr' => array_replace($view->vars['attr'], array(
+                    'data-toggle' => 'collapse',
+                    'data-target' => sprintf('#%s', trim($options['collapse_id'], '#')),
+                )),
+            ));
         }
-
-        $view->vars = array_replace($view->vars, array(
-            'attr' => $attr,
-        ));
     }
 
     /**
@@ -48,7 +44,11 @@ class PanelCollapseExtension extends AbstractTypeExtension
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'collapsible' => true,
+            'collapse_id' => null,
+        ));
+
+        $resolver->addAllowedTypes(array(
+            'collapse_id' => array('null', 'string'),
         ));
     }
 
@@ -57,6 +57,6 @@ class PanelCollapseExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'panel';
+        return 'button';
     }
 }
