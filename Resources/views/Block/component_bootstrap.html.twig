@@ -1,4 +1,10 @@
-{% use '@SonatraBootstrap/Block/block_bootstrap.html.twig' %}
+{% use '@SonatraBootstrap/Block/block_bootstrap.html.twig' with block_widget as base_block_widget %}
+
+
+{% block block_widget %}
+    A
+{% endblock block_widget %}
+
 
 {% block container_widget %}
 {% spaceless %}
@@ -210,6 +216,7 @@
             {{- attrname }}="{{ attrvalue }}"
         {%- endif -%}
     {%- endfor -%}
+    {{ block('extension_tooltip_javascript') }}
 {% endspaceless %}
 {% endblock button_attributes %}
 

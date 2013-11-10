@@ -263,5 +263,9 @@
         <service id="sonatra_block.type_extension.button_modal" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\ButtonModalExtension">
             <tag name="sonatra_block.type_extension" alias="button" />
         </service>
+
+        <service id="sonatra_block.type_extension.tooltip" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\TooltipExtension">
+            <tag name="sonatra_block.type_extension" alias="block" />
+        </service>
     </services>
 </container>
