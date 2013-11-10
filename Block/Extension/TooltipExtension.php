@@ -83,7 +83,7 @@ class TooltipExtension extends AbstractTypeExtension
                     'html'      => array('null', 'bool'),
                     'placement' => array('null', 'string'),
                     'selector'  => array('null', 'string', 'bool'),
-                    'title'     => array('null', 'string'),
+                    'title'     => array('null', 'string', '\Twig_Markup'),
                     'trigger'   => array('null', 'string'),
                     'delay'     => array('null', 'int'),
                     'container' => array('null', 'string', 'bool'),
