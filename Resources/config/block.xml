@@ -300,5 +300,13 @@
         <service id="sonatra_block.type_extension.scroll_spy" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\ScrollSpyExtension">
             <tag name="sonatra_block.type_extension" alias="block" />
         </service>
+
+        <service id="sonatra_block.type.carousel" class="Sonatra\Bundle\BootstrapBundle\Block\Type\CarouselType">
+            <tag name="sonatra_block.type" alias="carousel" />
+        </service>
+
+        <service id="sonatra_block.type.carousel_item" class="Sonatra\Bundle\BootstrapBundle\Block\Type\CarouselItemType">
+            <tag name="sonatra_block.type" alias="carousel_item" />
+        </service>
     </services>
 </container>
