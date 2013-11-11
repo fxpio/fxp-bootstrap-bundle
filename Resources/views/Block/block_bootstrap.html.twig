@@ -230,6 +230,7 @@
     {{ block('base_widget_attributes') }}
     {{ block('extension_tooltip_javascript') }}
     {{ block('extension_popover_javascript') }}
+    {{ block('extension_scroll_spy_javascript') }}
 {% endspaceless %}
 {% endblock widget_attributes %}
 
@@ -249,6 +250,7 @@
     {{ block('base_widget_container_attributes') }}
     {{ block('extension_tooltip_javascript') }}
     {{ block('extension_popover_javascript') }}
+    {{ block('extension_scroll_spy_javascript') }}
 {% endspaceless %}
 {% endblock widget_container_attributes %}
 
@@ -273,3 +275,15 @@
 	    {% endasset %}
     {% endif %}
 {% endblock extension_popover_javascript %}
+
+
+{% block extension_scroll_spy_javascript %}
+    {% if scroll_spy is defined %}
+	    {% asset_javascript %}
+	        <script type="text/javascript">
+	        $('#{{ popover_id }}').popover();
+	        $('{{ scroll_spy.on }}').scrollspy({ target: '#{{ scroll_spy.target }}'{% if scroll_spy.offset is not null %}, offset: {{ scroll_spy.offset }}{% endif %} });
+	        </script>
+	    {% endasset %}
+    {% endif %}
+{% endblock extension_scroll_spy_javascript %}

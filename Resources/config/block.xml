@@ -296,5 +296,9 @@
         <service id="sonatra_block.type_extension.button_collapse" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\ButtonCollapseExtension">
             <tag name="sonatra_block.type_extension" alias="button" />
         </service>
+
+        <service id="sonatra_block.type_extension.scroll_spy" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\ScrollSpyExtension">
+            <tag name="sonatra_block.type_extension" alias="block" />
+        </service>
     </services>
 </container>
