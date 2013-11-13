@@ -308,5 +308,41 @@
         <service id="sonatra_block.type.carousel_item" class="Sonatra\Bundle\BootstrapBundle\Block\Type\CarouselItemType">
             <tag name="sonatra_block.type" alias="carousel_item" />
         </service>
+
+        <service id="sonatra_block.type.navbar" class="Sonatra\Bundle\BootstrapBundle\Block\Type\NavbarType">
+            <tag name="sonatra_block.type" alias="navbar" />
+        </service>
+
+        <service id="sonatra_block.type.navbar_header" class="Sonatra\Bundle\BootstrapBundle\Block\Type\NavbarHeaderType">
+            <tag name="sonatra_block.type" alias="navbar_header" />
+        </service>
+
+        <service id="sonatra_block.type.navbar_brand" class="Sonatra\Bundle\BootstrapBundle\Block\Type\NavbarBrandType">
+            <tag name="sonatra_block.type" alias="navbar_brand" />
+        </service>
+
+        <service id="sonatra_block.type.navbar_collapse" class="Sonatra\Bundle\BootstrapBundle\Block\Type\NavbarCollapseType">
+            <tag name="sonatra_block.type" alias="navbar_collapse" />
+        </service>
+
+        <service id="sonatra_block.type.navbar_nav" class="Sonatra\Bundle\BootstrapBundle\Block\Type\NavbarNavType">
+            <tag name="sonatra_block.type" alias="navbar_nav" />
+        </service>
+
+        <service id="sonatra_block.type.navbar_form" class="Sonatra\Bundle\BootstrapBundle\Block\Type\NavbarFormType">
+            <tag name="sonatra_block.type" alias="navbar_form" />
+        </service>
+
+        <service id="sonatra_block.type.navbar_button" class="Sonatra\Bundle\BootstrapBundle\Block\Type\NavbarButtonType">
+            <tag name="sonatra_block.type" alias="navbar_button" />
+        </service>
+
+        <service id="sonatra_block.type.navbar_text" class="Sonatra\Bundle\BootstrapBundle\Block\Type\NavbarTextType">
+            <tag name="sonatra_block.type" alias="navbar_text" />
+        </service>
+
+        <service id="sonatra_block.type.navbar_link" class="Sonatra\Bundle\BootstrapBundle\Block\Type\NavbarLinkType">
+            <tag name="sonatra_block.type" alias="navbar_link" />
+        </service>
     </services>
 </container>

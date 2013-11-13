@@ -32,7 +32,7 @@ class NavType extends AbstractType
         $view->vars = array_replace($view->vars, array(
             'style'    => $options['style'],
             'justifed' => $options['justifed'],
-            'stacked' => $options['stacked'],
+            'stacked'  => $options['stacked'],
         ));
     }
 
@@ -59,7 +59,7 @@ class NavType extends AbstractType
             }
         }
 
-        if (!$active && null !== $firstItem) {
+        if (!$active && null !== $firstItem && $options['active_first']) {
             $view->children[$firstItem]->vars['active'] = true;
         }
     }
@@ -70,14 +70,16 @@ class NavType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'style'    => 'tabs',
-            'justifed' => false,
-            'stacked'  => false,
+            'style'        => 'tabs',
+            'justifed'     => false,
+            'stacked'      => false,
+            'active_first' => true,
         ));
 
         $resolver->setAllowedTypes(array(
-            'style'    => 'string',
-            'justifed' => 'bool',
+            'style'        => array('null', 'string'),
+            'justifed'     => 'bool',
+            'active_first' => 'bool',
         ));
 
         $resolver->setAllowedValues(array(
@@ -86,7 +88,7 @@ class NavType extends AbstractType
 
         $resolver->setNormalizers(array(
             'stacked' => function (Options $options, $value = null) {
-                if ('tabs' === $options['style']) {
+                if ('tabs' === $options['style'] || null === $options['style']) {
                     return false;
                 }
 
