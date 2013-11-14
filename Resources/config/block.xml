@@ -344,5 +344,26 @@
         <service id="sonatra_block.type.navbar_link" class="Sonatra\Bundle\BootstrapBundle\Block\Type\NavbarLinkType">
             <tag name="sonatra_block.type" alias="navbar_link" />
         </service>
+
+        <service id="sonatra_block.type.table" class="Sonatra\Bundle\BootstrapBundle\Block\Type\TableType">
+            <tag name="sonatra_block.type" alias="table" />
+            <argument type="service" id="sonatra_block.factory" />
+        </service>
+
+        <service id="sonatra_block.type.table_caption" class="Sonatra\Bundle\BootstrapBundle\Block\Type\TableCaptionType">
+            <tag name="sonatra_block.type" alias="table_caption" />
+        </service>
+
+        <service id="sonatra_block.type.table_header" class="Sonatra\Bundle\BootstrapBundle\Block\Type\TableHeaderType">
+            <tag name="sonatra_block.type" alias="table_header" />
+        </service>
+
+        <service id="sonatra_block.type.table_footer" class="Sonatra\Bundle\BootstrapBundle\Block\Type\TableFooterType">
+            <tag name="sonatra_block.type" alias="table_footer" />
+        </service>
+
+        <service id="sonatra_block.type.table_column" class="Sonatra\Bundle\BootstrapBundle\Block\Type\TableColumnType">
+            <tag name="sonatra_block.type" alias="table_column" />
+        </service>
     </services>
 </container>

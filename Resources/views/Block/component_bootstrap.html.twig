@@ -1083,3 +1083,101 @@
     </div>
 {% endspaceless %}
 {% endblock navbar_collapse_widget %}
+
+
+{% block table_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('table ' ~ attr.class|default(''))|trim}) %}
+    {% if striped %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' table-striped')|trim}) %}
+    {% endif %}
+    {% if bordered %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' table-bordered')|trim}) %}
+    {% endif %}
+    {% if condensed %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' table-condensed')|trim}) %}
+    {% endif %}
+    {% if responsive %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' table-responsive')|trim}) %}
+    {% endif %}
+    {% if hover_rows %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' table-hover')|trim}) %}
+    {% endif %}
+
+    <table {{ block('widget_container_attributes') }}>
+        {% if caption is defined %}
+            {{ block_widget(caption) }}
+        {% endif %}
+        {% if header is defined %}
+            {{ block_widget(header) }}
+        {% endif %}
+        {% if header.vars.header_columns is defined %}
+            <tbody>
+                {% for rowIndex, rowData in data.rows %}
+                    <tr>
+                        {% for colIndex, colBlock in header.vars.header_columns %}
+	                        {{ block_component(colBlock, {data: rowData[colBlock.vars.name]|default(colBlock.vars.empty_data)}) }}
+	                    {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        {% endif %}
+        {% if footer is defined %}
+            {{ block_widget(footer) }}
+        {% endif %}
+	    {% for child in block %}
+	        {{ block_widget(child) }}
+	    {% endfor %}
+    </table>
+{% endspaceless %}
+{% endblock table_widget %}
+
+{% block table_caption_widget %}
+{% spaceless %}
+    <caption {{ block('widget_container_attributes') }}>
+        {{- label|trans({}, translation_domain) -}}
+        {{- value|raw -}}
+        {{- block('block_rows') -}}
+    </caption>
+{% endspaceless %}
+{% endblock table_caption_widget %}
+
+{% block table_header_widget %}
+{% spaceless %}
+    <thead {{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
+        {{- block('block_rows') -}}
+        {% if header_columns is defined %}
+            <tr>
+                {% for colIndex, colBlock in header_columns %}
+                    {{ block_label(colBlock) }}
+                {% endfor %}
+            </tr>
+        {% endif %}
+    </thead>
+{% endspaceless %}
+{% endblock table_header_widget %}
+
+{% block table_footer_widget %}
+{% spaceless %}
+    <tfoot {{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
+        {{- block('block_rows') -}}
+    </tfoot>
+{% endspaceless %}
+{% endblock table_footer_widget %}
+
+{% block table_column_label %}
+{% spaceless %}
+    <th{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</th>
+{% endspaceless %}
+{% endblock table_column_label %}
+
+{% block table_column_component %}
+{% spaceless %}
+    <td{% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ data|block_formatter(formatter, formatter_options) }}</td>
+{% endspaceless %}
+{% endblock table_column_component %}
+
+{% block table_column_widget %}
+{% endblock table_column_widget %}
