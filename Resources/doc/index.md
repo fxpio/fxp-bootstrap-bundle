@@ -60,9 +60,8 @@ Add the following configuration to your `config.yml`.
 assetic:
     bundles: [ "SonatraBootstrapBundle" ]
     filters:
-        lessphp:
-            file:     "%kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php"
-            apply_to: '\.less$'
+        cssrewrite: ~
+        cssmin: ~
 ```
 
 ### Step 4: Configure the bundle (optionnal)
