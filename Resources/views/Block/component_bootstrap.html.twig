@@ -873,7 +873,9 @@
 {% spaceless %}
     {% set attr = attr|merge({'class': ('panel-heading ' ~ attr.class|default(''))|trim}) %}
     <div {{ block('widget_container_attributes') }}>
-        {{- label|trans({}, translation_domain)|raw -}}
+        {% if label is not empty %}
+            <h3 class="panel-title">{{- label|trans({}, translation_domain)|raw -}}</h3>
+        {% endif %}
         {{- value|raw -}}
 	    {% for child in block %}
 	        {{ block_widget(child) }}
