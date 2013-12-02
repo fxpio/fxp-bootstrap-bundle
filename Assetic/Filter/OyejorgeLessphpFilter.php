@@ -53,6 +53,10 @@ class OyejorgeLessphpFilter implements FilterInterface
      */
     public function filterLoad(AssetInterface $asset)
     {
+        if (!preg_match('/\.less$/', $asset->getSourcePath())) {
+            return;
+        }
+
         $less = new \Less_Parser($this->options);
         $dir = $this->loadPaths;
 
