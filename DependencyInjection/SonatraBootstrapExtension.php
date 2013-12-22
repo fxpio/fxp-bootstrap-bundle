@@ -143,8 +143,8 @@ class SonatraBootstrapExtension extends Extension implements PrependExtensionInt
      */
     protected function configAsseticFilters(array &$config, ContainerBuilder $container)
     {
-        $container->getDefinition('sonatra_bootstrap.assetic.oyejorge_lessphp_filter')->replaceArgument(0, $config['oyejorge_lessphp']['options']);
-        $container->getDefinition('sonatra_bootstrap.assetic.oyejorge_lessphp_filter')->replaceArgument(1, $config['oyejorge_lessphp']['paths']);
+        $container->getDefinition('sonatra_bootstrap.assetic.oyejorge_lessphp_filter')->replaceArgument(1, $config['oyejorge_lessphp']['options']);
+        $container->getDefinition('sonatra_bootstrap.assetic.oyejorge_lessphp_filter')->replaceArgument(2, $config['oyejorge_lessphp']['paths']);
     }
 
     /**

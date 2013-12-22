@@ -80,6 +80,7 @@
 
         <service id="sonatra_bootstrap.assetic.oyejorge_lessphp_filter" class="%sonatra_bootstrap.assetic.oyejorge_lessphp_filter.class%">
             <tag name="assetic.filter" alias="oyejorge_lessphp"></tag>
+            <argument type="service" id="service_container" />
             <argument type="collection" />
             <argument type="collection" />
         </service>
