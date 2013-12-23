@@ -92,7 +92,6 @@ class TableType extends AbstractType
         }
 
         if (!isset($view->vars['header'])) {
-            //TODO créer le table_header
             $blockHeader = $this->factory->createNamed('header', 'table_header', null, array());
             $view->vars['header'] = $blockHeader->createView($view);
         }
