@@ -56,9 +56,7 @@ class StylesheetThemeBuilder extends StylesheetBuilder
     }
 
     /**
-     * Get the path of the bootstrap.less file.
-     *
-     * @return string The path
+     * {@inheritdoc}
      */
     public function getPath()
     {
@@ -70,7 +68,7 @@ class StylesheetThemeBuilder extends StylesheetBuilder
     }
 
     /**
-     * Compile the stylesheet.
+     * {@inheritdoc}
      */
     public function compile()
     {

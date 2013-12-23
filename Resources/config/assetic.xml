@@ -9,7 +9,7 @@
         <parameter key="sonatra_bootstrap.assetic.config_loader.class">Symfony\Bundle\AsseticBundle\Factory\Loader\ConfigurationLoader</parameter>
 
         <parameter key="sonatra_bootstrap.assetic.font_resource.class">Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource\FontResource</parameter>
-        <parameter key="sonatra_bootstrap.assetic.common_stylesheets_resource.class">Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource\CommonStylesheetsResource</parameter>
+        <parameter key="sonatra_bootstrap.assetic.common_stylesheets_resource.class">Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource\SingleConfigurationResource</parameter>
         <parameter key="sonatra_bootstrap.assetic.common_javascripts_resource.class">Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource\SingleConfigurationResource</parameter>
         <parameter key="sonatra_bootstrap.assetic.hack_lt_ie_9_resource.class">Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource\SingleConfigurationResource</parameter>
 
@@ -44,8 +44,8 @@
             <argument type="collection" />
             <argument type="collection" />
             <argument type="collection" />
-            <argument type="service" id="sonatra_bootstrap.builder.stylesheet" on-invalid="null" />
-            <argument type="service" id="sonatra_bootstrap.builder.stylesheet_theme" on-invalid="null" />
+            <argument type="service" id="service_container" />
+            <argument type="collection" />
         </service>
 
         <service id="sonatra_bootstrap.assetic.common_javascripts_resource" class="%sonatra_bootstrap.assetic.common_javascripts_resource.class%" public="false">
@@ -54,6 +54,8 @@
             <argument type="collection" />
             <argument type="collection" />
             <argument type="collection" />
+            <argument type="service" id="service_container" />
+            <argument type="collection" />
         </service>
 
         <service id="sonatra_bootstrap.assetic.hack_lt_ie_9_resource" class="%sonatra_bootstrap.assetic.hack_lt_ie_9_resource.class%" public="false">
@@ -61,6 +63,8 @@
             <argument>sonatra_bootstrap_head_hack_lt_ie_9</argument>
             <argument type="collection" />
             <argument type="collection" />
+            <argument type="collection" />
+            <argument type="service" id="service_container" />
             <argument type="collection" />
         </service>
 
@@ -85,13 +89,15 @@
             <argument type="collection" />
         </service>
 
-        <service id="sonatra_bootstrap.builder.stylesheet" class="%sonatra_bootstrap.builder.stylesheet.class%" public="false">
+        <service id="sonatra_bootstrap.builder.stylesheet" class="%sonatra_bootstrap.builder.stylesheet.class%">
+            <tag name="sonatra_bootstrap.stylesheet.common" />
             <argument />
             <argument />
             <argument type="collection" />
         </service>
 
-        <service id="sonatra_bootstrap.builder.stylesheet_theme" class="%sonatra_bootstrap.builder.stylesheet_theme.class%" public="false">
+        <service id="sonatra_bootstrap.builder.stylesheet_theme" class="%sonatra_bootstrap.builder.stylesheet_theme.class%">
+            <tag name="sonatra_bootstrap.stylesheet.common" />
             <argument />
             <argument />
             <argument />

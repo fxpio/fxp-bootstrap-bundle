@@ -18,7 +18,7 @@ use Symfony\Component\Filesystem\Filesystem;
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class StylesheetBuilder
+class StylesheetBuilder implements BuilderInterface
 {
     /**
      * @var string
@@ -103,9 +103,7 @@ class StylesheetBuilder
     }
 
     /**
-     * Get the path of the bootstrap.less file.
-     *
-     * @return string The path
+     * {@inheritdoc}
      */
     public function getPath()
     {
@@ -113,7 +111,7 @@ class StylesheetBuilder
     }
 
     /**
-     * Compile the stylesheet.
+     * {@inheritdoc}
      */
     public function compile()
     {
@@ -124,6 +122,14 @@ class StylesheetBuilder
         }
 
         $this->filesystem->dumpFile($this->compilePath, $content);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __toString()
+    {
+        return $this->compilePath;
     }
 
     /**
