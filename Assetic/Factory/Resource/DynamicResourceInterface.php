@@ -9,31 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\BootstrapBundle\Builder;
+namespace Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource;
+
+use Assetic\Factory\Resource\ResourceInterface;
 
 /**
- * Builds the resource.
+ * Dynamic resource.
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-interface BuilderInterface
+interface DynamicResourceInterface extends ResourceInterface
 {
     /**
-     * Get the path of resource file.
-     *
-     * @return string The path
-     */
-    public function getPath();
-
-    /**
-     * Compile the stylesheet.
+     * Compile the resource.
      */
     public function compile();
-
-    /**
-     * Get the path of resource file.
-     *
-     * @return string
-     */
-    public function __toString();
 }

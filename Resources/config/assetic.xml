@@ -18,8 +18,8 @@
         <parameter key="sonatra_bootstrap.assetic.bundle_filter.class">Sonatra\Bundle\BootstrapBundle\Assetic\Filter\BundleFilter</parameter>
         <parameter key="sonatra_bootstrap.assetic.oyejorge_lessphp_filter.class">Sonatra\Bundle\BootstrapBundle\Assetic\Filter\OyejorgeLessphpFilter</parameter>
 
-        <parameter key="sonatra_bootstrap.builder.stylesheet.class">Sonatra\Bundle\BootstrapBundle\Builder\StylesheetBuilder</parameter>
-        <parameter key="sonatra_bootstrap.builder.stylesheet_theme.class">Sonatra\Bundle\BootstrapBundle\Builder\StylesheetThemeBuilder</parameter>
+        <parameter key="sonatra_bootstrap.assetic.common_stylesheets_resource.stylesheet.class">Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource\StylesheetResource</parameter>
+        <parameter key="sonatra_bootstrap.assetic.common_stylesheets_resource.stylesheet_theme.class">Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource\StylesheetThemeResource</parameter>
         <parameter key="sonatra_bootstrap.assetic.font_output"></parameter>
     </parameters>
 
@@ -89,14 +89,15 @@
             <argument type="collection" />
         </service>
 
-        <service id="sonatra_bootstrap.builder.stylesheet" class="%sonatra_bootstrap.builder.stylesheet.class%">
+        <!-- Resources include in common stylesheet -->
+        <service id="sonatra_bootstrap.assetic.common_stylesheets_resource.stylesheet" class="%sonatra_bootstrap.assetic.common_stylesheets_resource.stylesheet.class%">
             <tag name="sonatra_bootstrap.stylesheet.common" />
             <argument />
             <argument />
             <argument type="collection" />
         </service>
 
-        <service id="sonatra_bootstrap.builder.stylesheet_theme" class="%sonatra_bootstrap.builder.stylesheet_theme.class%">
+        <service id="sonatra_bootstrap.assetic.common_stylesheets_resource.stylesheet_theme" class="%sonatra_bootstrap.assetic.common_stylesheets_resource.stylesheet_theme.class%">
             <tag name="sonatra_bootstrap.stylesheet.common" />
             <argument />
             <argument />

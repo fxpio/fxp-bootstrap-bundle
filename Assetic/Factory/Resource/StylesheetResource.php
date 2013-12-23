@@ -9,21 +9,21 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\BootstrapBundle\Builder;
+namespace Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource;
 
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
- * Builds the bootstrap stylesheet.
+ * Stylesheet resource.
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class StylesheetBuilder implements BuilderInterface
+class StylesheetResource implements DynamicResourceInterface
 {
     /**
      * @var string
      */
-    protected $compilePath;
+    protected $path;
 
     /**
      * @var string
@@ -96,7 +96,7 @@ class StylesheetBuilder implements BuilderInterface
      */
     public function __construct($cacheDir, $directory, array $components)
     {
-        $this->compilePath = sprintf('%s/bootstrap.less', $cacheDir);
+        $this->path = sprintf('%s/bootstrap.less', $cacheDir);
         $this->directory = rtrim($directory, '/');
         $this->components = $components;
         $this->filesystem = new Filesystem();
@@ -105,9 +105,19 @@ class StylesheetBuilder implements BuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function getPath()
+    public function isFresh($timestamp)
     {
-        return $this->compilePath;
+        return file_exists($this->path) && filemtime($this->path) <= $timestamp;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getContent()
+    {
+        $this->compile();
+
+        return file_get_contents($this->path);
     }
 
     /**
@@ -115,13 +125,15 @@ class StylesheetBuilder implements BuilderInterface
      */
     public function compile()
     {
-        $content = '';
+        if (!file_exists($this->path)) {
+            $content = '';
 
-        foreach ($this->orderComponents as $component) {
-            $content = $this->addImport($content, $component, $this->components[$component]);
+            foreach ($this->orderComponents as $component) {
+                $content = $this->addImport($content, $component, $this->components[$component]);
+            }
+
+            $this->filesystem->dumpFile($this->path, $content);
         }
-
-        $this->filesystem->dumpFile($this->compilePath, $content);
     }
 
     /**
@@ -129,7 +141,7 @@ class StylesheetBuilder implements BuilderInterface
      */
     public function __toString()
     {
-        return $this->compilePath;
+        return $this->path;
     }
 
     /**
