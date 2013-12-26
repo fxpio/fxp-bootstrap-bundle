@@ -168,6 +168,16 @@ class SonatraBootstrapExtension extends Extension implements PrependExtensionInt
      */
     protected function configHackIe(array &$config, ContainerBuilder $container)
     {
+        if (is_string($config['html5_shiv'])) {
+            $shivDef = $this->createFileResourceDefinition($config['html5_shiv'], 'sonatra_bootstrap.javascript.shiv');
+            $container->setDefinition('sonatra_bootstrap.assetic.hack_lt_ie_9_resource.html5_shiv', $shivDef);
+        }
+
+        if (is_string($config['respond'])) {
+            $respondDef = $this->createFileResourceDefinition($config['respond'], 'sonatra_bootstrap.javascript.shiv');
+            $container->setDefinition('sonatra_bootstrap.assetic.hack_lt_ie_9_resource.respond', $respondDef);
+        }
+
         $container->getDefinition('sonatra_bootstrap.assetic.hack_lt_ie_9_resource')->replaceArgument(1, $config['inputs']);
         $container->getDefinition('sonatra_bootstrap.assetic.hack_lt_ie_9_resource')->replaceArgument(2, $config['filters']);
         $container->getDefinition('sonatra_bootstrap.assetic.hack_lt_ie_9_resource')->replaceArgument(3, $config['options']);

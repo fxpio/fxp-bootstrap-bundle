@@ -249,13 +249,12 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('hack_lt_ie_9')
                     ->addDefaultsIfNotSet()
                     ->children()
+                        ->scalarNode('html5_shiv')->defaultValue('%kernel.root_dir%/../vendor/sonatra_afarkas/html5shiv/src/html5shiv.js')->end()
+                        ->scalarNode('respond')->defaultValue('%kernel.root_dir%/../vendor/sonatra_scottjehl/respond/respond.src.js')->end()
                         ->arrayNode('inputs')
                             ->fixXmlConfig('input')
                             ->prototype('scalar')->end()
-                            ->defaultValue(array(
-                                '%kernel.root_dir%/../vendor/sonatra_afarkas/html5shiv/src/html5shiv.js',
-                                '%kernel.root_dir%/../vendor/sonatra_scottjehl/respond/respond.src.js',
-                            ))
+                            ->defaultValue(array())
                         ->end()
                         ->arrayNode('filters')
                             ->fixXmlConfig('filter')
