@@ -16,6 +16,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use Symfony\Component\DependencyInjection\Definition;
 
 /**
  * This is the class that loads and manages your bundle configuration.
@@ -43,6 +44,39 @@ class SonatraBootstrapExtension extends Extension implements PrependExtensionInt
         $this->configCommonJavascripts($config['common_assets']['javascripts'], $container);
         $this->configHackIe($config['common_assets']['hack_lt_ie_9'], $container);
         $this->configAsseticFilters($config['assetic']['filters'], $container);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function prepend(ContainerBuilder $container)
+    {
+        $exts = $container->getExtensions();
+
+        if (isset($exts['twig'])) {
+            $resources = array();
+
+            foreach (array('div') as $template) {
+                $resources[] = 'SonatraBootstrapBundle:Form:form_bootstrap.html.twig';
+            }
+
+            $container->prependExtensionConfig(
+                    'twig',
+                    array('form' => array('resources' => $resources))
+            );
+        }
+
+        if (isset($exts['sonatra_block'])) {
+            $resources = array(
+                'SonatraBootstrapBundle:Block:block_bootstrap.html.twig',
+                'SonatraBootstrapBundle:Block:component_bootstrap.html.twig',
+            );
+
+            $container->prependExtensionConfig(
+                'sonatra_block',
+                array('block' => array('resources' => $resources))
+            );
+        }
     }
 
     /**
@@ -105,17 +139,21 @@ class SonatraBootstrapExtension extends Extension implements PrependExtensionInt
     protected function configCommonJavascripts(array &$config, ContainerBuilder $container)
     {
         $btConfig = &$config['bootstrap'];
-        $jsInputs = array(
-            $config['jquery']['path'],
-        );
 
+        // jquery
+        $jqueryDef = $this->createFileResourceDefinition($config['jquery']['path'], 'sonatra_bootstrap.javascript.common');
+        $container->setDefinition('sonatra_bootstrap.assetic.common_javascripts_resource.jquery', $jqueryDef);
+
+        // bootstrap components
         foreach ($btConfig['components'] as $component => $value) {
             if ($value) {
-                $jsInputs[] = sprintf('%s/%s.js', rtrim($btConfig['directory'], '/'), $component);
+                $path = sprintf('%s/%s.js', rtrim($btConfig['directory'], '/'), $component);
+                $tag = sprintf('sonatra_bootstrap.assetic.common_javascripts_resource.%s', $component);
+                $componentDef = $this->createFileResourceDefinition($path, 'sonatra_bootstrap.javascript.common');
+
+                $container->setDefinition($tag, $componentDef);
             }
         }
-
-        $config['inputs'] = array_merge($jsInputs, $config['inputs']);
 
         $container->getDefinition('sonatra_bootstrap.assetic.common_javascripts_resource')->replaceArgument(1, $config['inputs']);
         $container->getDefinition('sonatra_bootstrap.assetic.common_javascripts_resource')->replaceArgument(2, $config['filters']);
@@ -148,35 +186,23 @@ class SonatraBootstrapExtension extends Extension implements PrependExtensionInt
     }
 
     /**
-     * {@inheritDoc}
+     * Create assetic file resource definition.
+     *
+     * @param string $path
+     * @param string $tag
+     *
+     * @return Definition
      */
-    public function prepend(ContainerBuilder $container)
+    protected function createFileResourceDefinition($path, $tag)
     {
-        $exts = $container->getExtensions();
+        $definition = new Definition();
+        $definition
+            ->setClass('Assetic\Factory\Resource\FileResource')
+            ->setPublic(true)
+            ->addArgument($path)
+            ->addTag($tag)
+        ;
 
-        if (isset($exts['twig'])) {
-            $resources = array();
-
-            foreach (array('div') as $template) {
-                $resources[] = 'SonatraBootstrapBundle:Form:form_bootstrap.html.twig';
-            }
-
-            $container->prependExtensionConfig(
-                    'twig',
-                    array('form' => array('resources' => $resources))
-            );
-        }
-
-        if (isset($exts['sonatra_block'])) {
-            $resources = array(
-                'SonatraBootstrapBundle:Block:block_bootstrap.html.twig',
-                'SonatraBootstrapBundle:Block:component_bootstrap.html.twig',
-            );
-
-            $container->prependExtensionConfig(
-                'sonatra_block',
-                array('block' => array('resources' => $resources))
-            );
-        }
+        return $definition;
     }
 }
