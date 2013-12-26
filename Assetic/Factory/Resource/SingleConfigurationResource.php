@@ -118,7 +118,9 @@ class SingleConfigurationResource extends ConfigurationResource
 
         $bundles = $container->getParameter('kernel.bundles');
         $resovedInputs = array();
+        $unresovedInputs = array();
 
+        // get resource filename defined in bundles
         foreach ($inputs as $input) {
             $resovedInput = ContainerUtils::filterBundles($input, function ($matches) use ($bundles) {
                 $name = sprintf('%sBundle', $matches[1]);
@@ -136,6 +138,7 @@ class SingleConfigurationResource extends ConfigurationResource
             $resovedInputs[] = $resovedInput;
         }
 
+        // replace filenames by resources
         foreach ($resources as $resource) {
             $res = $container->get($resource);
             $pos = array_search((string) $res, $resovedInputs);
@@ -146,8 +149,11 @@ class SingleConfigurationResource extends ConfigurationResource
                 continue;
             }
 
-            $inputs[] = $res;
+            $unresovedInputs[] = $res;
         }
+
+        // moves the unresolved resources to the top array
+        $inputs = array_merge($unresovedInputs, $inputs);
 
         return $inputs;
     }
