@@ -31,12 +31,12 @@ class CommonJavascriptPass implements CompilerPassInterface
             return;
         }
 
-        $builders = array();
+        $resources = array();
 
         foreach ($container->findTaggedServiceIds('sonatra_bootstrap.javascript.common') as $serviceId => $tag) {
-            $builders[] = $serviceId;
+            $resources[] = $serviceId;
         }
 
-        $container->getDefinition('sonatra_bootstrap.assetic.common_javascripts_resource')->replaceArgument(5, $builders);
+        $container->getDefinition('sonatra_bootstrap.assetic.common_javascripts_resource')->replaceArgument(5, $resources);
     }
 }

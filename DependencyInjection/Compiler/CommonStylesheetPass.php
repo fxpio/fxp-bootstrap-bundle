@@ -31,12 +31,12 @@ class CommonStylesheetPass implements CompilerPassInterface
             return;
         }
 
-        $builders = array();
+        $resources = array();
 
         foreach ($container->findTaggedServiceIds('sonatra_bootstrap.stylesheet.common') as $serviceId => $tag) {
-            $builders[] = $serviceId;
+            $resources[] = $serviceId;
         }
 
-        $container->getDefinition('sonatra_bootstrap.assetic.common_stylesheets_resource')->replaceArgument(5, $builders);
+        $container->getDefinition('sonatra_bootstrap.assetic.common_stylesheets_resource')->replaceArgument(5, $resources);
     }
 }
