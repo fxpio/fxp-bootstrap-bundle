@@ -49,11 +49,7 @@ class OyejorgeLessphpFilter implements FilterInterface
     {
         $this->parameterBag = $container->getParameterBag();
         $this->options = $options;
-        $this->loadPaths = array();
-
-        foreach ($loadPaths as $path) {
-            $this->loadPaths[$path] = '';
-        }
+        $this->loadPaths = $loadPaths;
     }
 
     /**
@@ -66,13 +62,7 @@ class OyejorgeLessphpFilter implements FilterInterface
         }
 
         $less = new \Less_Parser($this->options);
-        $dir = $this->loadPaths;
-
-        if ($asset->getSourceDirectory()) {
-            $dir = array_merge($dir, array($asset->getSourceDirectory() => ''));
-        }
-
-        $less->SetImportDirs($dir);
+        $less->SetImportDirs($this->loadPaths);
         $less->parse($this->generateVariables($asset));
         $less->parse($asset->getContent());
 
