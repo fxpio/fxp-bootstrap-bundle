@@ -45,25 +45,34 @@ abstract class PathUtils
      * Convert the target (file or directory) to the relative path since a
      * asset directory.
      *
-     * @param AssetInterface $asset  The asset file
-     * @param string         $target The file or directory to be convert
+     * @param string|AssetInterface $path   The path or asset file
+     * @param string                $target The file or directory to be convert
      *
      * @return string The relative target since the asset directory
      *
      * @throws FilterException When the target does not exist
      */
-    public static function convertToRelative(AssetInterface $asset, $target)
+    public static function convertToRelative($path, $target)
     {
-        if (!realpath($target)) {
-            $assetPath = str_replace('\\', '/', $asset->getSourceRoot() . '/' . $asset->getSourcePath());
+        if ($path instanceof AssetInterface) {
+            $path = $path->getSourceRoot() . '/' . $path->getSourcePath();
+        }
 
-            throw new FilterException(sprintf('The target "%s" does not exist in "%s" file', $target, $assetPath));
+        $path = str_replace('\\', '/', $path);
+
+        if (!realpath($target)) {
+            throw new FilterException(sprintf('The target "%s" does not exist in "%s" file', $target, $path));
         }
 
         $value = '';
         $sameDir = '';
         $target = str_replace('\\', '/', realpath($target));
-        $sourceDir = str_replace('\\', '/', realpath($asset->getSourceDirectory()));
+        $sourceDir = str_replace('\\', '/', realpath($path));
+
+        if (is_file($path)) {
+            $sourceDir = str_replace('\\', '/', realpath(dirname($path)));
+        }
+
         $targetList = explode('/', $target);
         $sourceList = explode('/', $sourceDir);
 
@@ -94,7 +103,7 @@ abstract class PathUtils
             }
         }
 
-        return $value;
+        return rtrim($value, '/');
     }
 
     final private function __construct() { }

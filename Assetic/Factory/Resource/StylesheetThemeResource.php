@@ -89,8 +89,8 @@ class StylesheetThemeResource implements DynamicResourceInterface
         if (true === $this->theme && !file_exists($this->path)) {
             $content = file_get_contents(sprintf('%s/theme.less', $this->directory));
 
-            $content = str_replace('@import "variables.less";', sprintf('@import "relative(%s/variables.less)";', $this->directory), $content);
-            $content = str_replace('@import "mixins.less";', sprintf('@import "relative(%s/mixins.less)";', $this->directory), $content);
+            $content = str_replace('@import "variables.less";', sprintf('@import "%s/variables.less";', $this->directory), $content);
+            $content = str_replace('@import "mixins.less";', sprintf('@import "%s/mixins.less";', $this->directory), $content);
 
             $this->filesystem->dumpFile($this->path, $content);
         }

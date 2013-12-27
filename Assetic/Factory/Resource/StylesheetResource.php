@@ -11,6 +11,7 @@
 
 namespace Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource;
 
+use Sonatra\Bundle\BootstrapBundle\Assetic\Util\ContainerUtils;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
@@ -156,11 +157,15 @@ class StylesheetResource implements DynamicResourceInterface
     protected function addImport($content, $component, $value)
     {
         if (is_string($value)) {
-            $content .= sprintf('@import "relative(%s)";', $value);
+            $value = ContainerUtils::filterBundles($value, function ($matches) {
+                return '@{' . $matches[1] . 'Bundle}';
+            });
+
+            $content .= sprintf('@import "%s";', $value);
             $content .= PHP_EOL;
 
         } elseif ($value) {
-            $content .= sprintf('@import "relative(%s/%s.less)";', $this->directory, str_replace('_', '-', $component));
+            $content .= sprintf('@import "%s/%s.less";', $this->directory, str_replace('_', '-', $component));
             $content .= PHP_EOL;
         }
 

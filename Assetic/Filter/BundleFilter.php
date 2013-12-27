@@ -60,7 +60,7 @@ class BundleFilter implements FilterInterface
                 return str_replace('\\', '/', $dir);
             }
 
-            return '';
+            return $matches[0];
         });
 
         $asset->setContent($content);

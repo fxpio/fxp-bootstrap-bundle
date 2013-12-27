@@ -15,7 +15,6 @@ use Assetic\Filter\FilterInterface;
 use Assetic\Asset\AssetInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Sonatra\Bundle\BootstrapBundle\Assetic\Util\PathUtils;
 
 /**
  * Loads LESS files using the PHP implementation of less, oyejorge lessphp.
@@ -101,27 +100,16 @@ class OyejorgeLessphpFilter implements FilterInterface
      */
     protected function generateVariables(AssetInterface $asset)
     {
-        $rootDir = $this->parameterBag->get('kernel.root_dir');
-        $output = sprintf('@symfony-kernel-root-dir: "%s";%s', PathUtils::convertToRelative($asset, $rootDir), PHP_EOL);
-        $output .= sprintf('@symfony-vendor-root-dir: "%s";%s', PathUtils::convertToRelative($asset, $rootDir.'/../vendor'), PHP_EOL);
+        $kernelDir = $this->parameterBag->get('kernel.root_dir');
+        $output = sprintf('@symfony-kernel-root-dir: "%s";%s', $kernelDir, PHP_EOL);
+        $output .= sprintf('@symfony-vendor-dir: "%s";%s', $kernelDir.'/../vendor', PHP_EOL);
 
         foreach ($this->parameterBag->get('kernel.bundles') as $name => $class) {
-            $newName = 'symfony';
-            $chars = preg_split('/(?=[A-Z])/', $name, -1, PREG_SPLIT_NO_EMPTY);
-
-            foreach ($chars as $i => $char) {
-                if (strlen($char) > 1 || (1 === strlen($char) && 0 === $i)) {
-                    $newName .= '-';
-                }
-
-                $newName .= $char;
-            }
-
             $ref = new \ReflectionClass($class);
             $dir = dirname($ref->getFileName());
             $dir = str_replace('\\', '/', $dir);
 
-            $output .= sprintf('@%s: "%s";%s', strtolower($newName), PathUtils::convertToRelative($asset, $dir), PHP_EOL);
+            $output .= sprintf('@%s: "%s";%s', $name, $dir, PHP_EOL);
         }
 
         return $output;
