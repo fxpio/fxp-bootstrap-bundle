@@ -46,7 +46,7 @@ class StylesheetResource implements DynamicResourceInterface
      * @var array
      */
     protected $orderComponents = array(
-        'variables', 'default_variables', 'custom_variables',
+        'variables', 'custom_variables',
         'mixins', 'custom_mixins',
         'normalize',
         'print',
