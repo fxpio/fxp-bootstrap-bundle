@@ -79,10 +79,10 @@ class OyejorgeLessphpFilter implements FilterInterface
     /**
      * Generate the less variables of kernel, vendor and bundles directory.
      *
-     * All variables are prefixed with 'symfony-'.
+     * All variables of bundle directory are named such as 'kernel.bundles' container parameters bag.
      *
      * Example:
-     *  AcmeBlogBundle => 'symfony-acme-blog-bundle'
+     *  AcmeBlogBundle => '@AcmeBlogBundle'
      *
      * @param AssetInterface $asset
      *
