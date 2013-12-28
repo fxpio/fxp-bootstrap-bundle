@@ -244,8 +244,8 @@
         <div {% for attrname, attrvalue in wrapper_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
     {% endif %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' dropdown-menu')|trim, role:'menu'}) %}
-    {% if pull_right %}
-        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' pull-right')|trim}) %}
+    {% if pull is not empty %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' pull-' ~ pull)|trim}) %}
     {% endif %}
     <ul {{ block('widget_container_attributes') }}>
         {{- value|raw -}}
@@ -524,8 +524,8 @@
 
 {% block blockquote_widget %}
 {% spaceless %}
-    {% if pull_right %}
-        {% set attr = attr|merge({'class': ('pull-right ' ~ attr.class|default(''))|trim}) %}
+    {% if pull is not empty %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' pull-' ~ pull)|trim}) %}
     {% endif %}
     <blockquote {{ block('widget_container_attributes') }}>
         {{- value|raw -}}
@@ -636,8 +636,8 @@
 {% block badge_widget %}
 {% spaceless %}
     {% set attr = attr|merge({'class': ('badge ' ~ attr.class|default(''))|trim}) %}
-    {% if pull_right %}
-        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' pull-right')|trim}) %}
+    {% if pull is not empty %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' pull-' ~ pull)|trim}) %}
     {% endif %}
     <span {{ block('widget_container_attributes') }}>
         {{- label|trans({}, translation_domain) -}}
