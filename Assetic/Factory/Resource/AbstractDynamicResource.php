@@ -67,6 +67,12 @@ abstract class AbstractDynamicResource implements DynamicResourceInterface
         $this->components = $components;
         $this->bundles = $bundles;
         $this->filesystem = new Filesystem();
+
+        foreach ($components as $component => $value) {
+            if (!in_array($component, $this->orderComponents)) {
+                $this->orderComponents[] = $component;
+            }
+        }
     }
 
     /**
