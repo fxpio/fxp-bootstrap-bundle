@@ -118,7 +118,6 @@ class SonatraBootstrapExtension extends Extension implements PrependExtensionInt
             if ($btConfig['build'] && $btConfig['theme']) {
                 $container->getDefinition('sonatra_bootstrap.assetic.common_stylesheets_resource.stylesheet_theme')->replaceArgument(0, $btConfig['cache_directory']);
                 $container->getDefinition('sonatra_bootstrap.assetic.common_stylesheets_resource.stylesheet_theme')->replaceArgument(1, $btConfig['directory']);
-                $container->getDefinition('sonatra_bootstrap.assetic.common_stylesheets_resource.stylesheet_theme')->replaceArgument(2, $btConfig['theme']);
 
             } else {
                 $container->removeDefinition('sonatra_bootstrap.assetic.common_stylesheets_resource.stylesheet_theme');

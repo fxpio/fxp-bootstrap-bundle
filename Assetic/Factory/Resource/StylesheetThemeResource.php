@@ -31,11 +31,6 @@ class StylesheetThemeResource implements DynamicResourceInterface
     protected $directory;
 
     /**
-     * @var bool|string
-     */
-    protected $theme;
-
-    /**
      * @var Filesystem
      */
     protected $filesystem;
@@ -43,15 +38,13 @@ class StylesheetThemeResource implements DynamicResourceInterface
     /**
      * Constructor.
      *
-     * @param string      $cacheDir  The cache directory
-     * @param string      $directory The bootstrap less directory
-     * @param bool|string $theme     The path of custom theme or the activation or not of default theme compilation
+     * @param string $cacheDir  The cache directory
+     * @param string $directory The bootstrap less directory
      */
-    public function __construct($cacheDir, $directory, $theme)
+    public function __construct($cacheDir, $directory)
     {
         $this->path = sprintf('%s/theme.less', $cacheDir);
         $this->directory = rtrim($directory, '/');
-        $this->theme = $theme;
         $this->filesystem = new Filesystem();
     }
 
@@ -60,11 +53,22 @@ class StylesheetThemeResource implements DynamicResourceInterface
      */
     public function isFresh($timestamp)
     {
-        if (false === $this->theme) {
-            return true;
+        $fresh = file_exists($this->path) && filemtime($this->path) <= $timestamp;
+
+        if ($fresh) {
+            $pathVariables = sprintf('%s/variables.less', $this->directory);
+            $pathMixins = sprintf('%s/mixins.less', $this->directory);
+
+            if (!(file_exists($pathVariables) && filemtime($pathVariables) <= $timestamp)) {
+                return false;
+            }
+
+            if (!(file_exists($pathMixins) && filemtime($pathMixins) <= $timestamp)) {
+                return false;
+            }
         }
 
-        return file_exists($this->getPath()) && filemtime($this->getPath()) <= $timestamp;
+        return $fresh;
     }
 
     /**
@@ -72,13 +76,7 @@ class StylesheetThemeResource implements DynamicResourceInterface
      */
     public function getContent()
     {
-        if (false === $this->theme) {
-            return '';
-        }
-
-        $this->compile();
-
-        return file_get_contents($this->getPath());
+        return file_get_contents($this->path);
     }
 
     /**
@@ -86,14 +84,12 @@ class StylesheetThemeResource implements DynamicResourceInterface
      */
     public function compile($timestamp = null)
     {
-        if (true === $this->theme && !file_exists($this->path)) {
-            $content = file_get_contents(sprintf('%s/theme.less', $this->directory));
+        $content = file_get_contents(sprintf('%s/theme.less', $this->directory));
 
-            $content = str_replace('@import "variables.less";', sprintf('@import "%s/variables.less";', $this->directory), $content);
-            $content = str_replace('@import "mixins.less";', sprintf('@import "%s/mixins.less";', $this->directory), $content);
+        $content = str_replace('@import "variables.less";', sprintf('@import "%s/variables.less";', $this->directory), $content);
+        $content = str_replace('@import "mixins.less";', sprintf('@import "%s/mixins.less";', $this->directory), $content);
 
-            $this->filesystem->dumpFile($this->path, $content);
-        }
+        $this->filesystem->dumpFile($this->path, $content);
     }
 
     /**
@@ -101,18 +97,6 @@ class StylesheetThemeResource implements DynamicResourceInterface
      */
     public function __toString()
     {
-        return $this->getPath();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getPath()
-    {
-        if (is_string($this->theme)) {
-            return $this->theme;
-        }
-
         return $this->path;
     }
 }

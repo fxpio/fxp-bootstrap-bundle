@@ -103,7 +103,6 @@
             <tag name="sonatra_bootstrap.stylesheet.common" />
             <argument />
             <argument />
-            <argument />
         </service>
     </services>
 </container>
