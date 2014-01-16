@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class CommonStylesheetPass implements CompilerPassInterface
+class CommonStylesheetPass extends AbstractAssetPass implements CompilerPassInterface
 {
     /**
      * {@inheritdoc}
@@ -34,6 +34,8 @@ class CommonStylesheetPass implements CompilerPassInterface
         $resources = array();
 
         foreach ($container->findTaggedServiceIds('sonatra_bootstrap.stylesheet.common') as $serviceId => $tag) {
+            $this->replaceBundleDirectoryResources($container, $container->getDefinition($serviceId));
+
             $resources[] = $serviceId;
         }
 

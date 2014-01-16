@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class CommonJavascriptPass implements CompilerPassInterface
+class CommonJavascriptPass extends AbstractAssetPass implements CompilerPassInterface
 {
     /**
      * {@inheritdoc}
@@ -34,6 +34,8 @@ class CommonJavascriptPass implements CompilerPassInterface
         $resources = array();
 
         foreach ($container->findTaggedServiceIds('sonatra_bootstrap.javascript.common') as $serviceId => $tag) {
+            $this->replaceBundleDirectoryResources($container, $container->getDefinition($serviceId));
+
             $resources[] = $serviceId;
         }
 

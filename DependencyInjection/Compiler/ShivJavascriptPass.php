@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class ShivJavascriptPass implements CompilerPassInterface
+class ShivJavascriptPass extends AbstractAssetPass implements CompilerPassInterface
 {
     /**
      * {@inheritdoc}
@@ -34,6 +34,8 @@ class ShivJavascriptPass implements CompilerPassInterface
         $resources = array();
 
         foreach ($container->findTaggedServiceIds('sonatra_bootstrap.javascript.shiv') as $serviceId => $tag) {
+            $this->replaceBundleDirectoryResources($container, $container->getDefinition($serviceId));
+
             $resources[] = $serviceId;
         }
 
