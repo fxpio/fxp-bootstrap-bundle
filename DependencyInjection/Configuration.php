@@ -245,7 +245,7 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('html5_shiv')->defaultValue('%kernel.root_dir%/../vendor/sonatra_afarkas/html5shiv/src/html5shiv.js')->end()
-                        ->scalarNode('respond')->defaultValue('%kernel.root_dir%/../vendor/sonatra_scottjehl/respond/respond.src.js')->end()
+                        ->scalarNode('respond')->defaultValue('%kernel.root_dir%/../vendor/sonatra_scottjehl/respond/src/respond.js')->end()
                         ->arrayNode('inputs')
                             ->fixXmlConfig('input')
                             ->prototype('scalar')->end()
