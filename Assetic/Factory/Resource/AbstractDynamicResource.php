@@ -113,7 +113,9 @@ abstract class AbstractDynamicResource implements DynamicResourceInterface
         $content = '';
 
         foreach ($this->orderComponents as $component) {
-            $content = $this->addImport($content, $component, $this->components[$component]);
+            if (array_key_exists($component, $this->components)) {
+                $content = $this->addImport($content, $component, $this->components[$component]);
+            }
         }
 
         $this->filesystem->dumpFile($this->path, $content);
