@@ -11,16 +11,16 @@
 
 namespace Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource;
 
-use Symfony\Bundle\AsseticBundle\Factory\Resource\ConfigurationResource;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Sonatra\Bundle\BootstrapBundle\Assetic\Util\ContainerUtils;
+use Assetic\Factory\Resource\ResourceInterface;
 
 /**
  * A single configured resource.
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class SingleConfigurationResource extends ConfigurationResource
+class SingleConfigurationResource implements DynamicResourceInterface
 {
     /**
      * @var string
@@ -66,7 +66,12 @@ class SingleConfigurationResource extends ConfigurationResource
     public function isFresh($timestamp)
     {
         foreach ($this->inputs as $input) {
-            if (!(file_exists($input) && filemtime($input) <= $timestamp)) {
+            if ($input instanceof ResourceInterface) {
+                if (!$input->isFresh($timestamp)) {
+                    return false;
+                }
+
+            } elseif (!(file_exists($input) && filemtime($input) <= $timestamp)) {
                 return false;
             }
         }
@@ -90,6 +95,18 @@ class SingleConfigurationResource extends ConfigurationResource
         }
 
         return array($this->name => array($inputs, $this->filters, $this->options));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function compile($timestamp = null)
+    {
+        foreach ($this->inputs as $input) {
+            if ($input instanceof DynamicResourceInterface && !$input->isFresh($timestamp)) {
+                $input->compile($timestamp);
+            }
+        }
     }
 
     /**

@@ -37,6 +37,11 @@ class StylesheetResource implements DynamicResourceInterface
     protected $components;
 
     /**
+     * @var array
+     */
+    protected $bundles;
+
+    /**
      * @var Filesystem
      */
     protected $filesystem;
@@ -94,12 +99,14 @@ class StylesheetResource implements DynamicResourceInterface
      * @param string $cacheDir   The cache directory
      * @param string $directory  The bootstrap less directory
      * @param array  $components The bootstrap less components configuration
+     * @param array  $bundles    The bundles directories
      */
-    public function __construct($cacheDir, $directory, array $components)
+    public function __construct($cacheDir, $directory, array $components, array $bundles)
     {
         $this->path = sprintf('%s/bootstrap.less', $cacheDir);
         $this->directory = rtrim($directory, '/');
         $this->components = $components;
+        $this->bundles = $bundles;
         $this->filesystem = new Filesystem();
     }
 
@@ -108,7 +115,27 @@ class StylesheetResource implements DynamicResourceInterface
      */
     public function isFresh($timestamp)
     {
-        return file_exists($this->path) && filemtime($this->path) <= $timestamp;
+        $fresh = file_exists($this->path) && filemtime($this->path) <= $timestamp;
+
+        if ($fresh) {
+            foreach ($this->components as $component => $value) {
+                if (is_string($value)) {
+                    $value = $this->findBundleDirectory($value);
+
+                } elseif ($value) {
+                    $value = sprintf('%s/%s.less', $this->directory, str_replace('_', '-', $component));
+
+                } else {
+                    continue;
+                }
+
+                if (!(file_exists($value) && filemtime($value) <= $timestamp)) {
+                    return false;
+                }
+            }
+        }
+
+        return $fresh;
     }
 
     /**
@@ -116,25 +143,21 @@ class StylesheetResource implements DynamicResourceInterface
      */
     public function getContent()
     {
-        $this->compile();
-
         return file_get_contents($this->path);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function compile()
+    public function compile($timestamp = null)
     {
-        if (!file_exists($this->path)) {
-            $content = '';
+        $content = '';
 
-            foreach ($this->orderComponents as $component) {
-                $content = $this->addImport($content, $component, $this->components[$component]);
-            }
-
-            $this->filesystem->dumpFile($this->path, $content);
+        foreach ($this->orderComponents as $component) {
+            $content = $this->addImport($content, $component, $this->components[$component]);
         }
+
+        $this->filesystem->dumpFile($this->path, $content);
     }
 
     /**
@@ -170,5 +193,29 @@ class StylesheetResource implements DynamicResourceInterface
         }
 
         return $content;
+    }
+
+    /**
+     * Get the directory of bundle.
+     *
+     * @param string $bundleName The bundle name
+     *
+     * @return string The directory
+     */
+    protected function findBundleDirectory($bundleName)
+    {
+        $bundles = $this->bundles;
+
+        return ContainerUtils::filterBundles($bundleName, function ($matches) use ($bundles) {
+            $bundle = $matches[1] . 'Bundle';
+
+            if (isset($bundles[$bundle])) {
+                $ref = new \ReflectionClass($bundles[$bundle]);
+
+                return dirname($ref->getFileName());
+            }
+
+            return $matches[0];
+        });
     }
 }

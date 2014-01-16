@@ -84,7 +84,7 @@ class StylesheetThemeResource implements DynamicResourceInterface
     /**
      * {@inheritdoc}
      */
-    public function compile()
+    public function compile($timestamp = null)
     {
         if (true === $this->theme && !file_exists($this->path)) {
             $content = file_get_contents(sprintf('%s/theme.less', $this->directory));

@@ -22,6 +22,8 @@ interface DynamicResourceInterface extends ResourceInterface
 {
     /**
      * Compile the resource.
+     *
+     * @param int $timestamp
      */
-    public function compile();
+    public function compile($timestamp = null);
 }
