@@ -15,7 +15,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
-use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Definition;
 
 /**
@@ -23,7 +22,7 @@ use Symfony\Component\DependencyInjection\Definition;
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class SonatraBootstrapExtension extends Extension implements PrependExtensionInterface
+class SonatraBootstrapExtension extends Extension
 {
     /**
      * {@inheritdoc}
@@ -44,39 +43,6 @@ class SonatraBootstrapExtension extends Extension implements PrependExtensionInt
         $this->configCommonJavascripts($config['common_assets']['javascripts'], $container);
         $this->configHackIe($config['common_assets']['hack_lt_ie_9'], $container);
         $this->configAsseticFilters($config['assetic']['filters'], $container);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function prepend(ContainerBuilder $container)
-    {
-        $exts = $container->getExtensions();
-
-        if (isset($exts['twig'])) {
-            $resources = array();
-
-            foreach (array('div') as $template) {
-                $resources[] = 'SonatraBootstrapBundle:Form:form_bootstrap.html.twig';
-            }
-
-            $container->prependExtensionConfig(
-                    'twig',
-                    array('form' => array('resources' => $resources))
-            );
-        }
-
-        if (isset($exts['sonatra_block'])) {
-            $resources = array(
-                'SonatraBootstrapBundle:Block:block_bootstrap.html.twig',
-                'SonatraBootstrapBundle:Block:component_bootstrap.html.twig',
-            );
-
-            $container->prependExtensionConfig(
-                'sonatra_block',
-                array('block' => array('resources' => $resources))
-            );
-        }
     }
 
     /**

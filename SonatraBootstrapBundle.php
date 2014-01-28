@@ -13,6 +13,8 @@ namespace Sonatra\Bundle\BootstrapBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\FormTemplatePass;
+use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\BlockTemplatePass;
 use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\CommonStylesheetPass;
 use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\CommonJavascriptPass;
 use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\ShivJavascriptPass;
@@ -26,6 +28,8 @@ class SonatraBootstrapBundle extends Bundle
     {
         parent::build($container);
 
+        $container->addCompilerPass(new FormTemplatePass());
+        $container->addCompilerPass(new BlockTemplatePass());
         $container->addCompilerPass(new CommonStylesheetPass());
         $container->addCompilerPass(new CommonJavascriptPass());
         $container->addCompilerPass(new ShivJavascriptPass());
