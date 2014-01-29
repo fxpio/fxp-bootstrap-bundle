@@ -26,9 +26,19 @@ class FormTemplatePass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
+        $configs = $container->getExtensionConfig('twig');
         $resources = $container->getParameter('twig.form.resources');
+        $offset = count($resources);
 
-        $resources[] = 'SonatraBootstrapBundle:Form:form_bootstrap.html.twig';
+        if (isset($configs[0]['form']['resources'])) {
+            $configResources = $configs[0]['form']['resources'];
+
+            $offset = array_search($configResources[count($configResources) - 1], $resources);
+        }
+
+        array_splice($resources, $offset, 0, array(
+            'SonatraBootstrapBundle:Form:form_bootstrap.html.twig',
+        ));
 
         $container->setParameter('twig.form.resources', $resources);
     }

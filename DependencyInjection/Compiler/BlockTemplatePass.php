@@ -26,10 +26,20 @@ class BlockTemplatePass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
+        $configs = $container->getExtensionConfig('sonatra_block');
         $resources = $container->getParameter('sonatra_block.twig.resources');
+        $offset = count($resources);
 
-        $resources[] = 'SonatraBootstrapBundle:Block:block_bootstrap.html.twig';
-        $resources[] = 'SonatraBootstrapBundle:Block:component_bootstrap.html.twig';
+        if (isset($configs[0]['block']['resources'])) {
+            $configResources = $configs[0]['block']['resources'];
+
+            $offset = array_search($configResources[count($configResources) - 1], $resources);
+        }
+
+        array_splice($resources, $offset, 0, array(
+            'SonatraBootstrapBundle:Block:block_bootstrap.html.twig',
+            'SonatraBootstrapBundle:Block:component_bootstrap.html.twig',
+        ));
 
         $container->setParameter('sonatra_block.twig.resources', $resources);
     }
