@@ -234,10 +234,7 @@
     {% if inline == false %}
     <div class="checkbox">
     {% endif %}
-	    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-	        <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
-	        {{ label|trans({}, translation_domain) }}
-	    </label>
+	    {{ block('checkbox_widget_content') }}
     {% if inline == false %}
     </div>
     {% endif %}
@@ -248,6 +245,15 @@
     {% endif %}
 {% endspaceless %}
 {% endblock checkbox_widget %}
+
+{% block checkbox_widget_content %}
+{% spaceless %}
+    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+        {{ label|trans({}, translation_domain) }}
+    </label>
+{% endspaceless %}
+{% endblock checkbox_widget_content %}
 
 
 {% block radio_label %}
@@ -271,10 +277,7 @@
     {% if inline == false %}
     <div class="radio">
     {% endif %}
-	    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-	        <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
-	        {{ label|trans({}, translation_domain) }}
-	    </label>
+	    {{ block('radio_widget_content') }}
     {% if inline == false %}
     </div>
     {% endif %}
@@ -285,6 +288,15 @@
     {% endif %}
 {% endspaceless %}
 {% endblock radio_widget %}
+
+{% block radio_widget_content %}
+{% spaceless %}
+    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+        {{ label|trans({}, translation_domain) }}
+    </label>
+{% endspaceless %}
+{% endblock radio_widget_content %}
 
 
 {% block choice_widget_collapsed %}
