@@ -17,11 +17,11 @@ use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Blockquote Block Type.
+ * Blockquote Footer Block Type.
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class BlockquoteType extends AbstractType
+class BlockquoteFooterType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -29,7 +29,7 @@ class BlockquoteType extends AbstractType
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'reverse' => $options['reverse'],
+            'size' => $options['size'],
         ));
     }
 
@@ -39,11 +39,15 @@ class BlockquoteType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'reverse' => false,
+            'size' => null,
         ));
 
         $resolver->setAllowedTypes(array(
-            'reverse' => 'bool',
+            'size' => array('null', 'string'),
+        ));
+
+        $resolver->setAllowedValues(array(
+            'size' => array('sm', 'lg'),
         ));
     }
 
@@ -52,6 +56,6 @@ class BlockquoteType extends AbstractType
      */
     public function getName()
     {
-        return 'blockquote';
+        return 'blockquote_footer';
     }
 }

@@ -54,7 +54,7 @@ class MediaType extends AbstractType
                     $class .= ' media-object';
                 }
 
-                $class .= ' pull-' . $options['pull'];
+                $class .= ' pull-' . $options['align'];
                 $class = trim($class);
 
                 $child->vars['attr']['class'] = $class;
@@ -79,15 +79,15 @@ class MediaType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'pull' => 'left',
+            'align' => 'left',
         ));
 
         $resolver->setAllowedTypes(array(
-            'pull' => 'string',
+            'align' => 'string',
         ));
 
         $resolver->setAllowedValues(array(
-            'pull' => array('left', 'right'),
+            'align' => array('left', 'right'),
         ));
     }
 

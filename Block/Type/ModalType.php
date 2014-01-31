@@ -61,6 +61,7 @@ class ModalType extends AbstractType
             'transition'   => $options['transition'],
             'dialog_attr'  => $options['dialog_attr'],
             'content_attr' => $options['content_attr'],
+            'size'         => $options['size'],
         ));
 
         if ($block->getConfig()->hasAttribute('block_header')) {
@@ -80,6 +81,7 @@ class ModalType extends AbstractType
             'transition'   => null,
             'dialog_attr'  => array(),
             'content_attr' => array(),
+            'size'         => null,
         ));
 
         $resolver->setAllowedTypes(array(
@@ -87,10 +89,12 @@ class ModalType extends AbstractType
             'transition'   => array('null', 'string'),
             'dialog_attr'  => 'array',
             'content_attr' => 'array',
+            'size'         => array('null', 'string'),
         ));
 
         $resolver->setAllowedValues(array(
             'transition' => array('fade'),
+            'style'      => array('lg', 'sm'),
         ));
     }
 

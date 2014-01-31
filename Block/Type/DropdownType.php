@@ -31,7 +31,7 @@ class DropdownType extends AbstractType
         $view->vars = array_replace($view->vars, array(
             'wrapper'      => $options['wrapper'],
             'wrapper_attr' => $options['wrapper_attr'],
-            'pull'         => $options['pull'],
+            'align'        => $options['align'],
         ));
     }
 
@@ -84,17 +84,17 @@ class DropdownType extends AbstractType
         $resolver->setDefaults(array(
             'wrapper'      => true,
             'wrapper_attr' => array(),
-            'pull'         => null,
+            'align'        => null,
         ));
 
         $resolver->setAllowedTypes(array(
             'wrapper'      => 'bool',
             'wrapper_attr' => 'array',
-            'pull'         => array('null', 'string'),
+            'align'        => array('null', 'string'),
         ));
 
         $resolver->setAllowedValues(array(
-            'pull' => array('left', 'right'),
+            'align' => array('left', 'right'),
         ));
     }
 

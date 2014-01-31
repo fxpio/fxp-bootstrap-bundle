@@ -39,6 +39,7 @@ class ListGroupItemType extends AbstractType
             'attr'    => $attr,
             'active'  => $options['active'],
             'is_link' => null !== $options['src'],
+            'style'   => $options['style'],
         ));
     }
 
@@ -50,11 +51,17 @@ class ListGroupItemType extends AbstractType
         $resolver->setDefaults(array(
             'src'    => null,
             'active' => false,
+            'style' => null,
         ));
 
         $resolver->setAllowedTypes(array(
             'src'    => array('null', 'string'),
             'active' => 'bool',
+            'style'  => array('null', 'string'),
+        ));
+
+        $resolver->setAllowedValues(array(
+            'style' => array('success', 'info', 'warning', 'danger'),
         ));
 
         $resolver->setNormalizers(array(

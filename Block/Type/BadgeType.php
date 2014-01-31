@@ -29,7 +29,7 @@ class BadgeType extends AbstractType
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'pull' => $options['pull'],
+            'align' => $options['align'],
         ));
     }
 
@@ -39,15 +39,15 @@ class BadgeType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'pull' => null,
+            'align' => null,
         ));
 
         $resolver->setAllowedTypes(array(
-            'pull' => array('null', 'string'),
+            'align' => array('null', 'string'),
         ));
 
         $resolver->setAllowedValues(array(
-            'pull' => array('left', 'right'),
+            'align' => array('left', 'right'),
         ));
     }
 

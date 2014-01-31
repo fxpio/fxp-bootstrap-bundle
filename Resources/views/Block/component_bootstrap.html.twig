@@ -244,8 +244,8 @@
         <div {% for attrname, attrvalue in wrapper_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
     {% endif %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' dropdown-menu')|trim, role:'menu'}) %}
-    {% if pull is not empty %}
-        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' pull-' ~ pull)|trim}) %}
+    {% if align is not empty %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' dropdown-menu-' ~ align)|trim}) %}
     {% endif %}
     <ul {{ block('widget_container_attributes') }}>
         {{- value|raw -}}
@@ -524,8 +524,8 @@
 
 {% block blockquote_widget %}
 {% spaceless %}
-    {% if pull is not empty %}
-        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' pull-' ~ pull)|trim}) %}
+    {% if reverse %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' blockquote-reverse')|trim}) %}
     {% endif %}
     <blockquote {{ block('widget_container_attributes') }}>
         {{- value|raw -}}
@@ -533,6 +533,17 @@
     </blockquote>
 {% endspaceless %}
 {% endblock blockquote_widget %}
+
+{% block blockquote_footer_widget %}
+{% spaceless %}
+    <footer {{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
+	    {% for child in block %}
+	        {{ block_widget(child) }}
+	    {% endfor %}
+    </footer>
+{% endspaceless %}
+{% endblock blockquote_footer_widget %}
 
 
 {% block list_group_widget %}
@@ -545,6 +556,9 @@
 {% block list_group_item_widget %}
 {% spaceless %}
     {% set attr = attr|merge({'class': ('list-group-item ' ~ attr.class|default(''))|trim}) %}
+    {% if style %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' list-group-item-' ~ style)|trim}) %}
+    {% endif %}
     {% set tag = tag|default('li') %}
     {% if is_link %}
         {% set tag = 'a' %}
@@ -636,8 +650,8 @@
 {% block badge_widget %}
 {% spaceless %}
     {% set attr = attr|merge({'class': ('badge ' ~ attr.class|default(''))|trim}) %}
-    {% if pull is not empty %}
-        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' pull-' ~ pull)|trim}) %}
+    {% if align is not empty %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' pull-' ~ align)|trim}) %}
     {% endif %}
     <span {{ block('widget_container_attributes') }}>
         {{- label|trans({}, translation_domain) -}}
@@ -917,6 +931,10 @@
 
     {% if transition is not null %}
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ transition)|trim}) %}
+    {% endif %}
+
+    {% if size is not null %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' modal-' ~ size)|trim}) %}
     {% endif %}
 
     <div {{ block('widget_container_attributes') }}>

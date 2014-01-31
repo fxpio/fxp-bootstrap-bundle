@@ -149,6 +149,14 @@
             <tag name="sonatra_block.type" alias="blockquote" />
         </service>
 
+        <service id="sonatra_block.type.blockquote_body" class="Sonatra\Bundle\BootstrapBundle\Block\Type\BlockquoteBodyType">
+            <tag name="sonatra_block.type" alias="blockquote_body" />
+        </service>
+
+        <service id="sonatra_block.type.blockquote_footer" class="Sonatra\Bundle\BootstrapBundle\Block\Type\BlockquoteFooterType">
+            <tag name="sonatra_block.type" alias="blockquote_footer" />
+        </service>
+
         <service id="sonatra_block.type.list_group" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ListGroupType">
             <tag name="sonatra_block.type" alias="list_group" />
         </service>
