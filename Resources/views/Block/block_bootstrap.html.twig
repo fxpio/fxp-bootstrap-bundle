@@ -104,13 +104,7 @@
     {% endif %}
 
     <div class="block_checkbox{% if block.parent.vars.row|default(false) %} block-control{% endif %}">
-        {% if value %}
-            {% set value = 'check' %}
-            {% else %}
-                {% set value = 'unchecked' %}
-        {% endif %}
-        {% set attr = attr|merge({'class': ('glyphicon glyphicon-' ~ value ~ ' ' ~ attr.class|default(''))|trim}) %}
-        <span {{ block('widget_attributes') }}></span>
+        {{ block('checkbox_widget_content') }}
     </div>
 
     {% if layout is defined and layout == 'horizontal' %}
@@ -118,6 +112,18 @@
     {% endif %}
 {% endspaceless %}
 {% endblock checkbox_widget %}
+
+{% block checkbox_widget_content %}
+{% spaceless %}
+    {% if value %}
+        {% set value = 'check' %}
+    {% else %}
+            {% set value = 'unchecked' %}
+    {% endif %}
+    {% set attr = attr|merge({'class': ('glyphicon glyphicon-' ~ value ~ ' ' ~ attr.class|default(''))|trim}) %}
+    <span {{ block('widget_attributes') }}></span>
+{% endspaceless %}
+{% endblock checkbox_widget_content %}
 
 
 {% block radio_widget %}
@@ -131,13 +137,7 @@
     {% endif %}
 
     <div class="block_radio{% if block.parent.vars.row|default(false) %} block-control{% endif %}">
-        {% if value %}
-            {% set value = 'check' %}
-            {% else %}
-                {% set value = 'unchecked' %}
-        {% endif %}
-        {% set attr = attr|merge({'class': ('glyphicon glyphicon-' ~ value ~ ' ' ~ attr.class|default(''))|trim}) %}
-        <span {{ block('widget_attributes') }}></span>
+        {{ block('radio_widget_content') }}
     </div>
 
     {% if layout is defined and layout == 'horizontal' %}
@@ -145,6 +145,18 @@
     {% endif %}
 {% endspaceless %}
 {% endblock radio_widget %}
+
+{% block radio_widget_content %}
+{% spaceless %}
+    {% if value %}
+        {% set value = 'check' %}
+    {% else %}
+            {% set value = 'unchecked' %}
+    {% endif %}
+    {% set attr = attr|merge({'class': ('glyphicon glyphicon-' ~ value ~ ' ' ~ attr.class|default(''))|trim}) %}
+    <span {{ block('widget_attributes') }}></span>
+{% endspaceless %}
+{% endblock radio_widget_content %}
 
 
 {% block collection_widget %}
