@@ -28,6 +28,9 @@
         {% assetstylesheets 'sonatra_bootstrap_common_stylesheets' %}
             <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
         {% endassetstylesheets %}
+        {% localizedassetstylesheets %}
+            <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+        {% endlocalizedassetstylesheets %}
     {% endblock stylesheets %}
 
     {% block style %}
@@ -63,6 +66,9 @@
     {% assetjavascripts 'sonatra_bootstrap_common_javascripts' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endassetjavascripts %}
+    {% localizedassetjavascripts %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endlocalizedassetjavascripts %}
     {% endblock javascripts %}
 
     {% block jquery %}

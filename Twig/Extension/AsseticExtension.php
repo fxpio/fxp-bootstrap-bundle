@@ -13,6 +13,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Twig\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Sonatra\Bundle\BootstrapBundle\Twig\TokenParser\AsseticTokenParser;
+use Sonatra\Bundle\BootstrapBundle\Twig\TokenParser\AsseticLocalizedTokenParser;
 
 /**
  * BlockExtension extends Twig with block capabilities.
@@ -46,6 +47,8 @@ class AsseticExtension extends \Twig_Extension
         return array(
             new AsseticTokenParser($manager, 'assetjavascripts'),
             new AsseticTokenParser($manager, 'assetstylesheets'),
+            new AsseticLocalizedTokenParser($manager, 'localizedassetjavascripts', 'javascript'),
+            new AsseticLocalizedTokenParser($manager, 'localizedassetstylesheets', 'stylesheet'),
         );
     }
 

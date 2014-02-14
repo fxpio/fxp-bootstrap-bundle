@@ -17,6 +17,7 @@ use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\FormTemplatePass
 use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\BlockTemplatePass;
 use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\CommonStylesheetPass;
 use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\CommonJavascriptPass;
+use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\LocalizedAssetsPass;
 use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\ShivJavascriptPass;
 
 /**
@@ -32,6 +33,7 @@ class SonatraBootstrapBundle extends Bundle
         $container->addCompilerPass(new BlockTemplatePass());
         $container->addCompilerPass(new CommonStylesheetPass());
         $container->addCompilerPass(new CommonJavascriptPass());
+        $container->addCompilerPass(new LocalizedAssetsPass());
         $container->addCompilerPass(new ShivJavascriptPass());
     }
 }

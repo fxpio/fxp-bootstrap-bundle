@@ -93,6 +93,9 @@ class SonatraBootstrapExtension extends Extension
         $container->getDefinition('sonatra_bootstrap.assetic.common_stylesheets_resource')->replaceArgument(1, $config['inputs']);
         $container->getDefinition('sonatra_bootstrap.assetic.common_stylesheets_resource')->replaceArgument(2, $config['filters']);
         $container->getDefinition('sonatra_bootstrap.assetic.common_stylesheets_resource')->replaceArgument(3, $config['options']);
+
+        // localized
+        $container->setParameter('sonatra_bootstrap.assetic.common_localized_stylesheets_config', $config);
     }
 
     /**
@@ -123,6 +126,9 @@ class SonatraBootstrapExtension extends Extension
         $container->getDefinition('sonatra_bootstrap.assetic.common_javascripts_resource')->replaceArgument(1, $config['inputs']);
         $container->getDefinition('sonatra_bootstrap.assetic.common_javascripts_resource')->replaceArgument(2, $config['filters']);
         $container->getDefinition('sonatra_bootstrap.assetic.common_javascripts_resource')->replaceArgument(3, $config['options']);
+
+        // localized
+        $container->setParameter('sonatra_bootstrap.assetic.common_localized_javascripts_config', $config);
     }
 
     /**
