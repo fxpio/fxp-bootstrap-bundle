@@ -374,7 +374,7 @@
         {% set value = data|block_formatter('datetime') %}
         {{ block('form_control_static_value') }}
     {% else %}
-        {{ block('base_datetime_widget') }}
+        {{ block('datetime_widget_content') }}
     {% endif %}
     {{ block('help_text') }}
 
@@ -382,6 +382,11 @@
         </div>
     {% endif %}
 {% endblock datetime_widget %}
+
+
+{% block datetime_widget_content %}
+    {{ block('base_datetime_widget') }}
+{% endblock datetime_widget_content %}
 
 
 {% block date_widget %}
