@@ -2,7 +2,11 @@
 
 {% block container_widget %}
 {% spaceless %}
-    {% set attr = attr|merge({'class': ('container ' ~ attr.class|default(''))|trim}) %}
+    {% set container_class = 'container' %}
+    {% if fluid %}
+        {% set container_class = 'container-fluid' %}
+    {% endif %}
+    {% set attr = attr|merge({'class': (container_class ~ ' ' ~ attr.class|default(''))|trim}) %}
     <div {{ block('widget_container_attributes') }}>
         {{- value|raw -}}
 	    {% for child in block %}
