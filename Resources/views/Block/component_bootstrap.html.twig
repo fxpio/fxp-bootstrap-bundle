@@ -1070,7 +1070,7 @@
 {% spaceless %}
     {% set attr = attr|merge({'class': ('navbar-header ' ~ attr.class|default(''))|trim}) %}
     <div {{ block('widget_container_attributes') }}>
-        {{ block('navbar_header_toggle_button') }}
+        {% if collapse_id is defined and collapse_id is not empty %}{{ block('navbar_header_toggle_button') }}{% endif %}
         {% if navbar_brand is defined %}{{ block_widget(navbar_brand) }}{% endif %}
         {{- value|raw -}}
 	    {% for child in block %}
