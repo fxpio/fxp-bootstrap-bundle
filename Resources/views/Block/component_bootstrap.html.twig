@@ -1127,13 +1127,13 @@
     {% if condensed %}
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' table-condensed')|trim}) %}
     {% endif %}
-    {% if responsive %}
-        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' table-responsive')|trim}) %}
-    {% endif %}
     {% if hover_rows %}
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' table-hover')|trim}) %}
     {% endif %}
 
+    {% if responsive %}
+        <div class="table-responsive">
+    {% endif %}
     <table {{ block('widget_container_attributes') }}>
         {% if caption is defined %}
             {{ block_widget(caption) }}
@@ -1159,6 +1159,9 @@
 	        {{ block_widget(child) }}
 	    {% endfor %}
     </table>
+    {% if responsive %}
+        </div>
+    {% endif %}
 {% endspaceless %}
 {% endblock table_widget %}
 
