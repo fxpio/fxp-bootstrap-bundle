@@ -1146,7 +1146,7 @@
                 {% for rowIndex, rowData in data.rows %}
                     <tr>
                         {% for colIndex, colBlock in header.vars.header_columns %}
-	                        {{ block_component(colBlock, {data: rowData[colBlock.vars.name]|default(colBlock.vars.empty_data)}) }}
+	                        {{ block_component(colBlock, {data: rowData[colBlock.vars.name]|default(null)}) }}
 	                    {% endfor %}
                     </tr>
                 {% endfor %}
@@ -1205,7 +1205,7 @@
 
 {% block table_column_component %}
 {% spaceless %}
-    <td{% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ data|block_formatter(formatter, formatter_options) }}</td>
+    <td{% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ data|block_formatter(formatter, formatter_options)|default(empty_data) }}</td>
 {% endspaceless %}
 {% endblock table_column_component %}
 
