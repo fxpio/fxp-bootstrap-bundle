@@ -144,6 +144,7 @@ interface DataSourceInterface
 
     /**
      * Get page size.
+     * If page size equal 0, all row displayed.
      *
      * @return integer
     */
