@@ -58,6 +58,20 @@ class TableType extends AbstractType
     public function buildBlock(BlockBuilderInterface $builder, array $options)
     {
         $builder->setDataMapper(new WrapperMapper());
+
+        if (is_array($builder->getData())) {
+            $source = new DataSource($this->renderer);
+            $source->setRows($builder->getData());
+            $source->setLocale($options['locale']);
+            $source->setPageSize($options['page_size']);
+            $source->setStart($options['page_start']);
+            $source->setPageNumber($options['page_number']);
+            $source->setSortColumns($options['sort_columns']);
+            $source->setParameters($options['data_parameters']);
+
+            $builder->setData($source);
+            $builder->setDataClass(get_class($source));
+        }
     }
 
     /**
@@ -149,26 +163,6 @@ class TableType extends AbstractType
             'page_number'     => 'int',
             'sort_columns'    => 'array',
             'data_parameters' => 'array',
-        ));
-
-        $resolver->setNormalizers(array(
-            'data' => function (Options $options, $value) {
-                $source = $value;
-
-                if (is_array($source)) {
-                    $source = new DataSource($this->renderer);
-                    $source->setRows($value);
-                }
-
-                $source->setLocale($options['locale']);
-                $source->setPageSize($options['page_size']);
-                $source->setStart($options['page_start']);
-                $source->setPageNumber($options['page_number']);
-                $source->setSortColumns($options['sort_columns']);
-                $source->setParameters($options['data_parameters']);
-
-                return $source;
-            },
         ));
     }
 
