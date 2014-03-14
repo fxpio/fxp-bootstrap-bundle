@@ -1145,8 +1145,8 @@
             <tbody>
                 {% for rowIndex, rowData in data.rows %}
                     <tr>
-                        {% for colIndex, colBlock in data.columns %}
-                            {{ block_component(colBlock.createView(block), {value: rowData[colBlock.config.options.index]|default(null)}) }}
+                        {% for colIndex, colBlock in header.vars.header_columns %}
+                            <td{% for attrname, attrvalue in colBlock.vars.attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ rowData[colBlock.vars.index]|default(null)|raw }}</td>
                         {% endfor %}
                     </tr>
                 {% endfor %}
@@ -1205,12 +1205,6 @@
     <th{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</th>
 {% endspaceless %}
 {% endblock table_column_label %}
-
-{% block table_column_component %}
-{% spaceless %}
-    <td{% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ value|raw }}</td>
-{% endspaceless %}
-{% endblock table_column_component %}
 
 {% block table_column_datasourcecomponent %}
 {% spaceless %}
