@@ -15,6 +15,7 @@ use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\Options;
 
 /**
  * Table Column Block Type.
@@ -29,6 +30,7 @@ class TableColumnType extends AbstractType
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
+            'index'             => $options['index'],
             'formatter'         => $options['formatter'],
             'formatter_options' => $options['formatter_options'],
             'empty_data'        => $options['empty_data'],
@@ -40,7 +42,16 @@ class TableColumnType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+        $index = function (Options $options, $value) {
+            if (null == $value) {
+                $value = $options['block_name'];
+            }
+
+            return $value;
+        };
+
         $resolver->setDefaults(array(
+            'index'             => $index,
             'formatter'         => 'text',
             'formatter_options' => array(),
             'empty_data'        => null,

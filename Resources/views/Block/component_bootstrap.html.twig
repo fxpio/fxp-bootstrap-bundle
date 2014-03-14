@@ -1146,7 +1146,7 @@
                 {% for rowIndex, rowData in data.rows %}
                     <tr>
                         {% for colIndex, colBlock in header.vars.header_columns %}
-	                        {{ block_component(colBlock, {data: rowData[colBlock.vars.name]|default(null)}) }}
+	                        {{ block_component(colBlock, {data: rowData[colBlock.vars.index]|default(null)}) }}
 	                    {% endfor %}
                     </tr>
                 {% endfor %}
