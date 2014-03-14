@@ -359,6 +359,12 @@
             <argument type="service" id="sonatra_block.twig.renderer" />
         </service>
 
+        <service id="sonatra_bootstrap.type_extension.table_doctrine_orm" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\TableDoctrineOrmExtension">
+            <tag name="sonatra_block.type_extension" alias="table" />
+            <argument type="service" id="sonatra_block.twig.renderer" />
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+
         <service id="sonatra_bootstrap.type.table_caption" class="Sonatra\Bundle\BootstrapBundle\Block\Type\TableCaptionType">
             <tag name="sonatra_block.type" alias="table_caption" />
         </service>
