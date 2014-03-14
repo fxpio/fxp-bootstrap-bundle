@@ -16,8 +16,10 @@ use Sonatra\Bundle\BlockBundle\Block\BlockBuilderInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockFactoryInterface;
+use Sonatra\Bundle\BlockBundle\Block\BlockRendererInterface;
 use Sonatra\Bundle\BlockBundle\Block\Extension\Core\DataMapper\WrapperMapper;
-use Sonatra\Bundle\BootstrapBundle\Table\DataSource;
+use Sonatra\Bundle\BlockBundle\Block\ResolvedBlockTypeInterface;
+use Sonatra\Bundle\BootstrapBundle\Block\DataSource\DataSource;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\Options;
 
@@ -34,13 +36,20 @@ class TableType extends AbstractType
     protected $factory;
 
     /**
+     * @var BlockRendererInterface
+     */
+    protected $renderer;
+
+    /**
      * Constructor.
      *
-     * @param BlockFactoryInterface $factory
+     * @param BlockFactoryInterface  $factory
+     * @param BlockRendererInterface $renderer
      */
-    public function __construct(BlockFactoryInterface $factory)
+    public function __construct(BlockFactoryInterface $factory, BlockRendererInterface $renderer)
     {
         $this->factory = $factory;
+        $this->renderer = $renderer;
     }
 
     /**
@@ -56,6 +65,14 @@ class TableType extends AbstractType
      */
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
+        $block->getData()->setTableView($view);
+
+        foreach ($block->all() as $name => $child) {
+            if ($this->isColumn($child->getConfig()->getType())) {
+                $block->getData()->addColumn($child);
+            }
+        }
+
         $view->vars = array_replace($view->vars, array(
             'striped'    => $options['striped'],
             'bordered'   => $options['bordered'],
@@ -105,33 +122,52 @@ class TableType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'striped'    => false,
-            'bordered'   => false,
-            'condensed'  => false,
-            'responsive' => false,
-            'hover_rows' => false,
-            'data'       => array(),
+            'striped'         => false,
+            'bordered'        => false,
+            'condensed'       => false,
+            'responsive'      => false,
+            'hover_rows'      => false,
+            'data'            => array(),
+            'locale'          => \Locale::getDefault(),
+            'page_size'       => 0,
+            'page_start'      => 1,
+            'page_number'     => 1,
+            'sort_columns'    => array(),
+            'data_parameters' => array(),
         ));
 
         $resolver->setAllowedTypes(array(
-            'striped'    => 'bool',
-            'bordered'   => 'bool',
-            'condensed'  => 'bool',
-            'responsive' => 'bool',
-            'hover_rows' => 'bool',
-            'data'       => array('array', 'Sonatra\Bundle\BootstrapBundle\Table\DataSourceInterface'),
+            'striped'         => 'bool',
+            'bordered'        => 'bool',
+            'condensed'       => 'bool',
+            'responsive'      => 'bool',
+            'hover_rows'      => 'bool',
+            'data'            => array('array', 'Sonatra\Bundle\BootstrapBundle\Block\DataSource\DataSourceInterface'),
+            'locale'          => 'string',
+            'page_size'       => 'int',
+            'page_start'      => 'int',
+            'page_number'     => 'int',
+            'sort_columns'    => 'array',
+            'data_parameters' => 'array',
         ));
 
         $resolver->setNormalizers(array(
             'data' => function (Options $options, $value) {
-                if (is_array($value)) {
-                    $data = new DataSource();
-                    $data->setRows($value);
+                $source = $value;
 
-                    return $data;
+                if (is_array($source)) {
+                    $source = new DataSource($this->renderer);
+                    $source->setRows($value);
                 }
 
-                return $value;
+                $source->setLocale($options['locale']);
+                $source->setPageSize($options['page_size']);
+                $source->setStart($options['page_start']);
+                $source->setPageNumber($options['page_number']);
+                $source->setSortColumns($options['sort_columns']);
+                $source->setParameters($options['data_parameters']);
+
+                return $source;
             },
         ));
     }
@@ -142,5 +178,25 @@ class TableType extends AbstractType
     public function getName()
     {
         return 'table';
+    }
+
+    /**
+     * Check if the child is a column.
+     *
+     * @param ResolvedBlockTypeInterface $type
+     *
+     * @return boolean
+     */
+    protected function isColumn(ResolvedBlockTypeInterface $type)
+    {
+        if ('table_column' === $type->getName()) {
+            return true;
+        }
+
+        if (null !== $type->getParent()) {
+            return $this->isColumn($type->getParent());
+        }
+
+        return false;
     }
 }

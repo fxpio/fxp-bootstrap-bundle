@@ -356,6 +356,7 @@
         <service id="sonatra_block.type.table" class="Sonatra\Bundle\BootstrapBundle\Block\Type\TableType">
             <tag name="sonatra_block.type" alias="table" />
             <argument type="service" id="sonatra_block.factory" />
+            <argument type="service" id="sonatra_block.twig.renderer" />
         </service>
 
         <service id="sonatra_block.type.table_caption" class="Sonatra\Bundle\BootstrapBundle\Block\Type\TableCaptionType">
