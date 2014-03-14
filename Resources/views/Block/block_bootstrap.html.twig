@@ -186,8 +186,8 @@
     <fieldset {{ block('widget_attributes') }}>
         {% if label is not empty %}
             {% if layout is defined and layout == 'horizontal' %}
-		        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ (layout_col_label + layout_col_control))|trim}) %}
-		    {% endif %}
+                {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ (layout_col_label + layout_col_control))|trim}) %}
+            {% endif %}
             <legend{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</legend>
         {% endif %}
         {{ block('block_rows') }}
@@ -250,15 +250,15 @@
 {% block widget_container_attributes %}
 {% spaceless %}
     {% if visibility|length > 0 %}
-	    {% set visibility_class = '' %}
-	    {% for item in visibility %}
-	        {% set visibility_class = ' ' ~ visibility_class ~ ' ' ~ item %}
-	    {% endfor %}
-	    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ visibility_class|trim)|trim}) %}
-	{% endif %}
-	{% if print is not null %}
-	    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ print ~ '-print')|trim}) %}
-	{% endif %}
+        {% set visibility_class = '' %}
+        {% for item in visibility %}
+            {% set visibility_class = ' ' ~ visibility_class ~ ' ' ~ item %}
+        {% endfor %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ visibility_class|trim)|trim}) %}
+    {% endif %}
+    {% if print is not null %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ print ~ '-print')|trim}) %}
+    {% endif %}
     {{ block('base_widget_container_attributes') }}
     {{ block('extension_tooltip_javascript') }}
     {{ block('extension_popover_javascript') }}
@@ -269,33 +269,33 @@
 
 {% block extension_tooltip_javascript %}
     {% if tooltip_id is defined %}
-	    {% asset_javascript %}
-	        <script type="text/javascript">
-	        $('#{{ tooltip_id }}').tooltip();
-	        </script>
-	    {% endasset %}
+        {% asset_javascript %}
+            <script type="text/javascript">
+            $('#{{ tooltip_id }}').tooltip();
+            </script>
+        {% endasset %}
     {% endif %}
 {% endblock extension_tooltip_javascript %}
 
 
 {% block extension_popover_javascript %}
     {% if popover_id is defined %}
-	    {% asset_javascript %}
-	        <script type="text/javascript">
-	        $('#{{ popover_id }}').popover();
-	        </script>
-	    {% endasset %}
+        {% asset_javascript %}
+            <script type="text/javascript">
+            $('#{{ popover_id }}').popover();
+            </script>
+        {% endasset %}
     {% endif %}
 {% endblock extension_popover_javascript %}
 
 
 {% block extension_scroll_spy_javascript %}
     {% if scroll_spy is defined %}
-	    {% asset_javascript %}
-	        <script type="text/javascript">
-	        $('#{{ popover_id }}').popover();
-	        $('{{ scroll_spy.on }}').scrollspy({ target: '#{{ scroll_spy.target }}'{% if scroll_spy.offset is not null %}, offset: {{ scroll_spy.offset }}{% endif %} });
-	        </script>
-	    {% endasset %}
+        {% asset_javascript %}
+            <script type="text/javascript">
+            $('#{{ popover_id }}').popover();
+            $('{{ scroll_spy.on }}').scrollspy({ target: '#{{ scroll_spy.target }}'{% if scroll_spy.offset is not null %}, offset: {{ scroll_spy.offset }}{% endif %} });
+            </script>
+        {% endasset %}
     {% endif %}
 {% endblock extension_scroll_spy_javascript %}

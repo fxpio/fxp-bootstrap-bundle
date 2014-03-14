@@ -79,16 +79,16 @@
     {% if static_control and type|default('text') != 'hidden' %}
         {{ block('form_control_static_value') }}
     {% else %}
-	    {{ block('addon_start') }}
-	    {% set form_widget_simple_block_name = form_widget_simple_block_name|default('base_form_widget_simple') %}
-	    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
-	    {% if size is not empty %}
-	        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' input-' ~ size)|trim}) %}
-	    {% endif %}
-	    {{ block(form_widget_simple_block_name) }}
-	    {{ block('addon_end') }}
-	{% endif %}
-	{{ block('help_text') }}
+        {{ block('addon_start') }}
+        {% set form_widget_simple_block_name = form_widget_simple_block_name|default('base_form_widget_simple') %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
+        {% if size is not empty %}
+            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' input-' ~ size)|trim}) %}
+        {% endif %}
+        {{ block(form_widget_simple_block_name) }}
+        {{ block('addon_end') }}
+    {% endif %}
+    {{ block('help_text') }}
 
     {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
         </div>
@@ -164,27 +164,27 @@
     {% asset_javascript %}
     <script type="text/javascript">
     {% if btn_add is defined and prototype is defined %}
-	    $('#{{ btn_add.vars.id }}').click(function(event) {
-	        var inc = $(this).data('inc');
-	            inc = undefined !== inc ? inc : {{ form|length }};
-	        var collectionHolder = $('#' + $(this).attr('data-target'));
-	        var prototype = collectionHolder.attr('data-prototype');
-	        var form = prototype.replace(/{{ prototype_name }}/g, inc);
+        $('#{{ btn_add.vars.id }}').click(function(event) {
+            var inc = $(this).data('inc');
+                inc = undefined !== inc ? inc : {{ form|length }};
+            var collectionHolder = $('#' + $(this).attr('data-target'));
+            var prototype = collectionHolder.attr('data-prototype');
+            var form = prototype.replace(/{{ prototype_name }}/g, inc);
 
-	        collectionHolder.append(form);
-	        $(this).data('inc', ++inc);
+            collectionHolder.append(form);
+            $(this).data('inc', ++inc);
 
-	        return false;
-	    });
-	{% endif %}
+            return false;
+        });
+    {% endif %}
 
-	{% if allow_delete and prototype is defined %}
-	   $('#{{ id }}').on('click', 'button.btn-remove', null, function(event) {
-	        $(this).parents('.form-collection-row').remove();
+    {% if allow_delete and prototype is defined %}
+       $('#{{ id }}').on('click', 'button.btn-remove', null, function(event) {
+            $(this).parents('.form-collection-row').remove();
 
-	        return false;
-	   });
-	{% endif %}
+            return false;
+       });
+    {% endif %}
     </script>
     {% endasset %}
 {% endblock collection_widget %}
@@ -198,13 +198,13 @@
     {% if static_control and type|default('text') != 'hidden' %}
         {{ block('form_control_static_value') }}
     {% else %}
-	    {{ block('addon_start') }}
-	    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
-	    {% if size is not empty %}
-	        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' input-' ~ size)|trim}) %}
-	    {% endif %}
-	    {{ block('base_textarea_widget') }}
-	    {{ block('addon_end') }}
+        {{ block('addon_start') }}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
+        {% if size is not empty %}
+            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' input-' ~ size)|trim}) %}
+        {% endif %}
+        {{ block('base_textarea_widget') }}
+        {{ block('addon_end') }}
     {% endif %}
     {{ block('help_text') }}
 
@@ -235,7 +235,7 @@
     {% if inline == false %}
     <div class="checkbox">
     {% endif %}
-	    {{ block('checkbox_widget_content') }}
+        {{ block('checkbox_widget_content') }}
     {% if inline == false %}
     </div>
     {% endif %}
@@ -278,7 +278,7 @@
     {% if inline == false %}
     <div class="radio">
     {% endif %}
-	    {{ block('radio_widget_content') }}
+        {{ block('radio_widget_content') }}
     {% if inline == false %}
     </div>
     {% endif %}
@@ -347,12 +347,12 @@
     {% if static_control %}
         {{ block('choice_widget_collapsed') }}
     {% else %}
-	    {% if layout|default(null) == 'horizontal' %}
-	        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ layout_col_control)|trim}) %}
-	        {% set help_attr = help_attr|merge({'class': (help_attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-offset-' ~ layout_col_label ~ ' col-' ~ layout_col_size ~ '-' ~ layout_col_control)|trim}) %}
-	    {% endif %}
-	    {{ block('base_choice_widget_expanded') }}
-	    {{ block('help_text') }}
+        {% if layout|default(null) == 'horizontal' %}
+            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ layout_col_control)|trim}) %}
+            {% set help_attr = help_attr|merge({'class': (help_attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-offset-' ~ layout_col_label ~ ' col-' ~ layout_col_size ~ '-' ~ layout_col_control)|trim}) %}
+        {% endif %}
+        {{ block('base_choice_widget_expanded') }}
+        {{ block('help_text') }}
     {% endif %}
 {% endblock choice_widget_expanded %}
 
@@ -438,8 +438,8 @@
     <fieldset {{ block('widget_attributes') }}>
         {% if legend is not empty %}
             {% if layout|default(null) == 'horizontal' %}
-		        {% set legend_attr = legend_attr|merge({'class': (legend_attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ (layout_col_label + layout_col_control))|trim}) %}
-		    {% endif %}
+                {% set legend_attr = legend_attr|merge({'class': (legend_attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ (layout_col_label + layout_col_control))|trim}) %}
+            {% endif %}
             <legend{% for attrname, attrvalue in legend_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ legend }}</legend>
         {% endif %}
         {% if form.parent is empty %}
@@ -482,21 +482,21 @@
 {% block form_errors %}
 {% spaceless %}
     {% if errors|length > 0 %}
-	    {% if form.parent is empty %}
-	    <div class="alert alert-danger">
-	    {% elseif layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
+        {% if form.parent is empty %}
+        <div class="alert alert-danger">
+        {% elseif layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
         <div class="col-{{ layout_col_size }}-offset-{{ layout_col_label }} col-{{ layout_col_size }}-{{ layout_col_control }}">
-	    {% endif %}
-	    <ul{% if form.parent is not empty %} class="help-block"{% endif %}>
-	        {% for error in errors %}
-	            <li>{{ error.message }}</li>
-	        {% endfor %}
-	    </ul>
-	    {% if form.parent is empty %}
-	    </div>
-	    {% elseif layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
-	    </div>
-	    {% endif %}
+        {% endif %}
+        <ul{% if form.parent is not empty %} class="help-block"{% endif %}>
+            {% for error in errors %}
+                <li>{{ error.message }}</li>
+            {% endfor %}
+        </ul>
+        {% if form.parent is empty %}
+        </div>
+        {% elseif layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
+        </div>
+        {% endif %}
     {% endif %}
 {% endspaceless %}
 {% endblock form_errors %}
