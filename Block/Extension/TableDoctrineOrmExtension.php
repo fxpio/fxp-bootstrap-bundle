@@ -13,7 +13,6 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Extension;
 
 use Sonatra\Bundle\BlockBundle\Block\AbstractTypeExtension;
 use Sonatra\Bundle\BlockBundle\Block\BlockBuilderInterface;
-use Sonatra\Bundle\BlockBundle\Block\BlockRendererInterface;
 use Sonatra\Bundle\BootstrapBundle\Doctrine\ORM\Block\DataSource\DoctrineOrmDataSource;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;
@@ -28,11 +27,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class TableDoctrineOrmExtension extends AbstractTypeExtension
 {
     /**
-     * @var BlockRendererInterface
-     */
-    protected $renderer;
-
-    /**
      * @var EntityManager
      */
     protected $entityManager;
@@ -40,12 +34,10 @@ class TableDoctrineOrmExtension extends AbstractTypeExtension
     /**
      * Constructor.
      *
-     * @param BlockRendererInterface $renderer
-     * @param EntityManager          $entityManager
+     * @param EntityManager $entityManager
      */
-    public function __construct(BlockRendererInterface $renderer, EntityManager $entityManager)
+    public function __construct(EntityManager $entityManager)
     {
-        $this->renderer = $renderer;
         $this->entityManager = $entityManager;
     }
 
@@ -61,7 +53,7 @@ class TableDoctrineOrmExtension extends AbstractTypeExtension
         }
 
         if ($data instanceof Query) {
-            $source = new DoctrineOrmDataSource($this->entityManager, $this->renderer);
+            $source = new DoctrineOrmDataSource($this->entityManager);
             $source->setQuery($data);
             $source->setLocale($options['locale']);
             $source->setPageSize($options['page_size']);

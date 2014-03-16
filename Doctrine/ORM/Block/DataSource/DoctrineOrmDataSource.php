@@ -14,7 +14,6 @@ namespace Sonatra\Bundle\BootstrapBundle\Doctrine\ORM\Block\DataSource;
 use Sonatra\Bundle\BootstrapBundle\Block\DataSource\DataSource;
 use Sonatra\Bundle\BootstrapBundle\Doctrine\ORM\Query\CountWalker;
 use Sonatra\Bundle\BootstrapBundle\Doctrine\ORM\Query\OrderByWalker;
-use Sonatra\Bundle\BlockBundle\Block\BlockRendererInterface;
 use Sonatra\Bundle\BlockBundle\Block\Exception\BadMethodCallException;
 use Sonatra\Bundle\BlockBundle\Block\Exception\InvalidArgumentException;
 use Doctrine\ORM\EntityManager;
@@ -38,12 +37,11 @@ class DoctrineOrmDataSource extends DataSource
     /**
      * Constructor.
      *
-     * @param EntityManager          $entityManager
-     * @param BlockRendererInterface $renderer
+     * @param EntityManager $entityManager
      */
-    public function __construct(EntityManager $entityManager, BlockRendererInterface $renderer)
+    public function __construct(EntityManager $entityManager)
     {
-        parent::__construct($renderer);
+        parent::__construct();
 
         $this->em = $entityManager;
     }

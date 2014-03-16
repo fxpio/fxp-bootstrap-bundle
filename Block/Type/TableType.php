@@ -16,7 +16,6 @@ use Sonatra\Bundle\BlockBundle\Block\BlockBuilderInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockFactoryInterface;
-use Sonatra\Bundle\BlockBundle\Block\BlockRendererInterface;
 use Sonatra\Bundle\BlockBundle\Block\Extension\Core\DataMapper\WrapperMapper;
 use Sonatra\Bundle\BlockBundle\Block\ResolvedBlockTypeInterface;
 use Sonatra\Bundle\BootstrapBundle\Block\DataSource\DataSource;
@@ -36,20 +35,13 @@ class TableType extends AbstractType
     protected $factory;
 
     /**
-     * @var BlockRendererInterface
-     */
-    protected $renderer;
-
-    /**
      * Constructor.
      *
-     * @param BlockFactoryInterface  $factory
-     * @param BlockRendererInterface $renderer
+     * @param BlockFactoryInterface $factory
      */
-    public function __construct(BlockFactoryInterface $factory, BlockRendererInterface $renderer)
+    public function __construct(BlockFactoryInterface $factory)
     {
         $this->factory = $factory;
-        $this->renderer = $renderer;
     }
 
     /**
@@ -60,7 +52,7 @@ class TableType extends AbstractType
         $builder->setDataMapper(new WrapperMapper());
 
         if (is_array($builder->getData())) {
-            $source = new DataSource($this->renderer);
+            $source = new DataSource();
             $source->setRows($builder->getData());
             $source->setLocale($options['locale']);
             $source->setPageSize($options['page_size']);

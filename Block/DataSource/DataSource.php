@@ -11,7 +11,6 @@
 
 namespace Sonatra\Bundle\BootstrapBundle\Block\DataSource;
 
-use Sonatra\Bundle\BlockBundle\Block\BlockRendererInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\Exception\InvalidArgumentException;
@@ -21,11 +20,6 @@ use Sonatra\Bundle\BlockBundle\Block\Exception\InvalidArgumentException;
  */
 class DataSource implements DataSourceInterface
 {
-    /**
-     * @var BlockRendererInterface
-     */
-    protected $renderer;
-
     /**
      * @var BlockView
      */
@@ -89,9 +83,8 @@ class DataSource implements DataSourceInterface
     /**
      * Constructor.
      */
-    public function __construct(BlockRendererInterface $renderer)
+    public function __construct()
     {
-        $this->renderer = $renderer;
         $this->columns = array();
         $this->locale = \Locale::getDefault();
         $this->rows = array();
