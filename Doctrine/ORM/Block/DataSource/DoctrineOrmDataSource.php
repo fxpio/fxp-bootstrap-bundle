@@ -177,35 +177,7 @@ class DoctrineOrmDataSource extends DataSource
         $this->setPageCount($totalPages);
 
         $pagination = $query->getResult();
-
-        // loop in rows
-        foreach ($pagination as $key => $data) {
-            $row = array(
-                '_row_number' => $rowNumber++,
-            );
-
-            // loop in cells
-            foreach ($this->getColumns() as $rIndex => $column) {
-                $cView = $column->createView($this->getTableView());
-                $cView->vars = array_replace($cView->vars, array(
-                    'data_row'   => $data,
-                    'data_cell'  => $this->getDataField($data, $column->getConfig()->getOption('index')),
-                    'row_number' => $row['_row_number'],
-                ));
-
-                // render twig
-                $html = $this->renderer->searchAndRenderBlock($cView, 'datasourcecomponent');
-
-                if (null !== $html && '' !== $html) {
-                    $cView->vars['value'] = $html;
-                }
-
-                // insert new value
-                $row[$column->getConfig()->getOption('index')] = $cView->vars['value'];
-            }
-
-            $this->cacheRows[] = $row;
-        }
+        $this->cacheRows = $this->paginateRows($pagination, $rowNumber);
 
         return $this->cacheRows;
     }

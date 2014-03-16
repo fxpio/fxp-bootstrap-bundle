@@ -1206,14 +1206,5 @@
 {% endspaceless %}
 {% endblock table_column_label %}
 
-{% block table_column_datasourcecomponent %}
-{% spaceless %}
-    {% if data_cell is not defined or data_cell is empty %}
-        {% set data_cell = data %}
-    {% endif %}
-    {{ data_cell|block_formatter(formatter, formatter_options)|default(empty_data)|raw }}
-{% endspaceless %}
-{% endblock table_column_datasourcecomponent %}
-
 {% block table_column_widget %}
 {% endblock table_column_widget %}

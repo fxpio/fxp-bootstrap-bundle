@@ -210,39 +210,16 @@ class DataSource implements DataSourceInterface
 
         $this->cacheRows = array();
         $startTo = ($this->getPageNumber() - 1) * $this->getPageSize();
-        $endTo = $startTo + $this->getPageSize();
+        $endTo = $this->getPageSize();
 
-        if ($endTo > $this->getSize() || (0 === $startTo && 0 === $endTo)) {
+        if (0 === $startTo && 0 === $endTo) {
             $endTo = $this->getSize();
         }
 
-        for ($index=$startTo; $index<$endTo; $index++) {
-            $data = $this->rows[$index];
-            $row = array(
-                '_row_number' => $this->getStart() + $index,
-            );
+        $rowNumber = $this->getStart() + $startTo;
+        $pagination = array_slice($this->rows, $startTo, $endTo);
 
-            foreach ($this->getColumns() as $rIndex => $column) {
-                $cView = $column->createView($this->getTableView());
-                $cView->vars = array_replace($cView->vars, array(
-                    'data_row'   => $data,
-                    'data_cell'  => $this->getDataField($data, $column->getConfig()->getOption('index')),
-                    'row_number' => $row['_row_number'],
-                ));
-
-                // render twig
-                $html = $this->renderer->searchAndRenderBlock($cView, 'datasourcecomponent');
-
-                if (null !== $html && '' !== $html) {
-                    $cView->vars['value'] = $html;
-                }
-
-                // insert new value
-                $row[$column->getConfig()->getOption('index')] = $cView->vars['value'];
-            }
-
-            $this->cacheRows[] = $row;
-        }
+        $this->cacheRows = $this->paginateRows($pagination, $rowNumber);
 
         return $this->cacheRows;
     }
@@ -432,5 +409,51 @@ class DataSource implements DataSourceInterface
         }
 
         return null;
+    }
+
+    /**
+     * Paginate the rows.
+     *
+     * @param array $pagination
+     * @param int   $rowNumber
+     *
+     * @return array The paginated rows
+     */
+    protected function paginateRows(array $pagination, $rowNumber)
+    {
+        $cacheRows = array();
+
+        // loop in rows
+        foreach ($pagination as $key => $data) {
+            $row = array(
+                '_row_number' => $rowNumber++,
+            );
+
+            // loop in cells
+            foreach ($this->getColumns() as $rIndex => $column) {
+                if ('_row_number' === $column->getConfig()->getOption('index')) {
+                    continue;
+                }
+
+                $config = $column->getConfig();
+                $cell = $config->getBlockFactory()->createNamed($column->getName(), $config->getOption('formatter'), $this->getDataField($data, $config->getOption('index')), $config->getOption('formatter_options'));
+                $value = $cell->getViewData();
+
+                if ('' === $value) {
+                    $value = $cell->getConfig()->getEmptyData();
+
+                    if ($value instanceof \Closure) {
+                        $value = call_user_func($value, $cell, $cell->getConfig()->getOptions());
+                    }
+                }
+
+                // insert new value
+                $row[$column->getConfig()->getOption('index')] = $value;
+            }
+
+            $cacheRows[] = $row;
+        }
+
+        return $cacheRows;
     }
 }
