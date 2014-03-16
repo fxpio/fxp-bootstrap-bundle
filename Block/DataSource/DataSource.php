@@ -436,6 +436,7 @@ class DataSource implements DataSourceInterface
                 if ('twig' === $formatter) {
                     $options = array_merge_recursive($options, array(
                         'variables' => array(
+                            '_column'     => $column,
                             '_row_data'   => $data,
                             '_row_number' => $rowNumber,
                         )
