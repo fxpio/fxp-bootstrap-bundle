@@ -429,7 +429,20 @@ class DataSource implements DataSourceInterface
                 }
 
                 $config = $column->getConfig();
-                $cell = $config->getBlockFactory()->createNamed($column->getName(), $config->getOption('formatter'), $this->getDataField($data, $config->getOption('index')), $config->getOption('formatter_options'));
+                $formatter = $config->getOption('formatter');
+                $cellData = $this->getDataField($data, $config->getOption('index'));
+                $options = $config->getOption('formatter_options');
+
+                if ('twig' === $formatter) {
+                    $options = array_merge_recursive($options, array(
+                        'variables' => array(
+                            '_row_data'   => $data,
+                            '_row_number' => $rowNumber,
+                        )
+                    ));
+                }
+
+                $cell = $config->getBlockFactory()->createNamed($column->getName(), $formatter, $cellData, $options);
                 $value = $cell->getViewData();
 
                 if ('' === $value) {
