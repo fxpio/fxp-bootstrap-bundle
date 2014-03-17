@@ -1202,7 +1202,11 @@
 
 {% block table_column_label %}
 {% spaceless %}
-    <th{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</th>
+    <th{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        {{ label|trans({}, translation_domain) }}
+        {{- value|raw -}}
+        {{- block('block_rows') -}}
+    </th>
 {% endspaceless %}
 {% endblock table_column_label %}
 
