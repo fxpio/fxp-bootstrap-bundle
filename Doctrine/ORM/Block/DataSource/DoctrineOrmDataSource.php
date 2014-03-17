@@ -38,10 +38,11 @@ class DoctrineOrmDataSource extends DataSource
      * Constructor.
      *
      * @param EntityManager $entityManager
+     * @param string        $rowId         The data fieldname for unique id row definition
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManager $entityManager, $rowId = null)
     {
-        parent::__construct();
+        parent::__construct($rowId);
 
         $this->em = $entityManager;
     }

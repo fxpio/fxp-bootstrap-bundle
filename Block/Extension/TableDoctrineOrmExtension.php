@@ -53,7 +53,7 @@ class TableDoctrineOrmExtension extends AbstractTypeExtension
         }
 
         if ($data instanceof Query) {
-            $source = new DoctrineOrmDataSource($this->entityManager);
+            $source = new DoctrineOrmDataSource($this->entityManager, $options['row_id']);
             $source->setQuery($data);
             $source->setLocale($options['locale']);
             $source->setPageSize($options['page_size']);

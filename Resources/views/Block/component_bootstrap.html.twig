@@ -1144,9 +1144,9 @@
         {% if header.vars.header_columns is defined %}
             <tbody>
                 {% for rowIndex, rowData in data.rows %}
-                    <tr>
+                    <tr{% if rowData._row_id is defined %} data-row-id="{{ rowData._row_id }}"{% endif %}>
                         {% for colIndex, colBlock in header.vars.header_columns %}
-                            <td{% for attrname, attrvalue in colBlock.vars.attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ rowData[colBlock.vars.name]|default(null)|raw }}</td>
+                            <td{% for attrname, attrvalue in rowData._attr_columns[colBlock.vars.name]|default([]) %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ rowData[colBlock.vars.name]|default(null)|raw }}</td>
                         {% endfor %}
                     </tr>
                 {% endfor %}

@@ -41,6 +41,11 @@ class DataSource implements DataSourceInterface
     protected $rows;
 
     /**
+     * @var string
+     */
+    protected $rowId;
+
+    /**
      * @var int
      */
     protected $size;
@@ -82,12 +87,15 @@ class DataSource implements DataSourceInterface
 
     /**
      * Constructor.
+     *
+     * @param string $rowId The data fieldname for unique id row definition
      */
-    public function __construct()
+    public function __construct($rowId = null)
     {
         $this->columns = array();
         $this->locale = \Locale::getDefault();
         $this->rows = array();
+        $this->rowId = $rowId;
         $this->start = 1;
         $this->pageSize = 0;
         $this->pageNumber = 1;
@@ -422,6 +430,14 @@ class DataSource implements DataSourceInterface
                 '_row_number'   => $rowNumber++,
                 '_attr_columns' => array(),
             );
+
+            if (null !== $this->rowId) {
+                $rowId = $this->getDataField($data, $this->rowId);
+
+                if (null !== $rowId) {
+                    $row['_row_id'] = $rowId;
+                }
+            }
 
             // loop in cells
             foreach ($this->getColumns() as $rIndex => $column) {

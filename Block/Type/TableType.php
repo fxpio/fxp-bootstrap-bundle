@@ -52,7 +52,7 @@ class TableType extends AbstractType
         $builder->setDataMapper(new WrapperMapper());
 
         if (is_array($builder->getData())) {
-            $source = new DataSource();
+            $source = new DataSource($options['row_id']);
             $source->setRows($builder->getData());
             $source->setLocale($options['locale']);
             $source->setPageSize($options['page_size']);
@@ -140,6 +140,7 @@ class TableType extends AbstractType
             'page_number'     => 1,
             'sort_columns'    => array(),
             'data_parameters' => array(),
+            'row_id'          => 'id',
         ));
 
         $resolver->setAllowedTypes(array(
@@ -155,6 +156,7 @@ class TableType extends AbstractType
             'page_number'     => 'int',
             'sort_columns'    => 'array',
             'data_parameters' => 'array',
+            'row_id'          => 'string',
         ));
     }
 
