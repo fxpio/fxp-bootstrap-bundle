@@ -419,11 +419,16 @@ class DataSource implements DataSourceInterface
         // loop in rows
         foreach ($pagination as $key => $data) {
             $row = array(
-                '_row_number' => $rowNumber++,
+                '_row_number'   => $rowNumber++,
+                '_attr_columns' => array(),
             );
 
             // loop in cells
             foreach ($this->getColumns() as $rIndex => $column) {
+                if (count($column->getConfig()->getOption('attr')) > 0) {
+                    $row['_attr_columns'][$column->getName()] = $column->getConfig()->getOption('attr');
+                }
+
                 if ('_row_number' === $column->getConfig()->getOption('index')) {
                     continue;
                 }
@@ -456,6 +461,10 @@ class DataSource implements DataSourceInterface
 
                 // insert new value
                 $row[$column->getName()] = $value;
+            }
+
+            if (0 === count($row['_attr_columns'])) {
+                unset($row['_attr_columns']);
             }
 
             $cacheRows[] = $row;
