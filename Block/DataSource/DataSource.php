@@ -455,7 +455,7 @@ class DataSource implements DataSourceInterface
                 }
 
                 // insert new value
-                $row[$column->getConfig()->getOption('index')] = $value;
+                $row[$column->getName()] = $value;
             }
 
             $cacheRows[] = $row;
