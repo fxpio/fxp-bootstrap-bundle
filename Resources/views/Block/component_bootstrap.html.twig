@@ -1146,7 +1146,7 @@
                 {% for rowIndex, rowData in data.rows %}
                     <tr>
                         {% for colIndex, colBlock in header.vars.header_columns %}
-                            <td{% for attrname, attrvalue in colBlock.vars.attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ rowData[colBlock.vars.index]|default(null)|raw }}</td>
+                            <td{% for attrname, attrvalue in colBlock.vars.attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ rowData[colBlock.vars.name]|default(null)|raw }}</td>
                         {% endfor %}
                     </tr>
                 {% endfor %}
