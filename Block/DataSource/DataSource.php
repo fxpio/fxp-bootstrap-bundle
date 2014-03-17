@@ -459,7 +459,7 @@ class DataSource implements DataSourceInterface
                         'variables' => array(
                             '_column'     => $column,
                             '_row_data'   => $data,
-                            '_row_number' => $rowNumber,
+                            '_row_number' => $row['_row_number'],
                         )
                     ));
                 }
