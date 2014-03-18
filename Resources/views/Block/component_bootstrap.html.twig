@@ -1146,7 +1146,8 @@
                 {% for rowIndex, rowData in data.rows %}
                     <tr{% if rowData._row_id is defined %} data-row-id="{{ rowData._row_id }}"{% endif %}>
                         {% for colIndex, colBlock in header.vars.header_columns %}
-                            {% set data_attr = rowData._attr_columns[colBlock.vars.name]|default([])|merge({'class': ('col-' ~ colBlock.vars.name ~ ' ' ~ data_attr['data-class']|default(''))|trim}) %}
+                            {% set data_attr = rowData._attr_columns[colBlock.vars.name]|default([]) %}
+                            {% set data_attr = data_attr|merge({'class': ('col-' ~ colBlock.vars.name ~ ' ' ~ data_attr['class']|default(''))|trim}) %}
                             <td{% for attrname, attrvalue in data_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ rowData[colBlock.vars.name]|default(null)|raw }}</td>
                         {% endfor %}
                     </tr>
