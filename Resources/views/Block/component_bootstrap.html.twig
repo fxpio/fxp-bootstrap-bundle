@@ -1203,7 +1203,7 @@
 
 {% block table_column_label %}
 {% spaceless %}
-    {% set label_attr = label_attr|merge({'data-class': ('col-' ~ name ~ ' ' ~ label_attr['data-class']|default(''))|trim}) %}
+    {% set label_attr = label_attr|merge({'data-class': ('col-' ~ name ~ ' ' ~ attr['class']|default(''))|trim}) %}
     <th{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
         {{ label|trans({}, translation_domain) }}
         {{- value|raw -}}
