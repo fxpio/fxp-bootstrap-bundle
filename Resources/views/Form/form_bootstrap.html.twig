@@ -3,7 +3,6 @@
                                         form_start as base_form_start,
                                         collection_widget as base_collection_widget,
                                         textarea_widget as base_textarea_widget,
-                                        choice_widget_collapsed as base_choice_widget_collapsed,
                                         choice_widget_expanded as base_choice_widget_expanded,
                                         datetime_widget as base_datetime_widget,
                                         date_widget as base_date_widget,
@@ -320,6 +319,28 @@
         </div>
     {% endif %}
 {% endblock choice_widget_collapsed %}
+
+{% block base_choice_widget_collapsed %}
+{% spaceless %}
+    {% if required and empty_value is none and not empty_value_in_choices %}
+        {% set required = false %}
+    {% endif %}
+    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+        {% if empty_value is not none %}
+            <option{% if empty_value is empty %} label=" "{% endif %} value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ empty_value|trans({}, translation_domain) }}</option>
+        {% endif %}
+        {% if preferred_choices|length > 0 %}
+            {% set options = preferred_choices %}
+            {{ block('choice_widget_options') }}
+            {% if choices|length > 0 and separator is not none %}
+                <option disabled="disabled">{{ separator }}</option>
+            {% endif %}
+        {% endif %}
+        {% set options = choices %}
+        {{ block('choice_widget_options') }}
+    </select>
+{% endspaceless %}
+{% endblock base_choice_widget_collapsed %}
 
 {% block choice_widget_collapsed_static_control %}
     {% for choice in choices %}
