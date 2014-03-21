@@ -1215,3 +1215,45 @@
 
 {% block table_column_widget %}
 {% endblock table_column_widget %}
+
+{% block table_row_widget %}
+{% spaceless %}
+<tr{{ block('widget_container_attributes') }}>
+    {{- label|trans({}, translation_domain) -}}
+    {{- value|raw -}}
+    {{- block('block_rows') -}}
+</tr>
+{% endspaceless %}
+{% endblock table_row_widget %}
+
+{% block table_cell_widget %}
+{% spaceless %}
+{% if rowspan is not empty %}
+    {% set attr = attr|merge({'rowspan': rowspan}) %}
+{% endif %}
+{% if colspan is not empty %}
+    {% set attr = attr|merge({'colspan': colspan}) %}
+{% endif %}
+<td{{ block('widget_container_attributes') }}>
+    {{- label|trans({}, translation_domain) -}}
+    {{- value|raw -}}
+    {{- block('block_rows') -}}
+</td>
+{% endspaceless %}
+{% endblock table_cell_widget %}
+
+{% block table_header_cell_widget %}
+{% spaceless %}
+{% if rowspan is not empty %}
+    {% set attr = attr|merge({'rowspan': rowspan}) %}
+{% endif %}
+{% if colspan is not empty %}
+    {% set attr = attr|merge({'colspan': colspan}) %}
+{% endif %}
+<th{{ block('widget_container_attributes') }}>
+    {{- label|trans({}, translation_domain) -}}
+    {{- value|raw -}}
+    {{- block('block_rows') -}}
+</th>
+{% endspaceless %}
+{% endblock table_header_cell_widget %}

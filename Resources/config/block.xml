@@ -378,5 +378,17 @@
         <service id="sonatra_bootstrap.type.table_column" class="Sonatra\Bundle\BootstrapBundle\Block\Type\TableColumnType">
             <tag name="sonatra_block.type" alias="table_column" />
         </service>
+
+        <service id="sonatra_bootstrap.type.table_row" class="Sonatra\Bundle\BootstrapBundle\Block\Type\TableRowType">
+            <tag name="sonatra_block.type" alias="table_row" />
+        </service>
+
+        <service id="sonatra_bootstrap.type.table_cell" class="Sonatra\Bundle\BootstrapBundle\Block\Type\TableCellType">
+            <tag name="sonatra_block.type" alias="table_cell" />
+        </service>
+
+        <service id="sonatra_bootstrap.type.table_header_cell" class="Sonatra\Bundle\BootstrapBundle\Block\Type\TableHeaderCellType">
+            <tag name="sonatra_block.type" alias="table_header_cell" />
+        </service>
     </services>
 </container>
