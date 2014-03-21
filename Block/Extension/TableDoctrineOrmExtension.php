@@ -54,9 +54,9 @@ class TableDoctrineOrmExtension extends AbstractTypeExtension
 
         if ($data instanceof Query) {
             $source = new DoctrineOrmDataSource($this->entityManager, $options['row_id']);
+            $source->setPageSize($options['page_size']);
             $source->setQuery($data);
             $source->setLocale($options['locale']);
-            $source->setPageSize($options['page_size']);
             $source->setStart($options['page_start']);
             $source->setPageNumber($options['page_number']);
             $source->setSortColumns($options['sort_columns']);

@@ -53,9 +53,9 @@ class TableType extends AbstractType
 
         if (is_array($builder->getData())) {
             $source = new DataSource($options['row_id']);
+            $source->setPageSize($options['page_size']);
             $source->setRows($builder->getData());
             $source->setLocale($options['locale']);
-            $source->setPageSize($options['page_size']);
             $source->setStart($options['page_start']);
             $source->setPageNumber($options['page_number']);
             $source->setSortColumns($options['sort_columns']);
