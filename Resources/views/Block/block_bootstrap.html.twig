@@ -258,7 +258,7 @@
     {% endif %}
     {% if print is not null %}
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ print ~ '-print')|trim}) %}
-    {% endif %}    
+    {% endif %}
 {% endspaceless %}
 {{ block('base_widget_container_attributes') }}
 {% spaceless %}
