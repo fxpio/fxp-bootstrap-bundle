@@ -266,7 +266,8 @@ class DataSource implements DataSourceInterface
     public function setPageNumber($number)
     {
         $this->cacheRows = null;
-        $this->pageNumber = $number;
+        $this->pageNumber = min($number, $this->getPageCount());
+        $this->pageNumber = max($this->pageNumber, 1);
 
         return $this;
     }
