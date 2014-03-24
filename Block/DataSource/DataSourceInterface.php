@@ -101,20 +101,18 @@ interface DataSourceInterface
     public function getRows();
 
     /**
-     * Set start.
-     *
-     * @param int $start
-     *
-     * @return DataSourceInterface
-     */
-    public function setStart($start);
-
-    /**
      * Get start.
      *
      * @return int
      */
     public function getStart();
+
+    /**
+     * Get end.
+     *
+     * @return int
+     */
+    public function getEnd();
 
     /**
      * Set size.

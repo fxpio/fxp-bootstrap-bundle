@@ -53,11 +53,6 @@ class DataSource implements DataSourceInterface
     /**
      * @var int
      */
-    protected $start;
-
-    /**
-     * @var int
-     */
     protected $pageSize;
 
     /**
@@ -96,7 +91,6 @@ class DataSource implements DataSourceInterface
         $this->locale = \Locale::getDefault();
         $this->rows = array();
         $this->rowId = $rowId;
-        $this->start = 1;
         $this->pageSize = 0;
         $this->pageNumber = 1;
         $this->pageCount = 1;
@@ -228,20 +222,17 @@ class DataSource implements DataSourceInterface
     /**
      * {@inheritdoc}
      */
-    public function setStart($start)
+    public function getStart()
     {
-        $this->cacheRows = null;
-        $this->start = $start;
-
-        return $this;
+        return ($this->getPageNumber() - 1) * $this->getPageSize() + 1;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getStart()
+    public function getEnd()
     {
-        return $this->start;
+        return min($this->getSize(), ($this->getPageSize() * $this->getPageNumber()));
     }
 
     /**

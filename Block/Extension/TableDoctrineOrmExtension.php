@@ -57,7 +57,6 @@ class TableDoctrineOrmExtension extends AbstractTypeExtension
             $source->setPageSize($options['page_size']);
             $source->setQuery($data);
             $source->setLocale($options['locale']);
-            $source->setStart($options['page_start']);
             $source->setPageNumber($options['page_number']);
             $source->setSortColumns($options['sort_columns']);
             $source->setParameters($options['data_parameters']);

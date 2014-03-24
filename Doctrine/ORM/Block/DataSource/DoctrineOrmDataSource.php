@@ -94,7 +94,6 @@ class DoctrineOrmDataSource extends DataSource
         }
 
         $this->cacheRows = array();
-        $this->setStart(($this->getPageNumber() - 1) * $this->getPageSize() + 1);
 
         $query = clone $this->query;
         $pageSize = $this->getPageSize();
