@@ -58,6 +58,11 @@ class DataSource implements DataSourceInterface
     /**
      * @var int
      */
+    protected $pageSizeMax;
+
+    /**
+     * @var int
+     */
     protected $pageNumber;
 
     /**
@@ -87,6 +92,7 @@ class DataSource implements DataSourceInterface
         $this->rows = array();
         $this->rowId = $rowId;
         $this->pageSize = 0;
+        $this->pageSizeMax = 0;
         $this->pageNumber = 1;
         $this->sortColumns = array();
         $this->parameters = array();
@@ -249,7 +255,7 @@ class DataSource implements DataSourceInterface
     public function setPageSize($size)
     {
         $this->cacheRows = null;
-        $this->pageSize = $size;
+        $this->pageSize = 0 === $this->getPageSizeMax() ? $size : min($size, $this->getPageSizeMax());
 
         return $this;
     }
@@ -260,6 +266,25 @@ class DataSource implements DataSourceInterface
     public function getPageSize()
     {
         return $this->pageSize;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPageSizeMax($size)
+    {
+        $this->cacheRows = null;
+        $this->pageSizeMax = $size;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPageSizeMax()
+    {
+        return $this->pageSizeMax;
     }
 
     /**

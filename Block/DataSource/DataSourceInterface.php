@@ -140,6 +140,22 @@ interface DataSourceInterface
     public function getPageSize();
 
     /**
+     * Set page size max.
+     *
+     * @param integer $size
+     *
+     * @return DataSourceInterface
+     */
+    public function setPageSizeMax($size);
+
+    /**
+     * Get page size max.
+     *
+     * @return integer
+    */
+    public function getPageSizeMax();
+
+    /**
      * Set page number.
      *
      * @param integer $number

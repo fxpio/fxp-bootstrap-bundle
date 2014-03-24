@@ -53,6 +53,7 @@ class TableType extends AbstractType
 
         if (is_array($builder->getData())) {
             $source = new DataSource($options['row_id']);
+            $source->setPageSizeMax($options['page_size_max']);
             $source->setPageSize($options['page_size']);
             $source->setRows($builder->getData());
             $source->setLocale($options['locale']);
@@ -135,6 +136,7 @@ class TableType extends AbstractType
             'data'            => array(),
             'locale'          => \Locale::getDefault(),
             'page_size'       => 0,
+            'page_size_max'   => 2000,
             'page_start'      => 1,
             'page_number'     => 1,
             'sort_columns'    => array(),
