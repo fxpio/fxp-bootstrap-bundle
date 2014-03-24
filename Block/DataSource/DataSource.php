@@ -61,11 +61,6 @@ class DataSource implements DataSourceInterface
     protected $pageNumber;
 
     /**
-     * @var int
-     */
-    protected $pageCount;
-
-    /**
      * @var array
      */
     protected $sortColumns;
@@ -93,7 +88,6 @@ class DataSource implements DataSourceInterface
         $this->rowId = $rowId;
         $this->pageSize = 0;
         $this->pageNumber = 1;
-        $this->pageCount = 1;
         $this->sortColumns = array();
         $this->parameters = array();
     }
@@ -103,7 +97,6 @@ class DataSource implements DataSourceInterface
      */
     public function setTableView(BlockView $view)
     {
-        $this->cacheRows = null;
         $this->tableView = $view;
 
         return $this;
@@ -133,6 +126,8 @@ class DataSource implements DataSourceInterface
      */
     public function addColumn(BlockInterface $column, $index = null)
     {
+        $this->cacheRows = null;
+
         if (null !== $index) {
             array_splice($this->columns, $index, 0, $column);
 
@@ -148,6 +143,8 @@ class DataSource implements DataSourceInterface
      */
     public function removeColumn($index)
     {
+        $this->cacheRows = null;
+
         array_splice($this->columns, $index, 1);
 
         return $this;
@@ -186,10 +183,9 @@ class DataSource implements DataSourceInterface
     public function setRows($rows)
     {
         $this->cacheRows = null;
+        $this->size = null;
         $this->rows = $rows;
-        $this->setSize(count($rows));
-        $this->setPageNumber(1);
-        $this->setPageCount(0 === $this->getPageSize() ? 1 : (integer) ceil($this->getSize() / $this->getPageSize()));
+        $this->pageNumber = 1;
 
         return $this;
     }
@@ -211,10 +207,8 @@ class DataSource implements DataSourceInterface
             $endTo = $this->getSize();
         }
 
-        $rowNumber = $this->getStart();
         $pagination = array_slice($this->rows, $startTo, $endTo);
-
-        $this->cacheRows = $this->paginateRows($pagination, $rowNumber);
+        $this->cacheRows = $this->paginateRows($pagination, $this->getStart());
 
         return $this->cacheRows;
     }
@@ -238,19 +232,12 @@ class DataSource implements DataSourceInterface
     /**
      * {@inheritdoc}
      */
-    public function setSize($size)
-    {
-        $this->cacheRows = null;
-        $this->size = $size;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getSize()
     {
+        if (null === $this->size) {
+            $this->size = $this->calculateSize();
+        }
+
         return $this->size;
     }
 
@@ -295,20 +282,9 @@ class DataSource implements DataSourceInterface
     /**
      * {@inheritdoc}
      */
-    public function setPageCount($count)
-    {
-        $this->cacheRows = null;
-        $this->pageCount = $count;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getPageCount()
     {
-        return $this->pageCount;
+        return 0 === $this->getPageSize() ? 1 : (integer) ceil($this->getSize() / $this->getPageSize());
     }
 
     /**
@@ -336,6 +312,7 @@ class DataSource implements DataSourceInterface
     public function setParameters(array $parameters)
     {
         $this->cacheRows = null;
+        $this->size = null;
         $this->parameters = $parameters;
 
         return $this;
@@ -347,6 +324,16 @@ class DataSource implements DataSourceInterface
     public function getParameters()
     {
         return $this->parameters;
+    }
+
+    /**
+     * Calculates the total size of the source.
+     *
+     * @return int
+     */
+    protected function calculateSize()
+    {
+        return count($this->rows);
     }
 
     /**

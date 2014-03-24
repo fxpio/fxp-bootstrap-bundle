@@ -57,6 +57,7 @@ class DoctrineOrmDataSource extends DataSource
     public function setQuery($query)
     {
         $this->cacheRows = null;
+        $this->size = null;
         $this->query = $query;
 
         return $this;
@@ -96,11 +97,8 @@ class DoctrineOrmDataSource extends DataSource
         $this->cacheRows = array();
 
         $query = clone $this->query;
-        $pageSize = $this->getPageSize();
-        $pageNumber = $this->getPageNumber();
         $lengthItems = $this->getSize();
         $sortColumns = $this->getSortColumns();
-        $rowNumber = $this->getStart();
 
         // query options
         $tkc = 'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker';
@@ -149,34 +147,28 @@ class DoctrineOrmDataSource extends DataSource
             $query->setHint(OrderByWalker::HINT_SORT_DIRECTION, $sorts);
         }
 
-        // paginate count
-        $cQuery = clone $query;
-        $cQuery->setParameters($query->getParameters());
+        // paginate init
+        $query
+            ->setFirstResult($this->getStart() - 1)
+            ->setMaxResults($this->getPageSize());
+
+        $this->cacheRows = $this->paginateRows($query->getResult(), $this->getStart());
+
+        return $this->cacheRows;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function calculateSize()
+    {
+        $cQuery = clone $this->query;
+        $cQuery->setParameters($this->query->getParameters());
         $cQuery
             ->setFirstResult(null)
             ->setMaxResults(null)
             ->setHint(Query::HINT_CUSTOM_TREE_WALKERS, array('Sonatra\Bundle\\BootstrapBundle\\Doctrine\\ORM\\Query\\CountWalker'));
-        $totalItems = (integer) $cQuery->getSingleScalarResult();
-        $totalPages = 0;
 
-        if ($pageSize > 0 && $totalItems > 0) {
-            $totalPages = (integer) ceil($totalItems / $pageSize);
-
-            // paginate init
-            $query
-                ->setFirstResult(($pageNumber - 1) * $pageSize)
-                ->setMaxResults($pageSize);
-        }
-
-        // save config
-        $this->setSize($totalItems);
-        $this->setPageSize($pageSize);
-        $this->setPageNumber($pageNumber);
-        $this->setPageCount($totalPages);
-
-        $pagination = $query->getResult();
-        $this->cacheRows = $this->paginateRows($pagination, $rowNumber);
-
-        return $this->cacheRows;
+        return (integer) $cQuery->getSingleScalarResult();
     }
 }

@@ -115,15 +115,6 @@ interface DataSourceInterface
     public function getEnd();
 
     /**
-     * Set size.
-     *
-     * @param int $size
-     *
-     * @return DataSourceInterface
-     */
-    public function setSize($size);
-
-    /**
      * Get count of rows.
      *
      * @return int
@@ -163,15 +154,6 @@ interface DataSourceInterface
      * @return integer
     */
     public function getPageNumber();
-
-    /**
-     * Set page count.
-     *
-     * @param integer
-     *
-     * @return DataSourceInterface
-    */
-    public function setPageCount($count);
 
     /**
      * Get page count.
