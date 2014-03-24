@@ -211,7 +211,7 @@ class DataSource implements DataSourceInterface
             $endTo = $this->getSize();
         }
 
-        $rowNumber = $this->getStart() + $startTo;
+        $rowNumber = $this->getStart();
         $pagination = array_slice($this->rows, $startTo, $endTo);
 
         $this->cacheRows = $this->paginateRows($pagination, $rowNumber);
