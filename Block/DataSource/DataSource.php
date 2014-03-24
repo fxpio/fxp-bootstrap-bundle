@@ -226,7 +226,9 @@ class DataSource implements DataSourceInterface
      */
     public function getEnd()
     {
-        return min($this->getSize(), ($this->getPageSize() * $this->getPageNumber()));
+        return 0 === $this->getPageSize()
+            ? $this->getSize()
+            : min($this->getSize(), ($this->getPageSize() * $this->getPageNumber()));
     }
 
     /**
