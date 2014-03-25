@@ -1147,7 +1147,7 @@
                     <tr{% if rowData._row_id is defined %} data-row-id="{{ rowData._row_id }}"{% endif %}>
                         {% for colIndex, colBlock in header.vars.header_columns %}
                             {% set data_attr = rowData._attr_columns[colBlock.vars.name]|default([]) %}
-                            {% set data_attr = data_attr|merge({'class': ('col-' ~ colBlock.vars.name ~ ' ' ~ data_attr['class']|default(''))|trim}) %}
+                            {% set data_attr = data_attr|merge({'data-col-name': colBlock.vars.name}) %}
                             <td{% for attrname, attrvalue in data_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ rowData[colBlock.vars.name]|default(null)|raw }}</td>
                         {% endfor %}
                     </tr>
@@ -1204,7 +1204,7 @@
 
 {% block table_column_label %}
 {% spaceless %}
-    {% set label_attr = label_attr|merge({'data-class': ('col-' ~ name ~ ' ' ~ attr['class']|default(''))|trim}) %}
+    {% set label_attr = label_attr|merge({'data-col-name': name}) %}
     <th{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
         {{ label|trans({}, translation_domain) }}
         {{- value|raw -}}
