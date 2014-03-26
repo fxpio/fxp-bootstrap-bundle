@@ -35,6 +35,11 @@ class DoctrineOrmDataSource extends DataSource
     protected $query;
 
     /**
+     * @var bool
+     */
+    protected $hasTranslatable;
+
+    /**
      * Constructor.
      *
      * @param EntityManager $entityManager
@@ -45,6 +50,14 @@ class DoctrineOrmDataSource extends DataSource
         parent::__construct($rowId);
 
         $this->em = $entityManager;
+        $this->hasTranslatable = false;
+
+        foreach ($this->em->getEventManager()->getListeners('postLoad') as $listener) {
+            if ('Gedmo\Translatable\TranslatableListener' === get_class($listener)) {
+                $this->hasTranslatable = true;
+                break;
+            }
+        }
     }
 
     /**
@@ -103,7 +116,7 @@ class DoctrineOrmDataSource extends DataSource
         // query options
         $tkc = 'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker';
 
-        if (class_exists($tkc)) {
+        if ($this->hasTranslatable && class_exists($tkc)) {
             $query->setHint(Query::HINT_CUSTOM_OUTPUT_WALKER, $tkc);
             $query->setHint(\Gedmo\Translatable\TranslatableListener::HINT_TRANSLATABLE_LOCALE, $this->getLocale());
         }
