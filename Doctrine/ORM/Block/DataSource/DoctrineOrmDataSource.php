@@ -150,8 +150,8 @@ class DoctrineOrmDataSource extends DataSource
 
                 $exp = explode('.', $index);
 
-                if (0 === count($exp)) {
-                    array_unshift($exp, '');
+                if (1 === count($exp)) {
+                    array_unshift($exp, false);
                 }
 
                 $aliases[] = $exp[0];
