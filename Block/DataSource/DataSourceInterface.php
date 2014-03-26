@@ -136,7 +136,7 @@ interface DataSourceInterface
      * If page size equal 0, all row displayed.
      *
      * @return integer
-    */
+     */
     public function getPageSize();
 
     /**
@@ -152,7 +152,7 @@ interface DataSourceInterface
      * Get page size max.
      *
      * @return integer
-    */
+     */
     public function getPageSizeMax();
 
     /**
@@ -161,21 +161,21 @@ interface DataSourceInterface
      * @param integer $number
      *
      * @return DataSourceInterface
-    */
+     */
     public function setPageNumber($number);
 
     /**
      * Get page number.
      *
      * @return integer
-    */
+     */
     public function getPageNumber();
 
     /**
      * Get page count.
      *
      * @return integer
-    */
+     */
     public function getPageCount();
 
     /**
@@ -184,14 +184,14 @@ interface DataSourceInterface
      * @param array $columns
      *
      * @return DataSourceInterface
-    */
+     */
     public function setSortColumns(array $columns);
 
     /**
      * Get sort columns.
      *
      * @return array
-    */
+     */
     public function getSortColumns();
 
     /**
@@ -207,7 +207,7 @@ interface DataSourceInterface
      * @param string column The column name
      *
      * @return bool
-    */
+     */
     public function isSorted($column);
 
     /**
@@ -216,13 +216,13 @@ interface DataSourceInterface
      * @param array $parameters
      *
      * @return DataSourceInterface
-    */
+     */
     public function setParameters(array $parameters);
 
     /**
      * Get parameters.
      *
      * @return array
-    */
+     */
     public function getParameters();
 }
