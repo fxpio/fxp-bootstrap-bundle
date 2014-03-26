@@ -195,6 +195,13 @@ interface DataSourceInterface
     public function getSortColumns();
 
     /**
+     * Get sort column.
+     *
+     * @return string|null
+     */
+    public function getSortColumn($column);
+
+    /**
      * Check if column is sorted.
      *
      * @param string column The column name

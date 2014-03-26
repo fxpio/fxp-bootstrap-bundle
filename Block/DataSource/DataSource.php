@@ -369,6 +369,22 @@ class DataSource implements DataSourceInterface
     /**
      * {@inheritdoc}
      */
+    public function getSortColumn($column)
+    {
+        if ($this->isSorted($column)) {
+            $def = $this->sortColumns[$this->mappingSortColumns[$column]];
+
+            if (isset($def['sort'])) {
+                return $def['sort'];
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function isSorted($column)
     {
         return array_key_exists($column, $this->mappingSortColumns);
