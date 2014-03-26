@@ -31,6 +31,11 @@ class DataSource implements DataSourceInterface
     protected $columns;
 
     /**
+     * @var array
+     */
+    protected $mappingColumns;
+
+    /**
      * @var string
      */
     protected $locale;
@@ -88,6 +93,7 @@ class DataSource implements DataSourceInterface
     public function __construct($rowId = null)
     {
         $this->columns = array();
+        $this->mappingColumns = null;
         $this->locale = \Locale::getDefault();
         $this->rows = array();
         $this->rowId = $rowId;
@@ -122,6 +128,7 @@ class DataSource implements DataSourceInterface
     public function setColumns(array $columns)
     {
         $this->cacheRows = null;
+        $this->mappingColumns = null;
         $this->columns = array_values($columns);
 
         return $this;
@@ -133,6 +140,7 @@ class DataSource implements DataSourceInterface
     public function addColumn(BlockInterface $column, $index = null)
     {
         $this->cacheRows = null;
+        $this->mappingColumns = null;
 
         if (null !== $index) {
             array_splice($this->columns, $index, 0, $column);
@@ -150,6 +158,7 @@ class DataSource implements DataSourceInterface
     public function removeColumn($index)
     {
         $this->cacheRows = null;
+        $this->mappingColumns = null;
 
         array_splice($this->columns, $index, 1);
 
@@ -375,8 +384,16 @@ class DataSource implements DataSourceInterface
      */
     protected function getColumnIndex($name)
     {
-        if (isset($this->columns[$name])) {
-            return $this->columns[$name]->getConfig()->getOption('index');
+        if (!is_array($this->mappingColumns)) {
+            $this->mappingColumns = array();
+
+            foreach ($this->getColumns() as $i => $column) {
+                $this->mappingColumns[$column->getName()] = $i;
+            }
+        }
+
+        if (isset($this->mappingColumns[$name])) {
+            return $this->columns[$this->mappingColumns[$name]]->getConfig()->getOption('index');
         }
 
         throw new InvalidArgumentException(sprintf('The column name "%s" does not exist', $name));
@@ -392,6 +409,12 @@ class DataSource implements DataSourceInterface
      */
     protected function getDataField($dataRow, $name)
     {
+        $exp = explode('.', $name);
+
+        if (0 < count($exp)) {
+            $name = $exp[count($exp) - 1];
+        }
+
         if (is_array($dataRow)) {
             return isset($dataRow[$name]) ? $dataRow[$name] : null;
         }

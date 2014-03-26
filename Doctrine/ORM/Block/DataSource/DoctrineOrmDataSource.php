@@ -139,15 +139,19 @@ class DoctrineOrmDataSource extends DataSource
             $fieldNames = array();
             $sorts = array();
 
-            for ($i=0; $i<count($sortColumns); $i++) {
-                $field = array_keys($sortColumns[$i])[0];
+            foreach ($sortColumns as $i => $sortConfig) {
+                if (!isset($sortConfig['name'])) {
+                    throw new InvalidArgumentException("The 'name' property of sort_columns option must be present");
+                }
+
+                $field = $sortConfig['name'];
                 $index = $this->getColumnIndex($field);
-                $sort = $sortColumns[$i][$field];
+                $sort = isset($sortConfig['sort']) ? $sortConfig['sort'] : 'asc';
 
                 $exp = explode('.', $index);
 
                 if (0 === count($exp)) {
-                    throw new InvalidArgumentException("The index '$index' must have a alias");
+                    array_unshift($exp, '');
                 }
 
                 $aliases[] = $exp[0];
