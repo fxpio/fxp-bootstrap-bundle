@@ -78,6 +78,11 @@ class DataSource implements DataSourceInterface
     /**
      * @var array
      */
+    protected $mappingSortColumns;
+
+    /**
+     * @var array
+     */
     protected $parameters;
 
     /**
@@ -330,7 +335,25 @@ class DataSource implements DataSourceInterface
     public function setSortColumns(array $columns)
     {
         $this->cacheRows = null;
-        $this->sortColumns = $columns;
+        $this->sortColumns = array();
+        $this->mappingSortColumns = array();
+
+        foreach ($columns as $i => $column) {
+            if (!isset($column['name'])) {
+                throw new InvalidArgumentException('The "name" property of sort column must be present ("sort" property is optional)');
+            }
+
+            if (isset($column['sort']) && 'asc' !== $column['sort'] && 'desc' !== $column['sort']) {
+                throw new InvalidArgumentException('The "sort" property of sort column must have "asc" or "desc" value');
+            }
+
+            if ($this->isSorted($column['name'])) {
+                throw new InvalidArgumentException(sprintf('The "%s" column is already sorted', $column['name']));
+            }
+
+            $this->sortColumns[] = $column;
+            $this->mappingSortColumns[$column['name']] = $i;
+        }
 
         return $this;
     }
@@ -341,6 +364,14 @@ class DataSource implements DataSourceInterface
     public function getSortColumns()
     {
         return $this->sortColumns;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isSorted($column)
+    {
+        return array_key_exists($column, $this->mappingSortColumns);
     }
 
     /**
