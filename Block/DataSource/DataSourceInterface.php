@@ -12,6 +12,7 @@
 namespace Sonatra\Bundle\BootstrapBundle\Block\DataSource;
 
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
+use Sonatra\Bundle\BlockBundle\Block\BlockRendererInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 
 /**
@@ -19,6 +20,13 @@ use Sonatra\Bundle\BlockBundle\Block\BlockView;
  */
 interface DataSourceInterface
 {
+    /**
+     * Set block renderer.
+     *
+     * @param BlockRendererInterface $renderer
+     */
+    public function setRenderer(BlockRendererInterface $renderer);
+
     /**
      * Set table view.
      *

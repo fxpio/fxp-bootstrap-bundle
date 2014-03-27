@@ -12,14 +12,21 @@
 namespace Sonatra\Bundle\BootstrapBundle\Block\DataSource;
 
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
+use Sonatra\Bundle\BlockBundle\Block\BlockRendererInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\Exception\InvalidArgumentException;
+use Sonatra\Bundle\BlockBundle\Block\Exception\InvalidConfigurationException;
 
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
 class DataSource implements DataSourceInterface
 {
+    /**
+     * @var BlockRendererInterface
+     */
+    protected $renderer;
+
     /**
      * @var BlockView
      */
@@ -107,6 +114,14 @@ class DataSource implements DataSourceInterface
         $this->pageNumber = 1;
         $this->sortColumns = array();
         $this->parameters = array();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setRenderer(BlockRendererInterface $renderer)
+    {
+        $this->renderer = $renderer;
     }
 
     /**
@@ -498,6 +513,10 @@ class DataSource implements DataSourceInterface
      */
     protected function paginateRows(array $pagination, $rowNumber)
     {
+        if (null === $this->renderer) {
+            throw new InvalidConfigurationException('The block renderer must be injected with "setRenderer" method');
+        }
+
         $cacheRows = array();
 
         // loop in rows
@@ -528,7 +547,7 @@ class DataSource implements DataSourceInterface
                 $config = $column->getConfig();
                 $formatter = $config->getOption('formatter');
                 $cellData = $this->getDataField($data, $config->getOption('index'));
-                $options = $config->getOption('formatter_options');
+                $options = array_replace(array('wrapped' => false), $config->getOption('formatter_options'));
 
                 if ('twig' === $formatter) {
                     $options = array_merge_recursive($options, array(
@@ -541,18 +560,7 @@ class DataSource implements DataSourceInterface
                 }
 
                 $cell = $config->getBlockFactory()->createNamed($column->getName(), $formatter, $cellData, $options);
-                $value = $cell->getViewData();
-
-                if ('' === $value) {
-                    $value = $cell->getConfig()->getEmptyData();
-
-                    if ($value instanceof \Closure) {
-                        $value = call_user_func($value, $cell, $cell->getConfig()->getOptions());
-                    }
-                }
-
-                // insert new value
-                $row[$column->getName()] = $value;
+                $row[$column->getName()] = $this->renderer->searchAndRenderBlock($cell->createView(), 'widget');
             }
 
             if (0 === count($row['_attr_columns'])) {

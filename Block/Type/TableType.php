@@ -16,9 +16,11 @@ use Sonatra\Bundle\BlockBundle\Block\BlockBuilderInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockFactoryInterface;
+use Sonatra\Bundle\BlockBundle\Block\BlockRendererInterface;
 use Sonatra\Bundle\BlockBundle\Block\Extension\Core\DataMapper\WrapperMapper;
 use Sonatra\Bundle\BlockBundle\Block\ResolvedBlockTypeInterface;
 use Sonatra\Bundle\BootstrapBundle\Block\DataSource\DataSource;
+use Sonatra\Bundle\BootstrapBundle\Block\DataSource\DataSourceInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\Options;
 
@@ -35,13 +37,20 @@ class TableType extends AbstractType
     protected $factory;
 
     /**
+     * @var BlockFactoryInterface
+     */
+    protected $renderer;
+
+    /**
      * Constructor.
      *
-     * @param BlockFactoryInterface $factory
+     * @param BlockFactoryInterface  $factory
+     * @param BlockRendererInterface $renderer
      */
-    public function __construct(BlockFactoryInterface $factory)
+    public function __construct(BlockFactoryInterface $factory, BlockRendererInterface $renderer)
     {
         $this->factory = $factory;
+        $this->renderer = $renderer;
     }
 
     /**
@@ -63,6 +72,16 @@ class TableType extends AbstractType
 
             $builder->setData($source);
             $builder->setDataClass(get_class($source));
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function finishBlock(BlockBuilderInterface $builder, array $options)
+    {
+        if ($builder->getData() instanceof DataSourceInterface) {
+            $builder->getData()->setRenderer($this->renderer);
         }
     }
 
