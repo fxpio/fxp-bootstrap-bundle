@@ -48,7 +48,7 @@ class PanelCollapseExtension extends AbstractTypeExtension
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'collapsible' => true,
+            'collapsible' => false,
         ));
     }
 
