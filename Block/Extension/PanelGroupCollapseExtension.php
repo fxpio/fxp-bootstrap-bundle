@@ -12,10 +12,9 @@
 namespace Sonatra\Bundle\BootstrapBundle\Block\Extension;
 
 use Sonatra\Bundle\BlockBundle\Block\AbstractTypeExtension;
-use Sonatra\Bundle\BlockBundle\Block\BlockFactoryInterface;
-use Sonatra\Bundle\BlockBundle\Block\BlockBuilderInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
+use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\Options;
@@ -28,30 +27,30 @@ use Symfony\Component\OptionsResolver\Options;
 class PanelGroupCollapseExtension extends AbstractTypeExtension
 {
     /**
-     * @var BlockFactoryInterface
-     */
-    protected $factory;
-
-    /**
-     * Constructor.
-     *
-     * @param BlockFactoryInterface $factory
-     */
-    public function __construct(BlockFactoryInterface $factory)
-    {
-        $this->factory = $factory;
-    }
-
-    /**
      * {@inheritdoc}
      */
-    public function buildBlock(BlockBuilderInterface $builder, array $options)
+    public function addChild(BlockInterface $child, BlockInterface $block, array $options)
     {
-        if (!empty($options['collapse'])) {
-            $blockHeader = $this->factory->createNamed('header', 'panel_header', null, array());
-            $blockHeader->add(null, 'heading', array('size' => 4, 'label' => $options['label']));
+        if ($options['collapse'] && BlockUtil::isValidBlock('panel', $child)) {
+            foreach ($child->all() as $name => $subChild) {
+                if (BlockUtil::isValidBlock('panel_header', $subChild)) {
+                    foreach ($subChild->all() as $name => $subSubChild) {
+                        if (BlockUtil::isValidBlock('heading', $subSubChild)) {
+                            foreach ($subSubChild->all() as $name => $subSubSubChild) {
+                                $subSubChild->remove($name);
+                            }
 
-            $builder->setAttribute('block_header', $blockHeader);
+                            $subSubChild->add('panel_link', 'link', array(
+                                'label' => $subSubChild->getOption('label'),
+                                'src' => '#' . BlockUtil::createBlockId($child) . 'Collapse',
+                                'attr' => array('data-toggle' => 'collapse', 'data-parent' => '#' . BlockUtil::createBlockId($block))
+                            ));
+
+                            $subSubChild->setOption('label', null);
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -84,16 +83,6 @@ class PanelGroupCollapseExtension extends AbstractTypeExtension
                 if (isset($child->vars['collapse_in']) && $child->vars['collapse_in']) {
                     $hasChildActive = true;
                 }
-
-                $blockHeader = $this->factory->createNamed('panel_header', 'panel_header', null, array());
-                $blockHeader->add('panel_heading', 'heading', array('size' => 4));
-                $blockHeader->get('panel_heading')->add('panel_link', 'link', array(
-                    'label' => $child->vars['label'],
-                    'src' => '#'.$child->vars['id'].'Collapse',
-                    'attr' => array('data-toggle' => 'collapse', 'data-parent' => '#'.$view->vars['id'])
-                ));
-
-                $child->vars['block_header'] = $blockHeader->createView($child);
             }
 
             if (null !== $first && !$hasChildActive && $options['collapse_first']) {

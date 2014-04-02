@@ -227,7 +227,6 @@
 
         <service id="sonatra_bootstrap.type.pagination" class="Sonatra\Bundle\BootstrapBundle\Block\Type\PaginationType">
             <tag name="sonatra_block.type" alias="pagination" />
-            <argument type="service" id="sonatra_block.factory" />
         </service>
 
         <service id="sonatra_bootstrap.type.pagination_item" class="Sonatra\Bundle\BootstrapBundle\Block\Type\PaginationItemType">
@@ -240,7 +239,6 @@
 
         <service id="sonatra_bootstrap.type.panel" class="Sonatra\Bundle\BootstrapBundle\Block\Type\PanelType">
             <tag name="sonatra_block.type" alias="panel" />
-            <argument type="service" id="sonatra_block.factory" />
         </service>
 
         <service id="sonatra_bootstrap.type.panel_header" class="Sonatra\Bundle\BootstrapBundle\Block\Type\PanelHeaderType">
@@ -257,7 +255,6 @@
 
         <service id="sonatra_bootstrap.type.modal" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ModalType">
             <tag name="sonatra_block.type" alias="modal" />
-            <argument type="service" id="sonatra_block.factory" />
         </service>
 
         <service id="sonatra_bootstrap.type.modal_header" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ModalHeaderType">
@@ -294,7 +291,6 @@
 
         <service id="sonatra_bootstrap.type_extension.panel_group_collapse" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\PanelGroupCollapseExtension">
             <tag name="sonatra_block.type_extension" alias="panel_group" />
-            <argument type="service" id="sonatra_block.factory" />
         </service>
 
         <service id="sonatra_bootstrap.type_extension.panel_collapse" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\PanelCollapseExtension">
@@ -355,7 +351,6 @@
 
         <service id="sonatra_bootstrap.type.table" class="Sonatra\Bundle\BootstrapBundle\Block\Type\TableType">
             <tag name="sonatra_block.type" alias="table" />
-            <argument type="service" id="sonatra_block.factory" />
             <argument type="service" id="sonatra_block.twig.renderer" />
         </service>
 

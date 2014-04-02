@@ -15,7 +15,6 @@ use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockBuilderInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Sonatra\Bundle\BlockBundle\Block\BlockFactoryInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\Options;
 
@@ -27,31 +26,13 @@ use Symfony\Component\OptionsResolver\Options;
 class PaginationType extends AbstractType
 {
     /**
-     * @var BlockFactoryInterface
-     */
-    protected $factory;
-
-    /**
-     * Constructor.
-     *
-     * @param BlockFactoryInterface $factory
-     */
-    public function __construct(BlockFactoryInterface $factory)
-    {
-        $this->factory = $factory;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function buildBlock(BlockBuilderInterface $builder, array $options)
     {
         if ($options['auto_pager']) {
-            $blockPrevious = $this->factory->createNamed('previous', 'pagination_item', null, $options['previous']);
-            $blockNext = $this->factory->createNamed('next', 'pagination_item', null, $options['next']);
-
-            $builder->setAttribute('block_previous', $blockPrevious);
-            $builder->setAttribute('block_next', $blockNext);
+            $builder->add('previous', 'pagination_item', $options['previous']);
+            $builder->add('next', 'pagination_item', $options['next']);
         }
     }
 
@@ -63,12 +44,24 @@ class PaginationType extends AbstractType
         $view->vars = array_replace($view->vars, array(
             'size' => $options['size'],
         ));
+    }
 
-        if ($options['auto_pager']) {
-            $view->vars = array_replace($view->vars, array(
-                'block_previous' => $block->getConfig()->getAttribute('block_previous')->createView($view),
-                'block_next'     => $block->getConfig()->getAttribute('block_next')->createView($view),
-            ));
+    /**
+     * {@inheritdoc}
+     */
+    public function finishView(BlockView $view, BlockInterface $block, array $options)
+    {
+        foreach ($view->children as $name => $child) {
+            if (in_array('pagination_item', $child->vars['block_prefixes'])) {
+                if ('previous' === $name) {
+                    $view->vars['block_previous'] = $child;
+                    unset($view->children[$name]);
+
+                } elseif ('next' === $name) {
+                    $view->vars['block_next'] = $child;
+                    unset($view->children[$name]);
+                }
+            }
         }
     }
 

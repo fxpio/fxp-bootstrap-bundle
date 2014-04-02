@@ -15,7 +15,7 @@ use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockBuilderInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Sonatra\Bundle\BlockBundle\Block\BlockFactoryInterface;
+use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
@@ -26,30 +26,38 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class PanelType extends AbstractType
 {
     /**
-     * @var BlockFactoryInterface
-     */
-    protected $factory;
-
-    /**
-     * Constructor.
-     *
-     * @param BlockFactoryInterface $factory
-     */
-    public function __construct(BlockFactoryInterface $factory)
-    {
-        $this->factory = $factory;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function buildBlock(BlockBuilderInterface $builder, array $options)
     {
         if (!empty($options['label'])) {
-            $blockHeader = $this->factory->createNamed('header', 'panel_header', null, array());
-            $blockHeader->add(null, 'heading', array('size' => 4, 'label' => $options['label']));
+            $builder->add('header', 'panel_header', array());
+            $builder->get('header')->add(null, 'heading', array('size' => 4, 'label' => $options['label']));
+        }
+    }
 
-            $builder->setAttribute('block_header', $blockHeader);
+    /**
+     * {@inheritdoc}
+     */
+    public function addChild(BlockInterface $child, BlockInterface $block, array $options)
+    {
+        if (BlockUtil::isValidBlock('panel_header', $child)) {
+            if ($block->getAttribute('has_header')) {
+                $msg = 'The panel block "%s" has already panel header. Removes the label option of the panel block.';
+                throw new InvalidConfigurationException(sprintf($msg, $block->getName()));
+            }
+
+            $block->setAttribute('has_header', true);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeChild(BlockInterface $child, BlockInterface $block, array $options)
+    {
+        if (BlockUtil::isValidBlock('panel_header', $child)) {
+            $block->setAttribute('has_header', false);
         }
     }
 
@@ -61,12 +69,6 @@ class PanelType extends AbstractType
         $view->vars = array_replace($view->vars, array(
             'style' => $options['style'],
         ));
-
-        if ($block->getConfig()->hasAttribute('block_header')) {
-            $view->vars = array_replace($view->vars, array(
-                'block_header' => $block->getConfig()->getAttribute('block_header')->createView($view),
-            ));
-        }
     }
 
     /**

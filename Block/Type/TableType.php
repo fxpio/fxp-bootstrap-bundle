@@ -15,10 +15,10 @@ use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockBuilderInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Sonatra\Bundle\BlockBundle\Block\BlockFactoryInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockRendererInterface;
 use Sonatra\Bundle\BlockBundle\Block\Extension\Core\DataMapper\WrapperMapper;
 use Sonatra\Bundle\BlockBundle\Block\ResolvedBlockTypeInterface;
+use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Sonatra\Bundle\BootstrapBundle\Block\DataSource\DataSource;
 use Sonatra\Bundle\BootstrapBundle\Block\DataSource\DataSourceInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -32,24 +32,17 @@ use Symfony\Component\OptionsResolver\Options;
 class TableType extends AbstractType
 {
     /**
-     * @var BlockFactoryInterface
-     */
-    protected $factory;
-
-    /**
-     * @var BlockFactoryInterface
+     * @var BlockRendererInterface
      */
     protected $renderer;
 
     /**
      * Constructor.
      *
-     * @param BlockFactoryInterface  $factory
      * @param BlockRendererInterface $renderer
      */
-    public function __construct(BlockFactoryInterface $factory, BlockRendererInterface $renderer)
+    public function __construct(BlockRendererInterface $renderer)
     {
-        $this->factory = $factory;
         $this->renderer = $renderer;
     }
 
@@ -72,6 +65,18 @@ class TableType extends AbstractType
 
             $builder->setData($source);
             $builder->setDataClass(get_class($source));
+        }
+
+        $builder->add('_header', 'table_header');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addChild(BlockInterface $child, BlockInterface $block, array $options)
+    {
+        if (BlockUtil::isValidBlock('table_header', $child)) {
+            $block->remove('_header');
         }
     }
 
@@ -131,11 +136,6 @@ class TableType extends AbstractType
                 $columns[] = $child;
                 unset($view->children[$name]);
             }
-        }
-
-        if (!isset($view->vars['header'])) {
-            $blockHeader = $this->factory->createNamed('header', 'table_header', null, array());
-            $view->vars['header'] = $blockHeader->createView($view);
         }
 
         $view->vars['header']->vars['header_columns'] = $columns;
