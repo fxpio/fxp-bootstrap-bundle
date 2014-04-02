@@ -455,7 +455,7 @@ class DataSource implements DataSourceInterface
         }
 
         if (isset($this->mappingColumns[$name])) {
-            return $this->columns[$this->mappingColumns[$name]]->getConfig()->getOption('index');
+            return $this->columns[$this->mappingColumns[$name]]->getOption('index');
         }
 
         throw new InvalidArgumentException(sprintf('The column name "%s" does not exist', $name));
@@ -536,11 +536,11 @@ class DataSource implements DataSourceInterface
 
             // loop in cells
             foreach ($this->getColumns() as $rIndex => $column) {
-                if (count($column->getConfig()->getOption('attr')) > 0) {
-                    $row['_attr_columns'][$column->getName()] = $column->getConfig()->getOption('attr');
+                if (count($column->getOption('attr')) > 0) {
+                    $row['_attr_columns'][$column->getName()] = $column->getOption('attr');
                 }
 
-                if ('_row_number' === $column->getConfig()->getOption('index')) {
+                if ('_row_number' === $column->getOption('index')) {
                     continue;
                 }
 
