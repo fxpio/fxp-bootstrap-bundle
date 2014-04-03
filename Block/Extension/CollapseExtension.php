@@ -40,10 +40,15 @@ class CollapseExtension extends AbstractTypeExtension
             }
 
             $attr['class'] = trim($class);
+
+            if ('' === $attr['class']) {
+                unset($attr['class']);
+            }
         }
 
         $view->vars = array_replace($view->vars, array(
             'attr'        => $attr,
+            'collapsible' => $options['collapsible'],
             'collapse_in' => $options['collapse_in'],
         ));
     }
