@@ -12,8 +12,11 @@
 namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
+use Sonatra\Bundle\BlockBundle\Block\BlockBuilderInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
+use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
+use Sonatra\Bundle\BlockBundle\Block\Exception\InvalidConfigurationException;
 
 /**
  * Panel Header Block Type.
@@ -25,6 +28,32 @@ class PanelHeaderType extends AbstractType
     /**
      * {@inheritdoc}
      */
+    public function buildBlock(BlockBuilderInterface $builder, array $options)
+    {
+        if (!BlockUtil::isEmpty($options['label'])) {
+            $builder->add('_heading', 'heading', array(
+                'size'  => 4,
+                'label' => $options['label'],
+            ));
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addChild(BlockInterface $child, BlockInterface $block, array $options)
+    {
+        if (BlockUtil::isValidBlock('heading', $child)) {
+            if ($block->has('_heading')) {
+                $msg = 'The panel header block "%s" has already panel title. Removes the label option of the panel header block.';
+                throw new InvalidConfigurationException(sprintf($msg, $block->getName()));
+            }
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function finishView(BlockView $view, BlockInterface $block, array $options)
     {
         foreach ($view->children as $name => $child) {
@@ -33,6 +62,9 @@ class PanelHeaderType extends AbstractType
                 $class .= ' panel-title';
 
                 $child->vars['attr']['class'] = trim($class);
+
+                $view->vars['panel_heading'] = $child;
+                unset($view->children[$name]);
             }
         }
     }

@@ -908,16 +908,22 @@
 {% spaceless %}
     {% set attr = attr|merge({'class': ('panel-heading ' ~ attr.class|default(''))|trim}) %}
     <div{{ block('widget_container_attributes') }}>
-        {% if label is not empty %}
-            <h3 class="panel-title">{{- label|trans({}, translation_domain)|raw -}}</h3>
-        {% endif %}
-        {{- value|raw -}}
-        {% for child in block %}
-            {{ block_widget(child) }}
-        {% endfor %}
+        {{ block('panel_header_widget_content') }}
     </div>
 {% endspaceless %}
 {% endblock panel_header_widget %}
+
+{% block panel_header_widget_content %}
+{% spaceless %}
+    {% if panel_heading is defined %}
+        {{ block_widget(panel_heading) }}
+    {% endif %}
+    {{- value|raw -}}
+    {% for child in block %}
+        {{ block_widget(child) }}
+    {% endfor %}
+{% endspaceless %}
+{% endblock panel_header_widget_content %}
 
 {% block panel_body_widget %}
 {% spaceless %}
