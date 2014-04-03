@@ -87,6 +87,19 @@ class TableType extends AbstractType
     /**
      * {@inheritdoc}
      */
+    public function removeChild(BlockInterface $child, BlockInterface $block, array $options)
+    {
+        if (BlockUtil::isValidBlock('table_header', $child)) {
+            if ($block->getAttribute('has_header') && $block->has('_header')) {
+                $block->remove('_header');
+                $block->setAttribute('has_header', false);
+            }
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function finishBlock(BlockBuilderInterface $builder, array $options)
     {
         if ($builder->getData() instanceof DataSourceInterface) {
