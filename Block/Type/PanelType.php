@@ -16,6 +16,7 @@ use Sonatra\Bundle\BlockBundle\Block\BlockBuilderInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
+use Sonatra\Bundle\BlockBundle\Block\Exception\InvalidConfigurationException;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
