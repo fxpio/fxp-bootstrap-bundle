@@ -51,6 +51,23 @@
 {% endspaceless %}
 {% endblock col_widget %}
 
+{% block block_collapse_widget %}
+{% spaceless %}
+    {% if collapsible %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' collapse')|trim}) %}
+    {% endif %}
+    {% if not(collapsed) %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' in')|trim}) %}
+    {% endif %}
+    <div{{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
+        {% for child in block %}
+            {{ block_widget(child) }}
+        {% endfor %}
+    </div>
+{% endspaceless %}
+{% endblock block_collapse_widget %}
+
 {% block clearfix_widget %}
 {% spaceless %}
     {% set attr = attr|merge({'class': ('clearfix' ~ ' ' ~ attr.class|default(''))|trim}) %}
@@ -868,7 +885,7 @@
         {% endif %}
 
         {% if group_collapse|default(false) %}
-            <div id="{{ id }}Collapse" class="panel-collapse collapse{% if collapse_in %} in{% endif %}">
+            <div id="{{ id }}Collapse" class="panel-collapse collapse{% if group_collapse_in|default(false) %} in{% endif %}">
         {% endif %}
 
         {{- value|raw -}}

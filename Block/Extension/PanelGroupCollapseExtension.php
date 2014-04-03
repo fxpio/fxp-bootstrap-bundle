@@ -31,7 +31,7 @@ class PanelGroupCollapseExtension extends AbstractTypeExtension
      */
     public function addChild(BlockInterface $child, BlockInterface $block, array $options)
     {
-        if ($options['collapse'] && BlockUtil::isValidBlock('panel', $child)) {
+        if ($options['collapsible'] && BlockUtil::isValidBlock('panel', $child)) {
             foreach ($child->all() as $name => $subChild) {
                 if (BlockUtil::isValidBlock('panel_header', $subChild)) {
                     foreach ($subChild->all() as $name => $subSubChild) {
@@ -60,7 +60,7 @@ class PanelGroupCollapseExtension extends AbstractTypeExtension
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'collapse' => $options['collapse'],
+            'collapsible' => $options['collapsible'],
         ));
     }
 
@@ -72,21 +72,21 @@ class PanelGroupCollapseExtension extends AbstractTypeExtension
         $first = null;
         $hasChildActive = false;
 
-        if ($options['collapse']) {
+        if ($options['collapsible']) {
             foreach ($view->children as $name => $child) {
                 $child->vars['group_collapse'] = true;
 
                 if (null === $first) {
                     $first = $name;
+
+                    if ($options['collapse_first']) {
+                        $child->vars['group_collapse_in'] = true;
+                    }
                 }
 
-                if (isset($child->vars['collapse_in']) && $child->vars['collapse_in']) {
-                    $hasChildActive = true;
+                if (in_array($view->vars['id'], $options['collapse_ins'])) {
+                    $child->vars['group_collapse_in'] = true;
                 }
-            }
-
-            if (null !== $first && !$hasChildActive && $options['collapse_first']) {
-                $view->children[$first]->vars['collapse_in'] = true;
             }
         }
     }
@@ -97,16 +97,18 @@ class PanelGroupCollapseExtension extends AbstractTypeExtension
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'collapse'       => false,
+            'collapsible'    => false,
             'collapse_first' => false,
+            'collapse_ins'   => array(),
             'render_id'      => function (Options $options) {
-                return $options['collapse'];
+                return $options['collapsible'];
             },
         ));
 
         $resolver->addAllowedTypes(array(
-            'collapse'       => 'bool',
+            'collapsible'    => 'bool',
             'collapse_first' => 'bool',
+            'collapse_ins'   => 'array',
         ));
     }
 

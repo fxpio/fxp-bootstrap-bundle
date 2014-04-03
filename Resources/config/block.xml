@@ -25,6 +25,10 @@
             <tag name="sonatra_block.type_extension" alias="block" />
         </service>
 
+        <service id="sonatra_bootstrap.type.block_collapse" class="Sonatra\Bundle\BootstrapBundle\Block\Type\BlockCollapseType">
+            <tag name="sonatra_block.type" alias="block_collapse" />
+        </service>
+
         <service id="sonatra_bootstrap.type.fieldset" class="Sonatra\Bundle\BootstrapBundle\Block\Type\FieldsetType">
             <tag name="sonatra_block.type" alias="fieldset" />
         </service>
@@ -285,16 +289,8 @@
             <tag name="sonatra_block.type_extension" alias="block" />
         </service>
 
-        <service id="sonatra_bootstrap.type_extension.collapse" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\CollapseExtension">
-            <tag name="sonatra_block.type_extension" alias="block" />
-        </service>
-
         <service id="sonatra_bootstrap.type_extension.panel_group_collapse" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\PanelGroupCollapseExtension">
             <tag name="sonatra_block.type_extension" alias="panel_group" />
-        </service>
-
-        <service id="sonatra_bootstrap.type_extension.panel_collapse" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\PanelCollapseExtension">
-            <tag name="sonatra_block.type_extension" alias="panel" />
         </service>
 
         <service id="sonatra_bootstrap.type_extension.button_collapse" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\ButtonCollapseExtension">

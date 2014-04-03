@@ -9,36 +9,29 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\BootstrapBundle\Block\Extension;
+namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 
-use Sonatra\Bundle\BlockBundle\Block\AbstractTypeExtension;
+use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\Options;
 
 /**
- * Panel Collapse Block Extension.
+ * Block Collapse Block Type.
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class PanelCollapseExtension extends AbstractTypeExtension
+class BlockCollapseType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
-        $attr = $view->vars['attr'];
-
-        if (isset($attr['class'])) {
-            $attr['class'] = str_replace('collapse in', '', $attr['class']);
-            $attr['class'] = str_replace('collapse', '', $attr['class']);
-            $attr['class'] = trim($attr['class']);
-        }
-
         $view->vars = array_replace($view->vars, array(
-            'attr' => $attr,
+            'collapsible' => $options['collapsible'],
+            'collapsed' => $options['collapsed'],
         ));
     }
 
@@ -48,15 +41,24 @@ class PanelCollapseExtension extends AbstractTypeExtension
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'collapsible' => false,
+            'collapsible' => true,
+            'collapsed' => false,
+            'render_id'   => function (Options $options) {
+                return $options['collapsible'];
+            },
+        ));
+
+        $resolver->addAllowedTypes(array(
+            'collapsible' => 'bool',
+            'collapsed' => 'bool',
         ));
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getExtendedType()
+    public function getName()
     {
-        return 'panel';
+        return 'block_collapse';
     }
 }
