@@ -76,7 +76,11 @@ class TableType extends AbstractType
     public function addChild(BlockInterface $child, BlockInterface $block, array $options)
     {
         if (BlockUtil::isValidBlock('table_header', $child)) {
-            $block->remove('_header');
+            if ($block->getAttribute('has_header')) {
+                $block->remove('_header');
+            }
+
+            $block->setAttribute('has_header', true);
         }
     }
 
