@@ -94,6 +94,7 @@ class ButtonType extends AbstractType
     {
         $resolver->setDefaults(array(
             'tag'         => 'button',
+            'label'       => '',
             'disabled'    => false,
             'src'         => null,
             'style'       => null,
