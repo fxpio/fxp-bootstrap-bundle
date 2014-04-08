@@ -149,6 +149,7 @@ class TableType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
+            'mapped'          => false,
             'striped'         => false,
             'bordered'        => false,
             'condensed'       => false,
