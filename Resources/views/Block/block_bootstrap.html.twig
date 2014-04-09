@@ -225,7 +225,9 @@
     {% if layout is defined and layout == 'horizontal' %}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
     {% endif %}
-    <img{{ block('widget_attributes') }}>
+    {% if attr.src|default(null) is not empty %}
+        <img{{ block('widget_attributes') }}>
+    {% endif %}
     {% if layout is defined and layout == 'horizontal' %}
         </div>
     {% endif %}

@@ -32,8 +32,8 @@ class ImageType extends AbstractType
         $attr = $options['attr'];
         $attr['alt'] = $options['alt'];
 
-        if (null !== $options['src']) {
-            $attr['src'] = $options['src'];
+        if (null !== $view->vars['value']) {
+            $attr['src'] = $view->vars['value'];
         }
 
         if (null !== $options['crossorigin']) {
@@ -69,6 +69,7 @@ class ImageType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
+            'mapped'      => true,
             'src'         => null,
             'alt'         => null,
             'style'       => null,
@@ -97,9 +98,9 @@ class ImageType extends AbstractType
         ));
 
         $resolver->setNormalizers(array(
-            'src' => function (Options $options, $value = null) {
-                if (isset($options['data'])) {
-                    return $options['data'];
+            'data' => function (Options $options, $value) {
+                if (isset($options['src'])) {
+                    return $options['src'];
                 }
 
                 return $value;
