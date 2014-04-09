@@ -17,6 +17,7 @@ use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Sonatra\Bundle\BlockBundle\Block\Exception\InvalidConfigurationException;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Panel Header Block Type.
@@ -67,6 +68,20 @@ class PanelHeaderType extends AbstractType
                 unset($view->children[$name]);
             }
         }
+
+        if (!is_scalar($view->vars['value'])) {
+            $view->vars['value'] = '';
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'inherit_data' => true,
+        ));
     }
 
     /**

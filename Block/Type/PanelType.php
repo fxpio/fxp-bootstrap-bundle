@@ -87,6 +87,10 @@ class PanelType extends AbstractType
                 unset($view->children[$name]);
             }
         }
+
+        if (!is_scalar($view->vars['value'])) {
+            $view->vars['value'] = '';
+        }
     }
 
     /**
