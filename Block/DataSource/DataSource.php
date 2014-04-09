@@ -547,7 +547,7 @@ class DataSource implements DataSourceInterface
                 $config = $column->getConfig();
                 $formatter = $config->getOption('formatter');
                 $cellData = $this->getDataField($data, $config->getOption('index'));
-                $options = array_replace(array('wrapped' => false), $config->getOption('formatter_options'));
+                $options = array_replace(array('wrapped' => false, 'inherit_data' => false), $config->getOption('formatter_options'));
 
                 if ('twig' === $formatter) {
                     $options = array_merge_recursive($options, array(

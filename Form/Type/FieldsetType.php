@@ -12,12 +12,10 @@
 namespace Sonatra\Bundle\BootstrapBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Sonatra\Bundle\BootstrapBundle\Form\DataMapper\WrapperMapper;
 
 /**
  * Fiedlset Form Type.
@@ -26,14 +24,6 @@ use Sonatra\Bundle\BootstrapBundle\Form\DataMapper\WrapperMapper;
  */
 class FieldsetType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder->setDataMapper(new WrapperMapper());
-    }
-
     /**
      * {@inheritdoc}
      */

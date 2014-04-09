@@ -28,10 +28,6 @@ class FieldsetType extends AbstractType
      */
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
-        $view->vars = array_replace($view->vars, array(
-            'compound'    => true,
-        ));
-
         if (null !== $view->parent) {
             $view->vars = array_replace($view->vars, array(
                 'row'       => $view->parent->vars['row'],
@@ -72,7 +68,6 @@ class FieldsetType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'compound'     => true,
             'inherit_data' => true,
         ));
     }

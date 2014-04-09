@@ -16,7 +16,6 @@ use Sonatra\Bundle\BlockBundle\Block\BlockBuilderInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockRendererInterface;
-use Sonatra\Bundle\BlockBundle\Block\Extension\Core\DataMapper\WrapperMapper;
 use Sonatra\Bundle\BlockBundle\Block\ResolvedBlockTypeInterface;
 use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Sonatra\Bundle\BootstrapBundle\Block\DataSource\DataSource;
@@ -51,8 +50,6 @@ class TableType extends AbstractType
      */
     public function buildBlock(BlockBuilderInterface $builder, array $options)
     {
-        $builder->setDataMapper(new WrapperMapper());
-
         if (is_array($builder->getData())) {
             $source = new DataSource($options['row_id']);
             $source->setPageSizeMax($options['page_size_max']);
@@ -149,7 +146,6 @@ class TableType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'mapped'          => false,
             'striped'         => false,
             'bordered'        => false,
             'condensed'       => false,
