@@ -1234,7 +1234,6 @@
     {% set label_attr = label_attr|merge({'data-col-name': name}) %}
     <th{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
         {{ label|trans({}, translation_domain) }}
-        {{- value|raw -}}
         {{- block('block_rows') -}}
     </th>
 {% endspaceless %}
