@@ -46,8 +46,9 @@ class PopoverExtension extends AbstractTypeExtension
             }
 
             $view->vars = array_replace($view->vars, array(
-                'attr' => $attr,
+                'attr'       => $attr,
                 'popover_id' => $view->vars['id'],
+                'render_id'  => true,
             ));
         }
     }

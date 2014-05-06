@@ -37,13 +37,14 @@ class TooltipExtension extends AbstractTypeExtension
 
             foreach ($tip as $key => $value) {
                 if (null !== $value) {
-                    $attr['data-'.$key] = $value;
+                    $attr[('title' === $key ? $key : 'data-'.$key)] = $value;
                 }
             }
 
             $view->vars = array_replace($view->vars, array(
-                'attr' => $attr,
+                'attr'       => $attr,
                 'tooltip_id' => $view->vars['id'],
+                'render_id'  => true,
             ));
         }
     }
