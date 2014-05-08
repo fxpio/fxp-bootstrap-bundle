@@ -20,7 +20,7 @@
 
         <parameter key="sonatra_bootstrap.assetic.common_stylesheets_resource.stylesheet.class">Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource\StylesheetResource</parameter>
         <parameter key="sonatra_bootstrap.assetic.common_stylesheets_resource.stylesheet_theme.class">Sonatra\Bundle\BootstrapBundle\Assetic\Factory\Resource\StylesheetThemeResource</parameter>
-        <parameter key="sonatra_bootstrap.assetic.font_output"></parameter>
+        <parameter key="sonatra_bootstrap.assetic.font_output" />
     </parameters>
 
     <services>
@@ -70,21 +70,21 @@
         </service>
 
         <service id="sonatra_bootstrap.assetic.parameter_bag_filter" class="%sonatra_bootstrap.assetic.parameter_bag_filter.class%">
-            <tag name="assetic.filter" alias="parameterbag"></tag>
+            <tag name="assetic.filter" alias="parameterbag" />
             <argument type="service" id="service_container" />
         </service>
 
         <service id="sonatra_bootstrap.assetic.path_relative_filter" class="%sonatra_bootstrap.assetic.path_relative_filter.class%">
-            <tag name="assetic.filter" alias="relative"></tag>
+            <tag name="assetic.filter" alias="relative" />
         </service>
 
         <service id="sonatra_bootstrap.assetic.bundle_filter" class="%sonatra_bootstrap.assetic.bundle_filter.class%">
-            <tag name="assetic.filter" alias="bundle"></tag>
+            <tag name="assetic.filter" alias="bundle" />
             <argument>%kernel.bundles%</argument>
         </service>
 
         <service id="sonatra_bootstrap.assetic.oyejorge_lessphp_filter" class="%sonatra_bootstrap.assetic.oyejorge_lessphp_filter.class%">
-            <tag name="assetic.filter" alias="oyejorge_lessphp"></tag>
+            <tag name="assetic.filter" alias="oyejorge_lessphp" />
             <argument type="service" id="service_container" />
             <argument type="collection" />
             <argument type="collection" />
