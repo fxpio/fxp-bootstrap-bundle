@@ -27,7 +27,7 @@ abstract class AbstractAssetPass implements CompilerPassInterface
      * Replace "@AcmeDemoBundle" bundle pattern by real directory.
      *
      * @param ContainerBuilder $container
-     * @param string           $arg
+     * @param Definition       $definition
      *
      * @return string
      */

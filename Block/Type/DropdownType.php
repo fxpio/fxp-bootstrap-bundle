@@ -40,7 +40,9 @@ class DropdownType extends AbstractType
      */
     public function finishView(BlockView $view, BlockInterface $block, array $options)
     {
+        /* @var BlockView $firstHeader */
         $firstHeader = null;
+        /* @var string $lastDivider */
         $lastDivider = null;
         $hasItem = false;
 

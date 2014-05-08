@@ -32,7 +32,7 @@ class ParameterBagFilter implements FilterInterface
     /**
      * Constructor.
      *
-     * @param ContainerInterface $container
+     * @param Container $container
      */
     public function __construct(Container $container)
     {

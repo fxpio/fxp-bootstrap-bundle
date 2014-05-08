@@ -11,6 +11,7 @@
 
 namespace Sonatra\Bundle\BootstrapBundle\Doctrine\ORM\Query;
 
+use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Doctrine\ORM\Query\TreeWalkerAdapter;
 use Doctrine\ORM\Query\AST\SelectStatement;
 use Doctrine\ORM\Query\AST\SelectExpression;
@@ -31,9 +32,7 @@ class CountWalker extends TreeWalkerAdapter
     const HINT_DISTINCT = 'sonatra_paginator.distinct';
 
     /**
-     * Walks down a SelectStatement AST node, modifying it to retrieve a COUNT.
-     *
-     * @param SelectStatement $AST
+     * {@inheritdoc}
      */
     public function walkSelectStatement(SelectStatement $AST)
     {
@@ -57,10 +56,12 @@ class CountWalker extends TreeWalkerAdapter
         $root = reset($rootComponents);
         $parentName = key($root);
         $parent = current($root);
+        /* @var ClassMetadataInfo $metadata */
+        $metadata = $parent['metadata'];
 
         $pathExpression = new PathExpression(
                 PathExpression::TYPE_STATE_FIELD | PathExpression::TYPE_SINGLE_VALUED_ASSOCIATION, $parentName,
-                $parent['metadata']->getSingleIdentifierFieldName()
+                $metadata->getSingleIdentifierFieldName()
         );
         $pathExpression->type = PathExpression::TYPE_STATE_FIELD;
 

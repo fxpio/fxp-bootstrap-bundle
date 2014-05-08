@@ -36,12 +36,13 @@ class LocalizedAssetsPass extends AbstractAssetPass implements CompilerPassInter
             return;
         }
 
+        $parameterBag = $container->getParameterBag();
         $cssConfig = $container->getParameter('sonatra_bootstrap.assetic.common_localized_stylesheets_config');
         $jsConfig = $container->getParameter('sonatra_bootstrap.assetic.common_localized_javascripts_config');
 
-        if ($container->getParameterBag() instanceof ParameterBag) {
-            $container->getParameterBag()->remove('sonatra_bootstrap.assetic.common_localized_stylesheets_config');
-            $container->getParameterBag()->remove('sonatra_bootstrap.assetic.common_localized_javascripts_config');
+        if ($parameterBag instanceof ParameterBag) {
+            $parameterBag->remove('sonatra_bootstrap.assetic.common_localized_stylesheets_config');
+            $parameterBag->remove('sonatra_bootstrap.assetic.common_localized_javascripts_config');
         }
 
         // stylesheets

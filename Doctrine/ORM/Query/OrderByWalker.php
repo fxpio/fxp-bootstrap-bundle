@@ -41,10 +41,7 @@ class OrderByWalker extends TreeWalkerAdapter
     const HINT_SORT_DIRECTION = 'sonatra_paginator.sort.direction';
 
     /**
-     * Walks down a SelectStatement AST node, modifying it to
-     * sort the query like requested by url.
-     *
-     * @param SelectStatement $AST
+     * {@inheritdoc}
      */
     public function walkSelectStatement(SelectStatement $AST)
     {

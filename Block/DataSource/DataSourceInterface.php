@@ -205,6 +205,8 @@ interface DataSourceInterface
     /**
      * Get sort column.
      *
+     * @param string $column The column name
+     *
      * @return string|null
      */
     public function getSortColumn($column);
@@ -212,7 +214,7 @@ interface DataSourceInterface
     /**
      * Check if column is sorted.
      *
-     * @param string column The column name
+     * @param string $column The column name
      *
      * @return bool
      */

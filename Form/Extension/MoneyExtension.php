@@ -70,6 +70,8 @@ class MoneyExtension extends AbstractTypeExtension
      * The pattern contains the placeholder "{{ widget }}" where the HTML tag should
      * be inserted.
      *
+     * @param string $currency
+     *
      * @return array The pattern, position and currency variables
      */
     protected static function getPattern($currency)
