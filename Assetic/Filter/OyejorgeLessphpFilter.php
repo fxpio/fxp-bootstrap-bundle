@@ -13,7 +13,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Assetic\Filter;
 
 use Assetic\Filter\FilterInterface;
 use Assetic\Asset\AssetInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 /**
@@ -45,7 +45,7 @@ class OyejorgeLessphpFilter implements FilterInterface
     /**
      * Constructor.
      */
-    public function __construct(ContainerInterface $container, array $options = array(), array $loadPaths = array())
+    public function __construct(Container $container, array $options = array(), array $loadPaths = array())
     {
         $this->parameterBag = $container->getParameterBag();
         $this->options = $options;
@@ -63,7 +63,7 @@ class OyejorgeLessphpFilter implements FilterInterface
 
         $less = new \Less_Parser($this->options);
         $less->SetImportDirs($this->loadPaths);
-        $less->parse($this->generateVariables($asset));
+        $less->parse($this->generateVariables());
         $less->parse($asset->getContent());
 
         $asset->setContent($less->getCss());
@@ -84,11 +84,9 @@ class OyejorgeLessphpFilter implements FilterInterface
      * Example:
      *  AcmeBlogBundle => '@AcmeBlogBundle'
      *
-     * @param AssetInterface $asset
-     *
      * @return string
      */
-    protected function generateVariables(AssetInterface $asset)
+    protected function generateVariables()
     {
         $kernelDir = $this->parameterBag->get('kernel.root_dir');
         $output = sprintf('@symfony-kernel-root-dir: "%s";%s', $kernelDir, PHP_EOL);
