@@ -66,7 +66,7 @@ class ResponsiveExtension extends AbstractTypeExtension
 
                 foreach ($value as $i => $visibility) {
                     if (!in_array($visibility, $this->validPrefix)) {
-                        throw new InvalidConfigurationException(sprintf('The "%s" prefix visibility option does not exist. Known options are: "'.implode('", "', $this->validPrefix).'"', $type));
+                        throw new InvalidConfigurationException(sprintf('The "%s" prefix visibility option does not exist. Known options are: "%s"', $visibility, implode('", "', $this->validPrefix)));
                     }
 
                     $value[$i] = sprintf('visibility-%s', $visibility);
