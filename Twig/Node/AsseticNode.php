@@ -27,14 +27,14 @@ class AsseticNode extends \Twig_Node
      *  * combine:  Whether to combine assets
      *  * var_name: The name of the variable to expose to the body node
      *
-     * @param AssetInterface      $asset      The asset
-     * @param \Twig_NodeInterface $body       The body node
-     * @param string              $name       The name of the asset
-     * @param array               $attributes An array of attributes
-     * @param integer             $lineno     The line number
-     * @param string              $tag        The tag name
+     * @param AssetInterface $asset      The asset
+     * @param \Twig_Node     $body       The body node
+     * @param string         $name       The name of the asset
+     * @param array          $attributes An array of attributes
+     * @param integer        $lineno     The line number
+     * @param string         $tag        The tag name
      */
-    public function __construct(AssetInterface $asset, \Twig_NodeInterface $body, $name, array $attributes = array(), $lineno = 0, $tag = null)
+    public function __construct(AssetInterface $asset, \Twig_Node $body, $name, array $attributes = array(), $lineno = 0, $tag = null)
     {
         $nodes = array('body' => $body);
 
