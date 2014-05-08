@@ -27,7 +27,7 @@ class ThumbnailCaptionType extends AbstractType
      */
     public function finishView(BlockView $view, BlockInterface $block, array $options)
     {
-        foreach ($view->children as $name => $child) {
+        foreach ($view->children as $child) {
             if (in_array('heading', $child->vars['block_prefixes'])) {
                 $child->vars['size'] = 3;
             }

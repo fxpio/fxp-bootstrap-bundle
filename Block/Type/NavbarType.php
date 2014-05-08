@@ -39,10 +39,12 @@ class NavbarType extends AbstractType
      */
     public function finishView(BlockView $view, BlockInterface $block, array $options)
     {
+        /* @var BlockView $header */
         $header = null;
+        /* @var BlockView $collapse */
         $collapse = null;
 
-        foreach ($view->children as $name => $child) {
+        foreach ($view->children as $child) {
             if (null === $header && in_array('navbar_header', $child->vars['block_prefixes'])) {
                 $header = $child;
 
@@ -50,7 +52,7 @@ class NavbarType extends AbstractType
                 $collapse = $child;
 
             } elseif (in_array('container', $child->vars['block_prefixes'])) {
-                foreach ($child->children as $subName => $subChild) {
+                foreach ($child->children as $subChild) {
                     if (null === $header && in_array('navbar_header', $subChild->vars['block_prefixes'])) {
                         $header = $subChild;
 
@@ -123,7 +125,7 @@ class NavbarType extends AbstractType
             $view->vars['attr']['class'] = 'navbar-link ' . $class;
         }
 
-        foreach ($view->children as $name => $child) {
+        foreach ($view->children as $child) {
             $this->cleanChildren($child);
         }
     }

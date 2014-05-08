@@ -21,7 +21,6 @@ use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Sonatra\Bundle\BootstrapBundle\Block\DataSource\DataSource;
 use Sonatra\Bundle\BootstrapBundle\Block\DataSource\DataSourceInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\OptionsResolver\Options;
 
 /**
  * Table Block Type.
@@ -96,7 +95,8 @@ class TableType extends AbstractType
     {
         $block->getData()->setTableView($view);
 
-        foreach ($block->all() as $name => $child) {
+        /* @var BlockInterface $child */
+        foreach ($block->all() as $child) {
             if ($this->isColumn($child->getConfig()->getType())) {
                 $block->getData()->addColumn($child);
             }

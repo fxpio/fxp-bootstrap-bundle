@@ -16,7 +16,6 @@ use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\Options;
 
 /**
@@ -32,9 +31,11 @@ class PanelGroupCollapseExtension extends AbstractTypeExtension
     public function addChild(BlockInterface $child, BlockInterface $block, array $options)
     {
         if ($options['collapsible'] && BlockUtil::isValidBlock('panel', $child)) {
-            foreach ($child->all() as $name => $subChild) {
+            /* @var BlockInterface $subChild */
+            foreach ($child->all() as $subChild) {
                 if (BlockUtil::isValidBlock('panel_header', $subChild)) {
-                    foreach ($subChild->all() as $name => $subSubChild) {
+                    /* @var BlockInterface $subSubChild */
+                    foreach ($subChild->all() as $subSubChild) {
                         if (BlockUtil::isValidBlock('heading', $subSubChild)) {
                             foreach ($subSubChild->all() as $name => $subSubSubChild) {
                                 $subSubChild->remove($name);
@@ -70,7 +71,6 @@ class PanelGroupCollapseExtension extends AbstractTypeExtension
     public function finishView(BlockView $view, BlockInterface $block, array $options)
     {
         $first = null;
-        $hasChildActive = false;
 
         if ($options['collapsible']) {
             foreach ($view->children as $name => $child) {

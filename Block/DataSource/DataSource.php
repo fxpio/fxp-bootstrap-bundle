@@ -11,6 +11,7 @@
 
 namespace Sonatra\Bundle\BootstrapBundle\Block\DataSource;
 
+use Sonatra\Bundle\BlockBundle\Block\BlockBuilderInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockRendererInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
@@ -449,13 +450,16 @@ class DataSource implements DataSourceInterface
         if (!is_array($this->mappingColumns)) {
             $this->mappingColumns = array();
 
+            /* @var BlockInterface $column */
             foreach ($this->getColumns() as $i => $column) {
                 $this->mappingColumns[$column->getName()] = $i;
             }
         }
 
         if (isset($this->mappingColumns[$name])) {
-            return $this->columns[$this->mappingColumns[$name]]->getOption('index');
+            $column = $this->columns[$this->mappingColumns[$name]];
+
+            return $column->getOption('index');
         }
 
         throw new InvalidArgumentException(sprintf('The column name "%s" does not exist', $name));
@@ -510,6 +514,8 @@ class DataSource implements DataSourceInterface
      * @param int   $rowNumber
      *
      * @return array The paginated rows
+     *
+     * @throws InvalidConfigurationException When the block renderer is not injected with the "setRenderer" method
      */
     protected function paginateRows(array $pagination, $rowNumber)
     {
@@ -520,7 +526,7 @@ class DataSource implements DataSourceInterface
         $cacheRows = array();
 
         // loop in rows
-        foreach ($pagination as $key => $data) {
+        foreach ($pagination as $data) {
             $row = array(
                 '_row_number'   => $rowNumber++,
                 '_attr_columns' => array(),
@@ -535,7 +541,8 @@ class DataSource implements DataSourceInterface
             }
 
             // loop in cells
-            foreach ($this->getColumns() as $rIndex => $column) {
+            /* @var BlockInterface $column */
+            foreach ($this->getColumns() as $column) {
                 if (count($column->getOption('attr')) > 0) {
                     $row['_attr_columns'][$column->getName()] = $column->getOption('attr');
                 }
@@ -559,6 +566,7 @@ class DataSource implements DataSourceInterface
                     ));
                 }
 
+                /* @var BlockBuilderInterface $config */
                 $cell = $config->getBlockFactory()->createNamed($column->getName(), $formatter, $cellData, $options);
                 $row[$column->getName()] = $this->renderer->searchAndRenderBlock($cell->createView(), 'widget');
             }

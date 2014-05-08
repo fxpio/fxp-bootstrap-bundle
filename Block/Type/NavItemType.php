@@ -69,7 +69,7 @@ class NavItemType extends AbstractType
                 $view->vars['dropdown'] = $child;
                 unset($view->children[$name]);
 
-                foreach ($child->children as $sName => $sChild) {
+                foreach ($child->children as $sChild) {
                     if (isset($child->parent->vars['link_attr']['data-toggle']) && !in_array('dropdown', $child->parent->vars['block_prefixes'])) {
                         $sChild->vars['link_attr']['data-toggle'] = $child->parent->vars['link_attr']['data-toggle'];
                     }

@@ -12,7 +12,6 @@
 namespace Sonatra\Bundle\BootstrapBundle\Doctrine\ORM\Block\DataSource;
 
 use Sonatra\Bundle\BootstrapBundle\Block\DataSource\DataSource;
-use Sonatra\Bundle\BootstrapBundle\Doctrine\ORM\Query\CountWalker;
 use Sonatra\Bundle\BootstrapBundle\Doctrine\ORM\Query\OrderByWalker;
 use Sonatra\Bundle\BlockBundle\Block\Exception\BadMethodCallException;
 use Sonatra\Bundle\BlockBundle\Block\Exception\InvalidArgumentException;
@@ -112,7 +111,6 @@ class DoctrineOrmDataSource extends DataSource
         $this->cacheRows = array();
 
         $query = clone $this->query;
-        $lengthItems = $this->getSize();
         $sortColumns = $this->getSortColumns();
 
         // query options
@@ -141,7 +139,7 @@ class DoctrineOrmDataSource extends DataSource
             $fieldNames = array();
             $sorts = array();
 
-            foreach ($sortColumns as $i => $sortConfig) {
+            foreach ($sortColumns as $sortConfig) {
                 if (!isset($sortConfig['name'])) {
                     throw new InvalidArgumentException("The 'name' property of sort_columns option must be present");
                 }

@@ -27,10 +27,10 @@ class BreadcrumbType extends AbstractType
      */
     public function finishView(BlockView $view, BlockInterface $block, array $options)
     {
-        $names = array_keys($view->children);
+        /* @var BlockView $last */
         $last = null;
 
-        foreach ($view->children as $i => $child) {
+        foreach ($view->children as $child) {
             if (in_array('breadcrumb_item', $child->vars['block_prefixes'])) {
                 $last = $child;
             }

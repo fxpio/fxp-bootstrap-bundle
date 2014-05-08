@@ -38,7 +38,7 @@ class ModalHeaderType extends AbstractType
      */
     public function finishView(BlockView $view, BlockInterface $block, array $options)
     {
-        foreach ($view->children as $name => $child) {
+        foreach ($view->children as $child) {
             if (in_array('heading', $child->vars['block_prefixes'])) {
                 $class = isset($child->vars['attr']['class']) ? $child->vars['attr']['class'] : '';
                 $class .= ' modal-title';

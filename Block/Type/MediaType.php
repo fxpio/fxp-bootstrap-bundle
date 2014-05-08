@@ -46,7 +46,7 @@ class MediaType extends AbstractType
      */
     public function finishView(BlockView $view, BlockInterface $block, array $options)
     {
-        foreach ($view->children as $name => $child) {
+        foreach ($view->children as $child) {
             if (in_array('link', $child->vars['block_prefixes']) || in_array('image', $child->vars['block_prefixes'])) {
                 $class = isset($child->vars['attr']['class']) ? $child->vars['attr']['class'] : '';
 
@@ -59,7 +59,7 @@ class MediaType extends AbstractType
 
                 $child->vars['attr']['class'] = $class;
 
-                foreach ($child->children as $subName => $subChild) {
+                foreach ($child->children as $subChild) {
                     if (in_array('image', $subChild->vars['block_prefixes'])) {
                         $subClass = isset($subChild->vars['attr']['class']) ? $subChild->vars['attr']['class'] : '';
 
