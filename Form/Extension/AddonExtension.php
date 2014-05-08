@@ -11,11 +11,11 @@
 
 namespace Sonatra\Bundle\BootstrapBundle\Form\Extension;
 
+use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\OptionsResolver\Options;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 
@@ -140,12 +140,8 @@ class AddonExtension extends AbstractTypeExtension
             return 'btn';
 
         } elseif ($addon instanceof BlockInterface) {
-            if (null === $type) {
-                $prefixes = $addon->vars['block_prefixes'];
-
-                if (in_array('button', $prefixes)) {
-                    $type = 'btn';
-                }
+            if (null === $type && BlockUtil::isValidBlock('button', $addon)) {
+                $type = 'btn';
             }
 
             return $type;
