@@ -1,5 +1,5 @@
-Getting Started With Sonatra BootstrapBundle
-============================================
+Getting Started
+===============
 
 ## Prerequisites
 
@@ -9,16 +9,16 @@ This version of the bundle requires Symfony 2.4+.
 
 Installation is a quick, 3 step process:
 
-1. Download Sonatra BootstrapBundle using composer
+1. Download the bundle using composer
 2. Enable the bundle
 3. Configure your application's config.yml
-4. Configure the bundle (optionnal)
+4. Configure the bundle (optional)
 
-### Step 1: Download Sonatra BootstrapBundle using composer
+### Step 1: Download the bundle using composer
 
 Add Sonatra BootstrapBundle in your composer.json:
 
-``` js
+```js
 {
     "require": {
         "sonatra/bootstrap-bundle": "~1.0"
@@ -28,7 +28,7 @@ Add Sonatra BootstrapBundle in your composer.json:
 
 Or tell composer to download the bundle by running the command:
 
-``` bash
+```bash
 $ php composer.phar update sonatra/bootstrap-bundle
 ```
 
@@ -38,8 +38,7 @@ Composer will install the bundle to your project's `vendor/sonatra` directory.
 
 Enable the bundle in the kernel:
 
-``` php
-<?php
+```php
 // app/AppKernel.php
 
 public function registerBundles()
@@ -55,7 +54,7 @@ public function registerBundles()
 
 Add the following configuration to your `config.yml`.
 
-``` yaml
+```yaml
 # app/config/config.yml
 assetic:
     bundles: [ "SonatraBootstrapBundle" ]
@@ -69,7 +68,7 @@ assetic:
 You can override the default configuration adding `sonatra_bootstrap` tree in `app/config/config.yml`.
 For see the reference of Sonatra Bootstrap Configuration, execute command:
 
-``` bash
+```bash
 $ php app/console config:dump-reference SonatraBootstrapBundle 
 ```
 
