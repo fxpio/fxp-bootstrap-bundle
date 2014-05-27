@@ -69,18 +69,6 @@ class TableType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function addChild(BlockInterface $child, BlockInterface $block, array $options)
-    {
-        if (BlockUtil::isValidBlock('table_header', $child)) {
-            if ($block->has('_header')) {
-                $block->remove('_header');
-            }
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function finishBlock(BlockBuilderInterface $builder, array $options)
     {
         if ($builder->getData() instanceof DataSourceInterface) {
@@ -91,16 +79,33 @@ class TableType extends AbstractType
     /**
      * {@inheritdoc}
      */
+    public function addChild(BlockInterface $child, BlockInterface $block, array $options)
+    {
+        if (BlockUtil::isValidBlock('table_header', $child)) {
+            if ($block->has('_header')) {
+                $block->remove('_header');
+            }
+        } elseif ($this->isColumn($child->getConfig()->getType())) {
+            $block->getData()->addColumn($child);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeChild(BlockInterface $child, BlockInterface $block, array $options)
+    {
+        if ($this->isColumn($child->getConfig()->getType())) {
+            $block->getData()->removeColumn($child->getName());
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $block->getData()->setTableView($view);
-
-        /* @var BlockInterface $child */
-        foreach ($block->all() as $child) {
-            if ($this->isColumn($child->getConfig()->getType())) {
-                $block->getData()->addColumn($child);
-            }
-        }
 
         $view->vars = array_replace($view->vars, array(
             'striped'    => $options['striped'],
