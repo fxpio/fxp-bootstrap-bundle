@@ -160,7 +160,7 @@
         </div>
     {% endif %}
 
-    {% asset_javascript %}
+    {% embed_javascript %}
     <script type="text/javascript">
     {% if btn_add is defined and prototype is defined %}
         $('#{{ btn_add.vars.id }}').click(function(event) {
@@ -185,7 +185,7 @@
        });
     {% endif %}
     </script>
-    {% endasset %}
+    {% endembed_javascript %}
 {% endblock collection_widget %}
 
 

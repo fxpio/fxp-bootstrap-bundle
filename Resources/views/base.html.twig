@@ -36,7 +36,7 @@
     {% block style %}
     <style type="text/css">
         {% block style_global %}
-        {{ assetStylesheets() }}
+        {{ embedStylesheetsPosition() }}
         {% endblock style_global %}
 
         {% block style_content %}
@@ -75,7 +75,7 @@
     <script type="text/javascript">
     $( document ).ready( function() {
         {% block javascript_global %}
-        {{ assetJavascripts() }}
+        {{ embedJavascriptsPosition() }}
         {% endblock javascript_global %}
 
         {% block jquery_content %}
@@ -87,4 +87,4 @@
 </html>
 {% endspaceless %}
 {% endblock html %}
-{{ renderAssets() }}
+{{ renderEmbedAssets() }}
