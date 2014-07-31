@@ -207,7 +207,7 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('jquery')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('path')->defaultValue('%kernel.root_dir%/../vendor/sonatra_jquery/jquery/jquery.js')->end()
+                                ->scalarNode('path')->defaultValue('%kernel.root_dir%/../vendor/sonatra_jquery/jquery/dist/jquery.js')->end()
                             ->end()
                         ->end()
                         ->arrayNode('bootstrap')
