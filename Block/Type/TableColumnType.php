@@ -65,6 +65,7 @@ class TableColumnType extends AbstractType
         $resolver->setNormalizers(array(
             'formatter_options' => function (Options $options, $value) {
                 $value['empty_data'] = $options['empty_data'];
+                $value['empty_message'] = $options['empty_message'];
 
                 return $value;
             },
