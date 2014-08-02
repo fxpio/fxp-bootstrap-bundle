@@ -20,8 +20,8 @@
     "require" : {
         "symfony/framework-bundle" : "~2.4",
         "oyejorge/less.php": "~1.7",
+        "fxp/require-asset-bundle" : "~1.0",
         "sonatra/block-bundle" : "~1.0",
-        "sonatra/twig-extensions-bundle" : "~1.0",
         "sonatra_afarkas/html5shiv" : "~3.7",
         "php" : ">=5.3.2",
         "sonatra_scottjehl/respond" : "~1.3",
