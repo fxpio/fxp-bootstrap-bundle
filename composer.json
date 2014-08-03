@@ -19,6 +19,7 @@
         "sonatra/block-bundle" : "~1.0",
         "bower-asset/html5shiv": "3.7.*",
         "bower-asset/respond": "1.4.*",
+        "bower-asset/jquery": "@stable",
         "bower-asset/bootstrap": "3.2.*"
     },
     "require-dev" : {
