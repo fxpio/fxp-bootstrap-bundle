@@ -8,15 +8,15 @@
     "authors": [
         {
             "name": "François Pluchino",
-            "email": "francois.pluchino@gmail.com"
+            "email": "francois.pluchino@sonatra.com"
         }
     ],
     "require" : {
         "php" : ">=5.3.3",
         "symfony/framework-bundle" : "~2.4",
         "oyejorge/less.php": "~1.7",
-        "fxp/require-asset-bundle" : "~1.0",
-        "sonatra/block-bundle" : "~1.0",
+        "fxp/require-asset-bundle" : "~1.0@dev",
+        "sonatra/block-bundle" : "~1.0@dev",
         "bower-asset/html5shiv": "3.7.*",
         "bower-asset/respond": "1.4.*",
         "bower-asset/jquery": "@stable",
@@ -37,5 +37,11 @@
         "branch-alias" : {
             "dev-master" : "1.0.x-dev"
         }
-    }
+    },
+    "repositories" : [
+        {
+            "type" : "composer",
+            "url" : "http://packager.sonatra.com"
+        }
+    ]
 }
