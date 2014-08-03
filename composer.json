@@ -1,29 +1,23 @@
 {
     "name" : "sonatra/bootstrap-bundle",
-    "description" : "Sonatra Bootstrap Bundle",
     "type" : "symfony-bundle",
-    "authors" : [{
-            "name" : "François Pluchino",
-            "email" : "francois.pluchino@sonatra.com"
+    "description" : "Twig DSL for construct a Twitter Bootstrap interface",
+    "keywords" : ["twitter bootstrap 3", "block", "dsl", "template"],
+    "homepage" : "https://github.com/sonatra/SonatraBootstrapBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "François Pluchino",
+            "email": "francois.pluchino@gmail.com"
         }
     ],
-    "keywords" : [
-        "Twitter Bootstrap 3",
-        "block",
-        "DSL",
-        "Template"
-    ],
-    "homepage" : "http://sonatra.com",
-    "license" : [
-        "MIT"
-    ],
     "require" : {
+        "php" : ">=5.3.3",
         "symfony/framework-bundle" : "~2.4",
         "oyejorge/less.php": "~1.7",
         "fxp/require-asset-bundle" : "~1.0",
         "sonatra/block-bundle" : "~1.0",
         "sonatra_afarkas/html5shiv" : "~3.7",
-        "php" : ">=5.3.2",
         "sonatra_scottjehl/respond" : "~1.3",
         "sonatra_jquery/jquery" : "1.11.*",
         "twitter/bootstrap" : "~3.1"
@@ -33,12 +27,9 @@
         "symfony/finder" : "~2.4",
         "symfony/filesystem" : "~2.4"
     },
-    "autoload" : {
-        "psr-4" : {
-            "Sonatra\\Bundle\\BootstrapBundle\\" : ""
-        }
+    "autoload": {
+        "psr-4": { "Sonatra\\Bundle\\BootstrapBundle\\" : "" }
     },
-    "minimum-stability" : "dev",
     "extra" : {
         "branch-alias" : {
             "dev-master" : "1.0.x-dev"
