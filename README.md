@@ -1,6 +1,9 @@
 Sonatra Bootstrap Bundle
 ========================
 
+[![Latest Stable Version](https://poser.pugx.org/sonatra/bootstrap-bundle/v/stable.svg)](https://packagist.org/packages/sonatra/bootstrap-bundle)
+[![Latest Unstable Version](https://poser.pugx.org/sonatra/bootstrap-bundle/v/unstable.svg)](https://packagist.org/packages/sonatra/bootstrap-bundle)
+
 The Sonatra BootstrapBundle is an twig DSL for construct a Twitter Bootstrap 3 interface.
 
 Features include:
