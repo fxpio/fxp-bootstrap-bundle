@@ -69,6 +69,14 @@
             <tag name="sonatra_block.type" alias="link" />
         </service>
 
+        <service id="sonatra_bootstrap.type.embed_responsive" class="Sonatra\Bundle\BootstrapBundle\Block\Type\EmbedResponsiveType">
+            <tag name="sonatra_block.type" alias="embed_responsive" />
+        </service>
+
+        <service id="sonatra_bootstrap.type.embed_responsive_item" class="Sonatra\Bundle\BootstrapBundle\Block\Type\EmbedResponsiveItemType">
+            <tag name="sonatra_block.type" alias="embed_responsive_item" />
+        </service>
+
         <service id="sonatra_bootstrap.type.well" class="Sonatra\Bundle\BootstrapBundle\Block\Type\WellType">
             <tag name="sonatra_block.type" alias="well" />
         </service>
