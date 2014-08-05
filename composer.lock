@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7796f2c8988a34296dbcd42de7578c6c",
+    "hash": "c885048b97c6ddc83fbc0e57edc1b345",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -511,13 +511,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@github.com:sonatra/SonatraBlockBundle.git",
-                "reference": "4efad31f5817a72d771f21a79c2b9f3a0ef2e320"
+                "url": "https://github.com/sonatra/SonatraBlockBundle.git",
+                "reference": "6404847a154c22b5f5e82450dc55b6ec21647478"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonatra/SonatraBlockBundle/zipball/4efad31f5817a72d771f21a79c2b9f3a0ef2e320",
-                "reference": "4efad31f5817a72d771f21a79c2b9f3a0ef2e320",
+                "url": "https://api.github.com/repos/sonatra/SonatraBlockBundle/zipball/6404847a154c22b5f5e82450dc55b6ec21647478",
+                "reference": "6404847a154c22b5f5e82450dc55b6ec21647478",
                 "shasum": ""
             },
             "require": {
@@ -545,6 +545,7 @@
                     "Sonatra\\Bundle\\BlockBundle\\": ""
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -561,11 +562,7 @@
                 "ui",
                 "user interface"
             ],
-            "support": {
-                "source": "https://github.com/sonatra/SonatraBlockBundle/tree/master",
-                "issues": "https://github.com/sonatra/SonatraBlockBundle/issues"
-            },
-            "time": "2014-08-03 12:44:29"
+            "time": "2014-08-05 11:45:27"
         },
         {
             "name": "symfony/assetic-bundle",
