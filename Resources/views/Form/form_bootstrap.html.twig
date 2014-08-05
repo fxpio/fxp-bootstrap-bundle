@@ -99,13 +99,15 @@
 {% block form_row %}
 {% spaceless %}
     {% set row_attr = row_attr|default({})|merge({'class': ('form-group ' ~ (row_attr.class|default('')))|trim}) %}
+    {% if size %}
+        {% set row_attr = row_attr|default({})|merge({'class': ((row_attr.class|default('')) ~ ' form-group-' ~ size)|trim}) %}
+    {% endif %}
     {% if validation_state is not empty %}
         {% set row_attr = row_attr|default({})|merge({'class': ('has-' ~ validation_state ~ ' ' ~ (row_attr.class|default('')))|trim}) %}
     {% endif %}
 
     <div {% for attrname, attrvalue in row_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
         {{ form_label(form) }}
-        {{ form_widget(form) }}
         {{ form_errors(form) }}
     </div>
 {% endspaceless %}
@@ -492,6 +494,9 @@
 {% block button_row %}
 {% spaceless %}
     {% set row_attr = row_attr|default({})|merge({'class': ('form-group ' ~ (row_attr.class|default('')))|trim}) %}
+    {% if size %}
+        {% set row_attr = row_attr|default({})|merge({'class': ((row_attr.class|default('')) ~ ' form-group-' ~ size)|trim}) %}
+    {% endif %}
 
     <div {% for attrname, attrvalue in row_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
         {{ form_widget(form) }}
