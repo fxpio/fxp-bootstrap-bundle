@@ -28,7 +28,28 @@ class ResponsiveExtension extends AbstractTypeExtension
     /**
      * @var array
      */
-    private $validPrefix = array('xs', 'sm', 'md', 'lg');
+    private $validVisible = array(
+        'xs-block',
+        'xs-inline',
+        'xs-inline-block',
+        'sm-block',
+        'sm-inline',
+        'sm-inline-block',
+        'md-block',
+        'md-inline',
+        'md-inline-block',
+        'lg-block',
+        'lg-inline',
+        'lg-inline-block',
+        'print-block',
+        'print-inline',
+        'print-inline-block',
+    );
+
+    /**
+     * @var array
+     */
+    private $validHidden = array('xs', 'sm', 'md', 'lg', 'print');
 
     /**
      * {@inheritdoc}
@@ -36,8 +57,8 @@ class ResponsiveExtension extends AbstractTypeExtension
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'visibility' => $options['visibility'],
-            'print'      => $options['print'],
+            'visible_viewport' => implode(' ', $options['visible_viewport']),
+            'hidden_viewport'  => implode(' ', $options['hidden_viewport']),
         ));
     }
 
@@ -47,32 +68,21 @@ class ResponsiveExtension extends AbstractTypeExtension
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'visibility' => null,
-            'print'      => null,
+            'visible_viewport' => null,
+            'hidden_viewport'  => null,
         ));
 
         $resolver->setAllowedTypes(array(
-            'visibility' => array('null', 'string', 'array'),
-            'print'      => array('null', 'string'),
-        ));
-
-        $resolver->setAllowedValues(array(
-            'print' => array('visible', 'hidden'),
+            'visible_viewport' => array('null', 'string', 'array'),
+            'hidden_viewport'  => array('null', 'string', 'array'),
         ));
 
         $resolver->setNormalizers(array(
-            'visibility' => function (Options $options, $value = null) {
-                $value = $this->convertToArray($value);
-
-                foreach ($value as $i => $visibility) {
-                    if (!in_array($visibility, $this->validPrefix)) {
-                        throw new InvalidConfigurationException(sprintf('The "%s" prefix visibility option does not exist. Known options are: "%s"', $visibility, implode('", "', $this->validPrefix)));
-                    }
-
-                    $value[$i] = sprintf('visibility-%s', $visibility);
-                }
-
-                return $value;
+            'visible_viewport' => function (Options $options, $value = null) {
+                return $this->normaliseViewport('visible', $this->validVisible, $value);
+            },
+            'hidden_viewport' => function (Options $options, $value = null) {
+                return $this->normaliseViewport('hidden', $this->validHidden, $value);
             },
         ));
     }
@@ -83,6 +93,32 @@ class ResponsiveExtension extends AbstractTypeExtension
     public function getExtendedType()
     {
         return 'block';
+    }
+
+    /**
+     * Normalises the viewport.
+     *
+     * @param string      $prefix
+     * @param array       $valid
+     * @param string|null $value
+     *
+     * @return array The valid formatted viewport
+     *
+     * @throws InvalidConfigurationException When viewport value does not exist
+     */
+    protected function normaliseViewport($prefix, array $valid, $value)
+    {
+        $value = $this->convertToArray($value);
+
+        foreach ($value as $i => $viewport) {
+            if (!in_array($viewport, $valid)) {
+                throw new InvalidConfigurationException(sprintf('The "%s" %s viewport option does not exist. Known options are: "%s"', $viewport, $prefix, implode('", "', $valid)));
+            }
+
+            $value[$i] = sprintf('%s-%s', $prefix, $viewport);
+        }
+
+        return $value;
     }
 
     /**

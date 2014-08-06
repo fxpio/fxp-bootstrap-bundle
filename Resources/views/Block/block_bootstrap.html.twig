@@ -251,16 +251,8 @@
 
 {% block widget_container_attributes %}
 {% spaceless %}
-    {% if visibility|length > 0 %}
-        {% set visibility_class = '' %}
-        {% for item in visibility %}
-            {% set visibility_class = ' ' ~ visibility_class ~ ' ' ~ item %}
-        {% endfor %}
-        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ visibility_class|trim)|trim}) %}
-    {% endif %}
-    {% if print is not null %}
-        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ print ~ '-print')|trim}) %}
-    {% endif %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ visible_viewport)|trim}) %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ hidden_viewport)|trim}) %}
 {% endspaceless %}
 {{ block('base_widget_container_attributes') }}
 {% spaceless %}
