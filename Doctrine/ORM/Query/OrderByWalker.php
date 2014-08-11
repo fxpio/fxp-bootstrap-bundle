@@ -59,6 +59,7 @@ class OrderByWalker extends TreeWalkerAdapter
         $aliases = $query->getHint(self::HINT_SORT_ALIAS);
         $directions = $query->getHint(self::HINT_SORT_DIRECTION);
         $components = $this->_getQueryComponents();
+        $fieldsSize = count($fields);
 
         // init ordering
         $AST->orderByClause = new OrderByClause(array());
@@ -67,7 +68,7 @@ class OrderByWalker extends TreeWalkerAdapter
             throw new \InvalidArgumentException("The HINT_SORT_ALIAS ans HINT_SORT_DIRECTION must be an array");
         }
 
-        for ($i=0; $i<count($fields); $i++) {
+        for ($i=0; $i<$fieldsSize; $i++) {
             $field = $fields[$i];
             $alias = $aliases[$i];
             $direction = $directions[$i];

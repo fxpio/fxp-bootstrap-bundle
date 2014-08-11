@@ -95,7 +95,10 @@ abstract class PathUtils
             $value .= '../';
         }
 
-        for ($i = (count($sourceList) - $backNumber); $i<count($targetList); $i++) {
+        $startPosition = $backNumber - $backNumber;
+        $targetSize = count($targetList);
+
+        for ($i = $startPosition; $i<$targetSize; $i++) {
             $value .= $targetList[$i];
 
             if (is_dir($sourceDir.'/'.$value)) {
