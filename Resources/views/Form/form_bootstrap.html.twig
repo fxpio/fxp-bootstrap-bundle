@@ -107,8 +107,9 @@
     {% endif %}
 
     <div {% for attrname, attrvalue in row_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-        {{ form_label(form) }}
-        {{ form_errors(form) }}
+        {{- form_label(form) -}}
+        {{- form_widget(form) -}}
+        {{- form_errors(form) -}}
     </div>
 {% endspaceless %}
 {% endblock form_row %}
@@ -494,10 +495,6 @@
 {% block button_row %}
 {% spaceless %}
     {% set row_attr = row_attr|default({})|merge({'class': ('form-group ' ~ (row_attr.class|default('')))|trim}) %}
-    {% if size %}
-        {% set row_attr = row_attr|default({})|merge({'class': ((row_attr.class|default('')) ~ ' form-group-' ~ size)|trim}) %}
-    {% endif %}
-
     <div {% for attrname, attrvalue in row_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
         {{ form_widget(form) }}
     </div>
