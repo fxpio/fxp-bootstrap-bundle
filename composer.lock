@@ -512,12 +512,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonatra/SonatraBlockBundle.git",
-                "reference": "ef71e180c33423fca94e701852c831fb5370742b"
+                "reference": "dbcade93e362908a5bd0f96594ceb96d59f2cd7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonatra/SonatraBlockBundle/zipball/ef71e180c33423fca94e701852c831fb5370742b",
-                "reference": "ef71e180c33423fca94e701852c831fb5370742b",
+                "url": "https://api.github.com/repos/sonatra/SonatraBlockBundle/zipball/dbcade93e362908a5bd0f96594ceb96d59f2cd7d",
+                "reference": "dbcade93e362908a5bd0f96594ceb96d59f2cd7d",
                 "shasum": ""
             },
             "require": {
@@ -562,7 +562,7 @@
                 "ui",
                 "user interface"
             ],
-            "time": "2014-08-11 10:46:34"
+            "time": "2014-08-11 18:33:40"
         },
         {
             "name": "symfony/assetic-bundle",
