@@ -1,10 +1,13 @@
-{% use 'block_div_layout.html.twig' with block_widget_simple as base_block_widget_simple,
-                                         block_widget_compound as base_block_widget_compound,
-                                         block_label as base_block_label,
-                                         choice_widget as base_choice_widget,
-                                         collection_widget as base_collection_widget,
-                                         widget_attributes as base_widget_attributes,
-                                         widget_container_attributes as base_widget_container_attributes %}
+{% use 'block_div_layout_container.html.twig' with
+        block_widget_simple as base_block_widget_simple,
+        block_widget_compound as base_block_widget_compound,
+        block_label as base_block_label,
+        widget_attributes as base_widget_attributes,
+        widget_container_attributes as base_widget_container_attributes %}
+
+{% use 'block_div_layout_fields.html.twig' with
+        choice_widget as base_choice_widget,
+        collection_widget as base_collection_widget %}
 
 {% block block_widget_simple %}
 {% spaceless %}
