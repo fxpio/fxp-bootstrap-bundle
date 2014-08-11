@@ -29,22 +29,15 @@ class TargetPathNode extends AsseticNode
     private $asset;
 
     /**
-     * @var string
-     */
-    private $name;
-
-    /**
      * Constructor.
      *
      * @param AsseticNode    $node
      * @param AssetInterface $asset
-     * @param string         $name
      */
-    public function __construct(AsseticNode $node, AssetInterface $asset, $name)
+    public function __construct(AsseticNode $node, AssetInterface $asset)
     {
         $this->node = $node;
         $this->asset = $asset;
-        $this->name = $name;
     }
 
     /**
