@@ -1,0 +1,25 @@
+{% block thumbnail_widget %}
+    {% spaceless %}
+        {% set attr = attr|merge({'class': ('thumbnail ' ~ attr.class|default(''))|trim}) %}
+        <div{{ block('widget_container_attributes') }}>
+            {{- value|raw -}}
+            {% for child in block %}
+                {{ block_widget(child) }}
+            {% endfor %}
+        </div>
+    {% endspaceless %}
+{% endblock thumbnail_widget %}
+
+
+{% block thumbnail_caption_widget %}
+    {% spaceless %}
+        {% set attr = attr|merge({'class': ('caption ' ~ attr.class|default(''))|trim}) %}
+        <div{{ block('widget_container_attributes') }}>
+            {% if label is not null %}<h3>{{ label|trans({}, translation_domain) }}</h3>{% endif %}
+            {{- value|raw -}}
+            {% for child in block %}
+                {{ block_widget(child) }}
+            {% endfor %}
+        </div>
+    {% endspaceless %}
+{% endblock thumbnail_caption_widget %}

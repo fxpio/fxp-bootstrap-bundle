@@ -1,0 +1,13 @@
+{% block code_widget %}
+    {% spaceless %}
+        <{% if inline %}code{% else %}pre{% endif %}{{ block('widget_container_attributes') }}>
+            {%- if escape -%}
+                {{- value -}}
+                {{- block('block_rows')|escape -}}
+            {%- else -%}
+                {{- value|raw -}}
+                {{- block('block_rows') -}}
+            {%- endif -%}
+        </{% if inline %}code{% else %}pre{% endif %}>
+    {% endspaceless %}
+{% endblock code_widget %}

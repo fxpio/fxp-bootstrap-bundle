@@ -1,0 +1,6 @@
+{% block percent_widget %}
+    {% spaceless %}
+        {% set type = type|default('text') %}
+        {{ block('form_widget_simple') }}
+    {% endspaceless %}
+{% endblock percent_widget %}

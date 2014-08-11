@@ -1,0 +1,6 @@
+{% block hidden_widget %}
+    {% spaceless %}
+        {% set help_text = null %}
+        {{ block('base_hidden_widget') }}
+    {% endspaceless %}
+{% endblock hidden_widget %}

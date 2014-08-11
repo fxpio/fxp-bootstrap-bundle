@@ -1,0 +1,149 @@
+{% block table_widget %}
+{% spaceless %}
+    {% set attr = attr|merge({'class': ('table ' ~ attr.class|default(''))|trim}) %}
+    {% if striped %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' table-striped')|trim}) %}
+    {% endif %}
+    {% if bordered %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' table-bordered')|trim}) %}
+    {% endif %}
+    {% if condensed %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' table-condensed')|trim}) %}
+    {% endif %}
+    {% if hover_rows %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' table-hover')|trim}) %}
+    {% endif %}
+
+    {% if responsive %}
+        <div class="table-responsive">
+    {% endif %}
+    <table{{ block('widget_container_attributes') }}>
+        {% if caption is defined %}
+            {{ block_widget(caption) }}
+        {% endif %}
+        {% if header is defined %}
+            {{ block_widget(header) }}
+        {% endif %}
+        {% if header.vars.header_columns is defined %}
+            <tbody>
+                {% for rowIndex, rowData in data.rows %}
+                    <tr{% if rowData._row_id is defined %} data-row-id="{{ rowData._row_id }}"{% endif %}>
+                        {% for colIndex, colBlock in header.vars.header_columns %}
+                            {% set data_attr = rowData._attr_columns[colBlock.vars.name]|default([]) %}
+                            {% set data_attr = data_attr|merge({'data-col-name': colBlock.vars.name}) %}
+                            <td{% for attrname, attrvalue in data_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ rowData[colBlock.vars.name]|default(null)|raw }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        {% endif %}
+        {% if footer is defined %}
+            {{ block_widget(footer) }}
+        {% endif %}
+        {% for child in block %}
+            {{ block_widget(child) }}
+        {% endfor %}
+    </table>
+    {% if responsive %}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock table_widget %}
+
+
+{% block table_caption_widget %}
+{% spaceless %}
+    <caption{{ block('widget_container_attributes') }}>
+        {{- label|trans({}, translation_domain) -}}
+        {{- value|raw -}}
+        {{- block('block_rows') -}}
+    </caption>
+{% endspaceless %}
+{% endblock table_caption_widget %}
+
+
+{% block table_header_widget %}
+{% spaceless %}
+    <thead{{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
+        {{- block('block_rows') -}}
+        {% if header_columns is defined %}
+            <tr>
+                {% for colIndex, colBlock in header_columns %}
+                    {{ block_label(colBlock) }}
+                {% endfor %}
+            </tr>
+        {% endif %}
+    </thead>
+{% endspaceless %}
+{% endblock table_header_widget %}
+
+
+{% block table_footer_widget %}
+{% spaceless %}
+    <tfoot{{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
+        {{- block('block_rows') -}}
+    </tfoot>
+{% endspaceless %}
+{% endblock table_footer_widget %}
+
+
+{% block table_column_label %}
+{% spaceless %}
+    {% set label_attr = label_attr|merge({'data-col-name': name}) %}
+    <th{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        {{ label|trans({}, translation_domain) }}
+        {{- block('block_rows') -}}
+    </th>
+{% endspaceless %}
+{% endblock table_column_label %}
+
+
+{% block table_column_widget %}
+{% endblock table_column_widget %}
+
+
+{% block table_row_widget %}
+{% spaceless %}
+<tr{{ block('widget_container_attributes') }}>
+    {{- label|trans({}, translation_domain) -}}
+    {{- value|raw -}}
+    {{- block('block_rows') -}}
+</tr>
+{% endspaceless %}
+{% endblock table_row_widget %}
+
+
+{% block table_cell_widget %}
+{% spaceless %}
+{% if rowspan is not empty %}
+    {% set attr = attr|merge({'rowspan': rowspan}) %}
+{% endif %}
+{% if colspan is not empty %}
+    {% set attr = attr|merge({'colspan': colspan}) %}
+{% endif %}
+<td{{ block('widget_container_attributes') }}>
+    {{- label|trans({}, translation_domain) -}}
+    {{- value|raw -}}
+    {{- block('block_rows') -}}
+</td>
+{% endspaceless %}
+{% endblock table_cell_widget %}
+
+
+{% block table_header_cell_widget %}
+{% spaceless %}
+{% if rowspan is not empty %}
+    {% set attr = attr|merge({'rowspan': rowspan}) %}
+{% endif %}
+{% if colspan is not empty %}
+    {% set attr = attr|merge({'colspan': colspan}) %}
+{% endif %}
+<th{{ block('widget_container_attributes') }}>
+    {{- label|trans({}, translation_domain) -}}
+    {{- value|raw -}}
+    {{- block('block_rows') -}}
+</th>
+{% endspaceless %}
+{% endblock table_header_cell_widget %}

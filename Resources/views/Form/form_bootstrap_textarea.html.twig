@@ -1,0 +1,22 @@
+{% block textarea_widget %}
+    {% if layout|default(null) == 'horizontal' %}
+        <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {% endif %}
+
+    {% if static_control and type|default('text') != 'hidden' %}
+        {{ block('form_control_static_value') }}
+    {% else %}
+        {{ block('addon_start') }}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
+        {% if size is not empty %}
+            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' input-' ~ size)|trim}) %}
+        {% endif %}
+        {{ block('base_textarea_widget') }}
+        {{ block('addon_end') }}
+    {% endif %}
+    {{ block('help_text') }}
+
+    {% if layout|default(null) == 'horizontal' %}
+        </div>
+    {% endif %}
+{% endblock textarea_widget %}

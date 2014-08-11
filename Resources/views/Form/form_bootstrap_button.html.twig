@@ -1,0 +1,41 @@
+{% block button_widget %}
+    {% spaceless %}
+        {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
+            <div class="col-{{ layout_col_size }}-offset-{{ layout_col_label }} col-{{ layout_col_size }}-{{ layout_col_control }}">
+        {% endif %}
+        {% if label is null %}
+            {% set label = name|humanize %}
+        {% endif %}
+        <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{% if glyphicon is defined %}<span class="glyphicon glyphicon-{{ glyphicon }}"></span> {% endif %}{{ label|trans({}, translation_domain) }}</button>
+        {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock button_widget %}
+
+
+{% block button_row %}
+    {% spaceless %}
+        {% set row_attr = row_attr|default({})|merge({'class': ('form-group ' ~ (row_attr.class|default('')))|trim}) %}
+        <div {% for attrname, attrvalue in row_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        {{ form_widget(form) }}
+        </div>
+    {% endspaceless %}
+{% endblock button_row %}
+
+
+{% block button_attributes %}
+    {% spaceless %}
+        {%- if id is not empty %}id="{{ id }}" name="{{ full_name }}"{% endif %}{% if disabled %} disabled="disabled"{% endif -%}
+        {%- for attrname, attrvalue in attr -%}
+            {{- " " -}}
+            {%- if attrname in ['placeholder', 'title'] -%}
+                {{- attrname }}="{{ attrvalue|trans({}, translation_domain) }}"
+            {%- elseif attrvalue is sameas(true) -%}
+                {{- attrname }}="{{ attrname }}"
+            {%- elseif attrvalue is not sameas(false) -%}
+                {{- attrname }}="{{ attrvalue }}"
+            {%- endif -%}
+        {%- endfor -%}
+    {% endspaceless %}
+{% endblock button_attributes %}

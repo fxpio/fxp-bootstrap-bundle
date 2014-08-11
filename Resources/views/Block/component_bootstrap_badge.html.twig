@@ -1,0 +1,13 @@
+{% block badge_widget %}
+    {% spaceless %}
+        {% set attr = attr|merge({'class': ('badge ' ~ attr.class|default(''))|trim}) %}
+        {% if align is not empty %}
+            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' pull-' ~ align)|trim}) %}
+        {% endif %}
+        <span{{ block('widget_container_attributes') }}>
+        {{- label|trans({}, translation_domain) -}}
+            {{- value|raw -}}
+            {{- block('block_rows') -}}
+    </span>
+    {% endspaceless %}
+{% endblock badge_widget %}

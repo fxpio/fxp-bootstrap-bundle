@@ -1,0 +1,143 @@
+{% block button_group_widget %}
+    {% spaceless %}
+        {% if vertical %}
+            {% set vertical = '-vertical' %}
+        {% else %}
+            {% set vertical = '' %}
+        {% endif %}
+
+        {% set attr = attr|merge({'class': ('btn-group' ~ vertical ~ ' ' ~ attr.class|default(''))|trim}) %}
+
+        {% if size is not null %}
+            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn-group-' ~ size)|trim}) %}
+        {% endif %}
+
+        {% if justified %}
+            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn-group-justified')|trim}) %}
+        {% endif %}
+        {{- value|raw -}}
+        {{ block('block_widget_compound') }}
+    {% endspaceless %}
+{% endblock button_group_widget %}
+
+
+{% block button_toolbar_widget %}
+    {% spaceless %}
+        {% set attr = attr|merge({'class': ' btn-toolbar' ~ (attr.class|default(''))|trim}) %}
+        {{- value|raw -}}
+        <div{{ block('widget_container_attributes') }}>
+            {% for child in block %}
+                {{ block_widget(child) }}
+            {% endfor %}
+        </div>
+    {% endspaceless %}
+{% endblock button_toolbar_widget %}
+
+
+{% block button_widget %}
+    {% spaceless %}
+        {% if label is null %}
+            {% set label = name|humanize %}
+        {% endif %}
+
+        {% if dropdown is defined and split is not defined %}
+            {% set tag = 'button' %}
+        {% elseif split is defined %}
+            {% set tag = split.vars.tag %}
+        {% endif %}
+
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn')|trim}) %}
+
+        {% if style is not null %}
+            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn-' ~ style)|trim}) %}
+        {% endif %}
+
+        {% if size is not null %}
+            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn-' ~ size)|trim}) %}
+        {% endif %}
+
+        {% if block_level %}
+            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn-block')|trim}) %}
+        {% endif %}
+
+        {% if dropdown is defined %}
+            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' dropdown-toggle')|trim, 'data-toggle': 'dropdown'}) %}
+            <div class="btn-group{% if dropup %} dropup{% endif %}">
+        {% endif %}
+
+        {% if split is defined %}
+            {{ block_widget(split, {tag: tag, style: style, size: size, block_level: block_level}) }}
+        {% endif %}
+
+        {% if tag == 'button' %}
+        <button type="button" {{ block('button_attributes') }}>
+        {% else %}
+        {% if disabled %}
+            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' disabled')|trim}) %}
+        {% endif %}
+        {% if src is not null and dropdown is not defined %}
+            {% set attr = attr|merge({'href': src}) %}
+        {% endif %}
+        <a{{ block('widget_container_attributes') }}>
+        {% endif %}
+        {% if prepend is defined %}
+            {% if prepend_is_string %}
+                {{ prepend|raw }}
+            {% else %}
+                {{ block_widget(prepend) }}
+            {% endif %}
+        {% endif %}
+        {% if split is not defined %}
+            {{ label|trans({}, translation_domain) }}
+        {% endif %}
+        {% if append is defined %}
+            {% if append_is_string %}
+                {{ append|raw }}
+            {% else %}
+                {{ block_widget(append) }}
+            {% endif %}
+        {% endif %}
+
+        {% if attr['data-toggle'] is defined and attr['data-toggle'] == 'collapse' and block.children is empty and label is empty %}
+            <span class="caret"></span>
+        {% endif %}
+
+        {{- value|raw -}}
+        {{ block('block_rows') }}
+
+        {% if dropdown is defined %}
+            <span class="caret"></span>
+        {% endif %}
+
+        {% if tag == 'button' %}
+        </button>
+        {% else %}
+            </a>
+        {% endif %}
+
+        {% if dropdown is defined %}
+            {{ block_widget(dropdown) }}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock button_widget %}
+
+
+{% block button_attributes %}
+    {% spaceless %}
+        {% if render_id %}id="{{ id }}" name="{{ id }}"{% endif %}{% if disabled %} disabled="disabled"{% endif -%}
+        {%- for attrname, attrvalue in attr -%}
+            {{- " " -}}
+            {%- if attrname in ['placeholder', 'title'] -%}
+                {{- attrname }}="{{ attrvalue|trans({}, translation_domain) }}"
+            {%- elseif attrvalue is sameas(true) -%}
+                {{- attrname }}="{{ attrname }}"
+            {%- elseif attrvalue is not sameas(false) -%}
+                {{- attrname }}="{{ attrvalue }}"
+            {%- endif -%}
+        {%- endfor -%}
+        {{ block('extension_tooltip_javascript') }}
+        {{ block('extension_popover_javascript') }}
+        {{ block('extension_scroll_spy_javascript') }}
+    {% endspaceless %}
+{% endblock button_attributes %}

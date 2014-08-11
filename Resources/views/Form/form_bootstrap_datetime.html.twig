@@ -1,0 +1,63 @@
+{% block datetime_widget %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-inline')|trim}) %}
+    {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
+        <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {% endif %}
+
+    {% if static_control %}
+        {% set value = data|block_formatter('datetime') %}
+        {{ block('form_control_static_value') }}
+    {% else %}
+        {{ block('datetime_widget_content') }}
+    {% endif %}
+    {{ block('help_text') }}
+
+    {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
+        </div>
+    {% endif %}
+{% endblock datetime_widget %}
+
+
+{% block datetime_widget_content %}
+    {{ block('base_datetime_widget') }}
+{% endblock datetime_widget_content %}
+
+
+{% block date_widget %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-inline date')|trim}) %}
+    {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
+        <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {% endif %}
+
+    {% if static_control %}
+        {% set value = data|block_formatter('date') %}
+        {{ block('form_control_static_value') }}
+    {% else %}
+        {{ block('base_date_widget') }}
+    {% endif %}
+    {{ block('help_text') }}
+
+    {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
+        </div>
+    {% endif %}
+{% endblock date_widget %}
+
+
+{% block time_widget %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-inline time')|trim}) %}
+    {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
+        <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {% endif %}
+
+    {% if static_control %}
+        {% set value = data|block_formatter('time') %}
+        {{ block('form_control_static_value') }}
+    {% else %}
+        {{ block('base_time_widget') }}
+    {% endif %}
+    {{ block('help_text') }}
+
+    {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
+        </div>
+    {% endif %}
+{% endblock time_widget %}

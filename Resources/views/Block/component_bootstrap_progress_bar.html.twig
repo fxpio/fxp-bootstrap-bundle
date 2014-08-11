@@ -1,0 +1,29 @@
+{% block progress_bar_widget %}
+    {% spaceless %}
+        {% if not(stacked) %}
+            <div class="progress{% if striped %} progress-striped{% if animated %} active{% endif %}{% endif %}">
+        {% endif %}
+
+        {% set attr = attr|merge({'class': ('progress-bar ' ~ attr.class|default(''))|trim,
+        'role': 'progressbar', 'aria-valuenow': value, 'aria-valuemin': min, 'aria-valuemax': max, 'style': 'width:'~value~'%;'})
+        %}
+
+        {% if style is not null %}
+            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' progress-bar-'~style)|trim}) %}
+        {% endif %}
+
+        {% if stacked or (not(stacked) and block.children|length == 0) %}
+            <div{{ block('widget_container_attributes') }}>
+                {% if label is not null %}
+                    <span class="sr-only">{{ label|trans({'%value%': value}, translation_domain) }}</span>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {{ block('block_rows') }}
+
+        {% if not(stacked) %}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock progress_bar_widget %}

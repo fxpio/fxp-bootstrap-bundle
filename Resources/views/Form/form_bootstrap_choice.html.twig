@@ -1,0 +1,80 @@
+{% block choice_widget_collapsed %}
+    {% if layout|default(null) == 'horizontal' %}
+        <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {% endif %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
+    {% if size is not empty %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' input-' ~ size)|trim}) %}
+    {% endif %}
+
+    {% if static_control %}
+        {{ block('choice_widget_collapsed_static_control') }}
+    {% else %}
+        {{ block('base_choice_widget_collapsed') }}
+    {% endif %}
+    {{ block('help_text') }}
+
+    {% if layout|default(null) == 'horizontal' %}
+        </div>
+    {% endif %}
+{% endblock choice_widget_collapsed %}
+
+
+{% block base_choice_widget_collapsed %}
+{% spaceless %}
+    {% if required and empty_value is none and not empty_value_in_choices %}
+        {% set required = false %}
+    {% endif %}
+    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+        {% if empty_value is not none %}
+            <option{% if empty_value is empty %} label=" "{% endif %} value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ empty_value|trans({}, translation_domain) }}</option>
+        {% endif %}
+        {% if preferred_choices|length > 0 %}
+            {% set options = preferred_choices %}
+            {{ block('choice_widget_options') }}
+            {% if choices|length > 0 and separator is not none %}
+                <option disabled="disabled">{{ separator }}</option>
+            {% endif %}
+        {% endif %}
+        {% set options = choices %}
+        {{ block('choice_widget_options') }}
+    </select>
+{% endspaceless %}
+{% endblock base_choice_widget_collapsed %}
+
+
+{% block choice_widget_collapsed_static_control %}
+    {% for choice in choices %}
+        {% if multiple %}
+            {% for val in data %}
+                {% if val == choice.value|default(choice) %}
+                    {% set value = choice.label|default(choice)|trans({}, translation_domain) %}
+                    {{ block('form_control_static_value') }}
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            {% if data == choice.value|default(choice) %}
+                {% set value = choice.label|default(choice)|trans({}, translation_domain) %}
+                {{ block('form_control_static_value') }}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    {% if data is empty %}
+        {% set value = null %}
+        {{ block('form_control_static_value') }}
+    {% endif %}
+{% endblock choice_widget_collapsed_static_control %}
+
+
+{% block choice_widget_expanded %}
+    {% if static_control %}
+        {{ block('choice_widget_collapsed') }}
+    {% else %}
+        {% if layout|default(null) == 'horizontal' %}
+            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ layout_col_control)|trim}) %}
+            {% set help_attr = help_attr|merge({'class': (help_attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-offset-' ~ layout_col_label ~ ' col-' ~ layout_col_size ~ '-' ~ layout_col_control)|trim}) %}
+        {% endif %}
+        {{ block('base_choice_widget_expanded') }}
+        {{ block('help_text') }}
+    {% endif %}
+{% endblock choice_widget_expanded %}

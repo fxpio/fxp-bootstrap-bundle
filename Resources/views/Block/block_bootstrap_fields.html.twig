@@ -1,0 +1,153 @@
+{% block choice_widget %}
+    {% spaceless %}
+        {% if layout is defined and layout == 'horizontal' %}
+            <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+        {% endif %}
+
+        {% if block.parent.vars.row|default(false) %}
+            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' block-control')|trim}) %}
+        {% endif %}
+        {{ block('base_choice_widget') }}
+
+        {% if layout is defined and layout == 'horizontal' %}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock choice_widget %}
+
+
+{% block checkbox_widget %}
+    {% spaceless %}
+        {% if label is empty %}
+            {% set label = name|humanize %}
+        {% endif %}
+
+        {% if layout is defined and layout == 'horizontal' %}
+            <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+        {% endif %}
+
+        <div class="block_checkbox{% if block.parent.vars.row|default(false) %} block-control{% endif %}">
+            {{ block('checkbox_widget_content') }}
+        </div>
+
+        {% if layout is defined and layout == 'horizontal' %}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock checkbox_widget %}
+
+
+{% block checkbox_widget_content %}
+    {% spaceless %}
+        {% if value %}
+            {% set value = 'check' %}
+        {% else %}
+            {% set value = 'unchecked' %}
+        {% endif %}
+        {% set attr = attr|merge({'class': ('glyphicon glyphicon-' ~ value ~ ' ' ~ attr.class|default(''))|trim}) %}
+        <span{{ block('widget_attributes') }}></span>
+    {% endspaceless %}
+{% endblock checkbox_widget_content %}
+
+
+{% block radio_widget %}
+    {% spaceless %}
+        {% if label is empty %}
+            {% set label = name|humanize %}
+        {% endif %}
+
+        {% if layout is defined and layout == 'horizontal' %}
+            <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+        {% endif %}
+
+        <div class="block_radio{% if block.parent.vars.row|default(false) %} block-control{% endif %}">
+            {{ block('radio_widget_content') }}
+        </div>
+
+        {% if layout is defined and layout == 'horizontal' %}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock radio_widget %}
+
+
+{% block radio_widget_content %}
+    {% spaceless %}
+        {% if value %}
+            {% set value = 'check' %}
+        {% else %}
+            {% set value = 'unchecked' %}
+        {% endif %}
+        {% set attr = attr|merge({'class': ('glyphicon glyphicon-' ~ value ~ ' ' ~ attr.class|default(''))|trim}) %}
+        <span{{ block('widget_attributes') }}></span>
+    {% endspaceless %}
+{% endblock radio_widget_content %}
+
+
+{% block collection_widget %}
+    {% spaceless %}
+        {% set attr = attr|merge({'class': ('block-collection ' ~ attr.class|default(''))|trim}) %}
+
+        {% if layout is defined and layout == 'horizontal' %}
+            <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+        {% endif %}
+        {{ block('base_collection_widget') }}
+        {% if layout is defined and layout == 'horizontal' %}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock collection_widget %}
+
+
+{% block fieldset_label %}
+{% endblock fieldset_label %}
+
+
+{% block fieldset_widget %}
+    {% spaceless %}
+        {% if block.parent.vars.row|default(false) %}
+            {% set attr = attr|merge({'class': ('block-group ' ~ attr.class|default(''))|trim}) %}
+        {% endif %}
+
+        <fieldset{{ block('widget_attributes') }}>
+            {% if label is not empty %}
+                {% if layout is defined and layout == 'horizontal' %}
+                    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ (layout_col_label + layout_col_control))|trim}) %}
+                {% endif %}
+                <legend{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</legend>
+            {% endif %}
+            {{ block('block_rows') }}
+        </fieldset>
+    {% endspaceless %}
+{% endblock fieldset_widget %}
+
+
+{% block image_widget %}
+    {% spaceless %}
+        {% if style is not null %}
+            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' img-' ~ style)|trim}) %}
+        {% endif %}
+
+        {% if responsive %}
+            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' img-responsive')|trim}) %}
+        {% endif %}
+
+        {% if block.parent.vars.row|default(false) %}
+            <div class="block-control">
+        {% endif %}
+
+        {% if layout is defined and layout == 'horizontal' %}
+        <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+        {% endif %}
+        {% if attr.src|default(null) is not empty %}
+            <img{{ block('widget_attributes') }}>
+        {% endif %}
+        {% if layout is defined and layout == 'horizontal' %}
+        </div>
+        {% endif %}
+
+        {% if block.parent.vars.row|default(false) %}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock image_widget %}

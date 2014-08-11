@@ -1,0 +1,63 @@
+{% block dropdown_widget %}
+    {% spaceless %}
+        {% if wrapper %}
+            {% set wrapper_attr = wrapper_attr|merge({'class': (wrapper_attr.class|default('') ~ ' dropdown')|trim}) %}
+            <div{% for attrname, attrvalue in wrapper_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        {% endif %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' dropdown-menu')|trim, role:'menu'}) %}
+        {% if align is not empty %}
+            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' dropdown-menu-' ~ align)|trim}) %}
+        {% endif %}
+        <ul{{ block('widget_container_attributes') }}>
+            {{- value|raw -}}
+            {{- block('block_rows') -}}
+        </ul>
+        {% if wrapper %}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock dropdown_widget %}
+
+
+{% block dropdown_divider_widget %}
+    {% spaceless %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' divider')|trim, role:'presentation'}) %}
+        <li{{ block('widget_container_attributes') }}>
+            {{- value|raw -}}
+            {{- block('block_rows') -}}
+        </li>
+    {% endspaceless %}
+{% endblock dropdown_divider_widget %}
+
+
+{% block dropdown_item_widget %}
+    {% spaceless %}
+        {% set attr = attr|merge({role:'presentation'}) %}
+        {% set link_attr = link_attr|merge({role:'menuitem'}) %}
+        {% if disabled %}
+            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' disabled')|trim}) %}
+        {% endif %}
+        <li{{ block('widget_container_attributes') }}>
+            <a{% for attrname, attrvalue in link_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+            {{- label|trans({}, translation_domain) -}}
+            {{- value|raw -}}
+            {{- block('block_rows') -}}
+            </a>
+        </li>
+    {% endspaceless %}
+{% endblock dropdown_item_widget %}
+
+
+{% block dropdown_header_widget %}
+    {% spaceless %}
+        {% if divider %}
+            {{ sblock('dropdown_divider') }}
+        {% endif %}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' dropdown-header')|trim, role:'presentation'}) %}
+        <li{{ block('widget_container_attributes') }}>
+            {{- label|trans({}, translation_domain) -}}
+            {{- value|raw -}}
+            {{- block('block_rows') -}}
+        </li>
+    {% endspaceless %}
+{% endblock dropdown_header_widget %}
