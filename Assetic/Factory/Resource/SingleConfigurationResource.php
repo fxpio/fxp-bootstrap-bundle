@@ -23,6 +23,11 @@ use Assetic\Factory\Resource\ResourceInterface;
 class SingleConfigurationResource implements DynamicResourceInterface
 {
     /**
+     * @var ContainerInterface
+     */
+    public $container;
+
+    /**
      * @var string
      */
     protected $name;
@@ -43,21 +48,26 @@ class SingleConfigurationResource implements DynamicResourceInterface
     protected $options;
 
     /**
+     * @var array|ResourceInterface[]|DynamicResourceInterface[]
+     */
+    protected $resources;
+
+    /**
      * Constructor.
      *
-     * @param string                                          $name      The name of resource
-     * @param array                                           $inputs    The input assets
-     * @param array                                           $filters   The filters for assets
-     * @param array                                           $options   The options for assets
-     * @param ContainerInterface                              $container The container service
-     * @param ResourceInterface[]| DynamicResourceInterface[] $resources The resources
+     * @param string                                         $name      The name of resource
+     * @param array                                          $inputs    The input assets
+     * @param array                                          $filters   The filters for assets
+     * @param array                                          $options   The options for assets
+     * @param ResourceInterface[]|DynamicResourceInterface[] $resources The resources
      */
-    public function __construct($name, array $inputs, array $filters, array $options, ContainerInterface $container = null, array $resources = array())
+    public function __construct($name, array $inputs, array $filters, array $options, array $resources = array())
     {
         $this->name = $name;
-        $this->inputs = $this->mergeInputs($inputs, $container, $resources);
+        $this->inputs = $inputs;
         $this->filters = $filters;
         $this->options = $options;
+        $this->resources = $resources;
     }
 
     /**
@@ -65,7 +75,7 @@ class SingleConfigurationResource implements DynamicResourceInterface
      */
     public function isFresh($timestamp)
     {
-        foreach ($this->inputs as $input) {
+        foreach ($this->getInputs() as $input) {
             if ($input instanceof ResourceInterface) {
                 if (!$input->isFresh($timestamp)) {
                     return false;
@@ -86,7 +96,7 @@ class SingleConfigurationResource implements DynamicResourceInterface
     {
         $inputs = array();
 
-        foreach ($this->inputs as $input) {
+        foreach ($this->getInputs() as $input) {
             if ($input instanceof DynamicResourceInterface && !file_exists((string) $input)) {
                 $input->compile();
             }
@@ -102,7 +112,7 @@ class SingleConfigurationResource implements DynamicResourceInterface
      */
     public function compile($timestamp = null)
     {
-        foreach ($this->inputs as $input) {
+        foreach ($this->getInputs() as $input) {
             if ($input instanceof DynamicResourceInterface && !$input->isFresh($timestamp)) {
                 $input->compile($timestamp);
             }
@@ -118,27 +128,23 @@ class SingleConfigurationResource implements DynamicResourceInterface
     }
 
     /**
-     * Merge the inputs defined in config with resources added in compiler pass
-     * (the order is conserved).
-     *
-     * @param array              $inputs    The input assets
-     * @param ContainerInterface $container The container service
-     * @param array              $resources The resources
+     * Gets the inputs with the merging the inputs defined in config with
+     * resources add in the compiler pass (the order is conserved)
      *
      * @return array
      */
-    protected function mergeInputs(array $inputs, ContainerInterface $container = null, array $resources = array())
+    protected function getInputs()
     {
-        if (null === $container) {
-            return $inputs;
+        if (null === $this->container) {
+            return $this->inputs;
         }
 
-        $bundles = $container->getParameter('kernel.bundles');
+        $bundles = $this->container->getParameter('kernel.bundles');
         $resovedInputs = array();
         $unresovedInputs = array();
 
         // get resource filename defined in bundles
-        foreach ($inputs as $input) {
+        foreach ($this->inputs as $input) {
             $resovedInput = ContainerUtils::filterBundles($input, function ($matches) use ($bundles) {
                 $name = sprintf('%sBundle', $matches[1]);
 
@@ -156,12 +162,12 @@ class SingleConfigurationResource implements DynamicResourceInterface
         }
 
         // replace filenames by resources
-        foreach ($resources as $resource) {
-            $res = $container->get($resource);
+        foreach ($this->resources as $resource) {
+            $res = $this->container->get($resource);
             $pos = array_search((string) $res, $resovedInputs);
 
             if (false !== $pos) {
-                $inputs[$pos] = $res;
+                $this->inputs[$pos] = $res;
 
                 continue;
             }
@@ -170,8 +176,10 @@ class SingleConfigurationResource implements DynamicResourceInterface
         }
 
         // moves the unresolved resources to the top array
-        $inputs = array_merge($unresovedInputs, $inputs);
+        $this->inputs = array_merge($unresovedInputs, $this->inputs);
+        $this->resources = array();
+        $this->container = null;
 
-        return $inputs;
+        return $this->inputs;
     }
 }

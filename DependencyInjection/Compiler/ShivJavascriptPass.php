@@ -39,6 +39,6 @@ class ShivJavascriptPass extends AbstractAssetPass implements CompilerPassInterf
             $resources[] = $serviceId;
         }
 
-        $container->getDefinition('sonatra_bootstrap.assetic.hack_lt_ie_9_resource')->replaceArgument(5, $resources);
+        $container->getDefinition('sonatra_bootstrap.assetic.hack_lt_ie_9_resource')->replaceArgument(4, $resources);
     }
 }

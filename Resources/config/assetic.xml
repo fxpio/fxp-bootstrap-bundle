@@ -45,8 +45,8 @@
             <argument type="collection" />
             <argument type="collection" />
             <argument type="collection" />
-            <argument type="service" id="service_container" />
             <argument type="collection" />
+            <property name="container" type="service" id="service_container" />
         </service>
 
         <service id="sonatra_bootstrap.assetic.common_javascripts_resource" class="%sonatra_bootstrap.assetic.common_javascripts_resource.class%" public="false">
@@ -55,8 +55,8 @@
             <argument type="collection" />
             <argument type="collection" />
             <argument type="collection" />
-            <argument type="service" id="service_container" />
             <argument type="collection" />
+            <property name="container" type="service" id="service_container" />
         </service>
 
         <service id="sonatra_bootstrap.assetic.hack_lt_ie_9_resource" class="%sonatra_bootstrap.assetic.hack_lt_ie_9_resource.class%" public="false">
@@ -65,8 +65,8 @@
             <argument type="collection" />
             <argument type="collection" />
             <argument type="collection" />
-            <argument type="service" id="service_container" />
             <argument type="collection" />
+            <property name="container" type="service" id="service_container" />
         </service>
 
         <service id="sonatra_bootstrap.assetic.parameter_bag_filter" class="%sonatra_bootstrap.assetic.parameter_bag_filter.class%">

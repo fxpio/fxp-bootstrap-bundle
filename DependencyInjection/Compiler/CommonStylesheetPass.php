@@ -39,6 +39,6 @@ class CommonStylesheetPass extends AbstractAssetPass implements CompilerPassInte
             $resources[] = $serviceId;
         }
 
-        $container->getDefinition('sonatra_bootstrap.assetic.common_stylesheets_resource')->replaceArgument(5, $resources);
+        $container->getDefinition('sonatra_bootstrap.assetic.common_stylesheets_resource')->replaceArgument(4, $resources);
     }
 }

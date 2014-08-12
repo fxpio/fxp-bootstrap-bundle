@@ -111,9 +111,9 @@ class LocalizedAssetsPass extends AbstractAssetPass implements CompilerPassInter
                     $assets,
                     $filters,
                     $assetOptions,
-                    new Reference('service_container'),
                     array(),
                 ))
+                ->setProperty('container', new Reference('service_container'));
             ;
 
             $id = sprintf('sonatra_bootstrap.assetic.common_localized_%s_%ss_resource', str_replace('-', '_', $locale), $type);
