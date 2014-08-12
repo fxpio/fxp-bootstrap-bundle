@@ -25,17 +25,7 @@ class AsseticExtension extends \Twig_Extension
     /**
      * @var ContainerInterface
      */
-    protected $container;
-
-    /**
-     * Constructor.
-     *
-     * @param ContainerInterface $container
-     */
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
-    }
+    public $container;
 
     /**
      * {@inheritdoc}

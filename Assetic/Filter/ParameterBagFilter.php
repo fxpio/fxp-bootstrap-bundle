@@ -13,6 +13,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Assetic\Filter;
 
 use Assetic\Filter\FilterInterface;
 use Assetic\Asset\AssetInterface;
+use Assetic\Filter\HashableInterface;
 use Symfony\Component\DependencyInjection\Container;
 use Sonatra\Bundle\BootstrapBundle\Assetic\Util\ContainerUtils;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -22,22 +23,17 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
  *
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
-class ParameterBagFilter implements FilterInterface
+class ParameterBagFilter implements FilterInterface, HashableInterface
 {
+    /**
+     * @var Container
+     */
+    public $container;
+
     /**
      * @var ParameterBagInterface
      */
     private $parameterBag;
-
-    /**
-     * Constructor.
-     *
-     * @param Container $container
-     */
-    public function __construct(Container $container)
-    {
-        $this->parameterBag = $container->getParameterBag();
-    }
 
     /**
      * {@inheritdoc}
@@ -52,10 +48,33 @@ class ParameterBagFilter implements FilterInterface
      */
     public function filterDump(AssetInterface $asset)
     {
-        $content = ContainerUtils::filterParameters($asset->getContent(), function ($matches) {
-            return $this->parameterBag->get(strtolower($matches[1]));
+        $parameterBag = $this->getParameterBag();
+        $content = ContainerUtils::filterParameters($asset->getContent(), function ($matches) use ($parameterBag) {
+            return $parameterBag->get(strtolower($matches[1]));
         });
 
         $asset->setContent($content);
+    }
+
+    public function hash()
+    {
+        $this->getParameterBag();
+
+        return serialize($this);
+    }
+
+    /**
+     * Gets parameter bag.
+     *
+     * @return ParameterBagInterface
+     */
+    private function getParameterBag()
+    {
+        if (null === $this->parameterBag) {
+            $this->parameterBag = $this->container->getParameterBag();
+            $this->container = null;
+        }
+
+        return $this->parameterBag;
     }
 }

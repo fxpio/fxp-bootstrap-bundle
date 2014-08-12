@@ -14,7 +14,6 @@ namespace Sonatra\Bundle\BootstrapBundle\Assetic\Filter;
 use Assetic\Filter\FilterInterface;
 use Assetic\Asset\AssetInterface;
 use Symfony\Component\DependencyInjection\Container;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 /**
  * Loads LESS files using the PHP implementation of less, oyejorge lessphp.
@@ -24,9 +23,14 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 class OyejorgeLessphpFilter implements FilterInterface
 {
     /**
-     * @var ParameterBagInterface
+     * @var string
      */
-    protected $parameterBag;
+    protected $rootDir;
+
+    /**
+     * @var array
+     */
+    protected $bundles;
 
     /**
      * Lessphp options.
@@ -45,9 +49,10 @@ class OyejorgeLessphpFilter implements FilterInterface
     /**
      * Constructor.
      */
-    public function __construct(Container $container, array $options = array(), array $loadPaths = array())
+    public function __construct($rootDir, array $bundles, array $options = array(), array $loadPaths = array())
     {
-        $this->parameterBag = $container->getParameterBag();
+        $this->rootDir = $rootDir;
+        $this->bundles = $bundles;
         $this->options = $options;
         $this->loadPaths = $loadPaths;
     }
@@ -88,11 +93,10 @@ class OyejorgeLessphpFilter implements FilterInterface
      */
     protected function generateVariables()
     {
-        $kernelDir = $this->parameterBag->get('kernel.root_dir');
-        $output = sprintf('@symfony-kernel-root-dir: "%s";%s', $kernelDir, PHP_EOL);
-        $output .= sprintf('@symfony-vendor-dir: "%s";%s', $kernelDir.'/../vendor', PHP_EOL);
+        $output = sprintf('@symfony-kernel-root-dir: "%s";%s', $this->rootDir, PHP_EOL);
+        $output .= sprintf('@symfony-vendor-dir: "%s";%s', $this->rootDir.'/../vendor', PHP_EOL);
 
-        foreach ($this->parameterBag->get('kernel.bundles') as $name => $class) {
+        foreach ($this->bundles as $name => $class) {
             $ref = new \ReflectionClass($class);
             $dir = dirname($ref->getFileName());
             $dir = str_replace('\\', '/', $dir);

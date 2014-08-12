@@ -71,7 +71,7 @@
 
         <service id="sonatra_bootstrap.assetic.parameter_bag_filter" class="%sonatra_bootstrap.assetic.parameter_bag_filter.class%">
             <tag name="assetic.filter" alias="parameterbag" />
-            <argument type="service" id="service_container" />
+            <property name="container" type="service" id="service_container" />
         </service>
 
         <service id="sonatra_bootstrap.assetic.path_relative_filter" class="%sonatra_bootstrap.assetic.path_relative_filter.class%">
@@ -85,7 +85,8 @@
 
         <service id="sonatra_bootstrap.assetic.oyejorge_lessphp_filter" class="%sonatra_bootstrap.assetic.oyejorge_lessphp_filter.class%">
             <tag name="assetic.filter" alias="oyejorge_lessphp" />
-            <argument type="service" id="service_container" />
+            <argument>%kernel.root_dir%</argument>
+            <argument>%kernel.bundles%</argument>
             <argument type="collection" />
             <argument type="collection" />
         </service>
