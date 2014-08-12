@@ -13,7 +13,6 @@ namespace Sonatra\Bundle\BootstrapBundle\Assetic\Filter;
 
 use Assetic\Filter\FilterInterface;
 use Assetic\Asset\AssetInterface;
-use Symfony\Component\DependencyInjection\Container;
 
 /**
  * Loads LESS files using the PHP implementation of less, oyejorge lessphp.
