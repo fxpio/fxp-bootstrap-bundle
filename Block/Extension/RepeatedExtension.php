@@ -14,6 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Extension;
 use Sonatra\Bundle\BlockBundle\Block\AbstractTypeExtension;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
+use Sonatra\Bundle\BootstrapBundle\Block\Common\ConfigLayout;
 
 /**
  * Repeated Block Extension.
@@ -27,21 +28,7 @@ class RepeatedExtension extends AbstractTypeExtension
      */
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
-        if (null !== $view->parent) {
-            $view->vars = array_replace($view->vars, array(
-                'row'       => $view->parent->vars['row'],
-                'row_label' => $view->parent->vars['row_label'],
-            ));
-
-            if (in_array('object', $view->parent->vars['block_prefixes'])) {
-                $view->vars = array_replace($view->vars, array(
-                    'layout'             => $view->parent->vars['layout'],
-                    'layout_col_size'    => $view->parent->vars['layout_col_size'],
-                    'layout_col_label'   => $view->parent->vars['layout_col_label'],
-                    'layout_col_control' => $view->parent->vars['layout_col_control'],
-                ));
-            }
-        }
+        ConfigLayout::buildView($view);
     }
 
     /**
@@ -49,16 +36,7 @@ class RepeatedExtension extends AbstractTypeExtension
      */
     public function finishView(BlockView $view, BlockInterface $block, array $options)
     {
-        if (null !== $view->parent && in_array('object', $view->parent->vars['block_prefixes'])) {
-            foreach ($view->children as $child) {
-                $child->vars = array_replace($child->vars, array(
-                    'layout'             => $view->parent->vars['layout'],
-                    'layout_col_size'    => $view->parent->vars['layout_col_size'],
-                    'layout_col_label'   => $view->parent->vars['layout_col_label'],
-                    'layout_col_control' => $view->parent->vars['layout_col_control'],
-                ));
-            }
-        }
+        ConfigLayout::finishView($view);
     }
 
     /**
