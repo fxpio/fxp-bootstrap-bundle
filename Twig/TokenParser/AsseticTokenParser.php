@@ -49,41 +49,7 @@ class AsseticTokenParser extends \Twig_TokenParser
     public function parse(\Twig_Token $token)
     {
         $stream = $this->parser->getStream();
-        $name = null;
-        $attributes = array(
-            'var_name' => 'asset_url',
-            'vars'     => array(),
-        );
-
-        while (!$stream->test(\Twig_Token::BLOCK_END_TYPE)) {
-            if ($stream->test(\Twig_Token::STRING_TYPE)) {
-                // 'jquery'
-                $name = $stream->next()->getValue();
-
-            } elseif ($stream->test(\Twig_Token::NAME_TYPE, 'as')) {
-                // as='the_url'
-                $stream->next();
-                $stream->expect(\Twig_Token::OPERATOR_TYPE, '=');
-                $attributes['var_name'] = $stream->expect(\Twig_Token::STRING_TYPE)->getValue();
-
-            } elseif ($stream->test(\Twig_Token::NAME_TYPE, 'debug')) {
-                // debug=true
-                $stream->next();
-                $stream->expect(\Twig_Token::OPERATOR_TYPE, '=');
-                $attributes['debug'] = 'true' == $stream->expect(\Twig_Token::NAME_TYPE, array('true', 'false'))->getValue();
-
-            } elseif ($stream->test(\Twig_Token::NAME_TYPE, 'combine')) {
-                // combine=true
-                $stream->next();
-                $stream->expect(\Twig_Token::OPERATOR_TYPE, '=');
-                $attributes['combine'] = 'true' == $stream->expect(\Twig_Token::NAME_TYPE, array('true', 'false'))->getValue();
-
-            } else {
-                $token = $stream->getCurrent();
-
-                throw new \Twig_Error_Syntax(sprintf('Unexpected token "%s" of value "%s"', \Twig_Token::typeToEnglish($token->getType(), $token->getLine()), $token->getValue()), $token->getLine());
-            }
-        }
+        list($name, $attributes) = Util::getAsseticConfig($stream);
 
         if (null === $name) {
             throw new \Twig_Error_Syntax('The name of asset must be present');
