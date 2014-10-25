@@ -43,7 +43,7 @@ class TableColumnType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $index = function (Options $options, $value) {
-            if (null == $value) {
+            if (null === $value) {
                 $value = $options['block_name'];
             }
 
