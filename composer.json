@@ -16,7 +16,6 @@
         "symfony/framework-bundle" : "~2.4",
         "symfony/assetic-bundle": "~2.4@beta",
         "kriswallsmith/assetic": "~1.2@alpha",
-        "oyejorge/less.php": "~1.7",
         "fxp/require-asset-bundle" : "~1.0@dev",
         "fxp/require-asset" : "~1.0@dev",
         "sonatra/block-bundle" : "~1.0@dev",
@@ -28,7 +27,8 @@
     "require-dev" : {
         "symfony/console" : "~2.4",
         "symfony/finder" : "~2.4",
-        "symfony/filesystem" : "~2.4"
+        "symfony/filesystem" : "~2.4",
+        "oyejorge/less.php": "~1.7"
     },
     "suggest": {
         "fxp/composer-asset-plugin": "For manage NPM/Bower dependencies with Composer"
