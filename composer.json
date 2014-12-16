@@ -18,11 +18,12 @@
         "kriswallsmith/assetic": "~1.2@alpha",
         "oyejorge/less.php": "~1.7",
         "fxp/require-asset-bundle" : "~1.0@dev",
+        "fxp/require-asset" : "~1.0@dev",
         "sonatra/block-bundle" : "~1.0@dev",
         "bower-asset/html5shiv": "3.7.*",
         "bower-asset/respond": "1.4.*",
         "bower-asset/jquery": "@stable",
-        "bower-asset/bootstrap": "3.2.*"
+        "bower-asset/bootstrap": "3.3.*"
     },
     "require-dev" : {
         "symfony/console" : "~2.4",
