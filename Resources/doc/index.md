@@ -16,6 +16,12 @@ Installation is a quick, 3 step process:
 
 ### Step 1: Download the bundle using composer
 
+Install the Composer plugin `fxp/composer-asset-plugin` in global:
+
+```bash
+$ php composer.phar global require fxp/composer-asset-plugin:@dev
+```
+
 Add Sonatra BootstrapBundle in your composer.json:
 
 ```js
