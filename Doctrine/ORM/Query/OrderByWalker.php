@@ -68,7 +68,7 @@ class OrderByWalker extends TreeWalkerAdapter
             throw new \InvalidArgumentException("The HINT_SORT_ALIAS ans HINT_SORT_DIRECTION must be an array");
         }
 
-        for ($i=0; $i<$fieldsSize; $i++) {
+        for ($i = 0; $i<$fieldsSize; $i++) {
             $field = $fields[$i];
             $alias = $aliases[$i];
             $direction = $directions[$i];
