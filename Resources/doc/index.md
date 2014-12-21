@@ -63,10 +63,7 @@ Add the following configuration to your `config.yml`.
 ```yaml
 # app/config/config.yml
 assetic:
-    bundles: [ "SonatraBootstrapBundle" ]
-    filters:
-        cssrewrite: ~
-        cssmin: ~
+        less: ~
 ```
 
 ### Step 4: Configure the bundle (optionnal)
