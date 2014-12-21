@@ -23,7 +23,7 @@ use Symfony\Component\Form\FormView;
  */
 class RepeatedExtension extends AbstractTypeExtension
 {
-     /**
+    /**
      * {@inheritdoc}
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
