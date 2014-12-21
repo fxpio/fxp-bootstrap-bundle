@@ -63,9 +63,9 @@ class LayoutExtension extends AbstractTypeExtension
         $resolver->setDefaults(
             array(
                 'layout'             => null,
-                'layout_col_size'    => 'lg',// only for horizontal layout
-                'layout_col_label'   => 4,// only for horizontal layout
-                'layout_col_control' => 8,// only for horizontal layout
+                'layout_col_size'    => 'lg', // only for horizontal layout
+                'layout_col_label'   => 4, // only for horizontal layout
+                'layout_col_control' => 8, // only for horizontal layout
             )
         );
 

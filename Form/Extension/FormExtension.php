@@ -78,11 +78,11 @@ class FormExtension extends AbstractTypeExtension
                 'display_label'        => true,
                 'size'                 => null,
                 'layout'               => null,
-                'layout_col_size'      => 'lg',// only for horizontal layout
-                'layout_col_label'     => 4,// only for horizontal layout
-                'layout_col_control'   => 8,// only for horizontal layout
+                'layout_col_size'      => 'lg', // only for horizontal layout
+                'layout_col_label'     => 4, // only for horizontal layout
+                'layout_col_control'   => 8, // only for horizontal layout
                 'validation_state'     => null,
-                'static_control'       => false,// renders P tag when this form is read only
+                'static_control'       => false, // renders P tag when this form is read only
                 'static_control_empty' => 'null',
                 'help_text'            => null,
                 'help_attr'            => array(),
