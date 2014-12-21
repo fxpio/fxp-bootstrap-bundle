@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ba3f7c5e54f25834aff22f18ac1616a9",
+    "hash": "bb71893f8898067087b222b201a0977d",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -88,23 +88,23 @@
         },
         {
             "name": "bower-asset/jquery",
-            "version": "2.1.1",
+            "version": "2.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jquery/jquery.git",
-                "reference": "4dec426aa2a6cbabb1b064319ba7c272d594a688"
+                "reference": "8f2a9d9272d6ed7f32d3a484740ab342c02541e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jquery/jquery/zipball/4dec426aa2a6cbabb1b064319ba7c272d594a688",
-                "reference": "4dec426aa2a6cbabb1b064319ba7c272d594a688",
+                "url": "https://api.github.com/repos/jquery/jquery/zipball/8f2a9d9272d6ed7f32d3a484740ab342c02541e0",
+                "reference": "8f2a9d9272d6ed7f32d3a484740ab342c02541e0",
                 "shasum": ""
             },
             "require-dev": {
                 "bower-asset/qunit": "1.14.0",
                 "bower-asset/requirejs": "2.1.10",
                 "bower-asset/sinon": "1.8.1",
-                "bower-asset/sizzle": "1.10.19"
+                "bower-asset/sizzle": "2.1.1-patch2"
             },
             "type": "bower-asset-library",
             "extra": {
@@ -155,16 +155,16 @@
         },
         {
             "name": "doctrine/annotations",
-            "version": "v1.2.1",
+            "version": "v1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "6a6bec0670bb6e71a263b08bc1b98ea242928633"
+                "reference": "eeda578cbe24a170331a1cfdf78be723412df7a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/6a6bec0670bb6e71a263b08bc1b98ea242928633",
-                "reference": "6a6bec0670bb6e71a263b08bc1b98ea242928633",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/eeda578cbe24a170331a1cfdf78be723412df7a4",
+                "reference": "eeda578cbe24a170331a1cfdf78be723412df7a4",
                 "shasum": ""
             },
             "require": {
@@ -219,7 +219,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2014-09-25 16:45:30"
+            "time": "2014-12-20 20:49:38"
         },
         {
             "name": "doctrine/lexer",
@@ -279,12 +279,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/francoispluchino/fxp-require-asset.git",
-                "reference": "29b5f222546d643ee0965e93c7bccf2b5ed7c228"
+                "reference": "0ecc015a7d0d70ade0018de3e7bd4a9d73002ad7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/francoispluchino/fxp-require-asset/zipball/29b5f222546d643ee0965e93c7bccf2b5ed7c228",
-                "reference": "29b5f222546d643ee0965e93c7bccf2b5ed7c228",
+                "url": "https://api.github.com/repos/francoispluchino/fxp-require-asset/zipball/0ecc015a7d0d70ade0018de3e7bd4a9d73002ad7",
+                "reference": "0ecc015a7d0d70ade0018de3e7bd4a9d73002ad7",
                 "shasum": ""
             },
             "require": {
@@ -333,7 +333,7 @@
                 "ui",
                 "user interface"
             ],
-            "time": "2014-12-16 12:07:27"
+            "time": "2014-12-21 12:49:26"
         },
         {
             "name": "fxp/require-asset-bundle",
@@ -341,12 +341,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/francoispluchino/FxpRequireAssetBundle.git",
-                "reference": "ddb80e2d7d0ad7560395d1a34f625bb361b0cff5"
+                "reference": "d344afc7bec154bb01a3b2b9c8ca01125f9a3264"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/francoispluchino/FxpRequireAssetBundle/zipball/ddb80e2d7d0ad7560395d1a34f625bb361b0cff5",
-                "reference": "ddb80e2d7d0ad7560395d1a34f625bb361b0cff5",
+                "url": "https://api.github.com/repos/francoispluchino/FxpRequireAssetBundle/zipball/d344afc7bec154bb01a3b2b9c8ca01125f9a3264",
+                "reference": "d344afc7bec154bb01a3b2b9c8ca01125f9a3264",
                 "shasum": ""
             },
             "require": {
@@ -394,7 +394,7 @@
                 "ui",
                 "user interface"
             ],
-            "time": "2014-12-16 12:24:17"
+            "time": "2014-12-21 10:36:48"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -2155,67 +2155,7 @@
             "time": "2014-10-17 12:53:44"
         }
     ],
-    "packages-dev": [
-        {
-            "name": "oyejorge/less.php",
-            "version": "v1.7.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/oyejorge/less.php.git",
-                "reference": "82372b389386ae1edab55495eae4b400cca3c86c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/oyejorge/less.php/zipball/82372b389386ae1edab55495eae4b400cca3c86c",
-                "reference": "82372b389386ae1edab55495eae4b400cca3c86c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2"
-            },
-            "bin": [
-                "bin/lessc"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Less": "lib/"
-                },
-                "classmap": [
-                    "lessc.inc.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Matt Agar",
-                    "homepage": "https://github.com/agar"
-                },
-                {
-                    "name": "Martin Jantošovič",
-                    "homepage": "https://github.com/Mordred"
-                },
-                {
-                    "name": "Josh Schmidt",
-                    "homepage": "https://github.com/oyejorge"
-                }
-            ],
-            "description": "PHP port of the Javascript version of LESS http://lesscss.org",
-            "homepage": "http://lessphp.gpeasy.com",
-            "keywords": [
-                "css",
-                "less",
-                "less.js",
-                "lesscss",
-                "php",
-                "stylesheet"
-            ],
-            "time": "2014-06-05 16:09:50"
-        }
-    ],
+    "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {

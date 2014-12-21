@@ -27,8 +27,7 @@
     "require-dev" : {
         "symfony/console" : "~2.4",
         "symfony/finder" : "~2.4",
-        "symfony/filesystem" : "~2.4",
-        "oyejorge/less.php": "~1.7"
+        "symfony/filesystem" : "~2.4"
     },
     "suggest": {
         "fxp/composer-asset-plugin": "For manage NPM/Bower dependencies with Composer"
