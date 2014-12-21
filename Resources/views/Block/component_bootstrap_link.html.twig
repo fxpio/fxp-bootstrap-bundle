@@ -1,5 +1,6 @@
 {% block link_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         {% if 'link' != style %}
             {% set attr = attr|merge({'class': ('btn btn-' ~ style ~ ' ' ~ attr.class|default(''))|trim}) %}
 

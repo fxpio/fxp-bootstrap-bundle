@@ -107,7 +107,7 @@ class PanelType extends AbstractType
         ));
 
         $resolver->setAllowedValues(array(
-            'style' => array('default', 'primary', 'success', 'info', 'warning', 'danger'),
+            'style' => array(null, 'default', 'primary', 'success', 'info', 'warning', 'danger'),
         ));
     }
 

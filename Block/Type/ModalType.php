@@ -109,8 +109,8 @@ class ModalType extends AbstractType
         ));
 
         $resolver->setAllowedValues(array(
-            'transition' => array('fade'),
-            'size'       => array('lg', 'sm'),
+            'transition' => array(null, 'fade'),
+            'size'       => array(null, 'lg', 'sm'),
         ));
     }
 

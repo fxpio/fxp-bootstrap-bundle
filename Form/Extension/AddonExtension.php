@@ -93,8 +93,8 @@ class AddonExtension extends AbstractTypeExtension
         ));
 
         $resolver->addAllowedValues(array(
-            'prepend_type' => array('addon', 'btn'),
-            'append_type'  => array('addon', 'btn'),
+            'prepend_type' => array(null, 'addon', 'btn'),
+            'append_type'  => array(null, 'addon', 'btn'),
         ));
     }
 

@@ -94,7 +94,7 @@ class ImageType extends AbstractType
         ));
 
         $resolver->setAllowedValues(array(
-            'style' => array('rounded', 'circle', 'thumbnail'),
+            'style' => array(null, 'rounded', 'circle', 'thumbnail'),
         ));
 
         $resolver->setNormalizers(array(

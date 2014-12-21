@@ -1,5 +1,7 @@
 {% block alert_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
+        {% require_script '@bower/bootstrap/js/alert.js' %}
         {% set attr = attr|merge({'class': ('alert alert-' ~ style ~ ' ' ~ attr.class|default(''))|trim}) %}
         {% if dismissable %}
             {% set attr = attr|merge({'class': (attr.class|default('') ~ ' alert-dismissable')|trim}) %}

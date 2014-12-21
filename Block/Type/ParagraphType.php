@@ -53,8 +53,8 @@ class ParagraphType extends AbstractType
         ));
 
         $resolver->setAllowedValues(array(
-            'align'    => array('left', 'center', 'right', 'justify'),
-            'emphasis' => array('muted', 'primary', 'success', 'info', 'warning', 'danger'),
+            'align'    => array(null, 'left', 'center', 'right', 'justify'),
+            'emphasis' => array(null, 'muted', 'primary', 'success', 'info', 'warning', 'danger'),
         ));
     }
 

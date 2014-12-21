@@ -1,32 +1,34 @@
 {% block extension_tooltip_javascript %}
     {% if tooltip_id is defined %}
-        {% inline_javascript %}
-            <script type="text/javascript">
+        {% require_script '@bower/bootstrap/js/tooltip.js' %}
+        {% inline_script %}
+            <script>
             $('#{{ tooltip_id }}').tooltip();
             </script>
-        {% endinline_javascript %}
+        {% endinline_script %}
     {% endif %}
 {% endblock extension_tooltip_javascript %}
 
 
 {% block extension_popover_javascript %}
     {% if popover_id is defined %}
-        {% inline_javascript %}
-            <script type="text/javascript">
+        {% require_script '@bower/bootstrap/js/tooltip.js', '@bower/bootstrap/js/popover.js' %}
+        {% inline_script %}
+            <script>
             $('#{{ popover_id }}').popover();
             </script>
-        {% endinline_javascript %}
+        {% endinline_script %}
     {% endif %}
 {% endblock extension_popover_javascript %}
 
 
 {% block extension_scroll_spy_javascript %}
     {% if scroll_spy is defined %}
-        {% inline_javascript %}
-            <script type="text/javascript">
-            $('#{{ popover_id }}').popover();
+        {% require_script '@bower/bootstrap/js/scrollspy.js' %}
+        {% inline_script %}
+            <script>
             $('{{ scroll_spy.on }}').scrollspy({ target: '#{{ scroll_spy.target }}'{% if scroll_spy.offset is not null %}, offset: {{ scroll_spy.offset }}{% endif %} });
             </script>
-        {% endinline_javascript %}
+        {% endinline_script %}
     {% endif %}
 {% endblock extension_scroll_spy_javascript %}

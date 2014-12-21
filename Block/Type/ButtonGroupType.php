@@ -53,7 +53,7 @@ class ButtonGroupType extends AbstractType
         ));
 
         $resolver->setAllowedValues(array(
-            'size' => array('xs', 'sm', 'lg'),
+            'size' => array(null, 'xs', 'sm', 'lg'),
         ));
     }
 

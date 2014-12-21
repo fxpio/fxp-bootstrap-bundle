@@ -43,6 +43,13 @@ class EmbedResponsiveItemType extends AbstractType
             'mapped' => true,
             'src'    => null,
             'type'   => 'iframe',
+            'data'   => function (Options $options, $value) {
+                if (isset($options['src'])) {
+                    $value = $options['src'];
+                }
+
+                return $value;
+            },
         ));
 
         $resolver->setAllowedTypes(array(
@@ -52,16 +59,6 @@ class EmbedResponsiveItemType extends AbstractType
 
         $resolver->setAllowedValues(array(
             'type' => array('iframe', 'embed', 'object'),
-        ));
-
-        $resolver->setNormalizers(array(
-            'data' => function (Options $options, $value) {
-                if (isset($options['src'])) {
-                    $value = $options['src'];
-                }
-
-                return $value;
-            },
         ));
     }
 

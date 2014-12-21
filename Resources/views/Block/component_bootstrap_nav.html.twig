@@ -1,5 +1,7 @@
 {% block nav_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
+        {% require_script '@bower/bootstrap/js/tab.js' %}
         {% set nav_class = 'nav ' %}
         {% if style is not null %}
             {% set nav_class = nav_class ~ ' nav-' ~ style ~ ' ' %}

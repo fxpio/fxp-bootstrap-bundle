@@ -1,5 +1,7 @@
 {% block button_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
+        {% require_script '@bower/bootstrap/js/button.js' %}
         {% if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' %}
             <div class="col-{{ layout_col_size }}-offset-{{ layout_col_label }} col-{{ layout_col_size }}-{{ layout_col_control }}">
         {% endif %}

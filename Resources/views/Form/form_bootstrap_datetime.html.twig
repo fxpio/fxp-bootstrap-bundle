@@ -1,4 +1,5 @@
 {% block datetime_widget %}
+    {% require_style '@bower/bootstrap/less/bootstrap.less' %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-inline')|trim}) %}
     {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
@@ -24,6 +25,7 @@
 
 
 {% block date_widget %}
+    {% require_style '@bower/bootstrap/less/bootstrap.less' %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-inline date')|trim}) %}
     {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
@@ -44,6 +46,7 @@
 
 
 {% block time_widget %}
+    {% require_style '@bower/bootstrap/less/bootstrap.less' %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-inline time')|trim}) %}
     {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">

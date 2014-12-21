@@ -1,5 +1,6 @@
 {% block table_widget %}
 {% spaceless %}
+    {% require_style '@bower/bootstrap/less/bootstrap.less' %}
     {% set attr = attr|merge({'class': ('table ' ~ attr.class|default(''))|trim}) %}
     {% if striped %}
         {% set attr = attr|merge({'class': (attr.class|default('') ~ ' table-striped')|trim}) %}

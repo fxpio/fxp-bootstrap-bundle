@@ -1,5 +1,6 @@
 {% block addon_start %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         {% if prepend_string is defined or prepend_form is defined or prepend_block is defined or append_string is defined or append_form is defined or append_block is defined %}
             {% set addon_attr = addon_attr|default({})|merge({'class': ('input-group ' ~ (addon_attr.class|default('')))|trim}) %}
             {% if size is not empty %}
@@ -25,6 +26,7 @@
 
 {% block addon_end %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         {% set append_attr = append_attr|default({})|merge({'class': ('input-group-' ~ append_type ~ ' ' ~ (append_attr.class|default('')))|trim}) %}
 
         {% if append_string is defined %}

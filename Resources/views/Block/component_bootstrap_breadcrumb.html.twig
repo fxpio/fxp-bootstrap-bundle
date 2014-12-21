@@ -1,5 +1,6 @@
 {% block breadcrumb_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         {% set attr = attr|merge({'class': ('breadcrumb ' ~ attr.class|default(''))|trim}) %}
         <ol{{ block('widget_container_attributes') }}>
             {{ block('block_rows') }}
@@ -10,6 +11,7 @@
 
 {% block breadcrumb_item_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         {% if active %}
             {% set attr = attr|merge({'class': ('active ' ~ attr.class|default(''))|trim}) %}
         {% endif %}

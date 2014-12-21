@@ -1,3 +1,4 @@
 {% block form_control_static_value %}
+    {% require_style '@bower/bootstrap/less/bootstrap.less' %}
     <p class="form-control-static">{% if value is empty and static_control_empty is not empty %}<span class="form-static-empty">{{ static_control_empty|trans({}, translation_domain) }}</span>{% else %}{{ value|e }}{% endif %}</p>
 {% endblock form_control_static_value %}

@@ -1,4 +1,5 @@
 {% block collection_widget %}
+    {% require_style '@bower/bootstrap/less/bootstrap.less' %}
     {% if layout|default(null) == 'horizontal' %}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
     {% endif %}
@@ -15,8 +16,8 @@
         </div>
     {% endif %}
 
-    {% inline_javascript %}
-    <script type="text/javascript">
+    {% inline_script %}
+    <script>
     {% if btn_add is defined and prototype is defined %}
         $('#{{ btn_add.vars.id }}').click(function(event) {
             var inc = $(this).data('inc');
@@ -40,5 +41,5 @@
        });
     {% endif %}
     </script>
-    {% endinline_javascript %}
+    {% endinline_script %}
 {% endblock collection_widget %}

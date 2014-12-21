@@ -50,7 +50,7 @@ abstract class AbstractNavbarItemType extends AbstractType
         ));
 
         $resolver->setAllowedValues(array(
-            'align' => array('left', 'right'),
+            'align' => array(null, 'left', 'right'),
         ));
     }
 }

@@ -83,7 +83,7 @@ class NavType extends AbstractType
         ));
 
         $resolver->setAllowedValues(array(
-            'style' => array('tabs', 'pills'),
+            'style' => array(null, 'tabs', 'pills'),
         ));
 
         $resolver->setNormalizers(array(

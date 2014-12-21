@@ -102,10 +102,10 @@ class LinkType extends AbstractType
         ));
 
         $resolver->setAllowedValues(array(
-            'target' => array('null', '_blank', '_self', '_top', '_parent'),
-            'rel'    => array('alternate', 'author', 'help', 'license', 'next', 'nofollow', 'noreferrer', 'prefetch', 'prev', 'search', 'tag'),
+            'target' => array(null, 'null', '_blank', '_self', '_top', '_parent'),
+            'rel'    => array(null, 'alternate', 'author', 'help', 'license', 'next', 'nofollow', 'noreferrer', 'prefetch', 'prev', 'search', 'tag'),
             'style'  => array('default', 'primary', 'success', 'info', 'warning', 'danger', 'link'),
-            'size'  => array('xs', 'sm', 'lg'),
+            'size'  => array(null, 'xs', 'sm', 'lg'),
         ));
 
         $resolver->setNormalizers(array(

@@ -69,7 +69,7 @@ class ProgressBarType extends AbstractType
         ));
 
         $resolver->setAllowedValues(array(
-            'style' => array('success', 'info', 'warning', 'danger'),
+            'style' => array(null, 'success', 'info', 'warning', 'danger'),
         ));
     }
 

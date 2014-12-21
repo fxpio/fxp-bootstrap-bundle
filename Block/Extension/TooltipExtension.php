@@ -91,7 +91,7 @@ class TooltipExtension extends AbstractTypeExtension
                 ));
 
                 $tooltipResolver->setAllowedValues(array(
-                    'placement' => array('top', 'bottom', 'left', 'right', 'auto', 'auto top', 'auto bottom', 'auto left', 'auto right'),
+                    'placement' => array(null, 'top', 'bottom', 'left', 'right', 'auto', 'auto top', 'auto bottom', 'auto left', 'auto right'),
                 ));
 
                 return $tooltipResolver->resolve($value);

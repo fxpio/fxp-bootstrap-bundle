@@ -1,5 +1,6 @@
 {% block jumbotron_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         {% set attr = attr|merge({'class': ('jumbotron ' ~ attr.class|default(''))|trim}) %}
         <div{{ block('widget_container_attributes') }}>
             {{- value|raw -}}

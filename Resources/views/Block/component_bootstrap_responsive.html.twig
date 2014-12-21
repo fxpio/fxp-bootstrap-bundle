@@ -1,5 +1,6 @@
 {% block embed_responsive_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         {% set attr = attr|merge({'class': ('embed-responsive ' ~ attr.class|default(''))|trim}) %}
 
         {% if format is not null %}

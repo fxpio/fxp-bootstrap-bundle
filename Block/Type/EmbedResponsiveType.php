@@ -47,7 +47,7 @@ class EmbedResponsiveType extends AbstractType
         ));
 
         $resolver->setAllowedValues(array(
-            'format' => array('16by9', '4by3'),
+            'format' => array(null, '16by9', '4by3'),
         ));
     }
 

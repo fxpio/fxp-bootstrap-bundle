@@ -88,7 +88,7 @@ class NavbarType extends AbstractType
 
         $resolver->setAllowedValues(array(
             'style'    => array('default', 'inverse'),
-            'position' => array('static-top', 'fixed-top', 'fixed-bottom'),
+            'position' => array(null, 'static-top', 'fixed-top', 'fixed-bottom'),
         ));
     }
 

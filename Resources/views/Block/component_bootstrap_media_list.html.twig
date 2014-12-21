@@ -1,5 +1,6 @@
 {% block media_list_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         {% set attr = attr|merge({'class': ('media-list ' ~ attr.class|default(''))|trim}) %}
         <ul{{ block('widget_container_attributes') }}>
             {{- value|raw -}}

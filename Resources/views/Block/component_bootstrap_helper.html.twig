@@ -1,6 +1,8 @@
 {% block block_collapse_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         {% if collapsible %}
+            {% require_script '@bower/bootstrap/js/transition.js', '@bower/bootstrap/js/collapse.js' %}
             {% set attr = attr|merge({'class': (attr.class|default('') ~ ' collapse')|trim}) %}
         {% endif %}
         {% if not(collapsed) %}
@@ -18,6 +20,7 @@
 
 {% block clearfix_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         {% set attr = attr|merge({'class': ('clearfix' ~ ' ' ~ attr.class|default(''))|trim}) %}
         <div{{ block('widget_container_attributes') }}></div>
     {% endspaceless %}
@@ -26,6 +29,7 @@
 
 {% block close_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         {% set attr = attr|merge({'type': 'button', 'class': ('close ' ~ attr.class|default(''))|trim, 'aria-hidden': 'true'}) %}
 
         <button{{ block('widget_container_attributes') }}>&times;{{- value|raw -}}</button>
@@ -35,6 +39,7 @@
 
 {% block caret_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         {% set attr = attr|merge({'class': ('caret ' ~ attr.class|default(''))|trim}) %}
 
         <span{{ block('widget_container_attributes') }}>{{- value|raw -}}</span>

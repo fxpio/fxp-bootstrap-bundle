@@ -118,8 +118,8 @@ class ButtonType extends AbstractType
 
         $resolver->setAllowedValues(array(
             'tag'   => array('button', 'a'),
-            'style' => array('default', 'primary', 'success', 'info', 'warning', 'danger', 'link'),
-            'size'  => array('xs', 'sm', 'lg'),
+            'style' => array(null, 'default', 'primary', 'success', 'info', 'warning', 'danger', 'link'),
+            'size'  => array(null, 'xs', 'sm', 'lg'),
         ));
 
         $resolver->setNormalizers(array(

@@ -15,10 +15,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\FormTemplatePass;
 use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\BlockTemplatePass;
-use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\CommonStylesheetPass;
-use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\CommonJavascriptPass;
-use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\LocalizedAssetsPass;
-use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\ShivJavascriptPass;
 
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
@@ -31,9 +27,5 @@ class SonatraBootstrapBundle extends Bundle
 
         $container->addCompilerPass(new FormTemplatePass());
         $container->addCompilerPass(new BlockTemplatePass());
-        $container->addCompilerPass(new CommonStylesheetPass());
-        $container->addCompilerPass(new CommonJavascriptPass());
-        $container->addCompilerPass(new LocalizedAssetsPass());
-        $container->addCompilerPass(new ShivJavascriptPass());
     }
 }

@@ -4,6 +4,7 @@
 
 {% block fieldset_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         <fieldset {{ block('widget_attributes') }}>
             {% if legend is not empty %}
                 {% if layout|default(null) == 'horizontal' %}

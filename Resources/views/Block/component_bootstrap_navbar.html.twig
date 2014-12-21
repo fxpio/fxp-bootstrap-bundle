@@ -1,5 +1,6 @@
 {% block navbar_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         {% set attr = attr|merge({'class': ('navbar navbar-' ~ style ~ ' ' ~ attr.class|default(''))|trim, role: 'navigation'}) %}
         {% if position is not null %}
             {% set attr = attr|merge({'class': (attr.class|default('') ~ ' navbar-' ~ position)|trim}) %}
@@ -16,6 +17,7 @@
 
 {% block navbar_header_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         {% set attr = attr|merge({'class': ('navbar-header ' ~ attr.class|default(''))|trim}) %}
         <div{{ block('widget_container_attributes') }}>
             {% if collapse_id is defined and collapse_id is not empty %}{{ block('navbar_header_toggle_button') }}{% endif %}
@@ -43,6 +45,7 @@
 
 {% block navbar_brand_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         {% set attr = attr|merge({'class': ('navbar-brand ' ~ attr.class|default(''))|trim}) %}
         <a{{ block('widget_container_attributes') }}>
             {{- label|trans({}, translation_domain) -}}
@@ -55,6 +58,7 @@
 
 {% block navbar_collapse_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         {% set attr = attr|merge({'class': ('collapse navbar-collapse ' ~ attr.class|default(''))|trim}) %}
         <div{{ block('widget_container_attributes') }}>
             {{- value|raw -}}

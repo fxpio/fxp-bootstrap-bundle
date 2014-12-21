@@ -1,5 +1,6 @@
 {% block form_content_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         {% set form_attr = {'row_attr': row_attr, 'display_label': display_label} %}
         {% if layout is defined and layout_col_size is defined and layout_col_label is defined and layout_col_control is defined %}
             {% set form_attr = form_attr|merge({'layout': layout, 'layout_col_size': layout_col_size, 'layout_col_label': layout_col_label, 'layout_col_control': layout_col_control}) %}

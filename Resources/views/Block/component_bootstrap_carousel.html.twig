@@ -1,5 +1,7 @@
 {% block carousel_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
+        {% require_script '@bower/bootstrap/js/carousel.js' %}
         {% set attr = attr|merge({'class': ('carousel slide ' ~ attr.class|default(''))|trim}) %}
         <div{{ block('widget_container_attributes') }}>
             {% if indicators is defined %}
@@ -32,6 +34,7 @@
 
 {% block carousel_item_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         {% set attr = attr|merge({'class': ('item ' ~ attr.class|default(''))|trim}) %}
         {% if active %}
             {% set attr = attr|merge({'class': (attr.class|default('') ~ ' active')|trim}) %}

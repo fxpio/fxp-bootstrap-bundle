@@ -1,5 +1,7 @@
 {% block dropdown_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
+        {% require_script '@bower/bootstrap/js/dropdown.js' %}
         {% if wrapper %}
             {% set wrapper_attr = wrapper_attr|merge({'class': (wrapper_attr.class|default('') ~ ' dropdown')|trim}) %}
             <div{% for attrname, attrvalue in wrapper_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>

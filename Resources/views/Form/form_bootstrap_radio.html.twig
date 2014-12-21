@@ -4,6 +4,7 @@
 
 {% block radio_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         {% if label is empty %}
             {% set label = name|humanize %}
         {% endif %}

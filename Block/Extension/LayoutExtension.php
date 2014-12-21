@@ -77,7 +77,7 @@ class LayoutExtension extends AbstractTypeExtension
         ));
 
         $resolver->addAllowedValues(array(
-            'layout'          => array('inline', 'horizontal'),
+            'layout'          => array(null, 'inline', 'horizontal'),
             'layout_col_size' => array('xs', 'sm', 'md', 'lg'),
         ));
     }

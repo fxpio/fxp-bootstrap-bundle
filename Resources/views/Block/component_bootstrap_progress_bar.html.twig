@@ -1,5 +1,6 @@
 {% block progress_bar_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         {% if not(stacked) %}
             <div class="progress{% if striped %} progress-striped{% if animated %} active{% endif %}{% endif %}">
         {% endif %}

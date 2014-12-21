@@ -47,7 +47,7 @@ class BlockquoteFooterType extends AbstractType
         ));
 
         $resolver->setAllowedValues(array(
-            'size' => array('sm', 'lg'),
+            'size' => array(null, 'sm', 'lg'),
         ));
     }
 

@@ -1,5 +1,6 @@
 {% block code_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
         <{% if inline %}code{% else %}pre{% endif %}{{ block('widget_container_attributes') }}>
             {%- if escape -%}
                 {{- value -}}

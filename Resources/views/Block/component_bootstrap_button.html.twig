@@ -1,5 +1,7 @@
 {% block button_group_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
+        {% require_script '@bower/bootstrap/js/button.js' %}
         {% if vertical %}
             {% set vertical = '-vertical' %}
         {% else %}
@@ -23,6 +25,8 @@
 
 {% block button_toolbar_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
+        {% require_script '@bower/bootstrap/js/button.js' %}
         {% set attr = attr|merge({'class': ' btn-toolbar' ~ (attr.class|default(''))|trim}) %}
         {{- value|raw -}}
         <div{{ block('widget_container_attributes') }}>
@@ -36,6 +40,8 @@
 
 {% block button_widget %}
     {% spaceless %}
+        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
+        {% require_script '@bower/bootstrap/js/button.js' %}
         {% if label is null %}
             {% set label = name|humanize %}
         {% endif %}
