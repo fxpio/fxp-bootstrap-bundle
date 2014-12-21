@@ -11,15 +11,6 @@ The Sonatra BootstrapBundle is an twig DSL for construct a Twitter Bootstrap 3 i
 
 Features include:
 
-- Configures twitter bootstrap stylesheets
-- Configures stylesheets to be added on the common base page
-- Configures twitter bootstrap javascripts
-- Configures javascripts to be added on the common base page
-- Assetic fonts loader (for dump command and use controller)
-- Assetic filter for replace the string parameter ('%foo.bar%') by the value in parameter bag of the service container
-- Assetic filter for replace the target path by the path starting since the current asset directory
-- Assetic filter for replace the bundle alias (@AcmeDemoBundle) by the real path
-- Renderer Twig tag for config assets in debug or prod mod
 - Twig base template for the HTML5 responsive container
 - Block type for fundamental HTML element with responsive utilities
   * Grid system
