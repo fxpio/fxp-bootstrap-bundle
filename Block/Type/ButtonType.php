@@ -133,7 +133,7 @@ class ButtonType extends AbstractType
                 }
 
                 return $value;
-            }
+            },
         ));
     }
 

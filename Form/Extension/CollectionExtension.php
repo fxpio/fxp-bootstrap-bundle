@@ -112,7 +112,7 @@ class CollectionExtension extends AbstractTypeExtension
                             'style'     => 'danger',
                             'disabled'  =>  $options['disabled'],
                             'attr'      => array(
-                                'class' => 'btn-remove'
+                                'class' => 'btn-remove',
                             ),
                         ),
                         $value['append']

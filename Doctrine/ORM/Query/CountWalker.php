@@ -69,7 +69,7 @@ class CountWalker extends TreeWalkerAdapter
         $AST->selectClause->selectExpressions = array(
                 new SelectExpression(
                         new AggregateExpression('count', $pathExpression, $distinct), null
-                )
+                ),
         );
 
         // ORDER BY is not needed
