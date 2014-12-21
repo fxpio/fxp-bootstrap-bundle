@@ -28,7 +28,6 @@ class CarouselItemType extends AbstractType
      */
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
-
         $view->vars = array_replace($view->vars, array(
             'active'  => $options['active'],
             'caption' => $options['caption'],

@@ -128,7 +128,6 @@ class DoctrineOrmDataSource extends DataSource
 
             if ($customTreeWalkers !== false && is_array($customTreeWalkers)) {
                 $customTreeWalkers = array_merge($customTreeWalkers, array($walker));
-
             } else {
                 $customTreeWalkers = array($walker);
             }

@@ -50,19 +50,16 @@ class DropdownType extends AbstractType
             if (in_array('dropdown_divider', $child->vars['block_prefixes'])) {
                 if (!$hasItem) {
                     unset($view->children[$name]);
-
                 } else {
                     $hasItem = true;
                     $lastDivider = $name;
                 }
-
             } elseif (in_array('dropdown_header', $child->vars['block_prefixes'])) {
                 if (!$hasItem && null === $firstHeader) {
                     $firstHeader = $child;
                 }
 
                 $hasItem = true;
-
             } elseif (in_array('dropdown_item', $child->vars['block_prefixes'])) {
                 $hasItem = true;
                 $lastDivider = null;

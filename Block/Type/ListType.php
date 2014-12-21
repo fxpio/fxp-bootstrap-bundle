@@ -32,7 +32,6 @@ class ListType extends AbstractType
 
         if ('ordered' === $options['style']) {
             $tag = 'ol';
-
         } elseif ('description' === $options['style']) {
             $tag = 'dl';
         }

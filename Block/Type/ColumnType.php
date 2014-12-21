@@ -126,7 +126,6 @@ class ColumnType extends AbstractType
     {
         if (is_string($value)) {
             $value = array($value);
-
         } elseif (null === $value) {
             $value = array();
         }

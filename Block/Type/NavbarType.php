@@ -47,15 +47,12 @@ class NavbarType extends AbstractType
         foreach ($view->children as $child) {
             if (null === $header && in_array('navbar_header', $child->vars['block_prefixes'])) {
                 $header = $child;
-
             } elseif (null === $collapse && in_array('navbar_collapse', $child->vars['block_prefixes'])) {
                 $collapse = $child;
-
             } elseif (in_array('container', $child->vars['block_prefixes'])) {
                 foreach ($child->children as $subChild) {
                     if (null === $header && in_array('navbar_header', $subChild->vars['block_prefixes'])) {
                         $header = $subChild;
-
                     } elseif (null === $collapse && in_array('navbar_collapse', $subChild->vars['block_prefixes'])) {
                         $collapse = $subChild;
                     }
@@ -107,20 +104,15 @@ class NavbarType extends AbstractType
         if (in_array('nav', $view->vars['block_prefixes'])) {
             $view->vars['attr']['class'] = 'navbar-nav '.$class;
             $view->vars['style'] = null;
-
         } elseif (in_array('nav_item', $view->vars['block_prefixes'])) {
             unset($view->vars['link_attr']['data-toggle']);
-
         } elseif (in_array('form', $view->vars['block_prefixes'])) {
             $view->vars['attr']['class'] = 'navbar-form '.$class;
             $view->vars['attr']['role'] = 'search';
-
         } elseif (in_array('button', $view->vars['block_prefixes'])) {
             $view->vars['attr']['class'] = $class.' navbar-button';
-
         } elseif (in_array('paragraph', $view->vars['block_prefixes']) || in_array('text', $view->vars['block_prefixes'])) {
             $view->vars['attr']['class'] = 'navbar-text '.$class;
-
         } elseif (in_array('link', $view->vars['block_prefixes'])) {
             $view->vars['attr']['class'] = 'navbar-link '.$class;
         }

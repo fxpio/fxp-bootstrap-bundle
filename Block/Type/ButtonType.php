@@ -69,17 +69,14 @@ class ButtonType extends AbstractType
                 $child->vars['wrapper'] = false;
                 $view->vars['dropdown'] = $child;
                 unset($view->children[$name]);
-
             } elseif ('prepend' === $name) {
                 $view->vars['prepend'] = $child;
                 $view->vars['prepend_is_string'] = false;
                 unset($view->children[$name]);
-
             } elseif ('append' === $name) {
                 $view->vars['append'] = $child;
                 $view->vars['append_is_string'] = false;
                 unset($view->children[$name]);
-
             } elseif ('split' === $name) {
                 $view->vars['split'] = $child;
                 unset($view->children[$name]);

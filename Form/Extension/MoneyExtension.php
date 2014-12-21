@@ -36,7 +36,6 @@ class MoneyExtension extends AbstractTypeExtension
             $view->vars['prepend_string'] = $currency;
             unset($view->vars['prepend_form']);
             unset($view->vars['prepend_block']);
-
         } elseif ('append' === $position) {
             $view->vars['append_string'] = $currency;
             unset($view->vars['append_form']);

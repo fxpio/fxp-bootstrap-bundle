@@ -56,7 +56,6 @@ class PaginationType extends AbstractType
                 if ('previous' === $name) {
                     $view->vars['block_previous'] = $child;
                     unset($view->children[$name]);
-
                 } elseif ('next' === $name) {
                     $view->vars['block_next'] = $child;
                     unset($view->children[$name]);

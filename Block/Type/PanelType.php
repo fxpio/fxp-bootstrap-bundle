@@ -81,7 +81,6 @@ class PanelType extends AbstractType
             if (in_array('panel_header', $child->vars['block_prefixes'])) {
                 $view->vars['block_header'] = $child;
                 unset($view->children[$name]);
-
             } elseif (in_array('panel_footer', $child->vars['block_prefixes'])) {
                 $view->vars['block_footer'] = $child;
                 unset($view->children[$name]);

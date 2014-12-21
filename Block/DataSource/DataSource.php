@@ -165,7 +165,6 @@ class DataSource implements DataSourceInterface
 
         if (null !== $index) {
             array_splice($this->columns, $index, 0, $column);
-
         } else {
             array_push($this->columns, $column);
         }

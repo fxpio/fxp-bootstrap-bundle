@@ -127,15 +127,12 @@ class TableType extends AbstractType
             if (in_array('table_caption', $child->vars['block_prefixes'])) {
                 $view->vars['caption'] = $child;
                 unset($view->children[$name]);
-
             } elseif (in_array('table_header', $child->vars['block_prefixes'])) {
                 $view->vars['header'] = $child;
                 unset($view->children[$name]);
-
             } elseif (in_array('table_footer', $child->vars['block_prefixes'])) {
                 $view->vars['footer'] = $child;
                 unset($view->children[$name]);
-
             } elseif (in_array('table_column', $child->vars['block_prefixes'])) {
                 $columns[] = $child;
                 unset($view->children[$name]);
