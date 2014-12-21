@@ -394,7 +394,7 @@ class DataSource implements DataSourceInterface
             }
         }
 
-        return null;
+        return;
     }
 
     /**
@@ -503,7 +503,7 @@ class DataSource implements DataSourceInterface
             }
         }
 
-        return null;
+        return;
     }
 
     /**
