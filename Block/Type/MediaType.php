@@ -54,7 +54,7 @@ class MediaType extends AbstractType
                     $class .= ' media-object';
                 }
 
-                $class .= ' pull-' . $options['align'];
+                $class .= ' pull-'.$options['align'];
                 $class = trim($class);
 
                 $child->vars['attr']['class'] = $class;

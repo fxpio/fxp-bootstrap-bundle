@@ -31,7 +31,7 @@ abstract class AbstractNavbarItemType extends AbstractType
         if ($options['align']) {
             $class = isset($view->vars['attr']['class']) ? $view->vars['attr']['class'] : '';
 
-            $view->vars['attr']['class'] = $class . ' navbar-' . $options['align'];
+            $view->vars['attr']['class'] = $class.' navbar-'.$options['align'];
         }
     }
 

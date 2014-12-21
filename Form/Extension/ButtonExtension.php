@@ -45,18 +45,18 @@ class ButtonExtension extends AbstractTypeExtension
         }
 
         if ($options['block_level']) {
-            $class = 'btn-block ' . $class;
+            $class = 'btn-block '.$class;
         }
 
         if (null !== $options['style']) {
-            $class = 'btn-' . $options['style'] . ' ' . $class;
+            $class = 'btn-'.$options['style'].' '.$class;
         }
 
         if (null !== $options['size']) {
-            $class = 'btn-' . $options['size'] . ' ' . $class;
+            $class = 'btn-'.$options['size'].' '.$class;
         }
 
-        $view->vars['attr']['class'] = trim('btn ' . $class);
+        $view->vars['attr']['class'] = trim('btn '.$class);
 
         // layout
         if (null !== $view->parent && isset($view->parent->vars['layout'])) {

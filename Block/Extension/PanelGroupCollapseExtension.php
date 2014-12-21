@@ -43,8 +43,8 @@ class PanelGroupCollapseExtension extends AbstractTypeExtension
 
                             $subSubChild->add('panel_link', 'link', array(
                                 'label' => $subSubChild->getOption('label'),
-                                'src' => '#' . BlockUtil::createBlockId($child) . 'Collapse',
-                                'attr' => array('data-toggle' => 'collapse', 'data-parent' => '#' . BlockUtil::createBlockId($block))
+                                'src' => '#'.BlockUtil::createBlockId($child).'Collapse',
+                                'attr' => array('data-toggle' => 'collapse', 'data-parent' => '#'.BlockUtil::createBlockId($block)),
                             ));
 
                             $subSubChild->setOption('label', null);

@@ -105,24 +105,24 @@ class NavbarType extends AbstractType
         $class = isset($view->vars['attr']['class']) ? $view->vars['attr']['class'] : '';
 
         if (in_array('nav', $view->vars['block_prefixes'])) {
-            $view->vars['attr']['class'] = 'navbar-nav '. $class;
+            $view->vars['attr']['class'] = 'navbar-nav '.$class;
             $view->vars['style'] = null;
 
         } elseif (in_array('nav_item', $view->vars['block_prefixes'])) {
             unset($view->vars['link_attr']['data-toggle']);
 
         } elseif (in_array('form', $view->vars['block_prefixes'])) {
-            $view->vars['attr']['class'] = 'navbar-form '. $class;
+            $view->vars['attr']['class'] = 'navbar-form '.$class;
             $view->vars['attr']['role'] = 'search';
 
         } elseif (in_array('button', $view->vars['block_prefixes'])) {
-            $view->vars['attr']['class'] = $class . ' navbar-button';
+            $view->vars['attr']['class'] = $class.' navbar-button';
 
         } elseif (in_array('paragraph', $view->vars['block_prefixes']) || in_array('text', $view->vars['block_prefixes'])) {
-            $view->vars['attr']['class'] = 'navbar-text ' . $class;
+            $view->vars['attr']['class'] = 'navbar-text '.$class;
 
         } elseif (in_array('link', $view->vars['block_prefixes'])) {
-            $view->vars['attr']['class'] = 'navbar-link ' . $class;
+            $view->vars['attr']['class'] = 'navbar-link '.$class;
         }
 
         foreach ($view->children as $child) {

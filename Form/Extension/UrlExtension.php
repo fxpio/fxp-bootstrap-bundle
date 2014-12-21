@@ -29,7 +29,7 @@ class UrlExtension extends AbstractTypeExtension
     {
         $prependNormalizers = function (Options $options, $value) {
             if (null === $value) {
-                $value = $options['default_protocol'] . '://';
+                $value = $options['default_protocol'].'://';
             }
 
             if ('' === $value) {
