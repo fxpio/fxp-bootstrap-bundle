@@ -26,7 +26,6 @@ class ConfigurationPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         if ($container->getParameter('sonatra_bootstrap.config.auto_configuration')) {
-            $this->processDefault($container);
             $this->processPackages($container);
             $this->processAssetReplacement($container);
         }
@@ -34,28 +33,6 @@ class ConfigurationPass implements CompilerPassInterface
         /* @var ParameterBag $pb */
         $pb = $container->getParameterBag();
         $pb->remove('sonatra_bootstrap.config.auto_configuration');
-    }
-
-    /**
-     * @param ContainerBuilder $container
-     */
-    protected function processDefault(ContainerBuilder $container)
-    {
-        $extManagerDef = $container->getDefinition('fxp_require_asset.assetic.config.file_extension_manager');
-        $configs = array(
-            'md'   => array(
-                'exclude'   => true,
-            ),
-            'css'  => array(
-                'filters'   => array('requirecssrewrite'),
-            ),
-            'less' => array(
-                'filters'   => array('lessvariable', 'parameterbag', 'less', 'requirecssrewrite'),
-                'extension' => 'css',
-            ),
-        );
-
-        $extManagerDef->addMethodCall('addDefaultExtensions', array($configs));
     }
 
     /**
