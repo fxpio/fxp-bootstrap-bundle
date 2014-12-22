@@ -11,6 +11,7 @@ The Sonatra BootstrapBundle is an twig DSL for construct a Twitter Bootstrap 3 i
 
 Features include:
 
+- Auto configuration of asset packages and default extensions
 - Twig base template for the HTML5 responsive container
 - Block type for fundamental HTML element with responsive utilities
   * Grid system
