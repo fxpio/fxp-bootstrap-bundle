@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bb71893f8898067087b222b201a0977d",
+    "hash": "c42bdf0aa899040d70848ba2846e7594",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -279,12 +279,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/francoispluchino/fxp-require-asset.git",
-                "reference": "0ecc015a7d0d70ade0018de3e7bd4a9d73002ad7"
+                "reference": "0ca82f53bd3d2c864db465ba8bdbc7400b0cd48c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/francoispluchino/fxp-require-asset/zipball/0ecc015a7d0d70ade0018de3e7bd4a9d73002ad7",
-                "reference": "0ecc015a7d0d70ade0018de3e7bd4a9d73002ad7",
+                "url": "https://api.github.com/repos/francoispluchino/fxp-require-asset/zipball/0ca82f53bd3d2c864db465ba8bdbc7400b0cd48c",
+                "reference": "0ca82f53bd3d2c864db465ba8bdbc7400b0cd48c",
                 "shasum": ""
             },
             "require": {
@@ -303,7 +303,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.0-dev"
                 }
             },
             "autoload": {
@@ -333,7 +333,7 @@
                 "ui",
                 "user interface"
             ],
-            "time": "2014-12-21 12:49:26"
+            "time": "2014-12-31 15:07:12"
         },
         {
             "name": "fxp/require-asset-bundle",
@@ -341,16 +341,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/francoispluchino/FxpRequireAssetBundle.git",
-                "reference": "5450c4fdfedfd6f13dfd1ddb465ca17b6da22bcc"
+                "reference": "360693f9e86d827d460f7e803db3bfd60ed636bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/francoispluchino/FxpRequireAssetBundle/zipball/5450c4fdfedfd6f13dfd1ddb465ca17b6da22bcc",
-                "reference": "5450c4fdfedfd6f13dfd1ddb465ca17b6da22bcc",
+                "url": "https://api.github.com/repos/francoispluchino/FxpRequireAssetBundle/zipball/360693f9e86d827d460f7e803db3bfd60ed636bb",
+                "reference": "360693f9e86d827d460f7e803db3bfd60ed636bb",
                 "shasum": ""
             },
             "require": {
-                "fxp/require-asset": "~1.0@dev",
+                "fxp/require-asset": "1.0.*@dev",
                 "php": ">=5.3.3",
                 "symfony/assetic-bundle": "~2.4",
                 "symfony/framework-bundle": "~2.4",
@@ -362,7 +362,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.0-dev"
                 }
             },
             "autoload": {
@@ -394,7 +394,7 @@
                 "ui",
                 "user interface"
             ],
-            "time": "2014-12-22 10:14:48"
+            "time": "2014-12-31 15:15:37"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -2099,16 +2099,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.16.2",
+            "version": "v1.16.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "42f758d9fe2146d1f0470604fc05ee43580873fc"
+                "reference": "6dc11a1e8ecfc30e2c68aaeb218148409d8e68af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/42f758d9fe2146d1f0470604fc05ee43580873fc",
-                "reference": "42f758d9fe2146d1f0470604fc05ee43580873fc",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/6dc11a1e8ecfc30e2c68aaeb218148409d8e68af",
+                "reference": "6dc11a1e8ecfc30e2c68aaeb218148409d8e68af",
                 "shasum": ""
             },
             "require": {
@@ -2143,7 +2143,7 @@
                 },
                 {
                     "name": "Twig Team",
-                    "homepage": "https://github.com/fabpot/Twig/graphs/contributors",
+                    "homepage": "http://twig.sensiolabs.org/contributors",
                     "role": "Contributors"
                 }
             ],
@@ -2152,19 +2152,16 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-10-17 12:53:44"
+            "time": "2014-12-25 19:58:19"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "symfony/assetic-bundle": 10,
-        "kriswallsmith/assetic": 15,
         "fxp/require-asset-bundle": 20,
         "fxp/require-asset": 20,
-        "sonatra/block-bundle": 20,
-        "bower-asset/jquery": 0
+        "sonatra/block-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

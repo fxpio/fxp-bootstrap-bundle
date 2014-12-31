@@ -14,14 +14,13 @@
     "require" : {
         "php" : ">=5.3.3",
         "symfony/framework-bundle" : "~2.4",
-        "symfony/assetic-bundle": "~2.4@beta",
-        "kriswallsmith/assetic": "~1.2@alpha",
-        "fxp/require-asset-bundle" : "~1.0@dev",
-        "fxp/require-asset" : "~1.0@dev",
-        "sonatra/block-bundle" : "~1.0@dev",
+        "symfony/assetic-bundle": "~2.4",
+        "kriswallsmith/assetic": "~1.2",
+        "fxp/require-asset-bundle" : "1.0.*@dev",
+        "fxp/require-asset" : "1.0.*@dev",
+        "sonatra/block-bundle" : "1.0.*@dev",
         "bower-asset/html5shiv": "3.7.*",
         "bower-asset/respond": "1.4.*",
-        "bower-asset/jquery": "@stable",
         "bower-asset/bootstrap": "3.3.*"
     },
     "require-dev" : {
