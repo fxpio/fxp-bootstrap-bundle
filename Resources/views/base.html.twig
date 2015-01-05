@@ -6,7 +6,8 @@
 {% spaceless %}
 
 {% block html_tag %}
-<html>
+{% set html_attr = html_attr|default({}) %}
+<html{% for attrname, attrvalue in html_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
 {% endblock html_tag %}
 
 {% block head %}
