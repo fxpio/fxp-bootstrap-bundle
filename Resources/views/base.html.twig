@@ -1,42 +1,41 @@
-{% block doctype %}
+{% block doctype -%}
 <!DOCTYPE html>
-{% endblock doctype %}
+{%- endblock doctype -%}
 
-{% block html %}
-{% spaceless %}
+{%- block html -%}
 
-{% block html_tag %}
-{% set html_attr = html_attr|default({}) %}
+{%- block html_tag -%}
+{%- set html_attr = html_attr|default({}) -%}
 <html{% for attrname, attrvalue in html_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-{% endblock html_tag %}
+{%- endblock html_tag -%}
 
-{% block head %}
+{%- block head -%}
 <head>
-    {% block metadata %}
+    {%- block metadata -%}
     <meta charset="UTF-8" />
-    {% block viewport %}
+    {%- block viewport -%}
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
-    {% endblock viewport %}
-    {% endblock metadata %}
+    {%- endblock viewport -%}
+    {%- endblock metadata -%}
 
     <title>{% block title %}Welcome!{% endblock %}</title>
 
-    {% block links %}
+    {%- block links -%}
     <link rel="icon" type="image/x-icon" href="{% block favicon %}{{ asset('favicon.ico') }}{% endblock favicon %}" />
-    {% endblock links %}
+    {%- endblock links -%}
 
-    {% block stylesheets %}
+    {%- block stylesheets -%}
         {{- requireStylesPosition() -}}
-    {% endblock stylesheets %}
+    {%- endblock stylesheets -%}
 
     {%- block style -%}
         <style>
             {%- block style_global -%}
             {{- inlineStylesPosition() -}}
-            {% endblock style_global -%}
+            {%- endblock style_global -%}
 
             {%- block style_content -%}
-            {% endblock style_content -%}
+            {%- endblock style_content -%}
         </style>
     {%- endblock style -%}
 
@@ -44,14 +43,14 @@
         {{- requireScriptsPosition('head') -}}
     {%- endblock head_javascripts -%}
 
-    {% block head_conditional_comments %}
+    {%- block head_conditional_comments -%}
         {#}HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries{#}
         <!--[if lt IE 9]>
         {{- requireScriptsPosition('head_hack_lt_ie_9') -}}
         <![endif]-->
-        {% require_script '@bower/html5shiv/dist/html5shiv.js' position='head_hack_lt_ie_9' %}
-        {% require_script '@bower/respond/dest/respond.src.js' position='head_hack_lt_ie_9' %}
-    {% endblock head_conditional_comments %}
+        {%- require_script '@bower/html5shiv/dist/html5shiv.js' position='head_hack_lt_ie_9' -%}
+        {%- require_script '@bower/respond/dest/respond.src.js' position='head_hack_lt_ie_9' -%}
+    {%- endblock head_conditional_comments -%}
 
     {%- block head_inline_javascripts -%}
         <script>
@@ -59,17 +58,17 @@
         </script>
     {%- endblock head_inline_javascripts -%}
 </head>
-{% endblock head %}
+{%- endblock head -%}
 
-{% set body_attr = body_attr|default({}) %}
+{%- set body_attr = body_attr|default({}) -%}
 <body{% for attrname, attrvalue in body_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-    {% block body %}
-    {% endblock body %}
+    {%- block body -%}
+    {%- endblock body -%}
 
     {%- block javascripts -%}
         {{- requireScriptsPosition('body_priority') -}}
         {{- requireScriptsPosition() -}}
-        {% require_script '@bower/jquery/dist/jquery.js' position='body_priority' %}
+        {%- require_script '@bower/jquery/dist/jquery.js' position='body_priority' -%}
     {%- endblock javascripts -%}
 
     {%- block javascript_global -%}
@@ -81,6 +80,5 @@
     {%- endblock javascript_global -%}
 </body>
 </html>
-{% endspaceless %}
-{% endblock html %}
-{{ renderAssetTags() }}
+{%- endblock html -%}
+{{- renderAssetTags() -}}

@@ -1,74 +1,70 @@
-{% block nav_widget %}
-    {% spaceless %}
-        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-        {% require_script '@bower/bootstrap/js/tab.js' %}
-        {% set nav_class = 'nav ' %}
-        {% if style is not null %}
-            {% set nav_class = nav_class ~ ' nav-' ~ style ~ ' ' %}
-        {% endif %}
-        {% set attr = attr|merge({'class': (nav_class ~ attr.class|default(''))|trim}) %}
+{% block nav_widget -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
+    {%- require_script '@bower/bootstrap/js/tab.js' -%}
 
-        {% if stacked %}
-            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' nav-stacked')|trim}) %}
-        {% endif %}
+    {%- set nav_class = 'nav ' -%}
+    {%- if style is not null -%}
+        {%- set nav_class = nav_class ~ ' nav-' ~ style ~ ' ' -%}
+    {%- endif -%}
+    {%- set attr = attr|merge({'class': (nav_class ~ attr.class|default(''))|trim}) -%}
 
-        <ul{{ block('widget_container_attributes') }}>
-            {{ value|raw }}
-            {{ block('block_rows') }}
-        </ul>
-    {% endspaceless %}
-{% endblock nav_widget %}
+    {%- if stacked -%}
+        {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' nav-stacked')|trim}) -%}
+    {%- endif -%}
 
-
-{% block nav_item_widget %}
-    {% spaceless %}
-        {% set style = block.parent.vars.style|default('tabs') %}
-
-        {% if active and not disabled %}
-            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' active')|trim}) %}
-        {% endif %}
-        {% if disabled %}
-            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' disabled')|trim}) %}
-        {% endif %}
-        {% if is_item_dropdown %}
-            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' dropdown')|trim}) %}
-            {% set link_attr = link_attr|merge({'class': (link_attr.class|default('') ~ ' dropdown-toggle')|trim, 'data-toggle': 'dropdown'}) %}
-        {% endif %}
-        <li{{ block('widget_container_attributes') }}>
-            <a{% for attrname, attrvalue in link_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-            {{- label|trans({}, translation_domain) }}
-            {{- value|raw -}}
-            {{- block('block_rows') -}}
-            {% if is_item_dropdown %}
-                <span class="caret"></span>
-            {% endif %}
-            </a>
-            {% if dropdown is defined %}
-                {{ block_widget(dropdown) }}
-            {% endif %}
-        </li>
-    {% endspaceless %}
-{% endblock nav_item_widget %}
-
-
-{% block tab_content_widget %}
-    {% spaceless %}
-        {% set attr = attr|merge({'class': ('tab-content ' ~ attr.class|default(''))|trim}) %}
+    <ul{{ block('widget_container_attributes') }}>
         {{- value|raw -}}
-        {{ block('block_widget_compound') }}
-    {% endspaceless %}
-{% endblock tab_content_widget %}
+        {{- block('block_rows') -}}
+    </ul>
+{%- endblock nav_widget %}
 
 
-{% block tab_pane_widget %}
-    {% spaceless %}
-        {% set attr = attr|merge({'class': ('tab-pane ' ~ attr.class|default(''))|trim}) %}
+{% block nav_item_widget -%}
+    {%- set style = block.parent.vars.style|default('tabs') -%}
 
-        {% if active %}
-            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' active')|trim}) %}
-        {% endif %}
+    {%- if active and not disabled -%}
+        {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' active')|trim}) -%}
+    {%- endif -%}
+    {%- if disabled -%}
+        {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' disabled')|trim}) -%}
+    {%- endif -%}
+    {%- if is_item_dropdown -%}
+        {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' dropdown')|trim}) -%}
+        {%- set link_attr = link_attr|merge({'class': (link_attr.class|default('') ~ ' dropdown-toggle')|trim, 'data-toggle': 'dropdown'}) -%}
+    {%- endif -%}
 
+    <li{{ block('widget_container_attributes') }}>
+        <a{% for attrname, attrvalue in link_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        {{- label|trans({}, translation_domain) -}}
         {{- value|raw -}}
-        {{ block('block_widget_compound') }}
-    {% endspaceless %}
-{% endblock tab_pane_widget %}
+        {{- block('block_rows') -}}
+
+        {%- if is_item_dropdown -%}
+            <span class="caret"></span>
+        {%- endif -%}
+        </a>
+        {%- if dropdown is defined -%}
+            {{- block_widget(dropdown) -}}
+        {%- endif -%}
+    </li>
+{%- endblock nav_item_widget %}
+
+
+{% block tab_content_widget -%}
+    {%- set attr = attr|merge({'class': ('tab-content ' ~ attr.class|default(''))|trim}) -%}
+
+    {{- value|raw -}}
+    {{- block('block_widget_compound') -}}
+{%- endblock tab_content_widget %}
+
+
+{% block tab_pane_widget -%}
+    {%- set attr = attr|merge({'class': ('tab-pane ' ~ attr.class|default(''))|trim}) -%}
+
+    {%- if active -%}
+        {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' active')|trim}) -%}
+    {%- endif -%}
+
+    {{- value|raw -}}
+    {{- block('block_widget_compound') -}}
+{%- endblock tab_pane_widget %}

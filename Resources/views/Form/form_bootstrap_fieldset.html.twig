@@ -1,22 +1,22 @@
-{% block fieldset_label %}
-{% endblock fieldset_label %}
+{% block fieldset_label -%}
+{%- endblock fieldset_label %}
 
 
-{% block fieldset_widget %}
-    {% spaceless %}
-        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-        <fieldset {{ block('widget_attributes') }}>
-            {% if legend is not empty %}
-                {% if layout|default(null) == 'horizontal' %}
-                    {% set legend_attr = legend_attr|merge({'class': (legend_attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ (layout_col_label + layout_col_control))|trim}) %}
-                {% endif %}
-                <legend{% for attrname, attrvalue in legend_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ legend }}</legend>
-            {% endif %}
-            {% if form.parent is empty %}
-                {{ form_errors(form) }}
-            {% endif %}
-            {{ block('form_rows') }}
-            {{ form_rest(form) }}
-        </fieldset>
-    {% endspaceless %}
-{% endblock fieldset_widget %}
+{% block fieldset_widget -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
+
+    <fieldset {{ block('widget_attributes') }}>
+        {%- if legend is not empty -%}
+            {%- if layout|default(null) == 'horizontal' -%}
+                {%- set legend_attr = legend_attr|merge({'class': (legend_attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ (layout_col_label + layout_col_control))|trim}) -%}
+            {%- endif -%}
+
+            <legend{% for attrname, attrvalue in legend_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ legend }}</legend>
+        {%- endif -%}
+        {%- if form.parent is empty -%}
+            {{- form_errors(form) -}}
+        {%- endif -%}
+        {{- block('form_rows') -}}
+        {{- form_rest(form) -}}
+    </fieldset>
+{%- endblock fieldset_widget %}

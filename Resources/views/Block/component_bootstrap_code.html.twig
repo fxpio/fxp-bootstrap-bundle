@@ -1,14 +1,12 @@
-{% block code_widget %}
-    {% spaceless %}
-        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-        <{% if inline %}code{% else %}pre{% endif %}{{ block('widget_container_attributes') }}>
-            {%- if escape -%}
-                {{- value -}}
-                {{- block('block_rows')|escape -}}
-            {%- else -%}
-                {{- value|raw -}}
-                {{- block('block_rows') -}}
-            {%- endif -%}
-        </{% if inline %}code{% else %}pre{% endif %}>
-    {% endspaceless %}
-{% endblock code_widget %}
+{% block code_widget -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
+    <{% if inline %}code{% else %}pre{% endif %}{{ block('widget_container_attributes') }}>
+        {%- if escape -%}
+            {{- value -}}
+            {{- block('block_rows')|escape -}}
+        {%- else -%}
+            {{- value|raw -}}
+            {{- block('block_rows') -}}
+        {%- endif -%}
+    </{% if inline %}code{% else %}pre{% endif %}>
+{%- endblock code_widget %}

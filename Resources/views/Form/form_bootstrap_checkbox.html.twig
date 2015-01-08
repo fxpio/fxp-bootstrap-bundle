@@ -1,43 +1,43 @@
-{% block checkbox_label %}
-{% endblock checkbox_label %}
+{% block checkbox_label -%}
+{%- endblock checkbox_label %}
 
 
-{% block checkbox_widget %}
-    {% spaceless %}
-        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-        {% if label is empty %}
-            {% set label = name|humanize %}
-        {% endif %}
-        {% set inline = inline|default(false) %}
-        {% if inline %}
-            {% set label_attr = label_attr|merge({'class': ('checkbox-inline ' ~ label_attr.class|default(''))|trim}) %}
-        {% endif %}
+{% block checkbox_widget -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
 
-        {% if layout|default(null) == 'horizontal' %}
-            <div class="col-{{ layout_col_size }}-offset-{{ layout_col_label }} col-{{ layout_col_size }}-{{ layout_col_control }}">
-        {% endif %}
+    {%- if label is empty -%}
+        {%- set label = name|humanize -%}
+    {%- endif -%}
+    {%- set inline = inline|default(false) -%}
+    {%- if inline -%}
+        {%- set label_attr = label_attr|merge({'class': ('checkbox-inline ' ~ label_attr.class|default(''))|trim}) -%}
+    {%- endif -%}
 
-        {% if inline == false %}
+    {%- if layout|default(null) == 'horizontal' -%}
+        <div class="col-{{ layout_col_size }}-offset-{{ layout_col_label }} col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {%- endif -%}
+
+    {%- if inline == false -%}
         <div class="checkbox">
-        {% endif %}
-        {{ block('checkbox_widget_content') }}
-        {% if inline == false %}
+    {%- endif -%}
+
+    {{- block('checkbox_widget_content') -}}
+
+    {%- if inline == false -%}
         </div>
-        {% endif %}
-        {{ block('help_text') }}
+    {%- endif -%}
 
-        {% if layout|default(null) == 'horizontal' %}
-            </div>
-        {% endif %}
-    {% endspaceless %}
-{% endblock checkbox_widget %}
+    {{- block('help_text') -}}
+
+    {%- if layout|default(null) == 'horizontal' -%}
+        </div>
+    {%- endif -%}
+{%- endblock checkbox_widget %}
 
 
-{% block checkbox_widget_content %}
-    {% spaceless %}
-        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-        <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
-        {{ label|trans({}, translation_domain) }}
-        </label>
-    {% endspaceless %}
-{% endblock checkbox_widget_content %}
+{% block checkbox_widget_content -%}
+    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+    <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+        {{- label|trans({}, translation_domain) -}}
+    </label>
+{%- endblock checkbox_widget_content %}

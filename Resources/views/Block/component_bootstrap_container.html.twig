@@ -1,68 +1,62 @@
-{% block container_widget %}
-    {% spaceless %}
-        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-        {% set container_class = 'container' %}
-        {% if fluid %}
-            {% set container_class = 'container-fluid' %}
-        {% endif %}
-        {% set attr = attr|merge({'class': (container_class ~ ' ' ~ attr.class|default(''))|trim}) %}
-        <div{{ block('widget_container_attributes') }}>
-            {{- value|raw -}}
-            {% for child in block %}
-                {{ block_widget(child) }}
-            {% endfor %}
-        </div>
-    {% endspaceless %}
-{% endblock container_widget %}
+{% block container_widget -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
+    {%- set container_class = 'container' -%}
+    {%- if fluid -%}
+        {%- set container_class = 'container-fluid' -%}
+    {%- endif -%}
+    {%- set attr = attr|merge({'class': (container_class ~ ' ' ~ attr.class|default(''))|trim}) -%}
+    <div{{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
+        {%- for child in block -%}
+            {{- block_widget(child) -}}
+        {%- endfor -%}
+    </div>
+{%- endblock container_widget %}
 
 
-{% block row_widget %}
-    {% spaceless %}
-        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-        {% set attr = attr|merge({'class': ('row ' ~ attr.class|default(''))|trim}) %}
-        <div{{ block('widget_container_attributes') }}>
-            {{- value|raw -}}
-            {% for child in block %}
-                {{ block_widget(child) }}
-            {% endfor %}
-        </div>
-    {% endspaceless %}
-{% endblock row_widget %}
+{% block row_widget -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
+    {%- set attr = attr|merge({'class': ('row ' ~ attr.class|default(''))|trim}) -%}
+
+    <div{{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
+        {%- for child in block -%}
+            {{- block_widget(child) -}}
+        {%- endfor -%}
+    </div>
+{%- endblock row_widget %}
 
 
-{% block col_widget %}
-    {% spaceless %}
-        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-        {% set col_class = '' %}
+{% block col_widget -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
+    {%- set col_class = '' -%}
 
-        {% for item in grid %}
-            {% set col_class = col_class ~ item ~ ' ' %}
-        {% endfor %}
+    {%- for item in grid -%}
+        {%- set col_class = col_class ~ item ~ ' ' -%}
+    {%- endfor -%}
 
-        {% for item in offset %}
-            {% set col_class = col_class ~ item ~ ' ' %}
-        {% endfor %}
+    {%- for item in offset -%}
+        {%- set col_class = col_class ~ item ~ ' ' -%}
+    {%- endfor -%}
 
-        {% set attr = attr|merge({'class': (col_class ~ ' ' ~ attr.class|default(''))|trim}) %}
+    {%- set attr = attr|merge({'class': (col_class ~ ' ' ~ attr.class|default(''))|trim}) -%}
 
-        <div{{ block('widget_container_attributes') }}>
-            {{- value|raw -}}
-            {% for child in block %}
-                {{ block_widget(child) }}
-            {% endfor %}
-        </div>
-    {% endspaceless %}
-{% endblock col_widget %}
+    <div{{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
+        {%- for child in block -%}
+            {{- block_widget(child) -}}
+        {%- endfor -%}
+    </div>
+{%- endblock col_widget %}
 
 
-{% block label_widget %}
-    {% spaceless %}
-        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-        {% set attr = attr|merge({'class': ('label label-' ~ style ~ ' ' ~ attr.class|default(''))|trim}) %}
-        <span{{ block('widget_container_attributes') }}>
+{% block label_widget -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
+    {%- set attr = attr|merge({'class': ('label label-' ~ style ~ ' ' ~ attr.class|default(''))|trim}) -%}
+
+    <span{{ block('widget_container_attributes') }}>
         {{- label|trans({}, translation_domain) -}}
-            {{- value|raw -}}
-            {{- block('block_rows') -}}
+        {{- value|raw -}}
+        {{- block('block_rows') -}}
     </span>
-    {% endspaceless %}
-{% endblock label_widget %}
+{%- endblock label_widget %}

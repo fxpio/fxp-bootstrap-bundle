@@ -1,12 +1,11 @@
-{% block page_header_widget %}
-    {% spaceless %}
-        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-        {% set attr = attr|merge({'class': ('page-header ' ~ attr.class|default(''))|trim}) %}
-        <div{{ block('widget_container_attributes') }}>
-            {{- value|raw -}}
-            {% for child in block %}
-                {{ block_widget(child) }}
-            {% endfor %}
-        </div>
-    {% endspaceless %}
-{% endblock page_header_widget %}
+{% block page_header_widget -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
+    {%- set attr = attr|merge({'class': ('page-header ' ~ attr.class|default(''))|trim}) -%}
+
+    <div{{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
+        {%- for child in block -%}
+            {{- block_widget(child) -}}
+        {%- endfor -%}
+    </div>
+{%- endblock page_header_widget %}

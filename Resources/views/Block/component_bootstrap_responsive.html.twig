@@ -1,27 +1,25 @@
-{% block embed_responsive_widget %}
-    {% spaceless %}
-        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-        {% set attr = attr|merge({'class': ('embed-responsive ' ~ attr.class|default(''))|trim}) %}
+{% block embed_responsive_widget -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
+    {%- set attr = attr|merge({'class': ('embed-responsive ' ~ attr.class|default(''))|trim}) -%}
 
-        {% if format is not null %}
-            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' embed-responsive-' ~ format)|trim}) %}
-        {% endif %}
-        {{- value|raw -}}
-        {{ block('block_widget_compound') }}
-    {% endspaceless %}
-{% endblock embed_responsive_widget %}
+    {%- if format is not null -%}
+        {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' embed-responsive-' ~ format)|trim}) -%}
+    {%- endif -%}
+
+    {{- value|raw -}}
+    {{- block('block_widget_compound') -}}
+{%- endblock embed_responsive_widget %}
 
 
-{% block embed_responsive_item_widget %}
-    {% spaceless %}
-        {% set attr = attr|merge({'class': ('embed-responsive-item ' ~ attr.class|default(''))|trim}) %}
-        {% if value is not null %}
-            {% set attr = attr|merge({'src': value}) %}
-        {% endif %}
-        <{{ item_type }}{{ block('widget_container_attributes') }}>
-        {% for child in block %}
-            {{ block_widget(child) }}
-        {% endfor %}
-        </{{ item_type }}>
-    {% endspaceless %}
-{% endblock embed_responsive_item_widget %}
+{% block embed_responsive_item_widget -%}
+    {%- set attr = attr|merge({'class': ('embed-responsive-item ' ~ attr.class|default(''))|trim}) -%}
+    {%- if value is not null -%}
+        {%- set attr = attr|merge({'src': value}) -%}
+    {%- endif -%}
+
+    <{{ item_type }}{{ block('widget_container_attributes') }}>
+        {%- for child in block -%}
+            {{- block_widget(child) -}}
+        {%- endfor -%}
+    </{{ item_type }}>
+{%- endblock embed_responsive_item_widget %}

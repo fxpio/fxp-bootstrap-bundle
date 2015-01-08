@@ -1,66 +1,73 @@
-{% block datetime_widget %}
-    {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-inline')|trim}) %}
-    {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
+{% block datetime_widget -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
+
+    {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' form-inline')|trim}) -%}
+
+    {%- if layout|default(null) == 'horizontal' and widget != 'single_text' -%}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
-    {% endif %}
+    {%- endif -%}
 
-    {% if static_control %}
-        {% set value = data|block_formatter('datetime') %}
-        {{ block('form_control_static_value') }}
-    {% else %}
-        {{ block('datetime_widget_content') }}
-    {% endif %}
-    {{ block('help_text') }}
+    {%- if static_control -%}
+        {%- set value = data|block_formatter('datetime') -%}
+        {{- block('form_control_static_value') -}}
+    {%- else -%}
+        {{- block('datetime_widget_content') -}}
+    {%- endif -%}
 
-    {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
+    {{- block('help_text') -}}
+
+    {%- if layout|default(null) == 'horizontal' and widget != 'single_text' -%}
         </div>
-    {% endif %}
-{% endblock datetime_widget %}
+    {%- endif -%}
+{%- endblock datetime_widget %}
 
 
-{% block datetime_widget_content %}
-    {{ block('base_datetime_widget') }}
-{% endblock datetime_widget_content %}
+{% block datetime_widget_content -%}
+    {{- block('base_datetime_widget') -}}
+{%- endblock datetime_widget_content %}
 
 
-{% block date_widget %}
-    {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-inline date')|trim}) %}
-    {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
+{% block date_widget -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
+
+    {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' form-inline date')|trim}) -%}
+
+    {%- if layout|default(null) == 'horizontal' and widget != 'single_text' -%}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
-    {% endif %}
+    {%- endif -%}
 
-    {% if static_control %}
-        {% set value = data|block_formatter('date') %}
-        {{ block('form_control_static_value') }}
-    {% else %}
-        {{ block('base_date_widget') }}
-    {% endif %}
-    {{ block('help_text') }}
+    {%- if static_control -%}
+        {%- set value = data|block_formatter('date') -%}
+        {{- block('form_control_static_value') -}}
+    {%- else -%}
+        {{- block('base_date_widget') -}}
+    {%- endif -%}
+    {{- block('help_text') -}}
 
-    {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
+    {%- if layout|default(null) == 'horizontal' and widget != 'single_text' -%}
         </div>
-    {% endif %}
-{% endblock date_widget %}
+    {%- endif -%}
+{%- endblock date_widget %}
 
 
-{% block time_widget %}
-    {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-inline time')|trim}) %}
-    {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
+{% block time_widget -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
+
+    {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' form-inline time')|trim}) -%}
+
+    {%- if layout|default(null) == 'horizontal' and widget != 'single_text' -%}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
-    {% endif %}
+    {%- endif -%}
 
-    {% if static_control %}
-        {% set value = data|block_formatter('time') %}
-        {{ block('form_control_static_value') }}
-    {% else %}
-        {{ block('base_time_widget') }}
-    {% endif %}
-    {{ block('help_text') }}
+    {%- if static_control -%}
+        {%- set value = data|block_formatter('time') -%}
+        {{- block('form_control_static_value') -}}
+    {%- else -%}
+        {{- block('base_time_widget') -}}
+    {%- endif -%}
+    {{- block('help_text') -}}
 
-    {% if layout|default(null) == 'horizontal' and widget != 'single_text' %}
+    {%- if layout|default(null) == 'horizontal' and widget != 'single_text' -%}
         </div>
-    {% endif %}
-{% endblock time_widget %}
+    {%- endif -%}
+{%- endblock time_widget %}

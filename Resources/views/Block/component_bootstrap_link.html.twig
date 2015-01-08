@@ -1,19 +1,19 @@
-{% block link_widget %}
-    {% spaceless %}
-        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-        {% if 'link' != style %}
-            {% set attr = attr|merge({'class': ('btn btn-' ~ style ~ ' ' ~ attr.class|default(''))|trim}) %}
+{% block link_widget -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
 
-            {% if size is not null %}
-                {% set attr = attr|merge({'class': (attr.class|default('') ~ ' btn-' ~ size)|trim}) %}
-            {% endif %}
-        {% elseif 'alert' in block.parent.vars.block_prefixes|default([]) %}
-            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' alert-link')|trim}) %}
-        {% endif %}
-        <a{{ block('widget_container_attributes') }}>
-            {{- label|trans({}, translation_domain) -}}
-            {{- value|raw -}}
-            {{- block('block_rows') -}}
-        </a>
-    {% endspaceless %}
-{% endblock link_widget %}
+    {%- if 'link' != style -%}
+        {%- set attr = attr|merge({'class': ('btn btn-' ~ style ~ ' ' ~ attr.class|default(''))|trim}) -%}
+
+        {%- if size is not null -%}
+            {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' btn-' ~ size)|trim}) -%}
+        {%- endif -%}
+    {%- elseif 'alert' in block.parent.vars.block_prefixes|default([]) -%}
+        {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' alert-link')|trim}) -%}
+    {%- endif -%}
+
+    <a{{ block('widget_container_attributes') }}>
+        {{- label|trans({}, translation_domain) -}}
+        {{- value|raw -}}
+        {{- block('block_rows') -}}
+    </a>
+{%- endblock link_widget %}

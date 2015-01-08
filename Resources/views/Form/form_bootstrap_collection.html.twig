@@ -1,45 +1,50 @@
-{% block collection_widget %}
-    {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-    {% if layout|default(null) == 'horizontal' %}
+{% block collection_widget -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
+
+    {%- if layout|default(null) == 'horizontal' -%}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
-    {% endif %}
+    {%- endif -%}
+
     {{ block('base_collection_widget') }}
-    {% if static_control and value is empty %}
-        {{ block('form_control_static_value') }}
-    {% endif %}
 
-    {% if btn_add is defined and not(static_control) %}
-        {{ form_widget(btn_add) }}
-    {% endif %}
-    {{ block('help_text') }}
-    {% if layout|default(null) == 'horizontal' %}
+    {%- if static_control and value is empty -%}
+        {{- block('form_control_static_value') -}}
+    {%- endif -%}
+
+    {%- if btn_add is defined and not(static_control) -%}
+        {{- form_widget(btn_add) -}}
+    {%- endif -%}
+
+    {{- block('help_text') -}}
+
+    {%- if layout|default(null) == 'horizontal' -%}
         </div>
-    {% endif %}
+    {%- endif -%}
 
-    {% inline_script %}
-    <script>
-    {% if btn_add is defined and prototype is defined %}
-        $('#{{ btn_add.vars.id }}').click(function(event) {
-            var inc = $(this).data('inc');
-                inc = undefined !== inc ? inc : {{ form|length }};
-            var collectionHolder = $('#' + $(this).attr('data-target'));
-            var prototype = collectionHolder.attr('data-prototype');
-            var form = prototype.replace(/{{ prototype_name }}/g, inc);
+    {%- inline_script -%}
+        <script>
+        {%- if btn_add is defined and prototype is defined -%}
+            $('#{{ btn_add.vars.id }}').click(function(event) {
+                var inc = $(this).data('inc');
+                    inc = undefined !== inc ? inc : {{ form|length }};
+                var collectionHolder = $('#' + $(this).attr('data-target'));
+                var prototype = collectionHolder.attr('data-prototype');
+                var form = prototype.replace(/{{ prototype_name }}/g, inc);
 
-            collectionHolder.append(form);
-            $(this).data('inc', ++inc);
+                collectionHolder.append(form);
+                $(this).data('inc', ++inc);
 
-            return false;
-        });
-    {% endif %}
+                return false;
+            });
+        {%- endif -%}
 
-    {% if allow_delete and prototype is defined %}
-       $('#{{ id }}').on('click', 'button.btn-remove', null, function(event) {
-            $(this).parents('.form-collection-row').remove();
+        {%- if allow_delete and prototype is defined -%}
+           $('#{{ id }}').on('click', 'button.btn-remove', null, function(event) {
+                $(this).parents('.form-collection-row').remove();
 
-            return false;
-       });
-    {% endif %}
-    </script>
-    {% endinline_script %}
-{% endblock collection_widget %}
+                return false;
+           });
+        {%- endif -%}
+        </script>
+    {%- endinline_script -%}
+{%- endblock collection_widget %}

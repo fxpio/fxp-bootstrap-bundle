@@ -1,12 +1,11 @@
-{% block jumbotron_widget %}
-    {% spaceless %}
-        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-        {% set attr = attr|merge({'class': ('jumbotron ' ~ attr.class|default(''))|trim}) %}
-        <div{{ block('widget_container_attributes') }}>
-            {{- value|raw -}}
-            {% for child in block %}
-                {{ block_widget(child) }}
-            {% endfor %}
-        </div>
-    {% endspaceless %}
-{% endblock jumbotron_widget %}
+{% block jumbotron_widget -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
+    {%- set attr = attr|merge({'class': ('jumbotron ' ~ attr.class|default(''))|trim}) -%}
+
+    <div{{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
+        {%- for child in block -%}
+            {{- block_widget(child) -}}
+        {%- endfor -%}
+    </div>
+{%- endblock jumbotron_widget %}

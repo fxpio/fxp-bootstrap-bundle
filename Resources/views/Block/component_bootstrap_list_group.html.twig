@@ -1,41 +1,39 @@
-{% block list_group_widget %}
-    {% spaceless %}
-        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-        {% set attr = attr|merge({'class': ('list-group ' ~ attr.class|default(''))|trim}) %}
-        {{ block('list_widget') }}
-    {% endspaceless %}
-{% endblock list_group_widget %}
+{% block list_group_widget -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
+    {%- set attr = attr|merge({'class': ('list-group ' ~ attr.class|default(''))|trim}) -%}
+
+    {{- block('list_widget') -}}
+{%- endblock list_group_widget %}
 
 
-{% block list_group_item_widget %}
-    {% spaceless %}
-        {% set attr = attr|merge({'class': ('list-group-item ' ~ attr.class|default(''))|trim}) %}
-        {% if style %}
-            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' list-group-item-' ~ style)|trim}) %}
-        {% endif %}
-        {% set tag = tag|default('li') %}
-        {% if is_link %}
-            {% set tag = 'a' %}
-        {% endif %}
-        {% if active %}
-            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' active')|trim}) %}
-        {% endif %}
-        {{ block('list_item_widget') }}
-    {% endspaceless %}
-{% endblock list_group_item_widget %}
+{% block list_group_item_widget -%}
+    {%- set attr = attr|merge({'class': ('list-group-item ' ~ attr.class|default(''))|trim}) -%}
+    {%- if style -%}
+        {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' list-group-item-' ~ style)|trim}) -%}
+    {%- endif -%}
+
+    {%- set tag = tag|default('li') -%}
+    {%- if is_link -%}
+        {%- set tag = 'a' -%}
+    {%- endif -%}
+
+    {%- if active -%}
+        {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' active')|trim}) -%}
+    {%- endif -%}
+
+    {{- block('list_item_widget') -}}
+{%- endblock list_group_item_widget %}
 
 
-{% block list_group_item_heading_widget %}
-    {% spaceless %}
-        {% set attr = attr|merge({'class': ('list-group-item-heading ' ~ attr.class|default(''))|trim}) %}
-        {{ block('heading_widget') }}
-    {% endspaceless %}
-{% endblock list_group_item_heading_widget %}
+{% block list_group_item_heading_widget -%}
+    {%- set attr = attr|merge({'class': ('list-group-item-heading ' ~ attr.class|default(''))|trim}) -%}
+
+    {{- block('heading_widget') -}}
+{%- endblock list_group_item_heading_widget %}
 
 
-{% block list_group_item_text_widget %}
-    {% spaceless %}
-        {% set attr = attr|merge({'class': ('list-group-item-text ' ~ attr.class|default(''))|trim}) %}
-        {{ block('paragraph_widget') }}
-    {% endspaceless %}
-{% endblock list_group_item_text_widget %}
+{% block list_group_item_text_widget -%}
+    {%- set attr = attr|merge({'class': ('list-group-item-text ' ~ attr.class|default(''))|trim}) -%}
+
+    {{- block('paragraph_widget') -}}
+{%- endblock list_group_item_text_widget %}

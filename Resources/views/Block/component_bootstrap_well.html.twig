@@ -1,12 +1,11 @@
-{% block well_widget %}
-    {% spaceless %}
-        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-        {% set attr = attr|merge({'class': ('well ' ~ attr.class|default(''))|trim}) %}
+{% block well_widget -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
+    {%- set attr = attr|merge({'class': ('well ' ~ attr.class|default(''))|trim}) -%}
 
-        {% if size is not null %}
-            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' well-' ~ size)|trim}) %}
-        {% endif %}
-        {{- value|raw -}}
-        {{ block('block_widget_compound') }}
-    {% endspaceless %}
-{% endblock well_widget %}
+    {%- if size is not null -%}
+        {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' well-' ~ size)|trim}) -%}
+    {%- endif -%}
+
+    {{- value|raw -}}
+    {{- block('block_widget_compound') -}}
+{%- endblock well_widget %}

@@ -1,55 +1,52 @@
-{% block carousel_widget %}
-    {% spaceless %}
-        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-        {% require_script '@bower/bootstrap/js/carousel.js' %}
-        {% set attr = attr|merge({'class': ('carousel slide ' ~ attr.class|default(''))|trim}) %}
-        <div{{ block('widget_container_attributes') }}>
-            {% if indicators is defined %}
-                <ol class="carousel-indicators">
-                    {% for ind_to, ind_active in indicators %}
-                        <li data-target="#{{ id }}" data-slide-to="{{ ind_to }}" class="{% if ind_active %}active{% endif %}"></li>
-                    {% endfor %}
-                </ol>
-            {% endif %}
+{% block carousel_widget -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
+    {%- require_script '@bower/bootstrap/js/carousel.js' -%}
+    {%- set attr = attr|merge({'class': ('carousel slide ' ~ attr.class|default(''))|trim}) -%}
 
-            <div class="carousel-inner">
-                {{- value|raw -}}
-                {% for child in block %}
-                    {{ block_widget(child) }}
-                {% endfor %}
-            </div>
+    <div{{ block('widget_container_attributes') }}>
+        {%- if indicators is defined -%}
+            <ol class="carousel-indicators">
+                {%- for ind_to, ind_active in indicators -%}
+                    <li data-target="#{{ id }}" data-slide-to="{{ ind_to }}" class="{% if ind_active %}active{% endif %}"></li>
+                {%- endfor -%}
+            </ol>
+        {%- endif -%}
 
-            {% if control %}
-                <a class="left carousel-control" href="#{{ id }}" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-                <a class="right carousel-control" href="#{{ id }}" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                </a>
-            {% endif %}
-        </div>
-    {% endspaceless %}
-{% endblock carousel_widget %}
-
-
-{% block carousel_item_widget %}
-    {% spaceless %}
-        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-        {% set attr = attr|merge({'class': ('item ' ~ attr.class|default(''))|trim}) %}
-        {% if active %}
-            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' active')|trim}) %}
-        {% endif %}
-        <div{{ block('widget_container_attributes') }}>
+        <div class="carousel-inner">
             {{- value|raw -}}
-            {% for child in block %}
-                {{ block_widget(child) }}
-            {% endfor %}
-            {% if label is not empty or caption is not empty %}
-                <div class="carousel-caption">
-                    {% if label is not empty %}<h3>{{ label|trans({}, translation_domain) }}</h3>{% endif %}
-                    {% if caption is not empty %}<p>{{ caption|trans({}, translation_domain) }}</p>{% endif %}
-                </div>
-            {% endif %}
+            {%- for child in block -%}
+                {{- block_widget(child) -}}
+            {%- endfor -%}
         </div>
-    {% endspaceless %}
-{% endblock carousel_item_widget %}
+
+        {%- if control -%}
+            <a class="left carousel-control" href="#{{ id }}" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#{{ id }}" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        {%- endif -%}
+    </div>
+{%- endblock carousel_widget %}
+
+
+{% block carousel_item_widget -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
+    {%- set attr = attr|merge({'class': ('item ' ~ attr.class|default(''))|trim}) -%}
+    {%- if active -%}
+        {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' active')|trim}) -%}
+    {%- endif -%}
+    <div{{ block('widget_container_attributes') }}>
+        {{- value|raw -}}
+        {%- for child in block -%}
+            {{- block_widget(child) -}}
+        {%- endfor -%}
+        {%- if label is not empty or caption is not empty -%}
+            <div class="carousel-caption">
+                {%- if label is not empty %}<h3>{{ label|trans({}, translation_domain) }}</h3>{% endif -%}
+                {%- if caption is not empty %}<p>{{ caption|trans({}, translation_domain) }}</p>{% endif -%}
+            </div>
+        {%- endif -%}
+    </div>
+{%- endblock carousel_item_widget %}

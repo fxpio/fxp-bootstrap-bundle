@@ -1,93 +1,79 @@
-{% block block_widget_simple %}
-    {% spaceless %}
-        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-        {% if layout is defined and layout == 'horizontal' %}
-            <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
-        {% endif %}
+{% block block_widget_simple -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
+    {%- if layout is defined and layout == 'horizontal' -%}
+        <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
+    {%- endif -%}
 
-        {% if block.parent.vars.row|default(false) %}
-            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' block-control')|trim}) %}
-        {% endif %}
-        {{ block('base_block_widget_simple') }}
+    {%- if block.parent.vars.row|default(false) -%}
+        {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' block-control')|trim}) -%}
+    {%- endif -%}
+    {{- block('base_block_widget_simple') -}}
 
-        {% if layout is defined and layout == 'horizontal' %}
-            </div>
-        {% endif %}
-    {% endspaceless %}
-{% endblock block_widget_simple %}
+    {%- if layout is defined and layout == 'horizontal' -%}
+        </div>
+    {%- endif -%}
+{%- endblock block_widget_simple %}
 
 
-{% block block_widget_compound %}
-    {% spaceless %}
-        {% require_style '@bower/bootstrap/less/bootstrap.less' %}
-        {% if layout is defined and layout != null %}
-            {% set attr = attr|merge({'class': (' block-' ~ layout ~ ' ' ~ attr.class|default(''))|trim}) %}
-        {% endif %}
-        {% if block.parent.vars.row|default(false) %}
-            {% set attr = attr|merge({'class': (attr.class|default('') ~ ' block-control')|trim}) %}
-        {% endif %}
+{% block block_widget_compound -%}
+    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
+    {%- if layout is defined and layout != null -%}
+        {%- set attr = attr|merge({'class': (' block-' ~ layout ~ ' ' ~ attr.class|default(''))|trim}) -%}
+    {%- endif -%}
+    {%- if block.parent.vars.row|default(false) -%}
+        {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' block-control')|trim}) -%}
+    {%- endif -%}
 
-        {{ block('base_block_widget_compound') }}
-    {% endspaceless %}
-{% endblock block_widget_compound %}
+    {{- block('base_block_widget_compound') -}}
+{%- endblock block_widget_compound %}
 
 
-{% block block_row %}
-    {% spaceless %}
-        {% if block.parent.vars.row|default(false) %}
-            {% set row_attr = row_attr|default({})|merge({'class': ('block-group ' ~ (row_attr.class|default('')))|trim}) %}
-            <div{% for attrname, attrvalue in row_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-        {% endif %}
-        {% if block.parent.vars.row|default(false) and block.parent.vars.row_label|default(false) %}
-            {{ block_label(block) }}
-        {% endif %}
-        {{ block_widget(block) }}
-        {% if block.parent.vars.row|default(false) %}
-            </div>
-        {% endif %}
-    {% endspaceless %}
-{% endblock block_row %}
+{% block block_row -%}
+    {%- if block.parent.vars.row|default(false) -%}
+        {%- set row_attr = row_attr|default({})|merge({'class': ('block-group ' ~ (row_attr.class|default('')))|trim}) -%}
+        <div{% for attrname, attrvalue in row_attr %} {{ attrname }}="{{ attrvalue }}"{%- endfor -%}>
+    {%- endif -%}
+    {%- if block.parent.vars.row|default(false) and block.parent.vars.row_label|default(false) -%}
+        {{- block_label(block) -}}
+    {%- endif -%}
+    {{- block_widget(block) -}}
+    {%- if block.parent.vars.row|default(false) -%}
+        </div>
+    {%- endif -%}
+{%- endblock block_row %}
 
 
-{% block closure_row %}
-    {% spaceless %}
-        {{ block_widget(block) }}
-    {% endspaceless %}
-{% endblock closure_row %}
+{% block closure_row -%}
+    {{- block_widget(block) -}}
+{%- endblock closure_row %}
 
 
-{% block block_label %}
-    {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' block-label')|trim}) %}
-    {% if display_label == false %}
-        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' sr-only')|trim}) %}
-    {% endif %}
-    {% if layout is defined and layout == 'horizontal' %}
-        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ layout_col_label)|trim}) %}
-    {% endif %}
+{% block block_label -%}
+    {%- set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' block-label')|trim}) -%}
+    {%- if display_label == false -%}
+        {%- set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' sr-only')|trim}) -%}
+    {%- endif -%}
+    {%- if layout is defined and layout == 'horizontal' -%}
+        {%- set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ layout_col_label)|trim}) -%}
+    {%- endif -%}
 
-    {{ block('base_block_label') }}
-{% endblock block_label %}
-
-
-{% block widget_attributes %}
-    {{ block('base_widget_attributes') }}
-    {% spaceless %}
-        {{ block('extension_tooltip_javascript') }}
-        {{ block('extension_popover_javascript') }}
-        {{ block('extension_scroll_spy_javascript') }}
-    {% endspaceless %}
-{% endblock widget_attributes %}
+    {{- block('base_block_label') -}}
+{%- endblock block_label %}
 
 
-{% block widget_container_attributes %}
-    {% spaceless %}
-        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ visible_viewport)|trim}) %}
-        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ hidden_viewport)|trim}) %}
-    {% endspaceless %}
-    {{ block('base_widget_container_attributes') }}
-    {% spaceless %}
-        {{ block('extension_tooltip_javascript') }}
-        {{ block('extension_popover_javascript') }}
-        {{ block('extension_scroll_spy_javascript') }}
-    {% endspaceless %}
-{% endblock widget_container_attributes %}
+{% block widget_attributes -%}
+    {{- block('base_widget_attributes') -}}
+    {{- block('extension_tooltip_javascript') -}}
+    {{- block('extension_popover_javascript') -}}
+    {{- block('extension_scroll_spy_javascript') -}}
+{%- endblock widget_attributes %}
+
+
+{% block widget_container_attributes -%}
+    {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ visible_viewport)|trim}) -%}
+    {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' ' ~ hidden_viewport)|trim}) -%}
+    {{- block('base_widget_container_attributes') -}}
+    {{- block('extension_tooltip_javascript') -}}
+    {{- block('extension_popover_javascript') -}}
+    {{- block('extension_scroll_spy_javascript') -}}
+{%- endblock widget_container_attributes %}
