@@ -2,10 +2,10 @@ Sonatra Bootstrap Bundle
 ========================
 
 [![Latest Version](https://img.shields.io/packagist/v/sonatra/bootstrap-bundle.svg)](https://packagist.org/packages/sonatra/bootstrap-bundle)
-[![Build Status](https://travis-ci.org/sonatra/SonatraBootstrapBundle.svg)](https://travis-ci.org/sonatra/SonatraBootstrapBundle)
-[![Coverage Status](https://img.shields.io/coveralls/sonatra/SonatraBootstrapBundle.svg)](https://coveralls.io/r/sonatra/SonatraBootstrapBundle)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sonatra/SonatraBootstrapBundle/badges/quality-score.png)](https://scrutinizer-ci.com/g/sonatra/SonatraBootstrapBundle)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/08121cec-02b1-444e-8958-dea31cfff0e7/mini.png)](https://insight.sensiolabs.com/projects/08121cec-02b1-444e-8958-dea31cfff0e7)
+[![Build Status](https://img.shields.io/travis/sonatra/SonatraBootstrapBundle/master.svg)](https://travis-ci.org/sonatra/SonatraBootstrapBundle)
+[![Coverage Status](https://img.shields.io/coveralls/sonatra/SonatraBootstrapBundle/master.svg)](https://coveralls.io/r/sonatra/SonatraBootstrapBundle?branch=master)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/sonatra/SonatraBootstrapBundle/master.svg)](https://scrutinizer-ci.com/g/sonatra/SonatraBootstrapBundle?branch=master)
+[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/08121cec-02b1-444e-8958-dea31cfff0e7.svg)](https://insight.sensiolabs.com/projects/08121cec-02b1-444e-8958-dea31cfff0e7)
 
 The Sonatra BootstrapBundle is an twig DSL for construct a Twitter Bootstrap 3 interface.
 
