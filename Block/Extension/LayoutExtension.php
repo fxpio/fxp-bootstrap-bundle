@@ -29,9 +29,9 @@ class LayoutExtension extends AbstractTypeExtension
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'layout'             => $options['layout'],
-            'layout_col_size'    => $options['layout_col_size'],
-            'layout_col_label'   => $options['layout_col_label'],
+            'layout' => $options['layout'],
+            'layout_col_size' => $options['layout_col_size'],
+            'layout_col_label' => $options['layout_col_label'],
             'layout_col_control' => $options['layout_col_control'],
         ));
     }
@@ -43,9 +43,9 @@ class LayoutExtension extends AbstractTypeExtension
     {
         foreach ($view->children as $child) {
             $child->vars = array_replace($child->vars, array(
-                'layout'             => $view->vars['layout'],
-                'layout_col_size'    => $view->vars['layout_col_size'],
-                'layout_col_label'   => $view->vars['layout_col_label'],
+                'layout' => $view->vars['layout'],
+                'layout_col_size' => $view->vars['layout_col_size'],
+                'layout_col_label' => $view->vars['layout_col_label'],
                 'layout_col_control' => $view->vars['layout_col_control'],
             ));
 
@@ -62,22 +62,22 @@ class LayoutExtension extends AbstractTypeExtension
     {
         $resolver->setDefaults(
             array(
-                'layout'             => null,
-                'layout_col_size'    => 'lg', // only for horizontal layout
-                'layout_col_label'   => 4, // only for horizontal layout
+                'layout' => null,
+                'layout_col_size' => 'lg', // only for horizontal layout
+                'layout_col_label' => 4, // only for horizontal layout
                 'layout_col_control' => 8, // only for horizontal layout
             )
         );
 
         $resolver->addAllowedTypes(array(
-            'layout'             => array('null', 'string'),
-            'layout_col_size'    => array('string'),
-            'layout_col_label'   => array('int'),
+            'layout' => array('null', 'string'),
+            'layout_col_size' => array('string'),
+            'layout_col_label' => array('int'),
             'layout_col_control' => array('int'),
         ));
 
         $resolver->addAllowedValues(array(
-            'layout'          => array(null, 'inline', 'horizontal'),
+            'layout' => array(null, 'inline', 'horizontal'),
             'layout_col_size' => array('xs', 'sm', 'md', 'lg'),
         ));
     }

@@ -62,8 +62,8 @@ class AffixExtension extends AbstractTypeExtension
             $affixResolver = new OptionsResolver();
 
             $affixResolver->setDefaults(array(
-                'spy'           => 'affix',
-                'offset_top'    => null,
+                'spy' => 'affix',
+                'offset_top' => null,
                 'offset_bottom' => null,
             ));
 

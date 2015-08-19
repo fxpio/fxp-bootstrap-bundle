@@ -29,7 +29,7 @@ class NavbarType extends AbstractType
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'style'    => $options['style'],
+            'style' => $options['style'],
             'position' => $options['position'],
         ));
     }
@@ -73,8 +73,8 @@ class NavbarType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'label'    => 'Toggle navigation',
-            'style'    => 'default',
+            'label' => 'Toggle navigation',
+            'style' => 'default',
             'position' => null,
         ));
 

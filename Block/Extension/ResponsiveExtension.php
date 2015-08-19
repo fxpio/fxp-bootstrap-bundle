@@ -58,7 +58,7 @@ class ResponsiveExtension extends AbstractTypeExtension
     {
         $view->vars = array_replace($view->vars, array(
             'visible_viewport' => implode(' ', $options['visible_viewport']),
-            'hidden_viewport'  => implode(' ', $options['hidden_viewport']),
+            'hidden_viewport' => implode(' ', $options['hidden_viewport']),
         ));
     }
 
@@ -69,7 +69,7 @@ class ResponsiveExtension extends AbstractTypeExtension
     {
         $resolver->setDefaults(array(
             'visible_viewport' => null,
-            'hidden_viewport'  => null,
+            'hidden_viewport' => null,
         ));
 
         $resolver->setAllowedTypes('visible_viewport', array('null', 'string', 'array'));

@@ -41,9 +41,9 @@ class EmbedResponsiveItemType extends AbstractType
     {
         $resolver->setDefaults(array(
             'mapped' => true,
-            'src'    => null,
-            'type'   => 'iframe',
-            'data'   => function (Options $options, $value) {
+            'src' => null,
+            'type' => 'iframe',
+            'data' => function (Options $options, $value) {
                 if (isset($options['src'])) {
                     $value = $options['src'];
                 }

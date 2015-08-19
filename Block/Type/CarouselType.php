@@ -52,7 +52,7 @@ class CarouselType extends AbstractType
         }
 
         $view->vars = array_replace($view->vars, array(
-            'attr'    => $attr,
+            'attr' => $attr,
             'control' => $options['control'],
         ));
     }
@@ -105,13 +105,13 @@ class CarouselType extends AbstractType
     {
         $resolver->setDefaults(array(
             'render_id' => true,
-            'control'   => true,
+            'control' => true,
             'indicator' => true,
-            'interval'  => null,
-            'pause'     => null,
-            'wrap'      => null,
-            'slide'     => null,
-            'slide_to'  => null,
+            'interval' => null,
+            'pause' => null,
+            'wrap' => null,
+            'slide' => null,
+            'slide_to' => null,
         ));
 
         $resolver->setAllowedTypes('control', 'bool');

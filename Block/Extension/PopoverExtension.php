@@ -45,9 +45,9 @@ class PopoverExtension extends AbstractTypeExtension
             }
 
             $view->vars = array_replace($view->vars, array(
-                'attr'       => $attr,
+                'attr' => $attr,
                 'popover_id' => $view->vars['id'],
-                'render_id'  => true,
+                'render_id' => true,
             ));
         }
     }
@@ -69,15 +69,15 @@ class PopoverExtension extends AbstractTypeExtension
             $popoverResolver = new OptionsResolver();
 
             $popoverResolver->setDefaults(array(
-                'toggle'    => 'popover',
+                'toggle' => 'popover',
                 'animation' => null,
-                'html'      => null,
+                'html' => null,
                 'placement' => null,
-                'trigger'   => null,
-                'selector'  => null,
-                'title'     => null,
-                'content'   => null,
-                'delay'     => null,
+                'trigger' => null,
+                'selector' => null,
+                'title' => null,
+                'content' => null,
+                'delay' => null,
                 'container' => null,
             ));
 

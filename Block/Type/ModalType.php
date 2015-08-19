@@ -67,10 +67,10 @@ class ModalType extends AbstractType
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'transition'   => $options['transition'],
-            'dialog_attr'  => $options['dialog_attr'],
+            'transition' => $options['transition'],
+            'dialog_attr' => $options['dialog_attr'],
             'content_attr' => $options['content_attr'],
-            'size'         => $options['size'],
+            'size' => $options['size'],
         ));
     }
 
@@ -93,11 +93,11 @@ class ModalType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'render_id'    => true,
-            'transition'   => null,
-            'dialog_attr'  => array(),
+            'render_id' => true,
+            'transition' => null,
+            'dialog_attr' => array(),
             'content_attr' => array(),
-            'size'         => null,
+            'size' => null,
         ));
 
         $resolver->setAllowedTypes('id', 'string');

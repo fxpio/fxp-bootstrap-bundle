@@ -30,9 +30,9 @@ class NavType extends AbstractType
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'style'    => $options['style'],
+            'style' => $options['style'],
             'justifed' => $options['justifed'],
-            'stacked'  => $options['stacked'],
+            'stacked' => $options['stacked'],
         ));
     }
 
@@ -70,9 +70,9 @@ class NavType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'style'        => 'tabs',
-            'justifed'     => false,
-            'stacked'      => false,
+            'style' => 'tabs',
+            'justifed' => false,
+            'stacked' => false,
             'active_first' => true,
         ));
 

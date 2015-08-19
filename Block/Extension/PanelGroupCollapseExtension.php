@@ -97,18 +97,18 @@ class PanelGroupCollapseExtension extends AbstractTypeExtension
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'collapsible'    => false,
+            'collapsible' => false,
             'collapse_first' => false,
-            'collapse_ins'   => array(),
-            'render_id'      => function (Options $options) {
+            'collapse_ins' => array(),
+            'render_id' => function (Options $options) {
                 return $options['collapsible'];
             },
         ));
 
         $resolver->addAllowedTypes(array(
-            'collapsible'    => 'bool',
+            'collapsible' => 'bool',
             'collapse_first' => 'bool',
-            'collapse_ins'   => 'array',
+            'collapse_ins' => 'array',
         ));
     }
 

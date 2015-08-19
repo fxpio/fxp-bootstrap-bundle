@@ -61,9 +61,9 @@ class ButtonExtension extends AbstractTypeExtension
         // layout
         if (null !== $view->parent && isset($view->parent->vars['layout'])) {
             $view->vars = array_replace($view->vars, array(
-                'layout'             => $view->parent->vars['layout'],
-                'layout_col_size'    => $view->parent->vars['layout_col_size'],
-                'layout_col_label'   => $view->parent->vars['layout_col_label'],
+                'layout' => $view->parent->vars['layout'],
+                'layout_col_size' => $view->parent->vars['layout_col_size'],
+                'layout_col_label' => $view->parent->vars['layout_col_label'],
                 'layout_col_control' => $view->parent->vars['layout_col_control'],
             ));
 
@@ -79,21 +79,21 @@ class ButtonExtension extends AbstractTypeExtension
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'style'       => null,
-            'size'        => null,
+            'style' => null,
+            'size' => null,
             'block_level' => false,
-            'glyphicon'   => null,
+            'glyphicon' => null,
         ));
 
         $resolver->addAllowedTypes(array(
-            'style'       => array('null', 'string'),
-            'size'        => array('null', 'string'),
+            'style' => array('null', 'string'),
+            'size' => array('null', 'string'),
             'block_level' => 'bool',
         ));
 
         $resolver->addAllowedValues(array(
             'style' => array(null, 'default', 'primary', 'success', 'info', 'warning', 'danger', 'link'),
-            'size'  => array(null, 'xs', 'sm', 'lg'),
+            'size' => array(null, 'xs', 'sm', 'lg'),
         ));
     }
 

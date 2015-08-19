@@ -33,10 +33,10 @@ class ColumnType extends AbstractType
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'grid'   => $options['grid'],
+            'grid' => $options['grid'],
             'offset' => $options['offset'],
-            'push'   => $options['push'],
-            'pull'   => $options['pull'],
+            'push' => $options['push'],
+            'pull' => $options['pull'],
         ));
     }
 
@@ -46,10 +46,10 @@ class ColumnType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'grid'   => 'md-1',
+            'grid' => 'md-1',
             'offset' => null,
-            'push'   => null,
-            'pull'   => null,
+            'push' => null,
+            'pull' => null,
         ));
 
         $resolver->setAllowedTypes('grid', array('string', 'array'));

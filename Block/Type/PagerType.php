@@ -29,15 +29,15 @@ class PagerType extends AbstractType
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'previous_label'    => $options['previous_label'],
-            'previous_attr'     => $options['previous_attr'],
+            'previous_label' => $options['previous_label'],
+            'previous_attr' => $options['previous_attr'],
             'previous_disabled' => $options['previous_disabled'],
-            'previous_src'      => $options['previous_src'],
-            'next_label'        => $options['next_label'],
-            'next_attr'         => $options['next_attr'],
-            'next_disabled'     => $options['next_disabled'],
-            'next_src'          => $options['next_src'],
-            'aligned'           => $options['aligned'],
+            'previous_src' => $options['previous_src'],
+            'next_label' => $options['next_label'],
+            'next_attr' => $options['next_attr'],
+            'next_disabled' => $options['next_disabled'],
+            'next_src' => $options['next_src'],
+            'aligned' => $options['aligned'],
         ));
     }
 
@@ -47,15 +47,15 @@ class PagerType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'previous_label'    => 'Previsous',
-            'previous_attr'     => array(),
+            'previous_label' => 'Previsous',
+            'previous_attr' => array(),
             'previous_disabled' => false,
-            'previous_src'      => '#',
-            'next_label'        => 'Next',
-            'next_attr'         => array(),
-            'next_disabled'     => false,
-            'next_src'          => '#',
-            'aligned'           => false,
+            'previous_src' => '#',
+            'next_label' => 'Next',
+            'next_attr' => array(),
+            'next_disabled' => false,
+            'next_src' => '#',
+            'aligned' => false,
         ));
 
         $resolver->setAllowedTypes('previous_label', 'string');

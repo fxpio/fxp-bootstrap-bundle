@@ -37,8 +37,8 @@ class PaginationItemType extends AbstractType
 
         $view->vars = array_replace($view->vars, array(
             'link_attr' => $linkAttr,
-            'disabled'  => $options['disabled'],
-            'active'    => $options['active'],
+            'disabled' => $options['disabled'],
+            'active' => $options['active'],
         ));
     }
 
@@ -48,10 +48,10 @@ class PaginationItemType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'src'           => '#',
-            'link_attr'     => array(),
-            'disabled'      => false,
-            'active'        => false,
+            'src' => '#',
+            'link_attr' => array(),
+            'disabled' => false,
+            'active' => false,
             'chained_block' => true,
         ));
 

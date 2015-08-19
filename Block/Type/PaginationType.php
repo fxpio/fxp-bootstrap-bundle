@@ -70,10 +70,10 @@ class PaginationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'size'       => null,
+            'size' => null,
             'auto_pager' => true,
-            'previous'   => array(),
-            'next'       => array(),
+            'previous' => array(),
+            'next' => array(),
         ));
 
         $resolver->setAllowedTypes('size', array('null', 'string'));

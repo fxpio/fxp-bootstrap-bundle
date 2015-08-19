@@ -64,9 +64,9 @@ class LinkType extends AbstractType
         }
 
         $view->vars = array_replace($view->vars, array(
-            'attr'  => $attr,
+            'attr' => $attr,
             'style' => $options['style'],
-            'size'  => $options['size'],
+            'size' => $options['size'],
         ));
     }
 
@@ -76,16 +76,16 @@ class LinkType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'src'      => null,
-            'alt'      => null,
-            'target'   => null,
-            'ping'     => null,
-            'rel'      => null,
-            'media'    => null,
+            'src' => null,
+            'alt' => null,
+            'target' => null,
+            'ping' => null,
+            'rel' => null,
+            'media' => null,
             'hreflang' => null,
-            'type'     => null,
-            'style'    => 'link',
-            'size'     => null,
+            'type' => null,
+            'style' => 'link',
+            'size' => null,
         ));
 
         $resolver->setAllowedTypes('src', array('null', 'string'));

@@ -29,9 +29,9 @@ class DropdownType extends AbstractType
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'wrapper'      => $options['wrapper'],
+            'wrapper' => $options['wrapper'],
             'wrapper_attr' => $options['wrapper_attr'],
-            'align'        => $options['align'],
+            'align' => $options['align'],
         ));
     }
 
@@ -81,9 +81,9 @@ class DropdownType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'wrapper'      => true,
+            'wrapper' => true,
             'wrapper_attr' => array(),
-            'align'        => null,
+            'align' => null,
         ));
 
         $resolver->setAllowedTypes('wrapper', 'bool');

@@ -30,14 +30,14 @@ class ButtonType extends AbstractType
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'tag'         => $options['tag'],
-            'disabled'    => $options['disabled'],
-            'src'         => $options['src'],
-            'style'       => $options['style'],
-            'size'        => $options['size'],
+            'tag' => $options['tag'],
+            'disabled' => $options['disabled'],
+            'src' => $options['src'],
+            'style' => $options['style'],
+            'size' => $options['size'],
             'block_level' => $options['block_level'],
-            'prepend'     => $options['prepend'],
-            'append'      => $options['append'],
+            'prepend' => $options['prepend'],
+            'append' => $options['append'],
         ));
     }
 
@@ -53,9 +53,9 @@ class ButtonType extends AbstractType
         // layout
         if (null !== $view->parent && isset($view->parent->vars['layout'])) {
             $view->vars = array_replace($view->vars, array(
-                'layout'             => $view->parent->vars['layout'],
-                'layout_col_size'    => $view->parent->vars['layout_col_size'],
-                'layout_col_label'   => $view->parent->vars['layout_col_label'],
+                'layout' => $view->parent->vars['layout'],
+                'layout_col_size' => $view->parent->vars['layout_col_size'],
+                'layout_col_label' => $view->parent->vars['layout_col_label'],
                 'layout_col_control' => $view->parent->vars['layout_col_control'],
             ));
 
@@ -90,16 +90,16 @@ class ButtonType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'tag'         => 'button',
-            'label'       => '',
-            'disabled'    => false,
-            'src'         => null,
-            'style'       => null,
-            'size'        => null,
+            'tag' => 'button',
+            'label' => '',
+            'disabled' => false,
+            'src' => null,
+            'style' => null,
+            'size' => null,
             'block_level' => false,
-            'prepend'     => null,
-            'append'      => null,
-            'dropup'      => false,
+            'prepend' => null,
+            'append' => null,
+            'dropup' => false,
         ));
 
         $resolver->setAllowedTypes('tag', 'string');

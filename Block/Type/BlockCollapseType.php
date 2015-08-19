@@ -43,7 +43,7 @@ class BlockCollapseType extends AbstractType
         $resolver->setDefaults(array(
             'collapsible' => true,
             'collapsed' => false,
-            'render_id'   => function (Options $options) {
+            'render_id' => function (Options $options) {
                 return $options['collapsible'];
             },
         ));

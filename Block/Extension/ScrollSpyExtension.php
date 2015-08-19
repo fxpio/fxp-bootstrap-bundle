@@ -55,8 +55,8 @@ class ScrollSpyExtension extends AbstractTypeExtension
             $scrollSpyResolver = new OptionsResolver();
 
             $scrollSpyResolver->setDefaults(array(
-                'spy'    => 'scroll',
-                'on'     => null,
+                'spy' => 'scroll',
+                'on' => null,
                 'offset' => null,
             ));
 

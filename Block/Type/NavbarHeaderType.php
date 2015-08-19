@@ -40,7 +40,7 @@ class NavbarHeaderType extends AbstractType
     {
         $resolver->setDefaults(array(
             'chained_block' => true,
-            'collapse_id'   => null,
+            'collapse_id' => null,
         ));
 
         $resolver->setAllowedTypes('collapse_id', array('null', 'string'));

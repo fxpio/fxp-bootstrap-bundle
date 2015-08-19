@@ -29,7 +29,7 @@ class CollectionExtension extends AbstractTypeExtension
     {
         if (null !== $view->parent) {
             $view->vars = array_replace($view->vars, array(
-                'row'       => $view->parent->vars['row'],
+                'row' => $view->parent->vars['row'],
                 'row_label' => $view->parent->vars['row_label'],
             ));
         }

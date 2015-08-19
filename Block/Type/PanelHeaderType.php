@@ -33,7 +33,7 @@ class PanelHeaderType extends AbstractType
     {
         if (!BlockUtil::isEmpty($options['label'])) {
             $builder->add('_heading', 'heading', array(
-                'size'  => 4,
+                'size' => 4,
                 'label' => $options['label'],
             ));
         }

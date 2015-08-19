@@ -37,10 +37,10 @@ class ListType extends AbstractType
         }
 
         $view->vars = array_replace($view->vars, array(
-            'style'      => $options['style'],
-            'tag'        => $tag,
-            'unstyled'   => $options['unstyled'],
-            'inline'     => $options['inline'],
+            'style' => $options['style'],
+            'tag' => $tag,
+            'unstyled' => $options['unstyled'],
+            'inline' => $options['inline'],
             'horizontal' => $options['horizontal'],
         ));
     }
@@ -51,9 +51,9 @@ class ListType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'style'      => 'unordered',
-            'unstyled'   => false,
-            'inline'     => false,
+            'style' => 'unordered',
+            'unstyled' => false,
+            'inline' => false,
             'horizontal' => false,
         ));
 

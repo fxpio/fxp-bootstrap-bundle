@@ -36,10 +36,10 @@ class ListGroupItemType extends AbstractType
         }
 
         $view->vars = array_replace($view->vars, array(
-            'attr'    => $attr,
-            'active'  => $options['active'],
+            'attr' => $attr,
+            'active' => $options['active'],
             'is_link' => null !== $options['src'],
-            'style'   => $options['style'],
+            'style' => $options['style'],
         ));
     }
 
@@ -49,7 +49,7 @@ class ListGroupItemType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'src'    => null,
+            'src' => null,
             'active' => false,
             'style' => null,
         ));

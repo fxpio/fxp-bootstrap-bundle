@@ -41,9 +41,9 @@ class TooltipExtension extends AbstractTypeExtension
             }
 
             $view->vars = array_replace($view->vars, array(
-                'attr'       => $attr,
+                'attr' => $attr,
                 'tooltip_id' => $view->vars['id'],
-                'render_id'  => true,
+                'render_id' => true,
             ));
         }
     }
@@ -65,14 +65,14 @@ class TooltipExtension extends AbstractTypeExtension
             $tooltipResolver = new OptionsResolver();
 
             $tooltipResolver->setDefaults(array(
-                'toggle'    => 'tooltip',
+                'toggle' => 'tooltip',
                 'animation' => null,
-                'html'      => null,
+                'html' => null,
                 'placement' => null,
-                'selector'  => null,
-                'title'     => null,
-                'trigger'   => null,
-                'delay'     => null,
+                'selector' => null,
+                'title' => null,
+                'trigger' => null,
+                'delay' => null,
                 'container' => null,
             ));
 

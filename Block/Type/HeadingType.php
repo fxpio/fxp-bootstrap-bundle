@@ -29,7 +29,7 @@ class HeadingType extends AbstractType
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'size'      => $options['size'],
+            'size' => $options['size'],
             'secondary' => $options['secondary'],
         ));
     }
@@ -40,7 +40,7 @@ class HeadingType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'size'      => 1,
+            'size' => 1,
             'secondary' => null,
         ));
 

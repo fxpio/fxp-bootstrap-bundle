@@ -42,7 +42,7 @@ abstract class AbstractNavbarItemType extends AbstractType
     {
         $resolver->setDefaults(array(
             'chained_block' => true,
-            'align'         => null,
+            'align' => null,
         ));
 
         $resolver->setAllowedTypes('align', array('null', 'string'));

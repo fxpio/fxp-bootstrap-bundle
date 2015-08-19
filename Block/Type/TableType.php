@@ -108,9 +108,9 @@ class TableType extends AbstractType
         $block->getData()->setTableView($view);
 
         $view->vars = array_replace($view->vars, array(
-            'striped'    => $options['striped'],
-            'bordered'   => $options['bordered'],
-            'condensed'  => $options['condensed'],
+            'striped' => $options['striped'],
+            'bordered' => $options['bordered'],
+            'condensed' => $options['condensed'],
             'responsive' => $options['responsive'],
             'hover_rows' => $options['hover_rows'],
         ));
@@ -148,20 +148,20 @@ class TableType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'striped'         => false,
-            'bordered'        => false,
-            'condensed'       => false,
-            'responsive'      => false,
-            'hover_rows'      => false,
-            'data'            => array(),
-            'locale'          => \Locale::getDefault(),
-            'page_size'       => 0,
-            'page_size_max'   => 2000,
-            'page_start'      => 1,
-            'page_number'     => 1,
-            'sort_columns'    => array(),
+            'striped' => false,
+            'bordered' => false,
+            'condensed' => false,
+            'responsive' => false,
+            'hover_rows' => false,
+            'data' => array(),
+            'locale' => \Locale::getDefault(),
+            'page_size' => 0,
+            'page_size_max' => 2000,
+            'page_start' => 1,
+            'page_number' => 1,
+            'sort_columns' => array(),
             'data_parameters' => array(),
-            'row_id'          => 'id',
+            'row_id' => 'id',
         ));
 
         $resolver->setAllowedTypes('striped', 'bool');

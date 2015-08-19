@@ -29,8 +29,8 @@ class ButtonGroupType extends AbstractType
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'size'      => $options['size'],
-            'vertical'  => $options['vertical'],
+            'size' => $options['size'],
+            'vertical' => $options['vertical'],
             'justified' => $options['justified'],
         ));
     }
@@ -41,8 +41,8 @@ class ButtonGroupType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'size'      => null,
-            'vertical'  => false,
+            'size' => null,
+            'vertical' => false,
             'justified' => false,
         ));
 

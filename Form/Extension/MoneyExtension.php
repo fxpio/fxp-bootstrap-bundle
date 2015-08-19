@@ -51,7 +51,7 @@ class MoneyExtension extends AbstractTypeExtension
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->addAllowedTypes(array(
-            'prepend'    => array('null'),
+            'prepend' => array('null'),
         ));
     }
 

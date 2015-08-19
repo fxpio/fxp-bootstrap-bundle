@@ -37,7 +37,7 @@ class BreadcrumbItemType extends AbstractType
 
         $view->vars = array_replace($view->vars, array(
             'link_attr' => $linkAttr,
-            'active'    => $options['active'],
+            'active' => $options['active'],
         ));
     }
 
@@ -47,9 +47,9 @@ class BreadcrumbItemType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'src'       => '#',
+            'src' => '#',
             'link_attr' => array(),
-            'active'    => false,
+            'active' => false,
         ));
 
         $resolver->setAllowedTypes('src', array('null', 'string'));

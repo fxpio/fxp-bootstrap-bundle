@@ -29,12 +29,12 @@ class ProgressBarType extends AbstractType
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'min'      => $options['min'],
-            'max'      => $options['max'],
-            'style'    => $options['style'],
-            'striped'  => $options['striped'],
+            'min' => $options['min'],
+            'max' => $options['max'],
+            'style' => $options['style'],
+            'striped' => $options['striped'],
             'animated' => $options['animated'],
-            'stacked'  => false,
+            'stacked' => false,
         ));
 
         if (isset($view->parent) && in_array('progress_bar', $view->parent->vars['block_prefixes'])) {
@@ -50,13 +50,13 @@ class ProgressBarType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data'     => 0,
-            'min'      => 0,
-            'max'      => 100,
-            'style'    => null,
-            'striped'  => false,
+            'data' => 0,
+            'min' => 0,
+            'max' => 100,
+            'style' => null,
+            'striped' => false,
             'animated' => false,
-            'label'    => '%value%% Complete',
+            'label' => '%value%% Complete',
         ));
 
         $resolver->setAllowedTypes('data', 'int');

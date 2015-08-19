@@ -39,7 +39,7 @@ class TabPaneType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'active'    => false,
+            'active' => false,
             'render_id' => true,
         ));
 

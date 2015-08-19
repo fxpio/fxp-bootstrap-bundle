@@ -69,16 +69,16 @@ class ImageType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'mapped'      => true,
-            'src'         => null,
-            'alt'         => null,
-            'style'       => null,
-            'responsive'  => false,
+            'mapped' => true,
+            'src' => null,
+            'alt' => null,
+            'style' => null,
+            'responsive' => false,
             'crossorigin' => null,
-            'height'      => null,
-            'ismap'       => null,
-            'usemap'      => null,
-            'width'       => null,
+            'height' => null,
+            'ismap' => null,
+            'usemap' => null,
+            'width' => null,
         ));
 
         $resolver->setAllowedTypes('src', array('null', 'string'));

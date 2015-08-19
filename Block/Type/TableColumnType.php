@@ -30,10 +30,10 @@ class TableColumnType extends AbstractType
     public function buildView(BlockView $view, BlockInterface $block, array $options)
     {
         $view->vars = array_replace($view->vars, array(
-            'index'             => $options['index'],
-            'formatter'         => $options['formatter'],
+            'index' => $options['index'],
+            'formatter' => $options['formatter'],
             'formatter_options' => $options['formatter_options'],
-            'empty_data'        => $options['empty_data'],
+            'empty_data' => $options['empty_data'],
         ));
     }
 
@@ -51,10 +51,10 @@ class TableColumnType extends AbstractType
         };
 
         $resolver->setDefaults(array(
-            'index'             => $index,
-            'formatter'         => 'text',
+            'index' => $index,
+            'formatter' => 'text',
             'formatter_options' => array(),
-            'empty_data'        => null,
+            'empty_data' => null,
         ));
 
         $resolver->setAllowedTypes('formatter', array('null', 'string'));

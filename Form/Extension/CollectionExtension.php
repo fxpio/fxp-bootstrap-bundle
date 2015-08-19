@@ -80,12 +80,12 @@ class CollectionExtension extends AbstractTypeExtension
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'btn_add'    => array(),
+            'btn_add' => array(),
             'btn_delete' => array(),
         ));
 
         $resolver->addAllowedTypes(array(
-            'btn_add'    => array('array', 'Symfony\Component\Form\Form'),
+            'btn_add' => array('array', 'Symfony\Component\Form\Form'),
             'btn_delete' => array('array', 'Symfony\Component\Form\Form'),
         ));
 
@@ -107,11 +107,11 @@ class CollectionExtension extends AbstractTypeExtension
                 if (is_array($value['append'])) {
                     $value['append'] = array_merge(
                         array(
-                            'label'     => '',
+                            'label' => '',
                             'glyphicon' => 'remove',
-                            'style'     => 'danger',
-                            'disabled'  =>  $options['disabled'],
-                            'attr'      => array(
+                            'style' => 'danger',
+                            'disabled' => $options['disabled'],
+                            'attr' => array(
                                 'class' => 'btn-remove',
                             ),
                         ),

@@ -37,9 +37,9 @@ class NavItemType extends AbstractType
 
         $view->vars = array_replace($view->vars, array(
             'link_attr' => $linkAttr,
-            'active'    => $options['active'],
-            'disabled'  => $options['disabled'],
-            'style'     => 'tabs',
+            'active' => $options['active'],
+            'disabled' => $options['disabled'],
+            'style' => 'tabs',
         ));
 
         if (isset($view->parent->vars['style'])) {
@@ -83,12 +83,12 @@ class NavItemType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'src'           => '#',
-            'link_attr'     => array(),
-            'active'        => false,
-            'disabled'      => false,
+            'src' => '#',
+            'link_attr' => array(),
+            'active' => false,
+            'disabled' => false,
             'chained_block' => true,
-            'dropup'        => false,
+            'dropup' => false,
         ));
 
         $resolver->setAllowedTypes('src', array('null', 'string'));

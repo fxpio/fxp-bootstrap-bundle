@@ -30,13 +30,13 @@ class MediaType extends AbstractType
     {
         $view->vars = array_replace($view->vars, array(
             'media_list' => false,
-            'tag'        => 'div',
+            'tag' => 'div',
         ));
 
         if (isset($view->parent->vars['media_list']) && $view->parent->vars['media_list']) {
             $view->vars = array_replace($view->vars, array(
                 'media_list' => true,
-                'tag'        => 'li',
+                'tag' => 'li',
             ));
         }
     }

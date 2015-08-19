@@ -35,11 +35,11 @@ class AddonExtension extends AbstractTypeExtension
         $append = $options['append'];
 
         $view->vars = array_replace($view->vars, array(
-            'addon_attr'   => $options['addon_attr'],
+            'addon_attr' => $options['addon_attr'],
             'prepend_attr' => $options['prepend_attr'],
-            'append_attr'  => $options['append_attr'],
+            'append_attr' => $options['append_attr'],
             'prepend_type' => $this->definedType($prepend, $options['prepend_type']),
-            'append_type'  => $this->definedType($append, $options['append_type']),
+            'append_type' => $this->definedType($append, $options['append_type']),
         ));
 
         // prepend
@@ -68,29 +68,29 @@ class AddonExtension extends AbstractTypeExtension
     {
         $resolver->setDefaults(
             array(
-                'prepend'      => null,
-                'append'       => null,
-                'addon_attr'   => array(),
+                'prepend' => null,
+                'append' => null,
+                'addon_attr' => array(),
                 'prepend_attr' => array(),
-                'append_attr'  => array(),
+                'append_attr' => array(),
                 'prepend_type' => null,
-                'append_type'  => null,
+                'append_type' => null,
             )
         );
 
         $resolver->addAllowedTypes(array(
-            'prepend'      => array('null', 'string', 'Symfony\Component\Form\FormInterface', 'Sonatra\Bundle\BlockBundle\Block\BlockInterface'),
-            'append'       => array('null', 'string', 'Symfony\Component\Form\FormInterface', 'Sonatra\Bundle\BlockBundle\Block\BlockInterface'),
-            'addon_attr'   => array('array'),
+            'prepend' => array('null', 'string', 'Symfony\Component\Form\FormInterface', 'Sonatra\Bundle\BlockBundle\Block\BlockInterface'),
+            'append' => array('null', 'string', 'Symfony\Component\Form\FormInterface', 'Sonatra\Bundle\BlockBundle\Block\BlockInterface'),
+            'addon_attr' => array('array'),
             'prepend_attr' => array('array'),
-            'append_attr'  => array('array'),
+            'append_attr' => array('array'),
             'prepend_type' => array('null', 'string'),
-            'append_type'  => array('null', 'string'),
+            'append_type' => array('null', 'string'),
         ));
 
         $resolver->addAllowedValues(array(
             'prepend_type' => array(null, 'addon', 'btn'),
-            'append_type'  => array(null, 'addon', 'btn'),
+            'append_type' => array(null, 'addon', 'btn'),
         ));
     }
 
