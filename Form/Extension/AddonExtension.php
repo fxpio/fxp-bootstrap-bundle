@@ -120,8 +120,6 @@ class AddonExtension extends AbstractTypeExtension
     }
 
     /**
-     *
-     *
      * @param string|FormInterface|BlockInterface $addon
      * @param string                              $type
      *
