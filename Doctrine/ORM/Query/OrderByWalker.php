@@ -65,7 +65,7 @@ class OrderByWalker extends TreeWalkerAdapter
         $AST->orderByClause = new OrderByClause(array());
 
         if (!is_array($aliases) || !is_array($directions)) {
-            throw new \InvalidArgumentException("The HINT_SORT_ALIAS ans HINT_SORT_DIRECTION must be an array");
+            throw new \InvalidArgumentException('The HINT_SORT_ALIAS ans HINT_SORT_DIRECTION must be an array');
         }
 
         for ($i = 0; $i<$fieldsSize; $i++) {
