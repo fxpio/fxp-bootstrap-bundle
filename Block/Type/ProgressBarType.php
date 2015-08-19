@@ -14,7 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Progress Bar Block Type.
@@ -47,7 +47,7 @@ class ProgressBarType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data'     => 0,
@@ -59,18 +59,14 @@ class ProgressBarType extends AbstractType
             'label'    => '%value%% Complete',
         ));
 
-        $resolver->setAllowedTypes(array(
-            'data'     => 'int',
-            'min'      => 'int',
-            'max'      => 'int',
-            'style'    => array('null', 'string'),
-            'striped'  => 'bool',
-            'animated' => 'bool',
-        ));
+        $resolver->setAllowedTypes('data', 'int');
+        $resolver->setAllowedTypes('min', 'int');
+        $resolver->setAllowedTypes('max', 'int');
+        $resolver->setAllowedTypes('style', array('null', 'string'));
+        $resolver->setAllowedTypes('striped', 'bool');
+        $resolver->setAllowedTypes('animated', 'bool');
 
-        $resolver->setAllowedValues(array(
-            'style' => array(null, 'success', 'info', 'warning', 'danger'),
-        ));
+        $resolver->setAllowedValues('style', array(null, 'success', 'info', 'warning', 'danger'));
     }
 
     /**

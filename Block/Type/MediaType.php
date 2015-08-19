@@ -14,7 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Media Block Type.
@@ -76,19 +76,15 @@ class MediaType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'align' => 'left',
         ));
 
-        $resolver->setAllowedTypes(array(
-            'align' => 'string',
-        ));
+        $resolver->setAllowedTypes('align', 'string');
 
-        $resolver->setAllowedValues(array(
-            'align' => array('left', 'right'),
-        ));
+        $resolver->setAllowedValues('align', array('left', 'right'));
     }
 
     /**

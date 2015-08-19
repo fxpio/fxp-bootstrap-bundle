@@ -14,7 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Button Group Block Type.
@@ -38,7 +38,7 @@ class ButtonGroupType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'size'      => null,
@@ -46,15 +46,11 @@ class ButtonGroupType extends AbstractType
             'justified' => false,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'size'      => array('null', 'string'),
-            'vertical'  => 'bool',
-            'justified' => 'bool',
-        ));
+        $resolver->setAllowedTypes('size', array('null', 'string'));
+        $resolver->setAllowedTypes('vertical', 'bool');
+        $resolver->setAllowedTypes('justified', 'bool');
 
-        $resolver->setAllowedValues(array(
-            'size' => array(null, 'xs', 'sm', 'lg'),
-        ));
+        $resolver->setAllowedValues('size', array(null, 'xs', 'sm', 'lg'));
     }
 
     /**

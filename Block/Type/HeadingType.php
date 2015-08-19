@@ -14,7 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Heading Block Type.
@@ -37,21 +37,17 @@ class HeadingType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'size'      => 1,
             'secondary' => null,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'size'      => 'int',
-            'secondary' => array('null', 'string'),
-        ));
+        $resolver->setAllowedTypes('size', 'int');
+        $resolver->setAllowedTypes('secondary', array('null', 'string'));
 
-        $resolver->setAllowedValues(array(
-            'size' => array(1, 2, 3, 4, 5, 6),
-        ));
+        $resolver->setAllowedValues('size', array(1, 2, 3, 4, 5, 6));
     }
 
     /**

@@ -15,7 +15,7 @@ use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Button Block Type.
@@ -87,7 +87,7 @@ class ButtonType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'tag'         => 'button',
@@ -102,39 +102,33 @@ class ButtonType extends AbstractType
             'dropup'      => false,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'tag'         => 'string',
-            'src'         => array('null', 'string'),
-            'style'       => array('null', 'string'),
-            'size'        => array('null', 'string'),
-            'block_level' => 'bool',
-            'prepend'     => array('null', 'string'),
-            'append'      => array('null', 'string'),
-            'dropup'      => 'bool',
-        ));
+        $resolver->setAllowedTypes('tag', 'string');
+        $resolver->setAllowedTypes('src', array('null', 'string'));
+        $resolver->setAllowedTypes('style', array('null', 'string'));
+        $resolver->setAllowedTypes('size', array('null', 'string'));
+        $resolver->setAllowedTypes('block_level', 'bool');
+        $resolver->setAllowedTypes('prepend', array('null', 'string'));
+        $resolver->setAllowedTypes('append', array('null', 'string'));
+        $resolver->setAllowedTypes('dropup', 'bool');
 
-        $resolver->setAllowedValues(array(
-            'tag'   => array('button', 'a'),
-            'style' => array(null, 'default', 'primary', 'success', 'info', 'warning', 'danger', 'link'),
-            'size'  => array(null, 'xs', 'sm', 'lg'),
-        ));
+        $resolver->setAllowedValues('tag', array('button', 'a'));
+        $resolver->setAllowedValues('style', array(null, 'default', 'primary', 'success', 'info', 'warning', 'danger', 'link'));
+        $resolver->setAllowedValues('size', array(null, 'xs', 'sm', 'lg'));
 
-        $resolver->setNormalizers(array(
-            'src' => function (Options $options, $value = null) {
-                if (isset($options['data'])) {
-                    return $options['data'];
-                }
+        $resolver->setNormalizer('src', function (Options $options, $value = null) {
+            if (isset($options['data'])) {
+                return $options['data'];
+            }
 
-                return $value;
-            },
-            'tag' => function (Options $options, $value = null) {
-                if ((isset($options['data']) && null !== $options['data']) || (isset($options['src']) && null !== $options['src'])) {
-                    return 'a';
-                }
+            return $value;
+        });
+        $resolver->setNormalizer('tag', function (Options $options, $value = null) {
+            if ((isset($options['data']) && null !== $options['data']) || (isset($options['src']) && null !== $options['src'])) {
+                return 'a';
+            }
 
-                return $value;
-            },
-        ));
+            return $value;
+        });
     }
 
     /**

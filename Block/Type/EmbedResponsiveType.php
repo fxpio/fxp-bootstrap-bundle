@@ -14,7 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Embed Responsive Block Type.
@@ -36,19 +36,15 @@ class EmbedResponsiveType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'format' => null,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'format' => array('null', 'string'),
-        ));
+        $resolver->setAllowedTypes('format', array('null', 'string'));
 
-        $resolver->setAllowedValues(array(
-            'format' => array(null, '16by9', '4by3'),
-        ));
+        $resolver->setAllowedValues('format', array(null, '16by9', '4by3'));
     }
 
     /**

@@ -14,7 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Label Block Type.
@@ -36,19 +36,15 @@ class LabelType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'style' => 'default',
         ));
 
-        $resolver->setAllowedTypes(array(
-            'style' => 'string',
-        ));
+        $resolver->setAllowedTypes('style', 'string');
 
-        $resolver->setAllowedValues(array(
-            'style' => array('default', 'primary', 'success', 'info', 'warning', 'danger', 'link'),
-        ));
+        $resolver->setAllowedValues('style', array('default', 'primary', 'success', 'info', 'warning', 'danger', 'link'));
     }
 
     /**

@@ -14,7 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Dropdown Block Type.
@@ -78,7 +78,7 @@ class DropdownType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'wrapper'      => true,
@@ -86,15 +86,11 @@ class DropdownType extends AbstractType
             'align'        => null,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'wrapper'      => 'bool',
-            'wrapper_attr' => 'array',
-            'align'        => array('null', 'string'),
-        ));
+        $resolver->setAllowedTypes('wrapper', 'bool');
+        $resolver->setAllowedTypes('wrapper_attr', 'array');
+        $resolver->setAllowedTypes('align', array('null', 'string'));
 
-        $resolver->setAllowedValues(array(
-            'align' => array(null, 'left', 'right'),
-        ));
+        $resolver->setAllowedValues('align', array(null, 'left', 'right'));
     }
 
     /**

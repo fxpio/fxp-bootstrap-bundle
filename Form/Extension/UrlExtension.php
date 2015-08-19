@@ -12,7 +12,7 @@
 namespace Sonatra\Bundle\BootstrapBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\Options;
 
 /**
@@ -25,7 +25,7 @@ class UrlExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $prependNormalizers = function (Options $options, $value) {
             if (null === $value) {
@@ -39,9 +39,7 @@ class UrlExtension extends AbstractTypeExtension
             return $value;
         };
 
-        $resolver->setNormalizers(array(
-            'prepend' => $prependNormalizers,
-        ));
+        $resolver->setNormalizer('prepend', $prependNormalizers);
     }
 
     /**

@@ -17,7 +17,7 @@ use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Sonatra\Bundle\BlockBundle\Block\Exception\InvalidConfigurationException;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Modal Block Type.
@@ -90,7 +90,7 @@ class ModalType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'render_id'    => true,
@@ -100,18 +100,14 @@ class ModalType extends AbstractType
             'size'         => null,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'id'           => 'string',
-            'transition'   => array('null', 'string'),
-            'dialog_attr'  => 'array',
-            'content_attr' => 'array',
-            'size'         => array('null', 'string'),
-        ));
+        $resolver->setAllowedTypes('id', 'string');
+        $resolver->setAllowedTypes('transition', array('null', 'string'));
+        $resolver->setAllowedTypes('dialog_attr', 'array');
+        $resolver->setAllowedTypes('content_attr', 'array');
+        $resolver->setAllowedTypes('size', array('null', 'string'));
 
-        $resolver->setAllowedValues(array(
-            'transition' => array(null, 'fade'),
-            'size'       => array(null, 'lg', 'sm'),
-        ));
+        $resolver->setAllowedValues('transition', array(null, 'fade'));
+        $resolver->setAllowedValues('size', array(null, 'lg', 'sm'));
     }
 
     /**

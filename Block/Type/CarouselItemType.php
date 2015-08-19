@@ -14,7 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Carousel Item Block Type.
@@ -37,17 +37,15 @@ class CarouselItemType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'active'  => false,
             'caption' => null,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'active'  => 'bool',
-            'caption' => array('null', 'string'),
-        ));
+        $resolver->setAllowedTypes('active', 'bool');
+        $resolver->setAllowedTypes('caption', array('null', 'string'));
     }
 
     /**

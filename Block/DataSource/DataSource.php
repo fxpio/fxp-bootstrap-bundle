@@ -386,15 +386,17 @@ class DataSource implements DataSourceInterface
      */
     public function getSortColumn($column)
     {
+        $val = null;
+
         if ($this->isSorted($column)) {
             $def = $this->sortColumns[$this->mappingSortColumns[$column]];
 
             if (isset($def['sort'])) {
-                return $def['sort'];
+                $val = $def['sort'];
             }
         }
 
-        return;
+        return $val;
     }
 
     /**
@@ -475,6 +477,7 @@ class DataSource implements DataSourceInterface
     protected function getDataField($dataRow, $name)
     {
         $exp = explode('.', $name);
+        $val = null;
 
         if (0 < count($exp)) {
             $name = $exp[count($exp) - 1];
@@ -503,7 +506,7 @@ class DataSource implements DataSourceInterface
             }
         }
 
-        return;
+        return $val;
     }
 
     /**

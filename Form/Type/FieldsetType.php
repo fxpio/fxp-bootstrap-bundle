@@ -15,7 +15,7 @@ use Sonatra\Bundle\BootstrapBundle\Form\Common\ConfigLayout;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Fiedlset Form Type.
@@ -48,7 +48,7 @@ class FieldsetType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'legend'       => null,
@@ -57,10 +57,8 @@ class FieldsetType extends AbstractType
             'inherit_data' => true,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'legend'      => array('null', 'string'),
-            'legend_attr' => array('array'),
-        ));
+        $resolver->setAllowedTypes('legend', array('null', 'string'));
+        $resolver->setAllowedTypes('legend_attr', array('array'));
     }
 
     /**

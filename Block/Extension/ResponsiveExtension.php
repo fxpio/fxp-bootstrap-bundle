@@ -14,7 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Extension;
 use Sonatra\Bundle\BlockBundle\Block\AbstractTypeExtension;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\Options;
 use Sonatra\Bundle\BlockBundle\Block\Exception\InvalidConfigurationException;
 
@@ -65,26 +65,22 @@ class ResponsiveExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'visible_viewport' => null,
             'hidden_viewport'  => null,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'visible_viewport' => array('null', 'string', 'array'),
-            'hidden_viewport'  => array('null', 'string', 'array'),
-        ));
+        $resolver->setAllowedTypes('visible_viewport', array('null', 'string', 'array'));
+        $resolver->setAllowedTypes('hidden_viewport', array('null', 'string', 'array'));
 
-        $resolver->setNormalizers(array(
-            'visible_viewport' => function (Options $options, $value = null) {
-                return $this->normaliseViewport('visible', $this->validVisible, $value);
-            },
-            'hidden_viewport' => function (Options $options, $value = null) {
-                return $this->normaliseViewport('hidden', $this->validHidden, $value);
-            },
-        ));
+        $resolver->setNormalizer('visible_viewport', function (Options $options, $value = null) {
+            return $this->normaliseViewport('visible', $this->validVisible, $value);
+        });
+        $resolver->setNormalizer('hidden_viewport', function (Options $options, $value = null) {
+            return $this->normaliseViewport('hidden', $this->validHidden, $value);
+        });
     }
 
     /**

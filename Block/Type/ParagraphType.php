@@ -14,7 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Paragraph Block Type.
@@ -38,7 +38,7 @@ class ParagraphType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'lead'     => false,
@@ -46,16 +46,12 @@ class ParagraphType extends AbstractType
             'emphasis' => null,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'lead'     => 'bool',
-            'align'    => array('null', 'string'),
-            'emphasis' => array('null', 'string'),
-        ));
+        $resolver->setAllowedTypes('lead', 'bool');
+        $resolver->setAllowedTypes('align', array('null', 'string'));
+        $resolver->setAllowedTypes('emphasis', array('null', 'string'));
 
-        $resolver->setAllowedValues(array(
-            'align'    => array(null, 'left', 'center', 'right', 'justify'),
-            'emphasis' => array(null, 'muted', 'primary', 'success', 'info', 'warning', 'danger'),
-        ));
+        $resolver->setAllowedValues('align', array(null, 'left', 'center', 'right', 'justify'));
+        $resolver->setAllowedValues('emphasis', array(null, 'muted', 'primary', 'success', 'info', 'warning', 'danger'));
     }
 
     /**

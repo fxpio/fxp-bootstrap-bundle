@@ -15,7 +15,7 @@ use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockBuilderInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\Options;
 
 /**
@@ -67,7 +67,7 @@ class PaginationType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'size'       => null,
@@ -76,33 +76,27 @@ class PaginationType extends AbstractType
             'next'       => array(),
         ));
 
-        $resolver->setAllowedTypes(array(
-            'size'       => array('null', 'string'),
-            'auto_pager' => 'bool',
-            'previous'   => 'array',
-            'next'       => 'array',
-        ));
+        $resolver->setAllowedTypes('size', array('null', 'string'));
+        $resolver->setAllowedTypes('auto_pager', 'bool');
+        $resolver->setAllowedTypes('previous', 'array');
+        $resolver->setAllowedTypes('next', 'array');
 
-        $resolver->setAllowedValues(array(
-            'size' => array(null, 'sm', 'lg'),
-        ));
+        $resolver->setAllowedValues('size', array(null, 'sm', 'lg'));
 
-        $resolver->setNormalizers(array(
-            'previous' => function (Options $options, $value = null) {
-                if (!isset($value['label'])) {
-                    $value['label'] = '&laquo;';
-                }
+        $resolver->setNormalizer('previous', function (Options $options, $value = null) {
+            if (!isset($value['label'])) {
+                $value['label'] = '&laquo;';
+            }
 
-                return $value;
-            },
-            'next' => function (Options $options, $value = null) {
-                if (!isset($value['label'])) {
-                    $value['label'] = '&raquo;';
-                }
+            return $value;
+        });
+        $resolver->setNormalizer('next', function (Options $options, $value = null) {
+            if (!isset($value['label'])) {
+                $value['label'] = '&raquo;';
+            }
 
-                return $value;
-            },
-        ));
+            return $value;
+        });
     }
 
     /**

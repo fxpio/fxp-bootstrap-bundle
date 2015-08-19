@@ -14,7 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Carousel Block Type.
@@ -101,7 +101,7 @@ class CarouselType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'render_id' => true,
@@ -114,15 +114,13 @@ class CarouselType extends AbstractType
             'slide_to'  => null,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'control'   => 'bool',
-            'indicator' => 'bool',
-            'interval'  => array('null', 'int'),
-            'pause'     => array('null', 'string'),
-            'wrap'      => array('null', 'bool'),
-            'slide'     => array('null', 'string'),
-            'slide_to'  => array('null', 'int'),
-        ));
+        $resolver->setAllowedTypes('control', 'bool');
+        $resolver->setAllowedTypes('indicator', 'bool');
+        $resolver->setAllowedTypes('interval', array('null', 'int'));
+        $resolver->setAllowedTypes('pause', array('null', 'string'));
+        $resolver->setAllowedTypes('wrap', array('null', 'bool'));
+        $resolver->setAllowedTypes('slide', array('null', 'string'));
+        $resolver->setAllowedTypes('slide_to', array('null', 'int'));
     }
 
     /**

@@ -14,7 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Alert Block Type.
@@ -37,21 +37,17 @@ class AlertType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'style'       => 'info',
             'dismissable' => false,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'style'       => 'string',
-            'dismissable' => 'bool',
-        ));
+        $resolver->setAllowedTypes('style', 'string');
+        $resolver->setAllowedTypes('dismissable', 'bool');
 
-        $resolver->setAllowedValues(array(
-            'style' => array('success', 'info', 'warning', 'danger'),
-        ));
+        $resolver->setAllowedValues('style', array('success', 'info', 'warning', 'danger'));
     }
 
     /**

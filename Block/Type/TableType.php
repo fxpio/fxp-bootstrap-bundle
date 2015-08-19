@@ -20,7 +20,7 @@ use Sonatra\Bundle\BlockBundle\Block\ResolvedBlockTypeInterface;
 use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Sonatra\Bundle\BootstrapBundle\Block\DataSource\DataSource;
 use Sonatra\Bundle\BootstrapBundle\Block\DataSource\DataSourceInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Table Block Type.
@@ -145,7 +145,7 @@ class TableType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'striped'         => false,
@@ -164,21 +164,19 @@ class TableType extends AbstractType
             'row_id'          => 'id',
         ));
 
-        $resolver->setAllowedTypes(array(
-            'striped'         => 'bool',
-            'bordered'        => 'bool',
-            'condensed'       => 'bool',
-            'responsive'      => 'bool',
-            'hover_rows'      => 'bool',
-            'data'            => array('array', 'Sonatra\Bundle\BootstrapBundle\Block\DataSource\DataSourceInterface'),
-            'locale'          => 'string',
-            'page_size'       => 'int',
-            'page_start'      => 'int',
-            'page_number'     => 'int',
-            'sort_columns'    => 'array',
-            'data_parameters' => 'array',
-            'row_id'          => 'string',
-        ));
+        $resolver->setAllowedTypes('striped', 'bool');
+        $resolver->setAllowedTypes('bordered', 'bool');
+        $resolver->setAllowedTypes('condensed', 'bool');
+        $resolver->setAllowedTypes('responsive', 'bool');
+        $resolver->setAllowedTypes('hover_rows', 'bool');
+        $resolver->setAllowedTypes('data', array('array', 'Sonatra\Bundle\BootstrapBundle\Block\DataSource\DataSourceInterface'));
+        $resolver->setAllowedTypes('locale', 'string');
+        $resolver->setAllowedTypes('page_size', 'int');
+        $resolver->setAllowedTypes('page_start', 'int');
+        $resolver->setAllowedTypes('page_number', 'int');
+        $resolver->setAllowedTypes('sort_columns', 'array');
+        $resolver->setAllowedTypes('data_parameters', 'array');
+        $resolver->setAllowedTypes('row_id', 'string');
     }
 
     /**

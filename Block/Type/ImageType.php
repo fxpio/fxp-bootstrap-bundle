@@ -15,7 +15,7 @@ use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Image Block Type.
@@ -66,7 +66,7 @@ class ImageType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'mapped'      => true,
@@ -81,31 +81,25 @@ class ImageType extends AbstractType
             'width'       => null,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'src'         => array('null', 'string'),
-            'alt'         => array('null', 'string'),
-            'style'       => array('null', 'string'),
-            'responsive'  => 'bool',
-            'crossorigin' => array('null', 'string'),
-            'height'      => array('null', 'string'),
-            'ismap'       => array('null', 'string'),
-            'usemap'      => array('null', 'string'),
-            'width'       => array('null', 'string'),
-        ));
+        $resolver->setAllowedTypes('src', array('null', 'string'));
+        $resolver->setAllowedTypes('alt', array('null', 'string'));
+        $resolver->setAllowedTypes('style', array('null', 'string'));
+        $resolver->setAllowedTypes('responsive', 'bool');
+        $resolver->setAllowedTypes('crossorigin', array('null', 'string'));
+        $resolver->setAllowedTypes('height', array('null', 'string'));
+        $resolver->setAllowedTypes('ismap', array('null', 'string'));
+        $resolver->setAllowedTypes('usemap', array('null', 'string'));
+        $resolver->setAllowedTypes('width', array('null', 'string'));
 
-        $resolver->setAllowedValues(array(
-            'style' => array(null, 'rounded', 'circle', 'thumbnail'),
-        ));
+        $resolver->setAllowedValues('style', array(null, 'rounded', 'circle', 'thumbnail'));
 
-        $resolver->setNormalizers(array(
-            'data' => function (Options $options, $value) {
-                if (isset($options['src'])) {
-                    return $options['src'];
-                }
+        $resolver->setNormalizer('data', function (Options $options, $value) {
+            if (isset($options['src'])) {
+                return $options['src'];
+            }
 
-                return $value;
-            },
-        ));
+            return $value;
+        });
     }
 
     /**

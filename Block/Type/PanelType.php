@@ -17,7 +17,7 @@ use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Sonatra\Bundle\BlockBundle\Block\Exception\InvalidConfigurationException;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Panel Block Type.
@@ -95,19 +95,15 @@ class PanelType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'style' => null,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'style' => array('null', 'string'),
-        ));
+        $resolver->setAllowedTypes('style', array('null', 'string'));
 
-        $resolver->setAllowedValues(array(
-            'style' => array(null, 'default', 'primary', 'success', 'info', 'warning', 'danger'),
-        ));
+        $resolver->setAllowedValues('style', array(null, 'default', 'primary', 'success', 'info', 'warning', 'danger'));
     }
 
     /**

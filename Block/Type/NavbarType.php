@@ -14,7 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Navbar Block Type.
@@ -70,7 +70,7 @@ class NavbarType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'label'    => 'Toggle navigation',
@@ -78,15 +78,11 @@ class NavbarType extends AbstractType
             'position' => null,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'style'    => 'string',
-            'position' => array('null', 'string'),
-        ));
+        $resolver->setAllowedTypes('style', 'string');
+        $resolver->setAllowedTypes('position', array('null', 'string'));
 
-        $resolver->setAllowedValues(array(
-            'style'    => array('default', 'inverse'),
-            'position' => array(null, 'static-top', 'fixed-top', 'fixed-bottom'),
-        ));
+        $resolver->setAllowedValues('style', array('default', 'inverse'));
+        $resolver->setAllowedValues('position', array(null, 'static-top', 'fixed-top', 'fixed-bottom'));
     }
 
     /**

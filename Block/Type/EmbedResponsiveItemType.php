@@ -15,7 +15,7 @@ use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Embed Responsive Item Block Type.
@@ -37,7 +37,7 @@ class EmbedResponsiveItemType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'mapped' => true,
@@ -52,14 +52,10 @@ class EmbedResponsiveItemType extends AbstractType
             },
         ));
 
-        $resolver->setAllowedTypes(array(
-            'src'  => array('null', 'string'),
-            'type' => 'string',
-        ));
+        $resolver->setAllowedTypes('src', array('null', 'string'));
+        $resolver->setAllowedTypes('type', 'string');
 
-        $resolver->setAllowedValues(array(
-            'type' => array('iframe', 'embed', 'object'),
-        ));
+        $resolver->setAllowedValues('type', array('iframe', 'embed', 'object'));
     }
 
     /**

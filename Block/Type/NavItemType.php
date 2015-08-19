@@ -15,7 +15,7 @@ use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Nav Item Block Type.
@@ -80,7 +80,7 @@ class NavItemType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'src'           => '#',
@@ -91,23 +91,19 @@ class NavItemType extends AbstractType
             'dropup'        => false,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'src'       => array('null', 'string'),
-            'link_attr' => 'array',
-            'active'    => 'bool',
-            'disabled'  => 'bool',
-            'dropup'    => 'bool',
-        ));
+        $resolver->setAllowedTypes('src', array('null', 'string'));
+        $resolver->setAllowedTypes('link_attr', 'array');
+        $resolver->setAllowedTypes('active', 'bool');
+        $resolver->setAllowedTypes('disabled', 'bool');
+        $resolver->setAllowedTypes('dropup', 'bool');
 
-        $resolver->setNormalizers(array(
-            'src' => function (Options $options, $value = null) {
-                if (isset($options['data'])) {
-                    return $options['data'];
-                }
+        $resolver->setNormalizer('src', function (Options $options, $value = null) {
+            if (isset($options['data'])) {
+                return $options['data'];
+            }
 
-                return $value;
-            },
-        ));
+            return $value;
+        });
     }
 
     /**

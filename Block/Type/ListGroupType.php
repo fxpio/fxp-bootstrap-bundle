@@ -14,7 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * List Group Block Type.
@@ -52,19 +52,15 @@ class ListGroupType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'tag' => 'ul',
         ));
 
-        $resolver->setAllowedTypes(array(
-            'tag' => 'string',
-        ));
+        $resolver->setAllowedTypes('tag', 'string');
 
-        $resolver->setAllowedValues(array(
-            'tag' => array('ul', 'div'),
-        ));
+        $resolver->setAllowedValues('tag', array('ul', 'div'));
     }
 
     /**

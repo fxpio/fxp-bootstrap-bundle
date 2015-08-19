@@ -15,7 +15,7 @@ use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * List Group Item Block Type.
@@ -46,7 +46,7 @@ class ListGroupItemType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'src'    => null,
@@ -54,25 +54,19 @@ class ListGroupItemType extends AbstractType
             'style' => null,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'src'    => array('null', 'string'),
-            'active' => 'bool',
-            'style'  => array('null', 'string'),
-        ));
+        $resolver->setAllowedTypes('src', array('null', 'string'));
+        $resolver->setAllowedTypes('active', 'bool');
+        $resolver->setAllowedTypes('style', array('null', 'string'));
 
-        $resolver->setAllowedValues(array(
-            'style' => array(null, 'success', 'info', 'warning', 'danger'),
-        ));
+        $resolver->setAllowedValues('style', array(null, 'success', 'info', 'warning', 'danger'));
 
-        $resolver->setNormalizers(array(
-            'src' => function (Options $options, $value = null) {
-                if (isset($options['data'])) {
-                    return $options['data'];
-                }
+        $resolver->setNormalizer('src', function (Options $options, $value = null) {
+            if (isset($options['data'])) {
+                return $options['data'];
+            }
 
-                return $value;
-            },
-        ));
+            return $value;
+        });
     }
 
     /**

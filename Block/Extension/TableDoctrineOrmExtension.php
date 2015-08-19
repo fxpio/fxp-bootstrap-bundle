@@ -17,7 +17,7 @@ use Sonatra\Bundle\BootstrapBundle\Doctrine\ORM\Block\DataSource\DoctrineOrmData
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Query;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Table Doctrine ORM Block Extension.
@@ -70,7 +70,7 @@ class TableDoctrineOrmExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->addAllowedTypes(array(
             'data' => array('Doctrine\ORM\Query', 'Doctrine\ORM\QueryBuilder'),

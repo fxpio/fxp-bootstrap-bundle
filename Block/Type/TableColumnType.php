@@ -14,7 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\Options;
 
 /**
@@ -40,7 +40,7 @@ class TableColumnType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $index = function (Options $options, $value) {
             if (null === $value) {
@@ -57,19 +57,15 @@ class TableColumnType extends AbstractType
             'empty_data'        => null,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'formatter'         => array('null', 'string'),
-            'formatter_options' => 'array',
-        ));
+        $resolver->setAllowedTypes('formatter', array('null', 'string'));
+        $resolver->setAllowedTypes('formatter_options', 'array');
 
-        $resolver->setNormalizers(array(
-            'formatter_options' => function (Options $options, $value) {
-                $value['empty_data'] = $options['empty_data'];
-                $value['empty_message'] = $options['empty_message'];
+        $resolver->setNormalizer('formatter_options', function (Options $options, $value) {
+            $value['empty_data'] = $options['empty_data'];
+            $value['empty_message'] = $options['empty_message'];
 
-                return $value;
-            },
-        ));
+            return $value;
+        });
     }
 
     /**

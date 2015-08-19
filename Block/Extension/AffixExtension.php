@@ -14,7 +14,6 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Extension;
 use Sonatra\Bundle\BlockBundle\Block\AbstractTypeExtension;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\Options;
 
@@ -51,35 +50,29 @@ class AffixExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'affix' => array(),
         ));
 
-        $resolver->addAllowedTypes(array(
-            'affix' => 'array',
-        ));
+        $resolver->addAllowedTypes('affix', 'array');
 
-        $resolver->setNormalizers(array(
-            'affix' => function (Options $options, $value) {
-                $affixResolver = new OptionsResolver();
+        $resolver->setNormalizer('affix', function (Options $options, $value) {
+            $affixResolver = new OptionsResolver();
 
-                $affixResolver->setDefaults(array(
-                    'spy'           => 'affix',
-                    'offset_top'    => null,
-                    'offset_bottom' => null,
-                ));
+            $affixResolver->setDefaults(array(
+                'spy'           => 'affix',
+                'offset_top'    => null,
+                'offset_bottom' => null,
+            ));
 
-                $affixResolver->setAllowedTypes(array(
-                    'spy'           => 'string',
-                    'offset_top'    => array('null', 'int', 'string'),
-                    'offset_bottom' => array('null', 'int', 'string'),
-                ));
+            $affixResolver->setAllowedTypes('spy', 'string');
+            $affixResolver->setAllowedTypes('offset_top', array('null', 'int', 'string'));
+            $affixResolver->setAllowedTypes('offset_bottom', array('null', 'int', 'string'));
 
-                return $affixResolver->resolve($value);
-            },
-        ));
+            return $affixResolver->resolve($value);
+        });
     }
 
     /**

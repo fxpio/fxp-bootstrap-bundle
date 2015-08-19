@@ -14,7 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Table Header Cell Block Type.
@@ -37,17 +37,15 @@ class TableHeaderCellType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'rowspan' => null,
             'colspan' => null,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'rowspan' => array('null', 'int'),
-            'colspan' => array('null', 'int'),
-        ));
+        $resolver->setAllowedTypes('rowspan', array('null', 'int'));
+        $resolver->setAllowedTypes('colspan', array('null', 'int'));
     }
 
     /**

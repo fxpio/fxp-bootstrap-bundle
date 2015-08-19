@@ -12,7 +12,7 @@
 namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * List Group Item Heading Block Type.
@@ -24,7 +24,7 @@ class ListGroupItemHeadingType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'size' => 4,

@@ -11,7 +11,7 @@
 
 namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Navbar Collapse Block Type.
@@ -23,7 +23,7 @@ class NavbarCollapseType extends AbstractNavbarItemType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'chained_block' => true,

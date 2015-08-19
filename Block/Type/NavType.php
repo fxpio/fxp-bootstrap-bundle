@@ -14,7 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\Options;
 
 /**
@@ -67,7 +67,7 @@ class NavType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'style'        => 'tabs',
@@ -76,25 +76,19 @@ class NavType extends AbstractType
             'active_first' => true,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'style'        => array('null', 'string'),
-            'justifed'     => 'bool',
-            'active_first' => 'bool',
-        ));
+        $resolver->setAllowedTypes('style', array('null', 'string'));
+        $resolver->setAllowedTypes('justifed', 'bool');
+        $resolver->setAllowedTypes('active_first', 'bool');
 
-        $resolver->setAllowedValues(array(
-            'style' => array(null, 'tabs', 'pills'),
-        ));
+        $resolver->setAllowedValues('style', array(null, 'tabs', 'pills'));
 
-        $resolver->setNormalizers(array(
-            'stacked' => function (Options $options, $value = null) {
-                if ('tabs' === $options['style'] || null === $options['style']) {
-                    return false;
-                }
+        $resolver->setNormalizer('stacked', function (Options $options, $value = null) {
+            if ('tabs' === $options['style'] || null === $options['style']) {
+                return false;
+            }
 
-                return $value;
-            },
-        ));
+            return $value;
+        });
     }
 
     /**

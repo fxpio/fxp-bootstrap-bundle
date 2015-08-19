@@ -14,7 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Pager Block Type.
@@ -44,7 +44,7 @@ class PagerType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'previous_label'    => 'Previsous',
@@ -58,17 +58,15 @@ class PagerType extends AbstractType
             'aligned'           => false,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'previous_label'    => 'string',
-            'previous_attr'     => 'array',
-            'previous_disabled' => 'bool',
-            'previous_src'      => 'string',
-            'next_label'        => 'string',
-            'next_attr'         => 'array',
-            'next_disabled'     => 'bool',
-            'next_src'          => 'string',
-            'aligned'           => 'bool',
-        ));
+        $resolver->setAllowedTypes('previous_label', 'string');
+        $resolver->setAllowedTypes('previous_attr', 'array');
+        $resolver->setAllowedTypes('previous_disabled', 'bool');
+        $resolver->setAllowedTypes('previous_src', 'string');
+        $resolver->setAllowedTypes('next_label', 'string');
+        $resolver->setAllowedTypes('next_attr', 'array');
+        $resolver->setAllowedTypes('next_disabled', 'bool');
+        $resolver->setAllowedTypes('next_src', 'string');
+        $resolver->setAllowedTypes('aligned', 'bool');
     }
 
     /**

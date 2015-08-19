@@ -15,7 +15,7 @@ use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Sonatra\Bundle\BlockBundle\Block\Exception\InvalidConfigurationException;
 
 /**
@@ -43,7 +43,7 @@ class ColumnType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'grid'   => 'md-1',
@@ -52,59 +52,55 @@ class ColumnType extends AbstractType
             'pull'   => null,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'grid'   => array('string', 'array'),
-            'offset' => array('null', 'string', 'array'),
-            'push'   => array('null', 'string', 'array'),
-            'pull'   => array('null', 'string', 'array'),
-        ));
+        $resolver->setAllowedTypes('grid', array('string', 'array'));
+        $resolver->setAllowedTypes('offset', array('null', 'string', 'array'));
+        $resolver->setAllowedTypes('push', array('null', 'string', 'array'));
+        $resolver->setAllowedTypes('pull', array('null', 'string', 'array'));
 
-        $resolver->setNormalizers(array(
-            'grid' => function (Options $options, $value = null) {
-                $value = $this->convertToArray($value);
+        $resolver->setNormalizer('grid', function (Options $options, $value = null) {
+            $value = $this->convertToArray($value);
 
-                foreach ($value as $i => $grid) {
-                    list($prefix, $size) = $this->getParams('grid', $grid);
+            foreach ($value as $i => $grid) {
+                list($prefix, $size) = $this->getParams('grid', $grid);
 
-                    $value[$i] = sprintf('col-%s-%s', $prefix, $size);
-                }
+                $value[$i] = sprintf('col-%s-%s', $prefix, $size);
+            }
 
-                return $value;
-            },
-            'offset' => function (Options $options, $value = null) {
-                $value = $this->convertToArray($value);
+            return $value;
+        });
+        $resolver->setNormalizer('offset', function (Options $options, $value = null) {
+            $value = $this->convertToArray($value);
 
-                foreach ($value as $i => $offset) {
-                    list($prefix, $size) = $this->getParams('offset', $offset);
+            foreach ($value as $i => $offset) {
+                list($prefix, $size) = $this->getParams('offset', $offset);
 
-                    $value[$i] = sprintf('col-%s-offset-%s', $prefix, $size);
-                }
+                $value[$i] = sprintf('col-%s-offset-%s', $prefix, $size);
+            }
 
-                return $value;
-            },
-            'push' => function (Options $options, $value = null) {
-                $value = $this->convertToArray($value);
+            return $value;
+        });
+        $resolver->setNormalizer('push', function (Options $options, $value = null) {
+            $value = $this->convertToArray($value);
 
-                foreach ($value as $i => $push) {
-                    list($prefix, $size) = $this->getParams('push', $push);
+            foreach ($value as $i => $push) {
+                list($prefix, $size) = $this->getParams('push', $push);
 
-                    $value[$i] = sprintf('col-%s-push-%s', $prefix, $size);
-                }
+                $value[$i] = sprintf('col-%s-push-%s', $prefix, $size);
+            }
 
-                return $value;
-            },
-            'pull' => function (Options $options, $value = null) {
-                $value = $this->convertToArray($value);
+            return $value;
+        });
+        $resolver->setNormalizer('pull', function (Options $options, $value = null) {
+            $value = $this->convertToArray($value);
 
-                foreach ($value as $i => $pull) {
-                    list($prefix, $size) = $this->getParams('pull', $pull);
+            foreach ($value as $i => $pull) {
+                list($prefix, $size) = $this->getParams('pull', $pull);
 
-                    $value[$i] = sprintf('col-%s-pull-%s', $prefix, $size);
-                }
+                $value[$i] = sprintf('col-%s-pull-%s', $prefix, $size);
+            }
 
-                return $value;
-            },
-        ));
+            return $value;
+        });
     }
 
     /**

@@ -16,7 +16,7 @@ use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\Options;
 
 /**
@@ -77,7 +77,7 @@ class CollectionExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'btn_add'    => array(),
@@ -127,10 +127,8 @@ class CollectionExtension extends AbstractTypeExtension
             return $value;
         };
 
-        $resolver->setNormalizers(array(
-            'btn_add' => $btnAddNormalizer,
-            'options' => $optionsNormalizer,
-        ));
+        $resolver->setNormalizer('btn_add', $btnAddNormalizer);
+        $resolver->setNormalizer('options', $optionsNormalizer);
     }
 
     /**

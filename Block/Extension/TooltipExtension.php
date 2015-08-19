@@ -14,7 +14,6 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Extension;
 use Sonatra\Bundle\BlockBundle\Block\AbstractTypeExtension;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\Options;
 
@@ -52,7 +51,7 @@ class TooltipExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'tooltip' => array(),
@@ -62,41 +61,35 @@ class TooltipExtension extends AbstractTypeExtension
             'tooltip' => 'array',
         ));
 
-        $resolver->setNormalizers(array(
-            'tooltip' => function (Options $options, $value) {
-                $tooltipResolver = new OptionsResolver();
+        $resolver->setNormalizer('tooltip', function (Options $options, $value) {
+            $tooltipResolver = new OptionsResolver();
 
-                $tooltipResolver->setDefaults(array(
-                    'toggle'    => 'tooltip',
-                    'animation' => null,
-                    'html'      => null,
-                    'placement' => null,
-                    'selector'  => null,
-                    'title'     => null,
-                    'trigger'   => null,
-                    'delay'     => null,
-                    'container' => null,
-                ));
+            $tooltipResolver->setDefaults(array(
+                'toggle'    => 'tooltip',
+                'animation' => null,
+                'html'      => null,
+                'placement' => null,
+                'selector'  => null,
+                'title'     => null,
+                'trigger'   => null,
+                'delay'     => null,
+                'container' => null,
+            ));
 
-                $tooltipResolver->setAllowedTypes(array(
-                    'toggle'    => 'string',
-                    'animation' => array('null', 'bool'),
-                    'html'      => array('null', 'bool'),
-                    'placement' => array('null', 'string'),
-                    'selector'  => array('null', 'string', 'bool'),
-                    'title'     => array('null', 'string', '\Twig_Markup'),
-                    'trigger'   => array('null', 'string'),
-                    'delay'     => array('null', 'int'),
-                    'container' => array('null', 'string', 'bool'),
-                ));
+            $tooltipResolver->setAllowedTypes('toggle', 'string');
+            $tooltipResolver->setAllowedTypes('animation', array('null', 'bool'));
+            $tooltipResolver->setAllowedTypes('html', array('null', 'bool'));
+            $tooltipResolver->setAllowedTypes('placement', array('null', 'string'));
+            $tooltipResolver->setAllowedTypes('selector', array('null', 'string', 'bool'));
+            $tooltipResolver->setAllowedTypes('title', array('null', 'string', '\Twig_Markup'));
+            $tooltipResolver->setAllowedTypes('trigger', array('null', 'string'));
+            $tooltipResolver->setAllowedTypes('delay', array('null', 'int'));
+            $tooltipResolver->setAllowedTypes('container', array('null', 'string', 'bool'));
 
-                $tooltipResolver->setAllowedValues(array(
-                    'placement' => array(null, 'top', 'bottom', 'left', 'right', 'auto', 'auto top', 'auto bottom', 'auto left', 'auto right'),
-                ));
+            $tooltipResolver->setAllowedValues('placement', array(null, 'top', 'bottom', 'left', 'right', 'auto', 'auto top', 'auto bottom', 'auto left', 'auto right'));
 
-                return $tooltipResolver->resolve($value);
-            },
-        ));
+            return $tooltipResolver->resolve($value);
+        });
     }
 
     /**

@@ -14,7 +14,6 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Extension;
 use Sonatra\Bundle\BlockBundle\Block\AbstractTypeExtension;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\Options;
 
@@ -44,35 +43,29 @@ class ScrollSpyExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'scroll_spy' => array(),
         ));
 
-        $resolver->addAllowedTypes(array(
-            'scroll_spy' => 'array',
-        ));
+        $resolver->addAllowedTypes('scroll_spy', 'array');
 
-        $resolver->setNormalizers(array(
-            'scroll_spy' => function (Options $options, $value) {
-                $scrollSpyResolver = new OptionsResolver();
+        $resolver->setNormalizer('scroll_spy', function (Options $options, $value) {
+            $scrollSpyResolver = new OptionsResolver();
 
-                $scrollSpyResolver->setDefaults(array(
-                    'spy'    => 'scroll',
-                    'on'     => null,
-                    'offset' => null,
-                ));
+            $scrollSpyResolver->setDefaults(array(
+                'spy'    => 'scroll',
+                'on'     => null,
+                'offset' => null,
+            ));
 
-                $scrollSpyResolver->setAllowedTypes(array(
-                    'spy'    => 'string',
-                    'on'     => array('null', 'string'),
-                    'offset' => array('null', 'int'),
-                ));
+            $scrollSpyResolver->setAllowedTypes('spy', 'string');
+            $scrollSpyResolver->setAllowedTypes('on', array('null', 'string'));
+            $scrollSpyResolver->setAllowedTypes('offset', array('null', 'int'));
 
-                return $scrollSpyResolver->resolve($value);
-            },
-        ));
+            return $scrollSpyResolver->resolve($value);
+        });
     }
 
     /**

@@ -14,7 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * List Block Type.
@@ -48,7 +48,7 @@ class ListType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'style'      => 'unordered',
@@ -57,16 +57,12 @@ class ListType extends AbstractType
             'horizontal' => false,
         ));
 
-        $resolver->setAllowedTypes(array(
-            'style'      => 'string',
-            'unstyled'   => 'bool',
-            'inline'     => 'bool',
-            'horizontal' => 'bool',
-        ));
+        $resolver->setAllowedTypes('style', 'string');
+        $resolver->setAllowedTypes('unstyled', 'bool');
+        $resolver->setAllowedTypes('inline', 'bool');
+        $resolver->setAllowedTypes('horizontal', 'bool');
 
-        $resolver->setAllowedValues(array(
-            'style' => array('unordered', 'ordered', 'description'),
-        ));
+        $resolver->setAllowedValues('style', array('unordered', 'ordered', 'description'));
     }
 
     /**

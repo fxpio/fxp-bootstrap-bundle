@@ -14,7 +14,6 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Extension;
 use Sonatra\Bundle\BlockBundle\Block\AbstractTypeExtension;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\Options;
 
@@ -56,7 +55,7 @@ class PopoverExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'popover' => array(),
@@ -66,43 +65,37 @@ class PopoverExtension extends AbstractTypeExtension
             'popover' => 'array',
         ));
 
-        $resolver->setNormalizers(array(
-            'popover' => function (Options $options, $value) {
-                $popoverResolver = new OptionsResolver();
+        $resolver->setNormalizer('popover', function (Options $options, $value) {
+            $popoverResolver = new OptionsResolver();
 
-                $popoverResolver->setDefaults(array(
-                    'toggle'    => 'popover',
-                    'animation' => null,
-                    'html'      => null,
-                    'placement' => null,
-                    'trigger'   => null,
-                    'selector'  => null,
-                    'title'     => null,
-                    'content'   => null,
-                    'delay'     => null,
-                    'container' => null,
-                ));
+            $popoverResolver->setDefaults(array(
+                'toggle'    => 'popover',
+                'animation' => null,
+                'html'      => null,
+                'placement' => null,
+                'trigger'   => null,
+                'selector'  => null,
+                'title'     => null,
+                'content'   => null,
+                'delay'     => null,
+                'container' => null,
+            ));
 
-                $popoverResolver->setAllowedTypes(array(
-                    'toggle'    => 'string',
-                    'animation' => array('null', 'bool'),
-                    'html'      => array('null', 'bool'),
-                    'placement' => array('null', 'string'),
-                    'selector'  => array('null', 'string', 'bool'),
-                    'trigger'   => array('null', 'string'),
-                    'title'     => array('null', 'string', '\Twig_Markup'),
-                    'content'   => array('null', 'string', '\Twig_Markup'),
-                    'delay'     => array('null', 'int'),
-                    'container' => array('null', 'string', 'bool'),
-                ));
+            $popoverResolver->setAllowedTypes('toggle', 'string');
+            $popoverResolver->setAllowedTypes('animation', array('null', 'bool'));
+            $popoverResolver->setAllowedTypes('html', array('null', 'bool'));
+            $popoverResolver->setAllowedTypes('placement', array('null', 'string'));
+            $popoverResolver->setAllowedTypes('selector', array('null', 'string', 'bool'));
+            $popoverResolver->setAllowedTypes('trigger', array('null', 'string'));
+            $popoverResolver->setAllowedTypes('title', array('null', 'string', '\Twig_Markup'));
+            $popoverResolver->setAllowedTypes('content', array('null', 'string', '\Twig_Markup'));
+            $popoverResolver->setAllowedTypes('delay', array('null', 'int'));
+            $popoverResolver->setAllowedTypes('container', array('null', 'string', 'bool'));
 
-                $popoverResolver->setAllowedValues(array(
-                    'placement' => array(null, 'top', 'bottom', 'left', 'right', 'auto', 'auto top', 'auto bottom', 'auto left', 'auto right'),
-                ));
+            $popoverResolver->setAllowedValues('placement', array(null, 'top', 'bottom', 'left', 'right', 'auto', 'auto top', 'auto bottom', 'auto left', 'auto right'));
 
-                return $popoverResolver->resolve($value);
-            },
-        ));
+            return $popoverResolver->resolve($value);
+        });
     }
 
     /**
