@@ -192,7 +192,7 @@ class TableType extends AbstractType
      *
      * @param ResolvedBlockTypeInterface $type
      *
-     * @return boolean
+     * @return bool
      */
     protected function isColumn(ResolvedBlockTypeInterface $type)
     {

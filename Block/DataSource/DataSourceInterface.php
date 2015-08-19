@@ -133,7 +133,7 @@ interface DataSourceInterface
      * Set page size.
      * If page size equal 0, all row displayed.
      *
-     * @param integer $size
+     * @param int $size
      *
      * @return DataSourceInterface
      */
@@ -143,14 +143,14 @@ interface DataSourceInterface
      * Get page size.
      * If page size equal 0, all row displayed.
      *
-     * @return integer
+     * @return int
      */
     public function getPageSize();
 
     /**
      * Set page size max.
      *
-     * @param integer $size
+     * @param int $size
      *
      * @return DataSourceInterface
      */
@@ -159,14 +159,14 @@ interface DataSourceInterface
     /**
      * Get page size max.
      *
-     * @return integer
+     * @return int
      */
     public function getPageSizeMax();
 
     /**
      * Set page number.
      *
-     * @param integer $number
+     * @param int $number
      *
      * @return DataSourceInterface
      */
@@ -175,14 +175,14 @@ interface DataSourceInterface
     /**
      * Get page number.
      *
-     * @return integer
+     * @return int
      */
     public function getPageNumber();
 
     /**
      * Get page count.
      *
-     * @return integer
+     * @return int
      */
     public function getPageCount();
 
