@@ -12,21 +12,23 @@
         }
     ],
     "require" : {
-        "php" : ">=5.3.3",
-        "symfony/framework-bundle" : "~2.4",
-        "symfony/assetic-bundle": "~2.4",
+        "php" : ">=5.4",
+        "symfony/framework-bundle" : "~2.7",
+        "symfony/assetic-bundle": "~2.6",
         "kriswallsmith/assetic": "~1.2",
         "fxp/require-asset-bundle" : "1.0.*@dev",
         "fxp/require-asset" : "1.0.*@dev",
-        "sonatra/block-bundle" : "1.0.*@dev",
-        "bower-asset/html5shiv": "3.7.*",
-        "bower-asset/respond": "1.4.*",
-        "bower-asset/bootstrap": "3.3.*"
+        "sonatra/block-bundle" : "1.0.*@dev"
     },
     "require-dev" : {
-        "symfony/console" : "~2.4",
-        "symfony/finder" : "~2.4",
-        "symfony/filesystem" : "~2.4"
+        "symfony/console" : "~2.7",
+        "symfony/finder" : "~2.7",
+        "symfony/filesystem" : "~2.7",
+        "doctrine/orm": "~2.5",
+        "bower-asset/html5shiv": "3.7.*",
+        "bower-asset/respond": "1.4.*",
+        "bower-asset/bootstrap": "3.3.*",
+        "gedmo/doctrine-extensions": "~2.4"
     },
     "suggest": {
         "fxp/composer-asset-plugin": "For manage NPM/Bower dependencies with Composer"
