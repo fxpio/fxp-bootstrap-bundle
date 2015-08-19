@@ -27,8 +27,8 @@ class NavbarCollapseType extends AbstractNavbarItemType
     {
         $resolver->setDefaults(array(
             'chained_block' => true,
-            'align'         => null,
-            'render_id'     => true,
+            'align' => null,
+            'render_id' => true,
         ));
     }
 
