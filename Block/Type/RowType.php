@@ -12,6 +12,7 @@
 namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
+
 /**
  * Row Block Type.
  *
