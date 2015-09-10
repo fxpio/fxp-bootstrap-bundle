@@ -6,6 +6,10 @@
         {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' navbar-' ~ position)|trim}) -%}
     {%- endif -%}
 
+    {%- if affix_style -%}
+        {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' affix')|trim}) -%}
+    {%- endif -%}
+
     <div{{ block('widget_container_attributes') }}>
         {{- value|raw -}}
         {%- for child in block -%}

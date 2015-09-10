@@ -31,6 +31,7 @@ class NavbarType extends AbstractType
         $view->vars = array_replace($view->vars, array(
             'style' => $options['style'],
             'position' => $options['position'],
+            'affix_style' => $options['affix_style'],
         ));
     }
 
@@ -76,6 +77,7 @@ class NavbarType extends AbstractType
             'label' => 'Toggle navigation',
             'style' => 'default',
             'position' => null,
+            'affix_style' => false,
         ));
 
         $resolver->setAllowedTypes('style', 'string');
@@ -83,6 +85,7 @@ class NavbarType extends AbstractType
 
         $resolver->setAllowedValues('style', array('default', 'inverse'));
         $resolver->setAllowedValues('position', array(null, 'static-top', 'fixed-top', 'fixed-bottom'));
+        $resolver->setAllowedTypes('affix_style', 'bool');
     }
 
     /**
