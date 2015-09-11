@@ -38,6 +38,7 @@ class ButtonType extends AbstractType
             'block_level' => $options['block_level'],
             'prepend' => $options['prepend'],
             'append' => $options['append'],
+            'caret' => $options['caret'],
         ));
     }
 
@@ -100,6 +101,7 @@ class ButtonType extends AbstractType
             'prepend' => null,
             'append' => null,
             'dropup' => false,
+            'caret' => true,
         ));
 
         $resolver->setAllowedTypes('tag', 'string');
@@ -110,6 +112,7 @@ class ButtonType extends AbstractType
         $resolver->setAllowedTypes('prepend', array('null', 'string'));
         $resolver->setAllowedTypes('append', array('null', 'string'));
         $resolver->setAllowedTypes('dropup', 'bool');
+        $resolver->setAllowedTypes('caret', 'bool');
 
         $resolver->setAllowedValues('tag', array('button', 'a'));
         $resolver->setAllowedValues('style', array(null, 'default', 'primary', 'success', 'info', 'warning', 'danger', 'link'));

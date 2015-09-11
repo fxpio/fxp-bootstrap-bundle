@@ -104,14 +104,14 @@
         {%- endif -%}
     {%- endif -%}
 
-    {%- if attr['data-toggle'] is defined and attr['data-toggle'] == 'collapse' and block.children is empty and label is empty -%}
+    {%- if caret and attr['data-toggle'] is defined and attr['data-toggle'] == 'collapse' and block.children is empty and label is empty -%}
         <span class="caret"></span>
     {%- endif -%}
 
     {{- value|raw -}}
     {{- block('block_rows') -}}
 
-    {%- if dropdown is defined -%}
+    {%- if caret and dropdown is defined -%}
         <span class="caret"></span>
     {%- endif -%}
 
