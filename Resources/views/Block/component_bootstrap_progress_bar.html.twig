@@ -1,7 +1,9 @@
 {% block progress_bar_widget -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
+
+    {% set progress_class = progress_class|default('') %}
     {%- if not(stacked) -%}
-        <div class="progress{% if striped %} progress-striped{% if animated %} active{% endif %}{% endif %}">
+        <div class="progress{% if striped %} progress-striped{% if animated %} active{% endif %}{% endif %}{{ progress_class }}">
     {%- endif -%}
 
     {%- set attr = attr|merge({'class': ('progress-bar ' ~ attr.class|default(''))|trim,

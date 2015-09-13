@@ -56,7 +56,7 @@ class ProgressBarType extends AbstractType
             'style' => null,
             'striped' => false,
             'animated' => false,
-            'label' => '%value%% Complete',
+            'label' => '%value%%',
         ));
 
         $resolver->setAllowedTypes('data', 'int');
