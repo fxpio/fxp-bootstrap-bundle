@@ -14,7 +14,9 @@
         {%- if size is not empty -%}
             {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' input-' ~ size)|trim}) -%}
         {%- endif -%}
+        {%- block textarea_widget_before_content %}{% endblock -%}
         {{- block('base_textarea_widget') -}}
+        {%- block textarea_widget_after_content %}{% endblock -%}
         {{- block('addon_end') -}}
     {%- endif -%}
     {{- block('help_text') -}}
