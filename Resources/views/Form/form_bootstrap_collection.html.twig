@@ -23,28 +23,32 @@
 
     {%- inline_script -%}
         <script>
-        {%- if btn_add is defined and prototype is defined -%}
-            $('#{{ btn_add.vars.id }}').click(function(event) {
-                var inc = $(this).data('inc');
-                    inc = undefined !== inc ? inc : {{ form|length }};
-                var collectionHolder = $('#' + $(this).attr('data-target'));
-                var prototype = collectionHolder.attr('data-prototype');
-                var form = prototype.replace(/{{ prototype_name }}/g, inc);
-
-                collectionHolder.append(form);
-                $(this).data('inc', ++inc);
-
-                return false;
-            });
-        {%- endif -%}
-
-        {%- if allow_delete and prototype is defined -%}
-           $('#{{ id }}').on('click', 'button.btn-remove', null, function(event) {
-                $(this).parents('.form-collection-row').remove();
-
-                return false;
-           });
-        {%- endif -%}
+            {{- block('collection_widget_content_js') -}}
         </script>
     {%- endinline_script -%}
 {%- endblock collection_widget %}
+
+{% block collection_widget_content_js -%}
+    {%- if btn_add is defined and prototype is defined -%}
+    $('#{{ btn_add.vars.id }}').on('click.st.bootstrap', null, null, function(event) {
+        var inc = $(this).data('inc');
+        inc = undefined !== inc ? inc : {{ form|length }};
+        var collectionHolder = $('#' + $(this).attr('data-target'));
+        var prototype = collectionHolder.attr('data-prototype');
+        var form = prototype.replace(/{{ prototype_name }}/g, inc);
+
+        collectionHolder.append(form);
+        $(this).data('inc', ++inc);
+
+        return false;
+    });
+    {%- endif -%}
+
+    {%- if allow_delete and prototype is defined -%}
+    $('#{{ id }}').on('click.st.bootstrap', 'button.btn-remove', null, function(event) {
+        $(this).parents('.form-collection-row').remove();
+
+        return false;
+    });
+    {%- endif -%}
+{%- endblock collection_widget_content_js %}
