@@ -62,7 +62,7 @@
 
 {% block table_caption_widget -%}
     <caption{{ block('widget_container_attributes') }}>
-        {{- label|trans({}, translation_domain) -}}
+        {{- label -}}
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </caption>
@@ -96,7 +96,7 @@
     {%- set label_attr = label_attr|merge({'data-col-name': name}) -%}
 
     <th{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-        {{- label|trans({}, translation_domain) -}}
+        {{- label -}}
         {{- block('block_rows') -}}
     </th>
 {%- endblock table_column_label %}
@@ -108,7 +108,7 @@
 
 {% block table_row_widget -%}
     <tr{{ block('widget_container_attributes') }}>
-        {{- label|trans({}, translation_domain) -}}
+        {{- label -}}
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </tr>
@@ -124,7 +124,7 @@
     {%- endif -%}
 
     <td{{ block('widget_container_attributes') }}>
-        {{- label|trans({}, translation_domain) -}}
+        {{- label -}}
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </td>
@@ -140,7 +140,7 @@
     {%- endif -%}
 
     <th{{ block('widget_container_attributes') }}>
-        {{- label|trans({}, translation_domain) -}}
+        {{- label -}}
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </th>

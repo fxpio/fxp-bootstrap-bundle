@@ -14,7 +14,7 @@
             <span class="glyphicon glyphicon-{{ glyphicon }}"></span>
             {{- " " -}}
         {%- endif -%}
-        {{- label|trans({}, translation_domain) -}}
+        {{- label -}}
     </button>
 
     {%- if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' -%}
@@ -36,9 +36,7 @@
     {%- if id is not empty %}id="{{ id }}" name="{{ full_name }}"{% endif %}{% if disabled %} disabled="disabled"{% endif -%}
     {%- for attrname, attrvalue in attr -%}
         {{- " " -}}
-        {%- if attrname in ['placeholder', 'title'] -%}
-            {{- attrname }}="{{ attrvalue|trans({}, translation_domain) }}"
-        {%- elseif attrvalue is same as(true) -%}
+        {%- if attrvalue is same as(true) -%}
             {{- attrname }}="{{ attrname }}"
         {%- elseif attrvalue is not same as(false) -%}
             {{- attrname }}="{{ attrvalue }}"

@@ -37,7 +37,7 @@
         {%- if close_button -%}
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         {%- endif -%}
-        {%- if label is not empty %}<h4 class="modal-title">{{- label|trans({}, translation_domain)|raw -}}</h4>{% endif -%}
+        {%- if label is not empty %}<h4 class="modal-title">{{- label|raw -}}</h4>{% endif -%}
             {{- value|raw -}}
         {%- for child in block -%}
             {{- block_widget(child) -}}

@@ -17,7 +17,7 @@
     {%- if stacked or (not(stacked) and block.children|length == 0) -%}
         <div{{ block('widget_container_attributes') }}>
             {%- if label is not null -%}
-                <span class="sr-only">{{ label|trans({'%value%': value}, translation_domain) }}</span>
+                <span class="sr-only">{{ label }}</span>
             {%- endif -%}
         </div>
     {%- endif -%}

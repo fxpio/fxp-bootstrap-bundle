@@ -97,7 +97,7 @@
     {%- endif -%}
 
     {%- if split is not defined -%}
-        {{- label|trans({}, translation_domain) -}}
+        {{- label -}}
     {%- endif -%}
 
     {%- if append is defined -%}
@@ -137,9 +137,7 @@
     {%- if render_id %}id="{{ id }}" name="{{ id }}"{% endif %}{% if disabled %} disabled="disabled"{% endif -%}
     {%- for attrname, attrvalue in attr -%}
         {{- " " -}}
-        {%- if attrname in ['placeholder', 'title'] -%}
-            {{- attrname }}="{{ attrvalue|trans({}, translation_domain) }}"
-        {%- elseif attrvalue is same as(true) -%}
+        {%- if attrvalue is same as(true) -%}
             {{- attrname }}="{{ attrname }}"
         {%- elseif attrvalue is not same as(false) -%}
             {{- attrname }}="{{ attrvalue }}"

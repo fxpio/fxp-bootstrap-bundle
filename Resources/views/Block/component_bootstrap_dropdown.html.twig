@@ -39,7 +39,7 @@
     {%- endif -%}
     <li{{ block('widget_container_attributes') }}>
         <a{% for attrname, attrvalue in link_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-            {{- label|trans({}, translation_domain) -}}
+            {{- label -}}
             {{- value|raw -}}
             {{- block('block_rows') -}}
         </a>
@@ -55,7 +55,7 @@
     {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' dropdown-header')|trim, role:'presentation'}) -%}
 
     <li{{ block('widget_container_attributes') }}>
-        {{- label|trans({}, translation_domain) -}}
+        {{- label -}}
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </li>

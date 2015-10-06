@@ -15,7 +15,7 @@
     {%- set attr = attr|merge({'class': ('caption ' ~ attr.class|default(''))|trim}) -%}
 
     <div{{ block('widget_container_attributes') }}>
-        {%- if label is not null %}<h3>{{ label|trans({}, translation_domain) }}</h3>{% endif -%}
+        {%- if label is not null %}<h3>{{ label }}</h3>{% endif -%}
         {{- value|raw -}}
         {%- for child in block -%}
             {{- block_widget(child) -}}

@@ -12,7 +12,7 @@
     {%- endif -%}
 
     <a{{ block('widget_container_attributes') }}>
-        {{- label|trans({}, translation_domain) -}}
+        {{- label -}}
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </a>

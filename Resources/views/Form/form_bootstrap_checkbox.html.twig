@@ -38,6 +38,6 @@
 {% block checkbox_widget_content -%}
     <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
     <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
-        {{- label|trans({}, translation_domain) -}}
+        {{- label -}}
     </label>
 {%- endblock checkbox_widget_content %}
