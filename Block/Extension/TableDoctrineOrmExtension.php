@@ -72,9 +72,7 @@ class TableDoctrineOrmExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->addAllowedTypes(array(
-            'data' => array('Doctrine\ORM\Query', 'Doctrine\ORM\QueryBuilder'),
-        ));
+        $resolver->addAllowedTypes('data', array('Doctrine\ORM\Query', 'Doctrine\ORM\QueryBuilder'));
     }
 
     /**

@@ -85,16 +85,12 @@ class ButtonExtension extends AbstractTypeExtension
             'glyphicon' => null,
         ));
 
-        $resolver->addAllowedTypes(array(
-            'style' => array('null', 'string'),
-            'size' => array('null', 'string'),
-            'block_level' => 'bool',
-        ));
+        $resolver->addAllowedTypes('style', array('null', 'string'));
+        $resolver->addAllowedTypes('size', array('null', 'string'));
+        $resolver->addAllowedTypes('block_level', 'bool');
 
-        $resolver->addAllowedValues(array(
-            'style' => array(null, 'default', 'primary', 'success', 'info', 'warning', 'danger', 'link'),
-            'size' => array(null, 'xs', 'sm', 'lg'),
-        ));
+        $resolver->addAllowedValues('style', array(null, 'default', 'primary', 'success', 'info', 'warning', 'danger', 'link'));
+        $resolver->addAllowedValues('size', array(null, 'xs', 'sm', 'lg'));
     }
 
     /**

@@ -105,11 +105,9 @@ class PanelGroupCollapseExtension extends AbstractTypeExtension
             },
         ));
 
-        $resolver->addAllowedTypes(array(
-            'collapsible' => 'bool',
-            'collapse_first' => 'bool',
-            'collapse_ins' => 'array',
-        ));
+        $resolver->addAllowedTypes('collapsible', 'bool');
+        $resolver->addAllowedTypes('collapse_first', 'bool');
+        $resolver->addAllowedTypes('collapse_ins', 'array');
     }
 
     /**

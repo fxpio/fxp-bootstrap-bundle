@@ -44,9 +44,7 @@ class ChoiceExtension extends AbstractTypeExtension
             )
         );
 
-        $resolver->addAllowedTypes(array(
-            'inline' => array('bool'),
-        ));
+        $resolver->addAllowedTypes('inline', array('bool'));
     }
 
     /**

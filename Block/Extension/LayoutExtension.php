@@ -69,17 +69,13 @@ class LayoutExtension extends AbstractTypeExtension
             )
         );
 
-        $resolver->addAllowedTypes(array(
-            'layout' => array('null', 'string'),
-            'layout_col_size' => array('string'),
-            'layout_col_label' => array('int'),
-            'layout_col_control' => array('int'),
-        ));
+        $resolver->addAllowedTypes('layout', array('null', 'string'));
+        $resolver->addAllowedTypes('layout_col_size', 'string');
+        $resolver->addAllowedTypes('layout_col_label', 'int');
+        $resolver->addAllowedTypes('layout_col_control', 'int');
 
-        $resolver->addAllowedValues(array(
-            'layout' => array(null, 'inline', 'horizontal'),
-            'layout_col_size' => array('xs', 'sm', 'md', 'lg'),
-        ));
+        $resolver->addAllowedValues('layout', array(null, 'inline', 'horizontal'));
+        $resolver->addAllowedValues('layout_col_size', array('xs', 'sm', 'md', 'lg'));
     }
 
     /**

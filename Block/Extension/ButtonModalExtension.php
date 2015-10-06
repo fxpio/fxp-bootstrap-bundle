@@ -47,9 +47,7 @@ class ButtonModalExtension extends AbstractTypeExtension
             'modal_id' => null,
         ));
 
-        $resolver->addAllowedTypes(array(
-            'modal_id' => array('null', 'string'),
-        ));
+        $resolver->addAllowedTypes('modal_id', array('null', 'string'));
     }
 
     /**

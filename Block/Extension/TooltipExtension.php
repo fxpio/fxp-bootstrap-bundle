@@ -57,9 +57,7 @@ class TooltipExtension extends AbstractTypeExtension
             'tooltip' => array(),
         ));
 
-        $resolver->addAllowedTypes(array(
-            'tooltip' => 'array',
-        ));
+        $resolver->addAllowedTypes('tooltip', 'array');
 
         $resolver->setNormalizer('tooltip', function (Options $options, $value) {
             $tooltipResolver = new OptionsResolver();

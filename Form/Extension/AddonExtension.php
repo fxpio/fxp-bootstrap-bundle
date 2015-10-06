@@ -78,20 +78,16 @@ class AddonExtension extends AbstractTypeExtension
             )
         );
 
-        $resolver->addAllowedTypes(array(
-            'prepend' => array('null', 'string', 'Symfony\Component\Form\FormInterface', 'Sonatra\Bundle\BlockBundle\Block\BlockInterface'),
-            'append' => array('null', 'string', 'Symfony\Component\Form\FormInterface', 'Sonatra\Bundle\BlockBundle\Block\BlockInterface'),
-            'addon_attr' => array('array'),
-            'prepend_attr' => array('array'),
-            'append_attr' => array('array'),
-            'prepend_type' => array('null', 'string'),
-            'append_type' => array('null', 'string'),
-        ));
+        $resolver->addAllowedTypes('prepend', array('null', 'string', 'Symfony\Component\Form\FormInterface', 'Sonatra\Bundle\BlockBundle\Block\BlockInterface'));
+        $resolver->addAllowedTypes('append', array('null', 'string', 'Symfony\Component\Form\FormInterface', 'Sonatra\Bundle\BlockBundle\Block\BlockInterface'));
+        $resolver->addAllowedTypes('addon_attr', 'array');
+        $resolver->addAllowedTypes('prepend_attr', 'array');
+        $resolver->addAllowedTypes('append_attr', 'array');
+        $resolver->addAllowedTypes('prepend_type', array('null', 'string'));
+        $resolver->addAllowedTypes('append_type', array('null', 'string'));
 
-        $resolver->addAllowedValues(array(
-            'prepend_type' => array(null, 'addon', 'btn'),
-            'append_type' => array(null, 'addon', 'btn'),
-        ));
+        $resolver->addAllowedValues('prepend_type', array(null, 'addon', 'btn'));
+        $resolver->addAllowedValues('append_type', array(null, 'addon', 'btn'));
     }
 
     /**

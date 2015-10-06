@@ -47,9 +47,7 @@ class ButtonCollapseExtension extends AbstractTypeExtension
             'collapse_id' => null,
         ));
 
-        $resolver->addAllowedTypes(array(
-            'collapse_id' => array('null', 'string'),
-        ));
+        $resolver->addAllowedTypes('collapse_id', array('null', 'string'));
     }
 
     /**

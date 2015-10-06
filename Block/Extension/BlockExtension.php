@@ -44,10 +44,8 @@ class BlockExtension extends AbstractTypeExtension
             'display_label' => true,
         ));
 
-        $resolver->addAllowedTypes(array(
-            'row_attr' => array('array'),
-            'display_label' => array('bool'),
-        ));
+        $resolver->addAllowedTypes('row_attr', 'array');
+        $resolver->addAllowedTypes('display_label', 'bool');
     }
 
     /**

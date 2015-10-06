@@ -61,9 +61,7 @@ class PopoverExtension extends AbstractTypeExtension
             'popover' => array(),
         ));
 
-        $resolver->addAllowedTypes(array(
-            'popover' => 'array',
-        ));
+        $resolver->addAllowedTypes('popover', 'array');
 
         $resolver->setNormalizer('popover', function (Options $options, $value) {
             $popoverResolver = new OptionsResolver();

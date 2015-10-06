@@ -48,10 +48,8 @@ class BlockCollapseType extends AbstractType
             },
         ));
 
-        $resolver->addAllowedTypes(array(
-            'collapsible' => 'bool',
-            'collapsed' => 'bool',
-        ));
+        $resolver->addAllowedTypes('collapsible', 'bool');
+        $resolver->addAllowedTypes('collapsed', 'bool');
     }
 
     /**

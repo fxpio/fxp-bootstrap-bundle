@@ -84,10 +84,8 @@ class CollectionExtension extends AbstractTypeExtension
             'btn_delete' => array(),
         ));
 
-        $resolver->addAllowedTypes(array(
-            'btn_add' => array('array', 'Symfony\Component\Form\Form'),
-            'btn_delete' => array('array', 'Symfony\Component\Form\Form'),
-        ));
+        $resolver->addAllowedTypes('btn_add', array('array', 'Symfony\Component\Form\Form'));
+        $resolver->addAllowedTypes('btn_delete', array('array', 'Symfony\Component\Form\Form'));
 
         $btnAddNormalizer = function (Options $options, $value) {
             if (is_array($value)) {

@@ -89,27 +89,23 @@ class FormExtension extends AbstractTypeExtension
             )
         );
 
-        $resolver->addAllowedTypes(array(
-            'row_attr' => array('array'),
-            'display_label' => array('bool'),
-            'size' => array('null', 'string'),
-            'layout' => array('null', 'string'),
-            'layout_col_size' => array('string'),
-            'layout_col_label' => array('int'),
-            'layout_col_control' => array('int'),
-            'validation_state' => array('null', 'string'),
-            'static_control' => array('bool'),
-            'static_control_empty' => array('null', 'string'),
-            'help_text' => array('null', 'string'),
-            'help_attr' => array('array'),
-        ));
+        $resolver->addAllowedTypes('row_attr', 'array');
+        $resolver->addAllowedTypes('display_label', 'bool');
+        $resolver->addAllowedTypes('size', array('null', 'string'));
+        $resolver->addAllowedTypes('layout', array('null', 'string'));
+        $resolver->addAllowedTypes('layout_col_size', 'string');
+        $resolver->addAllowedTypes('layout_col_label', 'int');
+        $resolver->addAllowedTypes('layout_col_control', 'int');
+        $resolver->addAllowedTypes('validation_state', array('null', 'string'));
+        $resolver->addAllowedTypes('static_control', 'bool');
+        $resolver->addAllowedTypes('static_control_empty', array('null', 'string'));
+        $resolver->addAllowedTypes('help_text', array('null', 'string'));
+        $resolver->addAllowedTypes('help_attr', 'array');
 
-        $resolver->addAllowedValues(array(
-            'size' => array(null, 'sm', 'lg'),
-            'layout' => array(null, 'inline', 'horizontal'),
-            'layout_col_size' => array('xs', 'sm', 'md', 'lg'),
-            'validation_state' => array(null, 'success', 'warning', 'error'),
-        ));
+        $resolver->addAllowedValues('size', array(null, 'sm', 'lg'));
+        $resolver->addAllowedValues('layout', array(null, 'inline', 'horizontal'));
+        $resolver->addAllowedValues('layout_col_size', array('xs', 'sm', 'md', 'lg'));
+        $resolver->addAllowedValues('validation_state', array(null, 'success', 'warning', 'error'));
     }
 
     /**
