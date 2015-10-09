@@ -13,10 +13,6 @@
             <tag name="form.type_extension" alias="money" />
         </service>
 
-        <service id="form.type_extension.sonatra_email" class="Sonatra\Bundle\BootstrapBundle\Form\Extension\EmailExtension">
-            <tag name="form.type_extension" alias="email" />
-        </service>
-
         <service id="form.type_extension.sonatra_url" class="Sonatra\Bundle\BootstrapBundle\Form\Extension\UrlExtension">
             <tag name="form.type_extension" alias="url" />
         </service>
