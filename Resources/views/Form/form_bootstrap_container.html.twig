@@ -9,7 +9,7 @@
         {{- block('form_control_static_value') -}}
     {%- else -%}
         {{- block('addon_start') -}}
-        {%- block form_widget_simple_before_content %}{% endblock -%}
+        {{- form_widget_simple_before_content|default('')|raw -}}
 
         {%- set form_widget_simple_block_name = form_widget_simple_block_name|default('base_form_widget_simple') -%}
         {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) -%}
@@ -18,7 +18,7 @@
         {%- endif -%}
 
         {{- block(form_widget_simple_block_name) -}}
-        {%- block form_widget_simple_after_content %}{% endblock -%}
+        {{- form_widget_simple_after_content|default('')|raw -}}
         {{- block('addon_end') -}}
     {%- endif -%}
     {{- block('help_text') -}}
