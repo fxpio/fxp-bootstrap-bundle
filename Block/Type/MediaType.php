@@ -14,6 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
+use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -48,25 +49,15 @@ class MediaType extends AbstractType
     {
         foreach ($view->children as $child) {
             if (in_array('link', $child->vars['block_prefixes']) || in_array('image', $child->vars['block_prefixes'])) {
-                $class = isset($child->vars['attr']['class']) ? $child->vars['attr']['class'] : '';
-
                 if (in_array('image', $child->vars['block_prefixes'])) {
-                    $class .= ' media-object';
+                    BlockUtil::addAttributeClass($view, 'media-object');
                 }
 
-                $class .= ' pull-'.$options['align'];
-                $class = trim($class);
-
-                $child->vars['attr']['class'] = $class;
+                BlockUtil::addAttributeClass($view, 'pull-'.$options['align']);
 
                 foreach ($child->children as $subChild) {
                     if (in_array('image', $subChild->vars['block_prefixes'])) {
-                        $subClass = isset($subChild->vars['attr']['class']) ? $subChild->vars['attr']['class'] : '';
-
-                        $subClass .= ' media-object';
-                        $subClass = trim($subClass);
-
-                        $subChild->vars['attr']['class'] = $subClass;
+                        BlockUtil::addAttributeClass($subChild, 'media-object');
                     }
                 }
             }

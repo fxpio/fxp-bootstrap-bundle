@@ -14,6 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
+use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -98,22 +99,20 @@ class NavbarType extends AbstractType
 
     protected function cleanChildren(BlockView $view)
     {
-        $class = isset($view->vars['attr']['class']) ? $view->vars['attr']['class'] : '';
-
         if (in_array('nav', $view->vars['block_prefixes'])) {
-            $view->vars['attr']['class'] = 'navbar-nav '.$class;
+            BlockUtil::addAttributeClass($view, 'navbar-nav', true);
             $view->vars['style'] = null;
         } elseif (in_array('nav_item', $view->vars['block_prefixes'])) {
             unset($view->vars['link_attr']['data-toggle']);
         } elseif (in_array('form', $view->vars['block_prefixes'])) {
-            $view->vars['attr']['class'] = 'navbar-form '.$class;
+            BlockUtil::addAttributeClass($view, 'navbar-form', true);
             $view->vars['attr']['role'] = 'search';
         } elseif (in_array('button', $view->vars['block_prefixes'])) {
-            $view->vars['attr']['class'] = $class.' navbar-button';
+            BlockUtil::addAttributeClass($view, 'navbar-button');
         } elseif (in_array('paragraph', $view->vars['block_prefixes']) || in_array('text', $view->vars['block_prefixes'])) {
-            $view->vars['attr']['class'] = 'navbar-text '.$class;
+            BlockUtil::addAttributeClass($view, 'navbar-text', true);
         } elseif (in_array('link', $view->vars['block_prefixes'])) {
-            $view->vars['attr']['class'] = 'navbar-link '.$class;
+            BlockUtil::addAttributeClass($view, 'navbar-link', true);
         }
 
         foreach ($view->children as $child) {

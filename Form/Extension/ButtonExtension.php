@@ -11,6 +11,7 @@
 
 namespace Sonatra\Bundle\BootstrapBundle\Form\Extension;
 
+use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -38,25 +39,19 @@ class ButtonExtension extends AbstractTypeExtension
      */
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
-        $class = '';
-
-        if (isset($view->vars['attr']['class'])) {
-            $class = $view->vars['attr']['class'];
-        }
-
         if ($options['block_level']) {
-            $class = 'btn-block '.$class;
+            BlockUtil::addAttributeClass($view, 'btn-block', true);
         }
 
         if (null !== $options['style']) {
-            $class = 'btn-'.$options['style'].' '.$class;
+            BlockUtil::addAttributeClass($view, 'btn-'.$options['style'], true);
         }
 
         if (null !== $options['size']) {
-            $class = 'btn-'.$options['size'].' '.$class;
+            BlockUtil::addAttributeClass($view, 'btn-'.$options['size'], true);
         }
 
-        $view->vars['attr']['class'] = trim('btn '.$class);
+        BlockUtil::addAttributeClass($view, 'btn', true);
 
         // layout
         if (null !== $view->parent && isset($view->parent->vars['layout'])) {

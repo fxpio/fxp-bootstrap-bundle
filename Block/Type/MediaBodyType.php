@@ -14,6 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
+use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 
 /**
  * Media Body Block Type.
@@ -29,12 +30,7 @@ class MediaBodyType extends AbstractType
     {
         foreach ($view->children as $child) {
             if (in_array('heading', $child->vars['block_prefixes'])) {
-                $class = isset($child->vars['attr']['class']) ? $child->vars['attr']['class'] : '';
-
-                $class .= ' media-heading';
-                $class = trim($class);
-
-                $child->vars['attr']['class'] = $class;
+                BlockUtil::addAttributeClass($view, 'media-heading');
                 $child->vars['size'] = 4;
             }
         }

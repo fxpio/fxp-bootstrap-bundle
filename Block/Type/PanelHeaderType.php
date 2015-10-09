@@ -59,10 +59,7 @@ class PanelHeaderType extends AbstractType
     {
         foreach ($view->children as $name => $child) {
             if (in_array('heading', $child->vars['block_prefixes'])) {
-                $class = isset($child->vars['attr']['class']) ? $child->vars['attr']['class'] : '';
-                $class .= ' panel-title';
-
-                $child->vars['attr']['class'] = trim($class);
+                BlockUtil::addAttributeClass($view, 'panel-title');
 
                 $view->vars['panel_heading'] = $child;
                 unset($view->children[$name]);

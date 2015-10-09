@@ -14,6 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
+use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -40,10 +41,7 @@ class ModalHeaderType extends AbstractType
     {
         foreach ($view->children as $child) {
             if (in_array('heading', $child->vars['block_prefixes'])) {
-                $class = isset($child->vars['attr']['class']) ? $child->vars['attr']['class'] : '';
-                $class .= ' modal-title';
-
-                $child->vars['attr']['class'] = trim($class);
+                BlockUtil::addAttributeClass($view, 'modal-title');
                 $child->vars['size'] = 4;
             }
         }

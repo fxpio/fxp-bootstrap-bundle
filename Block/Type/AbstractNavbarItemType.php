@@ -14,6 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
+use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -29,9 +30,7 @@ abstract class AbstractNavbarItemType extends AbstractType
     public function finishView(BlockView $view, BlockInterface $block, array $options)
     {
         if ($options['align']) {
-            $class = isset($view->vars['attr']['class']) ? $view->vars['attr']['class'] : '';
-
-            $view->vars['attr']['class'] = $class.' navbar-'.$options['align'];
+            BlockUtil::addAttributeClass($view, 'navbar-'.$options['align']);
         }
     }
 
