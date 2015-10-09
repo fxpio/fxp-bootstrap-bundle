@@ -12,7 +12,7 @@
         {{- form_widget_simple_before_content|default('')|raw -}}
 
         {%- set form_widget_simple_block_name = form_widget_simple_block_name|default('base_form_widget_simple') -%}
-        {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) -%}
+        {%- set attr = attr|merge({'class': ('form-control ' ~ attr.class|default(''))|trim}) -%}
         {%- if size is not empty -%}
             {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' input-' ~ size)|trim}) -%}
         {%- endif -%}
