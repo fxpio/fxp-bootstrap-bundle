@@ -27,19 +27,11 @@ class UrlExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $prependNormalizers = function (Options $options, $value) {
-            if (null === $value) {
-                $value = $options['default_protocol'].'://';
-            }
-
-            if ('' === $value) {
-                $value = null;
-            }
-
-            return $value;
-        };
-
-        $resolver->setNormalizer('prepend', $prependNormalizers);
+        $resolver->setDefaults(array(
+            'prepend' => function (Options $options) {
+                return $options['default_protocol'].'://';
+            },
+        ));
     }
 
     /**
