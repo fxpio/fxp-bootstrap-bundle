@@ -5,6 +5,7 @@
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
     {%- endif -%}
 
+    {{- block('addon_start') -}}
     {{ block('base_collection_widget') }}
 
     {%- if static_control and value is empty -%}
@@ -16,6 +17,7 @@
     {%- endif -%}
 
     {{- block('help_text') -}}
+    {{- block('addon_end') -}}
 
     {%- if layout|default(null) == 'horizontal' -%}
         </div>

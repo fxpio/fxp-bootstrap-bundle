@@ -11,6 +11,7 @@
         {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' input-' ~ size)|trim}) -%}
     {%- endif -%}
 
+    {{- block('addon_start') -}}
     {%- if static_control -%}
         {{- block('choice_widget_collapsed_static_control') -}}
     {%- else -%}
@@ -18,6 +19,7 @@
     {%- endif -%}
 
     {{- block('help_text') -}}
+    {{- block('addon_end') -}}
 
     {%- if layout|default(null) == 'horizontal' -%}
         </div>
@@ -82,6 +84,7 @@
 {% block choice_widget_expanded -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
 
+    {{- block('addon_start') -}}
     {%- if static_control -%}
         {{- block('choice_widget_collapsed') -}}
     {%- else -%}
@@ -93,4 +96,5 @@
         {{- block('base_choice_widget_expanded') -}}
         {{- block('help_text') -}}
     {%- endif -%}
+    {{- block('addon_end') -}}
 {%- endblock choice_widget_expanded %}

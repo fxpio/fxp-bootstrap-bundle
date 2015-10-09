@@ -17,6 +17,7 @@
         <div class="col-{{ layout_col_size }}-offset-{{ layout_col_label }} col-{{ layout_col_size }}-{{ layout_col_control }}">
     {%- endif -%}
 
+    {{- block('addon_start') -}}
     {%- if inline == false -%}
         <div class="radio">
     {%- endif -%}
@@ -28,6 +29,7 @@
     {%- endif -%}
 
     {{- block('help_text') -}}
+    {{- block('addon_end') -}}
 
     {%- if layout|default(null) == 'horizontal' -%}
         </div>
