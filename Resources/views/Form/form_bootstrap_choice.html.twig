@@ -85,6 +85,7 @@
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
 
     {{- block('addon_start') -}}
+    {{- choice_widget_expanded_before_content|default('')|raw -}}
     {%- if static_control -%}
         {{- block('choice_widget_collapsed') -}}
     {%- else -%}
@@ -94,6 +95,7 @@
         {%- endif -%}
 
         {{- block('base_choice_widget_expanded') -}}
+        {{- choice_widget_expanded_after_content|default('')|raw -}}
         {{- block('help_text') -}}
     {%- endif -%}
     {{- block('addon_end') -}}
