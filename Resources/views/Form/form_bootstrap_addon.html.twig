@@ -13,7 +13,7 @@
     {%- set prepend_attr = prepend_attr|default({})|merge({'class': ('input-group-' ~ prepend_type ~ ' ' ~ (prepend_attr.class|default('')))|trim}) -%}
 
     {%- if prepend_string is defined -%}
-        <span {% for attrname, attrvalue in prepend_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ prepend_string }}</span>
+        <span {% for attrname, attrvalue in prepend_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ prepend_string|raw }}</span>
     {%- endif -%}
 
     {%- if prepend_form is defined -%}
@@ -31,7 +31,7 @@
     {%- set append_attr = append_attr|default({})|merge({'class': ('input-group-' ~ append_type ~ ' ' ~ (append_attr.class|default('')))|trim}) -%}
 
     {%- if append_string is defined -%}
-        <span {% for attrname, attrvalue in append_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ append_string }}</span>
+        <span {% for attrname, attrvalue in append_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ append_string|raw }}</span>
     {%- endif -%}
 
     {%- if append_form is defined -%}
