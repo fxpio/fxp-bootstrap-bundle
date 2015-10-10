@@ -6,6 +6,7 @@
     {%- endif -%}
 
     {{- block('addon_start') -}}
+    {{- collection_widget_before_content|default('')|raw -}}
     {{ block('base_collection_widget') }}
 
     {%- if static_control and value is empty -%}
@@ -17,6 +18,7 @@
     {%- endif -%}
 
     {{- block('help_text') -}}
+    {{- collection_widget_after_content|default('')|raw -}}
     {{- block('addon_end') -}}
 
     {%- if layout|default(null) == 'horizontal' -%}
