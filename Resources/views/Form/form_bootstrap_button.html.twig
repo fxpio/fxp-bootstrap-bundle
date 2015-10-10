@@ -14,7 +14,9 @@
             <span class="glyphicon glyphicon-{{ glyphicon }}"></span>
             {{- " " -}}
         {%- endif -%}
+        {{- button_widget_before_content|default('')|raw -}}
         {{- label -}}
+        {{- button_widget_after_content|default('')|raw -}}
     </button>
 
     {%- if layout|default(null) == 'horizontal' and type|default('text') != 'hidden' -%}
