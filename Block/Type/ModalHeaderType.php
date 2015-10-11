@@ -41,7 +41,7 @@ class ModalHeaderType extends AbstractType
     {
         foreach ($view->children as $child) {
             if (in_array('heading', $child->vars['block_prefixes'])) {
-                BlockUtil::addAttributeClass($view, 'modal-title');
+                BlockUtil::addAttributeClass($child, 'modal-title');
                 $child->vars['size'] = 4;
             }
         }

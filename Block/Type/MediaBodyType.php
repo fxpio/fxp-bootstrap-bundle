@@ -30,7 +30,7 @@ class MediaBodyType extends AbstractType
     {
         foreach ($view->children as $child) {
             if (in_array('heading', $child->vars['block_prefixes'])) {
-                BlockUtil::addAttributeClass($view, 'media-heading');
+                BlockUtil::addAttributeClass($child, 'media-heading');
                 $child->vars['size'] = 4;
             }
         }
