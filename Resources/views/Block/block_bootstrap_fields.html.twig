@@ -90,7 +90,9 @@
     {%- if layout is defined and layout == 'horizontal' -%}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
     {%- endif -%}
+    {{- collection_widget_before_content|default('')|raw -}}
     {{- block('base_collection_widget') -}}
+    {{- collection_widget_after_content|default('')|raw -}}
     {%- if layout is defined and layout == 'horizontal' -%}
         </div>
     {%- endif -%}
