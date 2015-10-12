@@ -3,11 +3,13 @@
     {%- if layout is defined and layout == 'horizontal' -%}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
     {%- endif -%}
+    {{- block_widget_simple_before_content|default('')|raw -}}
 
     {%- if block.parent.vars.row|default(false) -%}
         {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' block-control')|trim}) -%}
     {%- endif -%}
     {{- block('base_block_widget_simple') -}}
+    {{- block_widget_simple_after_content|default('')|raw -}}
 
     {%- if layout is defined and layout == 'horizontal' -%}
         </div>
