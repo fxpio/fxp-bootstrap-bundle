@@ -27,9 +27,11 @@
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
     {%- endif -%}
 
+    {{- checkbox_widget_before_content|default('')|raw -}}
     <div class="block_checkbox{% if block.parent.vars.row|default(false) %} block-control{% endif %}">
         {{ block('checkbox_widget_content') }}
     </div>
+    {{- checkbox_widget_after_content|default('')|raw -}}
 
     {%- if layout is defined and layout == 'horizontal' -%}
         </div>
