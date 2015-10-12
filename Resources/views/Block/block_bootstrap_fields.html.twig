@@ -7,7 +7,9 @@
     {%- if block.parent.vars.row|default(false) -%}
         {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' block-control')|trim}) -%}
     {%- endif -%}
+    {{- choice_widget_before_content|default('')|raw -}}
     {{- block('base_choice_widget') -}}
+    {{- choice_widget_after_content|default('')|raw -}}
 
     {%- if layout is defined and layout == 'horizontal' -%}
         </div>
