@@ -60,9 +60,11 @@
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
     {%- endif -%}
 
+    {{- radio_widget_before_content|default('')|raw -}}
     <div class="block_radio{% if block.parent.vars.row|default(false) %} block-control{% endif %}">
         {{- block('radio_widget_content') -}}
     </div>
+    {{- radio_widget_after_content|default('')|raw -}}
 
     {%- if layout is defined and layout == 'horizontal' -%}
         </div>
