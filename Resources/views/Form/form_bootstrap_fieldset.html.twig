@@ -13,10 +13,12 @@
 
             <legend{% for attrname, attrvalue in legend_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ legend }}</legend>
         {%- endif -%}
-        {%- if form.parent is empty -%}
+        {%- if form.parent is empty and (form.vars.skip_errors is not defined or form.vars.skip_errors is same as(false)) -%}
             {{- form_errors(form) -}}
         {%- endif -%}
         {{- block('form_rows') -}}
-        {{- form_rest(form) -}}
+        {%- if form.parent is empty and (form.vars.skip_rest is not defined or form.vars.skip_rest is same as(false)) -%}
+            {{- form_rest(form) -}}
+        {%- endif -%}
     </fieldset>
 {%- endblock fieldset_widget %}
