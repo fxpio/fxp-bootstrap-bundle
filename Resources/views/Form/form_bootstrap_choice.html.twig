@@ -11,6 +11,8 @@
         {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' input-' ~ size)|trim}) -%}
     {%- endif -%}
 
+
+
     {{- block('addon_start') -}}
     {%- if static_control -%}
         {{- block('choice_widget_collapsed_static_control') -}}
@@ -19,6 +21,7 @@
     {%- endif -%}
 
     {{- block('help_text') -}}
+    {{- form_errors(form) -}}
     {{- block('addon_end') -}}
 
     {%- if layout|default(null) == 'horizontal' -%}
@@ -97,6 +100,7 @@
         {{- block('base_choice_widget_expanded') -}}
         {{- choice_widget_expanded_after_content|default('')|raw -}}
         {{- block('help_text') -}}
+        {{- form_errors(form) -}}
     {%- endif -%}
     {{- block('addon_end') -}}
 {%- endblock choice_widget_expanded %}

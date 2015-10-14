@@ -19,7 +19,7 @@
 
     {{- block('addon_start') -}}
     {%- if inline == false -%}
-        <div class="radio{% if errors|length > 0 %} has-error{% endif %}">
+        <div class="radio{% if addon_attr is not defined and errors|length > 0 %} has-error{% endif %}">
     {%- endif -%}
 
     {{- block('radio_widget_content') -}}
