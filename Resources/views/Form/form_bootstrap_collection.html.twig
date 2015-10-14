@@ -14,10 +14,13 @@
     {%- endif -%}
 
     {%- if btn_add is defined and not(static_control) -%}
+        <div>
         {{- form_widget(btn_add) -}}
+        </div>
     {%- endif -%}
 
     {{- block('help_text') -}}
+    {{- form_errors(form) -}}
     {{- collection_widget_after_content|default('')|raw -}}
     {{- block('addon_end') -}}
 

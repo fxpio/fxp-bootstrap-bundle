@@ -32,9 +32,6 @@
     {%- if wrapped is not defined or wrapped is same as(true) -%}
     <div {{ block('widget_container_attributes') }}>
     {%- endif -%}
-        {%- if form.parent is empty and (form.vars.skip_errors is not defined or form.vars.skip_errors is same as(false)) -%}
-            {{ form_errors(form) }}
-        {%- endif -%}
         {{- block('form_rows') -}}
         {%- if form.parent is empty and (form.vars.skip_rest is not defined or form.vars.skip_rest is same as(false)) -%}
             {{- form_rest(form) -}}
@@ -86,7 +83,6 @@
     <div {% for attrname, attrvalue in row_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
         {{- form_label(form) -}}
         {{- form_widget(form) -}}
-        {{- form_errors(form) -}}
     </div>
 {%- endblock form_row %}
 

@@ -89,7 +89,16 @@ class CollectionExtension extends AbstractTypeExtension
 
         $btnAddNormalizer = function (Options $options, $value) {
             if (is_array($value)) {
-                $value = array_merge(array('label' => '', 'glyphicon' => 'plus', 'size' => 'xs', 'style' => 'default'), $value);
+                $value = array_merge(
+                    array(
+                        'label' => '',
+                        'glyphicon' => 'plus',
+                        'size' => 'xs',
+                        'style' => 'default',
+                        'attr' => array('class' => 'btn-add')
+                    ),
+                    $value
+                );
             }
 
             return $value;
