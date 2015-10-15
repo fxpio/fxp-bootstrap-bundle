@@ -90,7 +90,7 @@
 {% block form_label -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
 
-    {%- set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' control-label')|trim}) -%}
+    {%- set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' form-label')|trim}) -%}
 
     {%- if display_label == false -%}
         {%- set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' sr-only')|trim}) -%}
