@@ -65,6 +65,7 @@ class AffixExtension extends AbstractTypeExtension
                 'spy' => 'affix',
                 'offset_top' => null,
                 'offset_bottom' => null,
+                'target' => null,
             ));
 
             $affixResolver->setAllowedTypes('spy', 'string');
