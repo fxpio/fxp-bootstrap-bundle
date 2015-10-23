@@ -545,6 +545,11 @@ class DataSource implements DataSourceInterface
             // loop in cells
             /* @var BlockInterface $column */
             foreach ($this->getColumns() as $column) {
+                if ($column->hasOption('enabled') && false === $column->getOption('enabled')) {
+                    continue;
+                }
+
+
                 if (count($column->getOption('attr')) > 0) {
                     $row['_attr_columns'][$column->getName()] = $column->getOption('attr');
                 }
