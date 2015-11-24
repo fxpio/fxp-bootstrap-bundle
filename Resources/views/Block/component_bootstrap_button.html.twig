@@ -97,7 +97,7 @@
     {%- endif -%}
 
     {%- if split is not defined -%}
-        {{- label -}}
+        {{- label|block_trans({}, translation_domain) -}}
     {%- endif -%}
 
     {%- if append is defined -%}

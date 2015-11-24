@@ -44,7 +44,7 @@
         {%- endfor -%}
         {%- if label is not empty or caption is not empty -%}
             <div class="carousel-caption">
-                {%- if label is not empty %}<h3>{{ label }}</h3>{% endif -%}
+                {%- if label is not empty %}<h3>{{ label|block_trans({}, translation_domain) }}</h3>{% endif -%}
                 {%- if caption is not empty %}<p>{{ caption }}</p>{% endif -%}
             </div>
         {%- endif -%}

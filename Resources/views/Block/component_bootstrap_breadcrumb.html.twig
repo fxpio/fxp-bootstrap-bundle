@@ -16,7 +16,7 @@
         {%- if not(active) -%}
             <a{% for attrname, attrvalue in link_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
         {%- endif -%}
-        {{- label -}}
+        {{- label|block_trans({}, translation_domain) -}}
         {{- value|raw -}}
         {{- block('block_rows') -}}
         {%- if not(active) -%}

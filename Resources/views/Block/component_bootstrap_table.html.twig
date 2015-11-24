@@ -38,7 +38,9 @@
                             {%- set data_attr = rowData._attr_columns[colBlock.vars.name]|default([]) -%}
                             {%- set data_attr = data_attr|merge({'data-col-name': colBlock.vars.name}) -%}
 
-                            <td{% for attrname, attrvalue in data_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ rowData[colBlock.vars.name]|default(null)|raw }}</td>
+                            <td{% for attrname, attrvalue in data_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+                                {{- rowData[colBlock.vars.name]|default(null)|raw -}}
+                            </td>
                         {%- endfor -%}
                     </tr>
                 {%- endfor -%}
@@ -62,7 +64,7 @@
 
 {% block table_caption_widget -%}
     <caption{{ block('widget_container_attributes') }}>
-        {{- label -}}
+        {{- label|block_trans({}, translation_domain) -}}
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </caption>
@@ -96,7 +98,7 @@
     {%- set label_attr = label_attr|merge({'data-col-name': name}) -%}
 
     <th{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-        {{- label -}}
+        {{- label|block_trans({}, translation_domain) -}}
         {{- block('block_rows') -}}
     </th>
 {%- endblock table_column_label %}
@@ -108,7 +110,7 @@
 
 {% block table_row_widget -%}
     <tr{{ block('widget_container_attributes') }}>
-        {{- label -}}
+        {{- label|block_trans({}, translation_domain) -}}
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </tr>
@@ -124,7 +126,7 @@
     {%- endif -%}
 
     <td{{ block('widget_container_attributes') }}>
-        {{- label -}}
+        {{- label|block_trans({}, translation_domain) -}}
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </td>
@@ -140,7 +142,7 @@
     {%- endif -%}
 
     <th{{ block('widget_container_attributes') }}>
-        {{- label -}}
+        {{- label|block_trans({}, translation_domain) -}}
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </th>

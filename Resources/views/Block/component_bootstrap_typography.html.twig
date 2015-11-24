@@ -2,7 +2,7 @@
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
 
     <h{{ size }}{{ block('widget_container_attributes') }}>
-        {{- label -}}
+        {{- label|block_trans({}, translation_domain) -}}
         {%- if secondary is not null -%}
             <small>{{ secondary }}</small>
         {%- endif -%}
@@ -36,7 +36,7 @@
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
 
     {%- if label is not null -%}
-        {%- set attr = attr|merge({'title': label}) -%}
+        {%- set attr = attr|merge({'title': label|block_trans({}, translation_domain)}) -%}
     {%- endif -%}
     {%- if initialism -%}
         {%- set attr = attr|merge({'class': ('initialism ' ~ attr.class|default(''))|trim}) -%}
@@ -52,8 +52,8 @@
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
 
     <address{{ block('widget_container_attributes') }}>
-        {%- if label is not null -%}
-            <strong>{{- label -}}</strong><br>
+        {%- if label is not empty -%}
+            <strong>{{- label|block_trans({}, translation_domain) -}}</strong><br>
         {%- endif -%}
         {{- value|raw -}}
         {{- block('block_rows') -}}
@@ -114,10 +114,10 @@
     {%- endif -%}
 
     {%- if 'dd' == tag -%}
-        <dt>{{- label -}}</dt>
+        <dt>{{- label|block_trans({}, translation_domain) -}}</dt>
     {%- endif -%}
     <{{ tag }}{{ block('widget_container_attributes') }}>
-        {%- if 'li' == tag or is_link|default(false) %}{{- label -}}{% endif -%}
+        {%- if 'li' == tag or is_link|default(false) %}{{- label|block_trans({}, translation_domain) -}}{% endif -%}
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </{{ tag }}>

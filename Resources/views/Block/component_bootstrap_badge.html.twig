@@ -5,7 +5,7 @@
         {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' pull-' ~ align)|trim}) -%}
     {%- endif -%}
     <span{{ block('widget_container_attributes') }}>
-        {{- label -}}
+        {{- label|block_trans({}, translation_domain) -}}
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </span>

@@ -35,7 +35,7 @@
 
     <li{{ block('widget_container_attributes') }}>
         <a{% for attrname, attrvalue in link_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-        {{- label -}}
+        {{- label|block_trans({}, translation_domain) -}}
         {{- value|raw -}}
         {{- block('block_rows') -}}
 

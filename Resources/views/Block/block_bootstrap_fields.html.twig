@@ -114,7 +114,7 @@
             {%- if layout is defined and layout == 'horizontal' -%}
                 {%- set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' col-' ~ layout_col_size ~ '-' ~ (layout_col_label + layout_col_control))|trim}) -%}
             {%- endif -%}
-            <legend{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label }}</legend>
+            <legend{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|block_trans({}, translation_domain) }}</legend>
         {%- endif -%}
         {{- block('block_rows') -}}
     </fieldset>

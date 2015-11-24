@@ -26,8 +26,8 @@
     {%- endif -%}
 
     <ul{{ block('widget_container_attributes') }}>
-        <li{% for attrname, attrvalue in previous_wrap_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}><a{% for attrname, attrvalue in previous_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ previous_label }}</a></li>
-        <li{% for attrname, attrvalue in next_wrap_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}><a{% for attrname, attrvalue in next_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ next_label }}</a></li>
+        <li{% for attrname, attrvalue in previous_wrap_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}><a{% for attrname, attrvalue in previous_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ previous_label|block_trans({}, translation_domain) }}</a></li>
+        <li{% for attrname, attrvalue in next_wrap_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}><a{% for attrname, attrvalue in next_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ next_label|block_trans({}, translation_domain) }}</a></li>
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </ul>
@@ -61,13 +61,13 @@
     <li{{ block('widget_container_attributes') }}>
         {%- if disabled -%}
             <span>
-                {{- label|raw -}}
+                {{- label|block_trans({}, translation_domain)|raw -}}
                 {{- value|raw -}}
                 {{- block('block_rows') -}}
             </span>
         {%- else -%}
             <a{% for attrname, attrvalue in link_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-                {{- label|raw -}}
+                {{- label|block_trans({}, translation_domain)|raw -}}
                 {{- value|raw -}}
                 {{- block('block_rows') -}}
             </a>
