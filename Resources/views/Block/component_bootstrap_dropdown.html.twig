@@ -49,7 +49,7 @@
 
 {% block dropdown_header_widget -%}
     {%- if divider -%}
-        {{- sblock('dropdown_divider') -}}
+        {%- sblock 'dropdown_divider' :-%}
     {%- endif -%}
 
     {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' dropdown-header')|trim, role:'presentation'}) -%}
