@@ -15,7 +15,11 @@
             {{- " " -}}
         {%- endif -%}
         {{- button_widget_before_content|default('')|raw -}}
-        {{- label -}}
+        {%- if translation_domain is not same as(false) -%}
+            {{- label|trans({}, translation_domain) -}}
+        {%- else -%}
+            {{- label -}}
+        {%- endif -%}
         {{- button_widget_after_content|default('')|raw -}}
     </button>
 
