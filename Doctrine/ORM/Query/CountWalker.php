@@ -49,10 +49,6 @@ class CountWalker extends TreeWalkerAdapter
             }
         }
 
-        if (count($rootComponents) > 1) {
-            throw new \RuntimeException('Cannot count query which selects two FROM components, cannot make distinction');
-        }
-
         $root = reset($rootComponents);
         $parentName = key($root);
         $parent = current($root);
