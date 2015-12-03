@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "668adc90336a41c8f88b852f9658a246",
-    "content-hash": "41c3b7f4aa13bc397cfd01b5730e98e3",
+    "hash": "07bbe20899d1d0ca346f59ae5fbc887a",
+    "content-hash": "f457c015ed833353efe726720909e233",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -411,17 +411,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/francoispluchino/fxp-require-asset.git",
-                "reference": "0d6148ced5932c309a58939802c2e4522f7cfb15"
+                "reference": "748e65b56ff20e34e71ee578e9b9ca313c043a07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/francoispluchino/fxp-require-asset/zipball/0d6148ced5932c309a58939802c2e4522f7cfb15",
-                "reference": "0d6148ced5932c309a58939802c2e4522f7cfb15",
+                "url": "https://api.github.com/repos/francoispluchino/fxp-require-asset/zipball/748e65b56ff20e34e71ee578e9b9ca313c043a07",
+                "reference": "748e65b56ff20e34e71ee578e9b9ca313c043a07",
                 "shasum": ""
             },
             "require": {
                 "kriswallsmith/assetic": "~1.3",
-                "php": ">=5.3.3",
+                "php": ">=5.5.0",
                 "symfony/config": "~2.8",
                 "symfony/filesystem": "~2.8",
                 "symfony/finder": "~2.8"
@@ -465,7 +465,7 @@
                 "ui",
                 "user interface"
             ],
-            "time": "2015-12-03 17:40:53"
+            "time": "2015-12-03 18:44:29"
         },
         {
             "name": "fxp/require-asset-bundle",
@@ -473,17 +473,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/francoispluchino/FxpRequireAssetBundle.git",
-                "reference": "5a6c21849def70e133b0111f2f041b38f6d72032"
+                "reference": "5e84a53834a5bdfea4136fac386458d5fbaaffc0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/francoispluchino/FxpRequireAssetBundle/zipball/5a6c21849def70e133b0111f2f041b38f6d72032",
-                "reference": "5a6c21849def70e133b0111f2f041b38f6d72032",
+                "url": "https://api.github.com/repos/francoispluchino/FxpRequireAssetBundle/zipball/5e84a53834a5bdfea4136fac386458d5fbaaffc0",
+                "reference": "5e84a53834a5bdfea4136fac386458d5fbaaffc0",
                 "shasum": ""
             },
             "require": {
                 "fxp/require-asset": "1.0.*@dev",
-                "php": ">=5.3.3",
+                "php": ">=5.5.0",
                 "symfony/assetic-bundle": "~2.7",
                 "symfony/framework-bundle": "~2.8",
                 "symfony/twig-bundle": "~2.8"
@@ -526,7 +526,7 @@
                 "ui",
                 "user interface"
             ],
-            "time": "2015-12-03 17:54:19"
+            "time": "2015-12-03 18:48:24"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -697,16 +697,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonatra/SonatraBlockBundle.git",
-                "reference": "61bc9f4dad6c567c1a1f837ffe809046872b8c67"
+                "reference": "2c7820b7938d150963989f67a2f26f343e03fa9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonatra/SonatraBlockBundle/zipball/61bc9f4dad6c567c1a1f837ffe809046872b8c67",
-                "reference": "61bc9f4dad6c567c1a1f837ffe809046872b8c67",
+                "url": "https://api.github.com/repos/sonatra/SonatraBlockBundle/zipball/2c7820b7938d150963989f67a2f26f343e03fa9f",
+                "reference": "2c7820b7938d150963989f67a2f26f343e03fa9f",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4",
+                "php": ">=5.5.0",
                 "symfony/doctrine-bridge": "~2.8",
                 "symfony/form": "~2.8",
                 "symfony/framework-bundle": "~2.8",
@@ -748,7 +748,7 @@
                 "ui",
                 "user interface"
             ],
-            "time": "2015-12-03 17:49:39"
+            "time": "2015-12-03 18:50:34"
         },
         {
             "name": "symfony/asset",
@@ -3375,7 +3375,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.4"
+        "php": ">=5.5.0"
     },
     "platform-dev": []
 }
