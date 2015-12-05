@@ -135,7 +135,7 @@ class CollectionExtension extends AbstractTypeExtension
         };
 
         $resolver->setNormalizer('btn_add', $btnAddNormalizer);
-        $resolver->setNormalizer('options', $optionsNormalizer);
+        $resolver->setNormalizer('entry_options', $optionsNormalizer);
     }
 
     /**
