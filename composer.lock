@@ -213,16 +213,16 @@
         },
         {
             "name": "doctrine/common",
-            "version": "v2.5.1",
+            "version": "v2.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "0009b8f0d4a917aabc971fb089eba80e872f83f9"
+                "reference": "311001fd9865a4d0d59efff4eac6d7dcb3f5270c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/0009b8f0d4a917aabc971fb089eba80e872f83f9",
-                "reference": "0009b8f0d4a917aabc971fb089eba80e872f83f9",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/311001fd9865a4d0d59efff4eac6d7dcb3f5270c",
+                "reference": "311001fd9865a4d0d59efff4eac6d7dcb3f5270c",
                 "shasum": ""
             },
             "require": {
@@ -239,7 +239,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6.x-dev"
+                    "dev-master": "2.5.x-dev"
                 }
             },
             "autoload": {
@@ -282,7 +282,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2015-08-31 13:00:22"
+            "time": "2015-12-04 12:49:42"
         },
         {
             "name": "doctrine/inflector",
@@ -697,12 +697,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonatra/SonatraBlockBundle.git",
-                "reference": "2c7820b7938d150963989f67a2f26f343e03fa9f"
+                "reference": "0493b4ac2705fd443d856c56e0064c9d4cad0928"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonatra/SonatraBlockBundle/zipball/2c7820b7938d150963989f67a2f26f343e03fa9f",
-                "reference": "2c7820b7938d150963989f67a2f26f343e03fa9f",
+                "url": "https://api.github.com/repos/sonatra/SonatraBlockBundle/zipball/0493b4ac2705fd443d856c56e0064c9d4cad0928",
+                "reference": "0493b4ac2705fd443d856c56e0064c9d4cad0928",
                 "shasum": ""
             },
             "require": {
@@ -748,7 +748,7 @@
                 "ui",
                 "user interface"
             ],
-            "time": "2015-12-03 18:50:34"
+            "time": "2015-12-05 15:23:24"
         },
         {
             "name": "symfony/asset",
