@@ -55,7 +55,7 @@ class BlockCollapseType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'block_collapse';
     }

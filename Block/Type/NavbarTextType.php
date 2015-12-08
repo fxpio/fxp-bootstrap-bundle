@@ -23,13 +23,13 @@ class NavbarTextType extends AbstractNavbarItemType
      */
     public function getParent()
     {
-        return 'paragraph';
+        return ParagraphType::class;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'navbar_text';
     }

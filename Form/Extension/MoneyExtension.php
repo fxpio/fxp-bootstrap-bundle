@@ -12,6 +12,7 @@
 namespace Sonatra\Bundle\BootstrapBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -58,7 +59,7 @@ class MoneyExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'money';
+        return MoneyType::class;
     }
 
     /**

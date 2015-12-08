@@ -12,6 +12,7 @@
 namespace Sonatra\Bundle\BootstrapBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\Options;
 
@@ -39,6 +40,6 @@ class UrlExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'url';
+        return UrlType::class;
     }
 }

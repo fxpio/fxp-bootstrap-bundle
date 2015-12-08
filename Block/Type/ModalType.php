@@ -17,6 +17,7 @@ use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Sonatra\Bundle\BlockBundle\Block\Exception\InvalidConfigurationException;
+use Sonatra\Bundle\BlockBundle\Block\Util\StringUtil;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -41,10 +42,10 @@ class ModalType extends AbstractType
      */
     public function addChild(BlockInterface $child, BlockInterface $block, array $options)
     {
-        if (BlockUtil::isValidBlock('modal_header', $child)) {
+        if (BlockUtil::isValidBlock(ModalHeaderType::class, $child)) {
             if ($block->getAttribute('has_header')) {
                 $msg = 'The modal block "%s" has already modal header. Removes the label option of the modal block.';
-                throw new InvalidConfigurationException(sprintf($msg, $block->getName()));
+                throw new InvalidConfigurationException(sprintf($msg, StringUtil::fqcnToBlockPrefix(get_class($block->getConfig()->getType()->getInnerType()), true)));
             }
 
             $block->setAttribute('has_header', true);
@@ -56,7 +57,7 @@ class ModalType extends AbstractType
      */
     public function removeChild(BlockInterface $child, BlockInterface $block, array $options)
     {
-        if (BlockUtil::isValidBlock('modal_header', $child)) {
+        if (BlockUtil::isValidBlock(ModalHeaderType::class, $child)) {
             $block->setAttribute('has_header', false);
         }
     }
@@ -113,7 +114,7 @@ class ModalType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'modal';
     }

@@ -23,13 +23,13 @@ class NavbarNavType extends AbstractNavbarItemType
      */
     public function getParent()
     {
-        return 'nav';
+        return NavType::class;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'navbar_nav';
     }

@@ -51,7 +51,7 @@ class TableHeaderCellType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'table_header_cell';
     }

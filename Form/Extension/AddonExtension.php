@@ -13,6 +13,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Form\Extension;
 
 use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -95,7 +96,7 @@ class AddonExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'form';
+        return FormType::class;
     }
 
     /**

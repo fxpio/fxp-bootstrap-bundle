@@ -62,7 +62,7 @@ class ModalHeaderType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'modal_header';
     }

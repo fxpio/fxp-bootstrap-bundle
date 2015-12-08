@@ -15,6 +15,10 @@ use Sonatra\Bundle\BlockBundle\Block\AbstractTypeExtension;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
+use Sonatra\Bundle\BootstrapBundle\Block\Type\HeadingType;
+use Sonatra\Bundle\BootstrapBundle\Block\Type\PanelGroupType;
+use Sonatra\Bundle\BootstrapBundle\Block\Type\PanelHeaderType;
+use Sonatra\Bundle\BootstrapBundle\Block\Type\PanelType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\Options;
 
@@ -30,13 +34,13 @@ class PanelGroupCollapseExtension extends AbstractTypeExtension
      */
     public function addChild(BlockInterface $child, BlockInterface $block, array $options)
     {
-        if ($options['collapsible'] && BlockUtil::isValidBlock('panel', $child)) {
+        if ($options['collapsible'] && BlockUtil::isValidBlock(PanelType::class, $child)) {
             /* @var BlockInterface $subChild */
             foreach ($child->all() as $subChild) {
-                if (BlockUtil::isValidBlock('panel_header', $subChild)) {
+                if (BlockUtil::isValidBlock(PanelHeaderType::class, $subChild)) {
                     /* @var BlockInterface $subSubChild */
                     foreach ($subChild->all() as $subSubChild) {
-                        if (BlockUtil::isValidBlock('heading', $subSubChild)) {
+                        if (BlockUtil::isValidBlock(HeadingType::class, $subSubChild)) {
                             foreach ($subSubChild->all() as $name => $subSubSubChild) {
                                 $subSubChild->remove($name);
                             }
@@ -115,6 +119,6 @@ class PanelGroupCollapseExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'panel_group';
+        return PanelGroupType::class;
     }
 }

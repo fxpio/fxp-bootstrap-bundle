@@ -23,7 +23,7 @@ class ButtonToolbarType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'button_toolbar';
     }

@@ -25,13 +25,13 @@ class NavbarBrandType extends AbstractType
      */
     public function getParent()
     {
-        return 'link';
+        return LinkType::class;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'navbar_brand';
     }

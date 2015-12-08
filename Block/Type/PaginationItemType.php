@@ -72,7 +72,7 @@ class PaginationItemType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'pagination_item';
     }

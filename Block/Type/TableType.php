@@ -81,7 +81,7 @@ class TableType extends AbstractType
      */
     public function addChild(BlockInterface $child, BlockInterface $block, array $options)
     {
-        if (BlockUtil::isValidBlock('table_header', $child)) {
+        if (BlockUtil::isValidBlock(TableHeaderType::class, $child)) {
             if ($block->has('_header')) {
                 $block->remove('_header');
             }
@@ -182,7 +182,7 @@ class TableType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'table';
     }
@@ -196,7 +196,7 @@ class TableType extends AbstractType
      */
     protected function isColumn(ResolvedBlockTypeInterface $type)
     {
-        if ('table_column' === $type->getName()) {
+        if ('table_column' === $type->getBlockPrefix()) {
             return true;
         }
 

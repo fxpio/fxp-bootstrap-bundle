@@ -14,6 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Extension;
 use Sonatra\Bundle\BlockBundle\Block\AbstractTypeExtension;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
+use Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\ObjectType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -83,6 +84,6 @@ class LayoutExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'object';
+        return ObjectType::class;
     }
 }

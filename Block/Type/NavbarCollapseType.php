@@ -35,7 +35,7 @@ class NavbarCollapseType extends AbstractNavbarItemType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'navbar_collapse';
     }

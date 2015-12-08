@@ -72,7 +72,7 @@ class ProgressBarType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'progress_bar';
     }

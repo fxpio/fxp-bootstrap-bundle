@@ -549,7 +549,6 @@ class DataSource implements DataSourceInterface
                     continue;
                 }
 
-
                 if (count($column->getOption('attr')) > 0) {
                     $row['_attr_columns'][$column->getName()] = $column->getOption('attr');
                 }

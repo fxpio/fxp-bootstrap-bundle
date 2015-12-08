@@ -50,7 +50,7 @@ class BadgeType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'badge';
     }

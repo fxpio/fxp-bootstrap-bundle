@@ -53,7 +53,7 @@ class TabContentType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'tab_content';
     }

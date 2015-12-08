@@ -14,6 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Extension;
 use Sonatra\Bundle\BlockBundle\Block\AbstractTypeExtension;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
+use Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\RepeatedType;
 use Sonatra\Bundle\BootstrapBundle\Block\Common\ConfigLayout;
 
 /**
@@ -44,6 +45,6 @@ class RepeatedExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'repeated';
+        return RepeatedType::class;
     }
 }

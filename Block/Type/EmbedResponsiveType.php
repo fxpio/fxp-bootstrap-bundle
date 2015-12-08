@@ -50,7 +50,7 @@ class EmbedResponsiveType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'embed_responsive';
     }

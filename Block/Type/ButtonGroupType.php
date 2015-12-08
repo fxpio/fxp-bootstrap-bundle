@@ -56,7 +56,7 @@ class ButtonGroupType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'button_group';
     }

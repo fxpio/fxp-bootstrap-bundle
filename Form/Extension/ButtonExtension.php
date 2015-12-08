@@ -13,6 +13,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Form\Extension;
 
 use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -93,6 +94,6 @@ class ButtonExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'button';
+        return ButtonType::class;
     }
 }

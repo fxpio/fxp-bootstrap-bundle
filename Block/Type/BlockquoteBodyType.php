@@ -25,13 +25,13 @@ class BlockquoteBodyType extends AbstractType
      */
     public function getParent()
     {
-        return 'paragraph';
+        return ParagraphType::class;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'blockquote_body';
     }

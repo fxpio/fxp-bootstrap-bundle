@@ -23,7 +23,7 @@ class TableRowType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'table_row';
     }

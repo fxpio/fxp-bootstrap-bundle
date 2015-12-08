@@ -46,7 +46,7 @@ class PanelGroupType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'panel_group';
     }

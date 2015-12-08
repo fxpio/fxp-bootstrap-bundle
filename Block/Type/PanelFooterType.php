@@ -46,7 +46,7 @@ class PanelFooterType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'panel_footer';
     }

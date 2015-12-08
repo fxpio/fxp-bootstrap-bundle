@@ -13,6 +13,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Form\Extension;
 
 use Sonatra\Bundle\BootstrapBundle\Form\Common\ConfigLayout;
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 
@@ -36,6 +37,6 @@ class RepeatedExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'repeated';
+        return RepeatedType::class;
     }
 }

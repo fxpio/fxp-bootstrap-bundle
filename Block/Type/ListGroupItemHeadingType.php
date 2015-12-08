@@ -36,13 +36,13 @@ class ListGroupItemHeadingType extends AbstractType
      */
     public function getParent()
     {
-        return 'heading';
+        return HeadingType::class;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'list_group_item_heading';
     }

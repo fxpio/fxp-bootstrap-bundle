@@ -74,13 +74,13 @@ class ListGroupItemType extends AbstractType
      */
     public function getParent()
     {
-        return 'list_item';
+        return ListItemType::class;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'list_group_item';
     }

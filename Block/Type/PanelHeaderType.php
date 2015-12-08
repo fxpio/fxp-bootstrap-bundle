@@ -17,6 +17,7 @@ use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Sonatra\Bundle\BlockBundle\Block\Exception\InvalidConfigurationException;
+use Sonatra\Bundle\BlockBundle\Block\Util\StringUtil;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -44,10 +45,10 @@ class PanelHeaderType extends AbstractType
      */
     public function addChild(BlockInterface $child, BlockInterface $block, array $options)
     {
-        if (BlockUtil::isValidBlock('heading', $child)) {
+        if (BlockUtil::isValidBlock(HeadingType::class, $child)) {
             if ($block->has('_heading')) {
                 $msg = 'The panel header block "%s" has already panel title. Removes the label option of the panel header block.';
-                throw new InvalidConfigurationException(sprintf($msg, $block->getName()));
+                throw new InvalidConfigurationException(sprintf($msg, StringUtil::fqcnToBlockPrefix(get_class($block->getConfig()->getType()->getInnerType()), true)));
             }
         }
     }
@@ -84,7 +85,7 @@ class PanelHeaderType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'panel_header';
     }

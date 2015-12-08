@@ -106,7 +106,7 @@ class ColumnType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'col';
     }

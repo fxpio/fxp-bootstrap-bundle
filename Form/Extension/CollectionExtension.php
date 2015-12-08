@@ -12,6 +12,7 @@
 namespace Sonatra\Bundle\BootstrapBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
@@ -95,7 +96,7 @@ class CollectionExtension extends AbstractTypeExtension
                         'glyphicon' => 'plus',
                         'size' => 'xs',
                         'style' => 'default',
-                        'attr' => array('class' => 'btn-add')
+                        'attr' => array('class' => 'btn-add'),
                     ),
                     $value
                 );
@@ -143,6 +144,6 @@ class CollectionExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'collection';
+        return CollectionType::class;
     }
 }

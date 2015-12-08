@@ -68,7 +68,7 @@ class BreadcrumbItemType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'breadcrumb_item';
     }

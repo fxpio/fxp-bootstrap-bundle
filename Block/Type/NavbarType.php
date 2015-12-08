@@ -92,7 +92,7 @@ class NavbarType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'navbar';
     }

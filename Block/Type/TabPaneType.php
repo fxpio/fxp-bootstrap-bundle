@@ -49,7 +49,7 @@ class TabPaneType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'tab_pane';
     }

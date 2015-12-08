@@ -23,13 +23,13 @@ class NavbarLinkType extends AbstractNavbarItemType
      */
     public function getParent()
     {
-        return 'button';
+        return ButtonType::class;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'navbar_link';
     }

@@ -14,6 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
+use Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\OutputType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -50,13 +51,13 @@ class CodeType extends AbstractType
      */
     public function getParent()
     {
-        return 'output';
+        return OutputType::class;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'code';
     }

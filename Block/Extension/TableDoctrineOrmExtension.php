@@ -13,6 +13,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Extension;
 
 use Sonatra\Bundle\BlockBundle\Block\AbstractTypeExtension;
 use Sonatra\Bundle\BlockBundle\Block\BlockBuilderInterface;
+use Sonatra\Bundle\BootstrapBundle\Block\Type\TableType;
 use Sonatra\Bundle\BootstrapBundle\Doctrine\ORM\Block\DataSource\DoctrineOrmDataSource;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;
@@ -80,6 +81,6 @@ class TableDoctrineOrmExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'table';
+        return TableType::class;
     }
 }

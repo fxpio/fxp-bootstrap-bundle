@@ -11,6 +11,8 @@
 
 namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 
+use Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\FormType;
+
 /**
  * Navbar Form Block Type.
  *
@@ -23,13 +25,13 @@ class NavbarFormType extends AbstractNavbarItemType
      */
     public function getParent()
     {
-        return 'form';
+        return FormType::class;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'navbar_form';
     }

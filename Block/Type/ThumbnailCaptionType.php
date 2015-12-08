@@ -37,7 +37,7 @@ class ThumbnailCaptionType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'thumbnail_caption';
     }

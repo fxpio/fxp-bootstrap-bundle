@@ -23,7 +23,7 @@ class ModalFooterType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'modal_footer';
     }

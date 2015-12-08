@@ -50,7 +50,7 @@ class BlockquoteFooterType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'blockquote_footer';
     }

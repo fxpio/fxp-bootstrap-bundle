@@ -12,6 +12,7 @@
 namespace Sonatra\Bundle\BootstrapBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\PercentType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\Options;
 
@@ -47,6 +48,6 @@ class PercentExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'percent';
+        return PercentType::class;
     }
 }

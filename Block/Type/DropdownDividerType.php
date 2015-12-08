@@ -34,7 +34,7 @@ class DropdownDividerType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'dropdown_divider';
     }

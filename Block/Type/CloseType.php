@@ -23,7 +23,7 @@ class CloseType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'close';
     }

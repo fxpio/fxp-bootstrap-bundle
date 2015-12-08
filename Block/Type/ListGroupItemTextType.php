@@ -25,13 +25,13 @@ class ListGroupItemTextType extends AbstractType
      */
     public function getParent()
     {
-        return 'paragraph';
+        return ParagraphType::class;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'list_group_item_text';
     }

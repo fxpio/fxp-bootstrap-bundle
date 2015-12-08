@@ -46,7 +46,7 @@ class PanelBodyType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'panel_body';
     }

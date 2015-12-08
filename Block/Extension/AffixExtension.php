@@ -14,6 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Extension;
 use Sonatra\Bundle\BlockBundle\Block\AbstractTypeExtension;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
+use Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\BlockType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\Options;
 
@@ -81,6 +82,6 @@ class AffixExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'block';
+        return BlockType::class;
     }
 }

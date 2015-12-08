@@ -23,7 +23,7 @@ class PageHeaderType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'page_header';
     }
