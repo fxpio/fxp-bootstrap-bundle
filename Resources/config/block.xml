@@ -6,23 +6,23 @@
 
     <services>
         <service id="sonatra_bootstrap.type_extension.block" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\BlockExtension">
-            <tag name="sonatra_block.type_extension" extented-type="Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\BlockType" />
+            <tag name="sonatra_block.type_extension" extended-type="Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\BlockType" />
         </service>
 
         <service id="sonatra_bootstrap.type_extension.layout" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\LayoutExtension">
-            <tag name="sonatra_block.type_extension" extented-type="Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\ObjectType" />
+            <tag name="sonatra_block.type_extension" extended-type="Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\ObjectType" />
         </service>
 
         <service id="sonatra_bootstrap.type_extension.collection" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\CollectionExtension">
-            <tag name="sonatra_block.type_extension" extented-type="Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\CollectionType" />
+            <tag name="sonatra_block.type_extension" extended-type="Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\CollectionType" />
         </service>
 
         <service id="sonatra_bootstrap.type_extension.repeated" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\RepeatedExtension">
-            <tag name="sonatra_block.type_extension" extented-type="Sonatra\Bundle\BootstrapBundle\Form\Extension\RepeatedExtension" />
+            <tag name="sonatra_block.type_extension" extended-type="Sonatra\Bundle\BootstrapBundle\Form\Extension\RepeatedExtension" />
         </service>
 
         <service id="sonatra_bootstrap.type_extension.responsive" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\ResponsiveExtension">
-            <tag name="sonatra_block.type_extension" extented-type="Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\BlockType" />
+            <tag name="sonatra_block.type_extension" extended-type="Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\BlockType" />
         </service>
 
         <service id="sonatra_bootstrap.type.block_collapse" class="Sonatra\Bundle\BootstrapBundle\Block\Type\BlockCollapseType">
@@ -282,31 +282,31 @@
         </service>
 
         <service id="sonatra_bootstrap.type_extension.button_modal" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\ButtonModalExtension">
-            <tag name="sonatra_block.type_extension" extented-type="Sonatra\Bundle\BootstrapBundle\Block\Type\ButtonType" />
+            <tag name="sonatra_block.type_extension" extended-type="Sonatra\Bundle\BootstrapBundle\Block\Type\ButtonType" />
         </service>
 
         <service id="sonatra_bootstrap.type_extension.tooltip" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\TooltipExtension">
-            <tag name="sonatra_block.type_extension" extented-type="Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\BlockType" />
+            <tag name="sonatra_block.type_extension" extended-type="Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\BlockType" />
         </service>
 
         <service id="sonatra_bootstrap.type_extension.popover" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\PopoverExtension">
-            <tag name="sonatra_block.type_extension" extented-type="Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\BlockType" />
+            <tag name="sonatra_block.type_extension" extended-type="Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\BlockType" />
         </service>
 
         <service id="sonatra_bootstrap.type_extension.affix" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\AffixExtension">
-            <tag name="sonatra_block.type_extension" extented-type="Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\BlockType" />
+            <tag name="sonatra_block.type_extension" extended-type="Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\BlockType" />
         </service>
 
         <service id="sonatra_bootstrap.type_extension.panel_group_collapse" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\PanelGroupCollapseExtension">
-            <tag name="sonatra_block.type_extension" extented-type="Sonatra\Bundle\BootstrapBundle\Block\Type\PanelGroupType" />
+            <tag name="sonatra_block.type_extension" extended-type="Sonatra\Bundle\BootstrapBundle\Block\Type\PanelGroupType" />
         </service>
 
         <service id="sonatra_bootstrap.type_extension.button_collapse" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\ButtonCollapseExtension">
-            <tag name="sonatra_block.type_extension" extented-type="Sonatra\Bundle\BootstrapBundle\Block\Type\ButtonType" />
+            <tag name="sonatra_block.type_extension" extended-type="Sonatra\Bundle\BootstrapBundle\Block\Type\ButtonType" />
         </service>
 
         <service id="sonatra_bootstrap.type_extension.scroll_spy" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\ScrollSpyExtension">
-            <tag name="sonatra_block.type_extension" extented-type="Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\BlockType" />
+            <tag name="sonatra_block.type_extension" extended-type="Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\BlockType" />
         </service>
 
         <service id="sonatra_bootstrap.type.carousel" class="Sonatra\Bundle\BootstrapBundle\Block\Type\CarouselType">
@@ -359,7 +359,7 @@
         </service>
 
         <service id="sonatra_bootstrap.type_extension.table_doctrine_orm" class="Sonatra\Bundle\BootstrapBundle\Block\Extension\TableDoctrineOrmExtension">
-            <tag name="sonatra_block.type_extension" extented-type="Sonatra\Bundle\BootstrapBundle\Block\Type\TableType" />
+            <tag name="sonatra_block.type_extension" extended-type="Sonatra\Bundle\BootstrapBundle\Block\Type\TableType" />
             <argument type="service" id="doctrine.orm.entity_manager" />
         </service>
 
