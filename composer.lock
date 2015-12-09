@@ -607,16 +607,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "a208865a5aeffc2dbbef2a5b3409887272d93f32"
+                "reference": "5f727f8859ceb0f6ccf5d5e73a382b501abf5d43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/a208865a5aeffc2dbbef2a5b3409887272d93f32",
-                "reference": "a208865a5aeffc2dbbef2a5b3409887272d93f32",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/5f727f8859ceb0f6ccf5d5e73a382b501abf5d43",
+                "reference": "5f727f8859ceb0f6ccf5d5e73a382b501abf5d43",
                 "shasum": ""
             },
             "require": {
@@ -651,7 +651,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2015-12-01 02:52:15"
+            "time": "2015-12-09 17:01:19"
         },
         {
             "name": "psr/log",
@@ -697,12 +697,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonatra/SonatraBlockBundle.git",
-                "reference": "c32fafb9c68d0d92b5be8cbc1e2130ea5f8c1f2c"
+                "reference": "7ddfc2f7d55a6158b9c64f1e6da041704c5ab4f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonatra/SonatraBlockBundle/zipball/c32fafb9c68d0d92b5be8cbc1e2130ea5f8c1f2c",
-                "reference": "c32fafb9c68d0d92b5be8cbc1e2130ea5f8c1f2c",
+                "url": "https://api.github.com/repos/sonatra/SonatraBlockBundle/zipball/7ddfc2f7d55a6158b9c64f1e6da041704c5ab4f2",
+                "reference": "7ddfc2f7d55a6158b9c64f1e6da041704c5ab4f2",
                 "shasum": ""
             },
             "require": {
@@ -748,7 +748,7 @@
                 "ui",
                 "user interface"
             ],
-            "time": "2015-12-08 15:12:09"
+            "time": "2015-12-09 18:50:35"
         },
         {
             "name": "symfony/asset",
