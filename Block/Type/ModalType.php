@@ -33,7 +33,7 @@ class ModalType extends AbstractType
     public function buildBlock(BlockBuilderInterface $builder, array $options)
     {
         if (!empty($options['label'])) {
-            $builder->add('header', 'modal_header', array('label' => $options['label']));
+            $builder->add('header', ModalHeaderType::class, array('label' => $options['label']));
         }
     }
 

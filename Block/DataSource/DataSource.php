@@ -17,6 +17,7 @@ use Sonatra\Bundle\BlockBundle\Block\BlockRendererInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\Exception\InvalidArgumentException;
 use Sonatra\Bundle\BlockBundle\Block\Exception\InvalidConfigurationException;
+use Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\TwigType;
 
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
@@ -562,7 +563,7 @@ class DataSource implements DataSourceInterface
                 $cellData = $this->getDataField($data, $config->getOption('index'));
                 $options = array_replace(array('wrapped' => false, 'inherit_data' => false), $config->getOption('formatter_options'));
 
-                if ('twig' === $formatter) {
+                if (TwigType::class === $formatter) {
                     $options = array_merge_recursive($options, array(
                         'variables' => array(
                             '_column' => $column,

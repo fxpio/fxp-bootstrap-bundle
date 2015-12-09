@@ -16,6 +16,7 @@ use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Sonatra\Bundle\BootstrapBundle\Block\Type\HeadingType;
+use Sonatra\Bundle\BootstrapBundle\Block\Type\LinkType;
 use Sonatra\Bundle\BootstrapBundle\Block\Type\PanelGroupType;
 use Sonatra\Bundle\BootstrapBundle\Block\Type\PanelHeaderType;
 use Sonatra\Bundle\BootstrapBundle\Block\Type\PanelType;
@@ -45,7 +46,7 @@ class PanelGroupCollapseExtension extends AbstractTypeExtension
                                 $subSubChild->remove($name);
                             }
 
-                            $subSubChild->add('panel_link', 'link', array(
+                            $subSubChild->add('panel_link', LinkType::class, array(
                                 'label' => $subSubChild->getOption('label'),
                                 'src' => '#'.BlockUtil::createBlockId($child).'Collapse',
                                 'attr' => array('data-toggle' => 'collapse', 'data-parent' => '#'.BlockUtil::createBlockId($block)),

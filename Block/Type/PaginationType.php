@@ -31,8 +31,8 @@ class PaginationType extends AbstractType
     public function buildBlock(BlockBuilderInterface $builder, array $options)
     {
         if ($options['auto_pager']) {
-            $builder->add('previous', 'pagination_item', $options['previous']);
-            $builder->add('next', 'pagination_item', $options['next']);
+            $builder->add('previous', PaginationItemType::class, $options['previous']);
+            $builder->add('next', PaginationItemType::class, $options['next']);
         }
     }
 

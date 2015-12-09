@@ -12,6 +12,7 @@
 namespace Sonatra\Bundle\BootstrapBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -51,7 +52,7 @@ class CollectionExtension extends AbstractTypeExtension
             $btnAdd = $options['btn_add'];
 
             if (is_array($btnAdd)) {
-                $btnAdd = $builder->create('add', 'button', $options['btn_add'])->getForm();
+                $btnAdd = $builder->create('add', ButtonType::class, $options['btn_add'])->getForm();
             }
 
             $builder->setAttribute('btn_add', $btnAdd);
@@ -126,7 +127,7 @@ class CollectionExtension extends AbstractTypeExtension
                         $value['append']
                     );
 
-                    $value['append'] = $this->factory->createNamed('delete', 'button', null, $value['append']);
+                    $value['append'] = $this->factory->createNamed('delete', ButtonType::class, null, $value['append']);
                 }
 
                 $value['row_attr'] = array('class' => 'form-collection-row');

@@ -63,7 +63,7 @@ class TableType extends AbstractType
             $builder->setDataClass(get_class($source));
         }
 
-        $builder->add('_header', 'table_header');
+        $builder->add('_header', TableHeaderType::class);
     }
 
     /**

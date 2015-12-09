@@ -14,6 +14,7 @@ namespace Sonatra\Bundle\BootstrapBundle\Block\Type;
 use Sonatra\Bundle\BlockBundle\Block\AbstractType;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
+use Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\Options;
 
@@ -52,7 +53,7 @@ class TableColumnType extends AbstractType
 
         $resolver->setDefaults(array(
             'index' => $index,
-            'formatter' => 'text',
+            'formatter' => TextType::class,
             'formatter_options' => array(),
             'empty_data' => null,
         ));

@@ -33,8 +33,8 @@ class PanelType extends AbstractType
     public function buildBlock(BlockBuilderInterface $builder, array $options)
     {
         if (!empty($options['label'])) {
-            $builder->add('header', 'panel_header', array());
-            $builder->get('header')->add(null, 'heading', array('size' => 4, 'label' => $options['label']));
+            $builder->add('header', PanelHeaderType::class, array());
+            $builder->get('header')->add(null, HeadingType::class, array('size' => 4, 'label' => $options['label']));
         }
     }
 
