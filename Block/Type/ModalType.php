@@ -42,7 +42,7 @@ class ModalType extends AbstractType
      */
     public function addChild(BlockInterface $child, BlockInterface $block, array $options)
     {
-        if (BlockUtil::isValidBlock(ModalHeaderType::class, $child)) {
+        if (BlockUtil::isBlockType($child, ModalHeaderType::class)) {
             if ($block->getAttribute('has_header')) {
                 $msg = 'The modal block "%s" has already modal header. Removes the label option of the modal block.';
                 throw new InvalidConfigurationException(sprintf($msg, StringUtil::fqcnToBlockPrefix(get_class($block->getConfig()->getType()->getInnerType()), true)));
@@ -57,7 +57,7 @@ class ModalType extends AbstractType
      */
     public function removeChild(BlockInterface $child, BlockInterface $block, array $options)
     {
-        if (BlockUtil::isValidBlock(ModalHeaderType::class, $child)) {
+        if (BlockUtil::isBlockType($child, ModalHeaderType::class)) {
             $block->setAttribute('has_header', false);
         }
     }

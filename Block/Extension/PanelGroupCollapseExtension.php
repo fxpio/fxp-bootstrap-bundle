@@ -35,13 +35,13 @@ class PanelGroupCollapseExtension extends AbstractTypeExtension
      */
     public function addChild(BlockInterface $child, BlockInterface $block, array $options)
     {
-        if ($options['collapsible'] && BlockUtil::isValidBlock(PanelType::class, $child)) {
+        if ($options['collapsible'] && BlockUtil::isBlockType($child, PanelType::class)) {
             /* @var BlockInterface $subChild */
             foreach ($child->all() as $subChild) {
-                if (BlockUtil::isValidBlock(PanelHeaderType::class, $subChild)) {
+                if (BlockUtil::isBlockType($subChild, PanelHeaderType::class)) {
                     /* @var BlockInterface $subSubChild */
                     foreach ($subChild->all() as $subSubChild) {
-                        if (BlockUtil::isValidBlock(HeadingType::class, $subSubChild)) {
+                        if (BlockUtil::isBlockType($subSubChild, HeadingType::class)) {
                             foreach ($subSubChild->all() as $name => $subSubSubChild) {
                                 $subSubChild->remove($name);
                             }

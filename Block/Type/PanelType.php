@@ -43,7 +43,7 @@ class PanelType extends AbstractType
      */
     public function addChild(BlockInterface $child, BlockInterface $block, array $options)
     {
-        if (BlockUtil::isValidBlock(PanelHeaderType::class, $child)) {
+        if (BlockUtil::isBlockType($child, PanelHeaderType::class)) {
             if ($block->getAttribute('has_header')) {
                 $msg = 'The panel block "%s" has already panel header. Removes the label option of the panel block.';
                 throw new InvalidConfigurationException(sprintf($msg, StringUtil::fqcnToBlockPrefix(get_class($block->getConfig()->getType()->getInnerType()), true)));
@@ -58,7 +58,7 @@ class PanelType extends AbstractType
      */
     public function removeChild(BlockInterface $child, BlockInterface $block, array $options)
     {
-        if (BlockUtil::isValidBlock(PanelHeaderType::class, $child)) {
+        if (BlockUtil::isBlockType($child, PanelHeaderType::class)) {
             $block->setAttribute('has_header', false);
         }
     }

@@ -12,6 +12,7 @@
 namespace Sonatra\Bundle\BootstrapBundle\Form\Extension;
 
 use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
+use Sonatra\Bundle\BootstrapBundle\Block\Type\ButtonType;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormInterface;
@@ -129,7 +130,7 @@ class AddonExtension extends AbstractTypeExtension
         } elseif ($addon instanceof FormInterface) {
             return 'btn';
         } elseif ($addon instanceof BlockInterface) {
-            if (null === $type && BlockUtil::isValidBlock('button', $addon)) {
+            if (null === $type && BlockUtil::isBlockType($addon, ButtonType::class)) {
                 $type = 'btn';
             }
 
