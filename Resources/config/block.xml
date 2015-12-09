@@ -46,7 +46,7 @@
         </service>
 
         <service id="sonatra_bootstrap.type.column" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ColumnType">
-            <tag name="sonatra_block.type" />
+            <tag name="sonatra_block.type" template-alias="col" />
         </service>
 
         <service id="sonatra_bootstrap.type.clearfix" class="Sonatra\Bundle\BootstrapBundle\Block\Type\ClearfixType">
