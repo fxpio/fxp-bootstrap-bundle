@@ -561,8 +561,10 @@ class DataSource implements DataSourceInterface
 
                 $config = $column->getConfig();
                 $formatter = $config->getOption('formatter');
-                $field = $this->formatIndex($config->getOption('index'));
-                $field = $config->getOption('data_property_path', $field);
+                $field = $config->getOption('data_property_path');
+                $field = null === $field
+                    ? $this->formatIndex($config->getOption('index'))
+                    : $field;
                 $cellData = $this->getDataField($data, $field);
                 $options = array_replace(array('wrapped' => false, 'inherit_data' => false), $config->getOption('formatter_options'));
 
