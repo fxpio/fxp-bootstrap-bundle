@@ -53,6 +53,7 @@ class TableColumnType extends AbstractType
 
         $resolver->setDefaults(array(
             'index' => $index,
+            'data_property_path' => null,
             'formatter' => TextType::class,
             'formatter_options' => array(),
             'empty_data' => null,

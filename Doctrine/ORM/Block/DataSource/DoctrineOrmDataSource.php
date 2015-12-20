@@ -17,6 +17,7 @@ use Sonatra\Bundle\BlockBundle\Block\Exception\BadMethodCallException;
 use Sonatra\Bundle\BlockBundle\Block\Exception\InvalidArgumentException;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
+use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
@@ -41,12 +42,13 @@ class DoctrineOrmDataSource extends DataSource
     /**
      * Constructor.
      *
-     * @param EntityManager $entityManager
-     * @param string        $rowId         The data fieldname for unique id row definition
+     * @param EntityManager             $entityManager    The entity manager
+     * @param string                    $rowId            The data fieldname for unique id row definition
+     * @param PropertyAccessorInterface $propertyAccessor The property accessor
      */
-    public function __construct(EntityManager $entityManager, $rowId = null)
+    public function __construct(EntityManager $entityManager, $rowId = null, PropertyAccessorInterface $propertyAccessor = null)
     {
-        parent::__construct($rowId);
+        parent::__construct($rowId, $propertyAccessor);
 
         $this->em = $entityManager;
         $this->hasTranslatable = false;

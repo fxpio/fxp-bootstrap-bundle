@@ -18,12 +18,19 @@ use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\Exception\InvalidArgumentException;
 use Sonatra\Bundle\BlockBundle\Block\Exception\InvalidConfigurationException;
 use Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\TwigType;
+use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
  */
 class DataSource implements DataSourceInterface
 {
+    /**
+     * @var PropertyAccessorInterface
+     */
+    protected $propertyAccessor;
+
     /**
      * @var BlockRendererInterface
      */
@@ -102,10 +109,12 @@ class DataSource implements DataSourceInterface
     /**
      * Constructor.
      *
-     * @param string $rowId The data fieldname for unique id row definition
+     * @param string                    $rowId            The data fieldname for unique id row definition
+     * @param PropertyAccessorInterface $propertyAccessor The property accessor
      */
-    public function __construct($rowId = null)
+    public function __construct($rowId = null, PropertyAccessorInterface $propertyAccessor = null)
     {
+        $this->propertyAccessor = $propertyAccessor ?: PropertyAccess::createPropertyAccessor();
         $this->columns = array();
         $this->mappingColumns = null;
         $this->locale = \Locale::getDefault();
@@ -468,6 +477,26 @@ class DataSource implements DataSourceInterface
     }
 
     /**
+     * Format the index without prefix with dot.
+     *
+     * @param string $name The index
+     *
+     * @return string
+     */
+    protected function formatIndex($name)
+    {
+        if (is_string($name)) {
+            $exp = explode('.', $name);
+
+            if (0 < count($exp)) {
+                $name = $exp[count($exp) - 1];
+            }
+        }
+
+        return $name;
+    }
+
+    /**
      * Get the field value of data row.
      *
      * @param array|object $dataRow
@@ -477,37 +506,9 @@ class DataSource implements DataSourceInterface
      */
     protected function getDataField($dataRow, $name)
     {
-        $exp = explode('.', $name);
-        $val = null;
-
-        if (0 < count($exp)) {
-            $name = $exp[count($exp) - 1];
-        }
-
-        if (is_array($dataRow)) {
-            return isset($dataRow[$name]) ? $dataRow[$name] : null;
-        }
-
-        if (is_object($dataRow)) {
-            $ref = new \ReflectionClass($dataRow);
-
-            $method = 'get'.ucfirst($name);
-            if ($ref->hasMethod($method)) {
-                return $dataRow->$method();
-            }
-
-            $method = 'has'.ucfirst($name);
-            if ($ref->hasMethod($method)) {
-                return $dataRow->$method();
-            }
-
-            $method = 'is'.ucfirst($name);
-            if ($ref->hasMethod($method)) {
-                return $dataRow->$method();
-            }
-        }
-
-        return $val;
+        return null !== $name && '' !== $name
+            ? $this->propertyAccessor->getValue($dataRow, $name)
+            : null;
     }
 
     /**
@@ -560,7 +561,9 @@ class DataSource implements DataSourceInterface
 
                 $config = $column->getConfig();
                 $formatter = $config->getOption('formatter');
-                $cellData = $this->getDataField($data, $config->getOption('index'));
+                $field = $this->formatIndex($config->getOption('index'));
+                $field = $config->getOption('data_property_path', $field);
+                $cellData = $this->getDataField($data, $field);
                 $options = array_replace(array('wrapped' => false, 'inherit_data' => false), $config->getOption('formatter_options'));
 
                 if (TwigType::class === $formatter) {
