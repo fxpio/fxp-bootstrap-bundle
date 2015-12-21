@@ -44,6 +44,11 @@
                         {%- endfor -%}
                     </tr>
                 {%- endfor -%}
+                {%- if data.rows is empty and empty_type is not empty -%}
+                    <tr>
+                        <td colspan="{{ header.vars.header_columns|length }}">{% sblock empty_type, empty_options :%}</td>
+                    </tr>
+                {%- endif -%}
             </tbody>
         {%- endif -%}
 

@@ -16,10 +16,12 @@ use Sonatra\Bundle\BlockBundle\Block\BlockBuilderInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockView;
 use Sonatra\Bundle\BlockBundle\Block\BlockInterface;
 use Sonatra\Bundle\BlockBundle\Block\BlockRendererInterface;
+use Sonatra\Bundle\BlockBundle\Block\Extension\Core\Type\TextType;
 use Sonatra\Bundle\BlockBundle\Block\ResolvedBlockTypeInterface;
 use Sonatra\Bundle\BlockBundle\Block\Util\BlockUtil;
 use Sonatra\Bundle\BootstrapBundle\Block\DataSource\DataSource;
 use Sonatra\Bundle\BootstrapBundle\Block\DataSource\DataSourceInterface;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -113,6 +115,8 @@ class TableType extends AbstractType
             'condensed' => $options['condensed'],
             'responsive' => $options['responsive'],
             'hover_rows' => $options['hover_rows'],
+            'empty_type' => $options['empty_type'],
+            'empty_options' => $options['empty_options'],
         ));
     }
 
@@ -162,6 +166,14 @@ class TableType extends AbstractType
             'sort_columns' => array(),
             'data_parameters' => array(),
             'row_id' => 'id',
+            'empty_type' => function (Options $options, $value) {
+                if (null === $value && isset($options['empty_options']['data'])) {
+                    $value = TextType::class;
+                }
+
+                return $value;
+            },
+            'empty_options' => array(),
         ));
 
         $resolver->setAllowedTypes('striped', 'bool');
@@ -177,6 +189,20 @@ class TableType extends AbstractType
         $resolver->setAllowedTypes('sort_columns', 'array');
         $resolver->setAllowedTypes('data_parameters', 'array');
         $resolver->setAllowedTypes('row_id', 'string');
+        $resolver->setAllowedTypes('empty_type', array('null', 'string'));
+        $resolver->setAllowedTypes('empty_options', 'array');
+
+        $resolver->setNormalizer('empty_options', function (Options $options, $value) {
+            if (null !== $options['empty_message'] && !isset($value['data'])) {
+                $value['data'] = $options['empty_message'];
+            }
+
+            if (!array_key_exists('wrapped', $value)) {
+                $value['wrapped'] = false;
+            }
+
+            return $value;
+        });
     }
 
     /**
