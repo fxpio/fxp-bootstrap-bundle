@@ -113,6 +113,7 @@ class DoctrineOrmDataSource extends DataSource
         $this->cacheRows = array();
 
         $query = clone $this->query;
+        $query->setParameters(clone $this->query->getParameters());
         $sortColumns = $this->getSortColumns();
 
         // query options
