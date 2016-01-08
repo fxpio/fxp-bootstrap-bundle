@@ -124,6 +124,7 @@ class DataSource implements DataSourceInterface
         $this->pageSizeMax = 0;
         $this->pageNumber = 1;
         $this->sortColumns = array();
+        $this->mappingSortColumns = array();
         $this->parameters = array();
     }
 
