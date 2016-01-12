@@ -568,6 +568,7 @@ class DataSource implements DataSourceInterface
                     : $field;
                 $cellData = $this->getDataField($data, $field);
                 $options = array_replace(array('wrapped' => false, 'inherit_data' => false), $config->getOption('formatter_options'));
+                $options = $this->overrideCellOptions($column, $formatter, $data, $options);
 
                 if (TwigType::class === $formatter) {
                     $options = array_merge_recursive($options, array(
@@ -592,5 +593,28 @@ class DataSource implements DataSourceInterface
         }
 
         return $cacheRows;
+    }
+
+    /**
+     * Override the formatter options.
+     *
+     * @param BlockInterface $column    The block of column
+     * @param string         $formatter The formatter class name
+     * @param mixed          $data      The data of record
+     * @param array          $options   The options of formatter
+     *
+     * @return array The options overloaded
+     */
+    protected function overrideCellOptions(BlockInterface $column, $formatter, $data, array $options)
+    {
+        $config = $column->getConfig();
+
+        if ($config->hasOption('override_options')
+                && ($override = $config->getOption('override_options')) instanceof \Closure) {
+            /* @var \Closure $override */
+            $options = $override($options, $data, $formatter);
+        }
+
+        return $options;
     }
 }

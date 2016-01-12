@@ -57,10 +57,12 @@ class TableColumnType extends AbstractType
             'formatter' => TextType::class,
             'formatter_options' => array(),
             'empty_data' => null,
+            'override_options' => null,
         ));
 
         $resolver->setAllowedTypes('formatter', array('null', 'string'));
         $resolver->setAllowedTypes('formatter_options', 'array');
+        $resolver->setAllowedTypes('override_options', array('null', 'Closure'));
 
         $resolver->setNormalizer('formatter_options', function (Options $options, $value) {
             $value['empty_data'] = $options['empty_data'];
