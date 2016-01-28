@@ -11,6 +11,7 @@
 
 namespace Sonatra\Bundle\BootstrapBundle\Doctrine\ORM\Block\DataSource;
 
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Sonatra\Bundle\BootstrapBundle\Block\DataSource\DataSource;
 use Sonatra\Bundle\BootstrapBundle\Doctrine\ORM\Query\OrderByWalker;
 use Sonatra\Bundle\BlockBundle\Block\Exception\BadMethodCallException;
@@ -30,9 +31,9 @@ class DoctrineOrmDataSource extends DataSource
     protected $em;
 
     /**
-     * @var Query
+     * @var Paginator
      */
-    protected $query;
+    protected $paginator;
 
     /**
      * @var bool
@@ -74,7 +75,7 @@ class DoctrineOrmDataSource extends DataSource
     {
         $this->cacheRows = null;
         $this->size = null;
-        $this->query = $query;
+        $this->paginator = new Paginator($query);
 
         return $this;
     }
@@ -86,7 +87,7 @@ class DoctrineOrmDataSource extends DataSource
      */
     public function getQuery()
     {
-        return $this->query;
+        return null !== $this->paginator ? $this->paginator->getQuery() : null;
     }
 
     /**
@@ -106,15 +107,17 @@ class DoctrineOrmDataSource extends DataSource
             return $this->cacheRows;
         }
 
-        if (null === $this->query) {
+        if (null === $this->paginator) {
             throw new BadMethodCallException('The query must be informed before the "getRows" method');
         }
 
         $this->cacheRows = array();
-
-        $query = clone $this->query;
-        $query->setParameters(clone $this->query->getParameters());
         $sortColumns = $this->getSortColumns();
+        $query = $this->paginator->getQuery();
+
+        $query
+            ->setFirstResult($this->getStart() - 1)
+            ->setMaxResults($this->getPageSize());
 
         // query options
         $tkc = 'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker';
@@ -126,13 +129,12 @@ class DoctrineOrmDataSource extends DataSource
 
         // query sort
         if (count($sortColumns) > 0) {
-            $walker = 'Sonatra\Bundle\\BootstrapBundle\\Doctrine\\ORM\\Query\\OrderByWalker';
             $customTreeWalkers = $query->getHint(Query::HINT_CUSTOM_TREE_WALKERS);
 
             if ($customTreeWalkers !== false && is_array($customTreeWalkers)) {
-                $customTreeWalkers = array_merge($customTreeWalkers, array($walker));
+                $customTreeWalkers = array_merge($customTreeWalkers, array(OrderByWalker::class));
             } else {
-                $customTreeWalkers = array($walker);
+                $customTreeWalkers = array(OrderByWalker::class);
             }
 
             $query->setHint(Query::HINT_CUSTOM_TREE_WALKERS, $customTreeWalkers);
@@ -166,12 +168,7 @@ class DoctrineOrmDataSource extends DataSource
             $query->setHint(OrderByWalker::HINT_SORT_DIRECTION, $sorts);
         }
 
-        // paginate init
-        $query
-            ->setFirstResult($this->getStart() - 1)
-            ->setMaxResults($this->getPageSize());
-
-        $this->cacheRows = $this->paginateRows($query->getResult(), $this->getStart());
+        $this->cacheRows = $this->paginateRows($this->paginator->getIterator()->getArrayCopy(), $this->getStart());
 
         return $this->cacheRows;
     }
@@ -181,13 +178,6 @@ class DoctrineOrmDataSource extends DataSource
      */
     protected function calculateSize()
     {
-        $cQuery = clone $this->query;
-        $cQuery->setParameters($this->query->getParameters());
-        $cQuery
-            ->setFirstResult(null)
-            ->setMaxResults(null)
-            ->setHint(Query::HINT_CUSTOM_TREE_WALKERS, array('Sonatra\Bundle\\BootstrapBundle\\Doctrine\\ORM\\Query\\CountWalker'));
-
-        return (integer) $cQuery->getSingleScalarResult();
+        return (integer) null !== $this->paginator ? $this->paginator->count() : 0;
     }
 }
