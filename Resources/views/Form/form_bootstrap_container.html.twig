@@ -32,10 +32,12 @@
     {%- if wrapped is not defined or wrapped is same as(true) -%}
     <div {{ block('widget_container_attributes') }}>
     {%- endif -%}
+        {{- block('addon_start') -}}
         {{- block('form_rows') -}}
         {%- if form.parent is empty and (form.vars.skip_rest is not defined or form.vars.skip_rest is same as(false)) -%}
             {{- form_rest(form) -}}
         {%- endif -%}
+            {{- block('addon_end') -}}
     {%- if wrapped is not defined or wrapped is same as(true) -%}
     </div>
     {%- endif -%}
