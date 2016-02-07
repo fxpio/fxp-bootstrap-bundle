@@ -38,14 +38,18 @@
 {% block collection_widget_content_js -%}
     {%- if btn_add is defined and prototype is defined -%}
     $('#{{ btn_add.vars.id }}').on('click.st.bootstrap', null, null, function(event) {
-        var inc = $(this).data('inc');
+        var $this = $(this),
+            $document = $(document),
+            $wrapper = $('#' + $this.attr('data-target')),
+            prototype = $wrapper.attr('data-prototype'),
+            inc = $this.data('inc'),
+            $row;
         inc = undefined !== inc ? inc : {{ form|length }};
-        var collectionHolder = $('#' + $(this).attr('data-target'));
-        var prototype = collectionHolder.attr('data-prototype');
-        var form = prototype.replace(/{{ prototype_name }}/g, inc);
-
-        collectionHolder.append(form);
-        $(this).data('inc', ++inc);
+        $row = $(prototype.replace(/{{ prototype_name }}/g, inc));
+        $document.trigger('before_add.st.collection', [$wrapper, $row]);
+        $wrapper.append($row);
+        $document.trigger('after_add.st.collection', [$wrapper, $row]);
+        $this.data('inc', ++inc);
 
         return false;
     });
@@ -53,7 +57,13 @@
 
     {%- if allow_delete and prototype is defined -%}
     $('#{{ id }}').on('click.st.bootstrap', 'button.btn-remove', null, function(event) {
-        $(this).parents('.form-collection-row').remove();
+        var $this = $(this),
+            $document = $(document),
+            $row = $this.parents('.form-collection-row'),
+            $wrapper = $row.parent();
+        $document.trigger('before_remove.st.collection', [$wrapper, $row]);
+        $row.remove();
+        $document.trigger('after_remove.st.collection', [$wrapper, $row]);
 
         return false;
     });
