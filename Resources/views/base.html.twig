@@ -21,10 +21,6 @@
 
     <title>{% block title %}Welcome!{% endblock %}</title>
 
-    {%- block links -%}
-    <link rel="icon" type="image/x-icon" href="{% block favicon %}{{ asset('favicon.ico') }}{% endblock favicon %}" />
-    {%- endblock links -%}
-
     {%- block stylesheets -%}
         {{- requireStylesPosition('higher_priority') -}}
         {{- requireStylesPosition() -}}
@@ -60,6 +56,10 @@
             {{- inlineScriptsPosition('head') -}}
         </script>
     {%- endblock head_inline_javascripts -%}
+
+    {%- block links -%}
+    <link rel="icon" type="image/x-icon" href="{% block favicon %}{{ asset('favicon.ico') }}{% endblock favicon %}" />
+    {%- endblock links -%}
 
     {%- block metadata_lower -%}
     {%- endblock metadata_lower -%}
