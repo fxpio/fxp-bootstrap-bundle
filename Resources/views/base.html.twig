@@ -26,6 +26,7 @@
     {%- endblock links -%}
 
     {%- block stylesheets -%}
+        {{- requireStylesPosition('higher_priority') -}}
         {{- requireStylesPosition() -}}
         {{- requireStylesPosition('lower_priority') -}}
     {%- endblock stylesheets -%}
