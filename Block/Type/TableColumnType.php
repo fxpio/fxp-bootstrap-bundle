@@ -57,6 +57,7 @@ class TableColumnType extends AbstractType
             'formatter' => TextType::class,
             'formatter_options' => array(),
             'empty_data' => null,
+            'cell_empty_data' => null,
             'override_options' => null,
         ));
 

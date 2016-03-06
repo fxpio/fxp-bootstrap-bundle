@@ -500,16 +500,23 @@ class DataSource implements DataSourceInterface
     /**
      * Get the field value of data row.
      *
-     * @param array|object $dataRow
-     * @param string       $name
+     * @param array|object  $dataRow
+     * @param string        $name
+     * @param \Closure|null $emptyData
      *
      * @return mixed|null
      */
-    protected function getDataField($dataRow, $name)
+    protected function getDataField($dataRow, $name, \Closure $emptyData = null)
     {
-        return null !== $name && '' !== $name
+        $value = null !== $name && '' !== $name
             ? $this->propertyAccessor->getValue($dataRow, $name)
             : null;
+
+        if (null === $value && $emptyData instanceof \Closure) {
+            $value = $emptyData($dataRow, $name);
+        }
+
+        return $value;
     }
 
     /**
@@ -566,7 +573,7 @@ class DataSource implements DataSourceInterface
                 $field = null === $field
                     ? $this->formatIndex($config->getOption('index'))
                     : $field;
-                $cellData = $this->getDataField($data, $field);
+                $cellData = $this->getDataField($data, $field, $config->getOption('cell_empty_data'));
                 $options = array_replace(array('wrapped' => false, 'inherit_data' => false), $config->getOption('formatter_options'));
                 $options = $this->overrideCellOptions($column, $formatter, $data, $options);
 
