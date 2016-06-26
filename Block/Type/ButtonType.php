@@ -91,7 +91,7 @@ class ButtonType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'tag' => 'button',
+            'tag' => null,
             'label' => '',
             'disabled' => false,
             'src' => null,
@@ -104,7 +104,7 @@ class ButtonType extends AbstractType
             'caret' => true,
         ));
 
-        $resolver->setAllowedTypes('tag', 'string');
+        $resolver->setAllowedTypes('tag', array('null', 'string'));
         $resolver->setAllowedTypes('src', array('null', 'string'));
         $resolver->setAllowedTypes('style', array('null', 'string'));
         $resolver->setAllowedTypes('size', array('null', 'string'));
@@ -114,7 +114,7 @@ class ButtonType extends AbstractType
         $resolver->setAllowedTypes('dropup', 'bool');
         $resolver->setAllowedTypes('caret', 'bool');
 
-        $resolver->setAllowedValues('tag', array('button', 'a'));
+        $resolver->setAllowedValues('tag', array(null, 'button', 'a'));
         $resolver->setAllowedValues('style', array(null, 'default', 'primary', 'success', 'info', 'warning', 'danger', 'link'));
         $resolver->setAllowedValues('size', array(null, 'xs', 'sm', 'lg'));
 
@@ -126,11 +126,15 @@ class ButtonType extends AbstractType
             return $value;
         });
         $resolver->setNormalizer('tag', function (Options $options, $value = null) {
+            if (null !== $value) {
+                return $value;
+            }
+
             if ((isset($options['data']) && null !== $options['data']) || (isset($options['src']) && null !== $options['src'])) {
                 return 'a';
             }
 
-            return $value;
+            return 'button';
         });
     }
 

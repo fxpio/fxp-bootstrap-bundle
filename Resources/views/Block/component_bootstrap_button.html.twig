@@ -64,10 +64,15 @@
     {%- if dropdown is defined -%}
         {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' dropdown-toggle')|trim, 'data-toggle': 'dropdown'}) -%}
 
-        {%- set btn_group_attr = btn_group_attr|default({})|merge({'class': ('btn-group ' ~ btn_group_attr.class|default(''))|trim}) -%}
+        {%- set btn_group_attr = btn_group_attr|default({}) -%}
         {%- if dropup -%}
             {%- set btn_group_attr = btn_group_attr|merge({'class': (btn_group_attr.class|default('') ~ ' dropup')|trim}) -%}
         {%- endif -%}
+    {%- endif -%}
+
+    {%- if btn_group_attr is defined -%}
+        {%- set btn_group_attr = btn_group_attr|merge({'class': ('btn-group ' ~ btn_group_attr.class|default(''))|trim}) -%}
+
         <div{% for attrname, attrvalue in btn_group_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor -%}>
     {%- endif -%}
 
@@ -128,6 +133,9 @@
 
     {%- if dropdown is defined -%}
         {{- block_widget(dropdown) -}}
+    {%- endif -%}
+
+    {%- if btn_group_attr is defined -%}
         </div>
     {%- endif -%}
 {%- endblock button_widget %}
