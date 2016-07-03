@@ -42,9 +42,5 @@
         <service id="form.type_extension.sonatra_button" class="Sonatra\Bundle\BootstrapBundle\Form\Extension\ButtonExtension">
             <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\ButtonType" />
         </service>
-
-        <service id="form.type.sonatra_fieldset" class="Sonatra\Bundle\BootstrapBundle\Form\Type\FieldsetType">
-            <tag name="form.type" />
-        </service>
     </services>
 </container>
