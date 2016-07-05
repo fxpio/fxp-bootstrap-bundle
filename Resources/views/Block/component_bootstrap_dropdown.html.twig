@@ -38,13 +38,31 @@
         {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' disabled')|trim}) -%}
     {%- endif -%}
     <li{{ block('widget_container_attributes') }}>
+        {%- for child in item_prepends -%}
+            {{- block_widget(child) -}}
+        {%- endfor -%}
+
         <a{% for attrname, attrvalue in link_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
             {{- label|block_trans({}, translation_domain) -}}
             {{- value|raw -}}
             {{- block('block_rows') -}}
         </a>
+
+        {%- for child in item_appends -%}
+            {{- block_widget(child) -}}
+        {%- endfor -%}
     </li>
 {%- endblock dropdown_item_widget %}
+
+
+{% block dropdown_item_prepend_widget -%}
+    {{- block('block_rows') -}}
+{%- endblock dropdown_item_prepend_widget %}
+
+
+{% block dropdown_item_append_widget -%}
+    {{- block('block_rows') -}}
+{%- endblock dropdown_item_append_widget %}
 
 
 {% block dropdown_header_widget -%}

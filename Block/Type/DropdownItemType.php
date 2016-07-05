@@ -44,6 +44,30 @@ class DropdownItemType extends AbstractType
     /**
      * {@inheritdoc}
      */
+    public function finishView(BlockView $view, BlockInterface $block, array $options)
+    {
+        $prepends = array();
+        $appends = array();
+
+        foreach ($view->children as $name => $child) {
+            if (in_array('dropdown_item_prepend', $child->vars['block_prefixes'])) {
+                $prepends[$name] = $view->children[$name];
+                unset($view->children[$name]);
+            } elseif (in_array('dropdown_item_append', $child->vars['block_prefixes'])) {
+                $appends[$name] = $view->children[$name];
+                unset($view->children[$name]);
+            }
+        }
+
+        $view->vars = array_replace($view->vars, array(
+            'item_prepends' => $prepends,
+            'item_appends' => $appends,
+        ));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(

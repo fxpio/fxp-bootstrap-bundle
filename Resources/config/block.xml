@@ -93,6 +93,14 @@
             <tag name="sonatra_block.type" />
         </service>
 
+        <service id="sonatra_bootstrap.type.dropdown_item_prepend" class="Sonatra\Bundle\BootstrapBundle\Block\Type\DropdownItemPrependType">
+            <tag name="sonatra_block.type" />
+        </service>
+
+        <service id="sonatra_bootstrap.type.dropdown_item_append" class="Sonatra\Bundle\BootstrapBundle\Block\Type\DropdownItemAppendType">
+            <tag name="sonatra_block.type" />
+        </service>
+
         <service id="sonatra_bootstrap.type.divider" class="Sonatra\Bundle\BootstrapBundle\Block\Type\DropdownDividerType">
             <tag name="sonatra_block.type" />
         </service>
