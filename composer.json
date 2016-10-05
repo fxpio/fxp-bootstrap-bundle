@@ -25,12 +25,12 @@
         "symfony/finder" : "~3.0",
         "symfony/filesystem" : "~3.0",
         "doctrine/orm": "~2.5",
-        "bower-asset/html5shiv": "3.7.*",
-        "bower-asset/respond": "1.4.*",
-        "bower-asset/bootstrap": "3.3.*",
         "gedmo/doctrine-extensions": "~2.4"
     },
     "suggest": {
+        "bower-asset/html5shiv": "v3.7.*",
+        "bower-asset/respond": "v1.4.*",
+        "bower-asset/bootstrap": "v3.3.*",
         "fxp/composer-asset-plugin": "For manage NPM/Bower dependencies with Composer"
     },
     "autoload": {
