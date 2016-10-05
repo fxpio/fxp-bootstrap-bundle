@@ -178,6 +178,6 @@ class DoctrineOrmDataSource extends DataSource
      */
     protected function calculateSize()
     {
-        return (integer) null !== $this->paginator ? $this->paginator->count() : 0;
+        return (int) null !== $this->paginator ? $this->paginator->count() : 0;
     }
 }

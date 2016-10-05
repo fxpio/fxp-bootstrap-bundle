@@ -352,7 +352,7 @@ class DataSource implements DataSourceInterface
      */
     public function getPageCount()
     {
-        return 0 === $this->getPageSize() ? 1 : (integer) ceil($this->getSize() / $this->getPageSize());
+        return 0 === $this->getPageSize() ? 1 : (int) ceil($this->getSize() / $this->getPageSize());
     }
 
     /**
