@@ -39,7 +39,7 @@
 
     <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
         {%- if placeholder is not none -%}
-            <option{% if placeholder is empty %} label=" "{% endif %} value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ placeholder }}</option>
+            <option{% if placeholder is empty %} label=" "{% endif %} value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ choice_translation_domain ? placeholder|trans({}, choice_translation_domain) : placeholder }}</option>
         {%- endif -%}
         {%- if preferred_choices|length > 0 -%}
             {%- set options = preferred_choices -%}
