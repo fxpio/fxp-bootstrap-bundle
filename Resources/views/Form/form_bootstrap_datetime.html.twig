@@ -30,7 +30,9 @@
 {% block date_widget -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
 
-    {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' form-inline date')|trim}) -%}
+    {%- if widget == 'single_text' -%}
+        {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' form-inline date')|trim}) -%}
+    {%- endif -%}
 
     {%- if layout|default(null) == 'horizontal' and widget != 'single_text' -%}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
@@ -43,6 +45,14 @@
         {{- block('base_date_widget') -}}
     {%- endif -%}
     {{- block('help_text') -}}
+
+    {%- if widget != 'single_text' -%}
+        {{- form_errors(form) -}}
+        {%- if floating_label|default(false) is same as(true) -%}
+            {%- set label_attr = label_attr|merge({'class': ('control-label top-floating-label-choice ' ~ label_attr.class|default(''))|trim}) -%}
+            {{- block('base_form_label') -}}
+        {%- endif -%}
+    {%- endif -%}
 
     {%- if layout|default(null) == 'horizontal' and widget != 'single_text' -%}
         </div>
@@ -66,6 +76,10 @@
         {{- block('base_time_widget') -}}
     {%- endif -%}
     {{- block('help_text') -}}
+
+    {%- if widget != 'single_text' -%}
+        {{- form_errors(form) -}}
+    {%- endif -%}
 
     {%- if layout|default(null) == 'horizontal' and widget != 'single_text' -%}
         </div>
