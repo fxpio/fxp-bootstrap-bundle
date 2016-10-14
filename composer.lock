@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "85d7f7c78bb65549be699327671c8750",
+    "hash": "0250292945405782a5a7d4b08962d5ed",
     "content-hash": "9d71ae13b869e4d560d7796c5272fd06",
     "packages": [
         {
@@ -411,12 +411,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fxpio/fxp-require-asset.git",
-                "reference": "dd152182aa1226112776dcdb2785450b3d806abe"
+                "reference": "71537437626e8ff5c2f3e3a70755460973715588"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fxpio/fxp-require-asset/zipball/dd152182aa1226112776dcdb2785450b3d806abe",
-                "reference": "dd152182aa1226112776dcdb2785450b3d806abe",
+                "url": "https://api.github.com/repos/fxpio/fxp-require-asset/zipball/71537437626e8ff5c2f3e3a70755460973715588",
+                "reference": "71537437626e8ff5c2f3e3a70755460973715588",
                 "shasum": ""
             },
             "require": {
@@ -441,7 +441,10 @@
             "autoload": {
                 "psr-4": {
                     "Fxp\\Component\\RequireAsset\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -465,7 +468,7 @@
                 "ui",
                 "user interface"
             ],
-            "time": "2016-10-05 08:29:07"
+            "time": "2016-10-14 11:27:02"
         },
         {
             "name": "fxp/require-asset-bundle",
@@ -473,12 +476,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fxpio/FxpRequireAssetBundle.git",
-                "reference": "ae0845c49560930f7c0741afa1f175780823050b"
+                "reference": "939ca4b394cb554007fbf0eca108924995d7a973"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fxpio/FxpRequireAssetBundle/zipball/ae0845c49560930f7c0741afa1f175780823050b",
-                "reference": "ae0845c49560930f7c0741afa1f175780823050b",
+                "url": "https://api.github.com/repos/fxpio/FxpRequireAssetBundle/zipball/939ca4b394cb554007fbf0eca108924995d7a973",
+                "reference": "939ca4b394cb554007fbf0eca108924995d7a973",
                 "shasum": ""
             },
             "require": {
@@ -501,7 +504,10 @@
             "autoload": {
                 "psr-4": {
                     "Fxp\\Bundle\\RequireAssetBundle\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -527,7 +533,7 @@
                 "ui",
                 "user interface"
             ],
-            "time": "2016-10-05 08:33:51"
+            "time": "2016-10-14 11:32:22"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -702,16 +708,16 @@
         },
         {
             "name": "psr/log",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "5277094ed527a1c4477177d102fe4c53551953e0"
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/5277094ed527a1c4477177d102fe4c53551953e0",
-                "reference": "5277094ed527a1c4477177d102fe4c53551953e0",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
                 "shasum": ""
             },
             "require": {
@@ -745,7 +751,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-09-19 16:02:08"
+            "time": "2016-10-10 12:19:37"
         },
         {
             "name": "sonatra/block-bundle",
@@ -753,12 +759,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonatra/SonatraBlockBundle.git",
-                "reference": "b69c57e953b9290ff487f4c003f39166f27b0bf0"
+                "reference": "9bf4ec7d8d0556a04bd72862874cb7bb7b9d41ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonatra/SonatraBlockBundle/zipball/b69c57e953b9290ff487f4c003f39166f27b0bf0",
-                "reference": "b69c57e953b9290ff487f4c003f39166f27b0bf0",
+                "url": "https://api.github.com/repos/sonatra/SonatraBlockBundle/zipball/9bf4ec7d8d0556a04bd72862874cb7bb7b9d41ed",
+                "reference": "9bf4ec7d8d0556a04bd72862874cb7bb7b9d41ed",
                 "shasum": ""
             },
             "require": {
@@ -785,7 +791,10 @@
             "autoload": {
                 "psr-4": {
                     "Sonatra\\Bundle\\BlockBundle\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -804,7 +813,7 @@
                 "ui",
                 "user interface"
             ],
-            "time": "2016-10-05 09:42:53"
+            "time": "2016-10-14 11:55:44"
         },
         {
             "name": "symfony/asset",
@@ -3093,16 +3102,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.26.0",
+            "version": "v1.26.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "81c2b5fd36581370c7731387f05dcdb577050513"
+                "reference": "a09d8ee17ac1cfea29ed60c83960ad685c6a898d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/81c2b5fd36581370c7731387f05dcdb577050513",
-                "reference": "81c2b5fd36581370c7731387f05dcdb577050513",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/a09d8ee17ac1cfea29ed60c83960ad685c6a898d",
+                "reference": "a09d8ee17ac1cfea29ed60c83960ad685c6a898d",
                 "shasum": ""
             },
             "require": {
@@ -3150,7 +3159,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-10-02 16:19:13"
+            "time": "2016-10-05 18:57:41"
         }
     ],
     "packages-dev": [
@@ -3397,16 +3406,16 @@
         },
         {
             "name": "gedmo/doctrine-extensions",
-            "version": "v2.4.23",
+            "version": "v2.4.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "c2f308fab900090c6c0f5b6f72f34a37b4dd2d84"
+                "reference": "a7f7243a19f79a99ac83a3570444d8795f665eef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/c2f308fab900090c6c0f5b6f72f34a37b4dd2d84",
-                "reference": "c2f308fab900090c6c0f5b6f72f34a37b4dd2d84",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/a7f7243a19f79a99ac83a3570444d8795f665eef",
+                "reference": "a7f7243a19f79a99ac83a3570444d8795f665eef",
                 "shasum": ""
             },
             "require": {
@@ -3472,7 +3481,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2016-09-22 13:45:22"
+            "time": "2016-10-11 18:03:37"
         }
     ],
     "aliases": [],
