@@ -49,6 +49,11 @@ class NavType extends AbstractType
                 continue;
             }
 
+            if (!$child->vars['rendered']) {
+                unset($view->children[$name]);
+                continue;
+            }
+
             if (null === $firstItem) {
                 $firstItem = $name;
             }

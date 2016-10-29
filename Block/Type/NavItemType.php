@@ -39,6 +39,7 @@ class NavItemType extends AbstractType
             'link_attr' => $linkAttr,
             'active' => $options['active'],
             'disabled' => $options['disabled'],
+            'rendered' => $options['rendered'],
             'style' => 'tabs',
         ));
 
@@ -89,6 +90,7 @@ class NavItemType extends AbstractType
             'disabled' => false,
             'chained_block' => true,
             'dropup' => false,
+            'rendered' => true,
         ));
 
         $resolver->setAllowedTypes('src', array('null', 'string'));
@@ -96,6 +98,7 @@ class NavItemType extends AbstractType
         $resolver->setAllowedTypes('active', 'bool');
         $resolver->setAllowedTypes('disabled', 'bool');
         $resolver->setAllowedTypes('dropup', 'bool');
+        $resolver->setAllowedTypes('rendered', 'bool');
 
         $resolver->setNormalizer('src', function (Options $options, $value = null) {
             if (isset($options['data'])) {

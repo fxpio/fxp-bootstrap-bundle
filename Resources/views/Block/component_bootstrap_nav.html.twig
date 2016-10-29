@@ -33,6 +33,7 @@
         {%- set link_attr = link_attr|merge({'class': (link_attr.class|default('') ~ ' dropdown-toggle')|trim, 'data-toggle': 'dropdown'}) -%}
     {%- endif -%}
 
+    {%- if rendered is same as(true) -%}
     <li{{ block('widget_container_attributes') }}>
         <a{% for attrname, attrvalue in link_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
         {{- label|block_trans({}, translation_domain) -}}
@@ -47,6 +48,7 @@
             {{- block_widget(dropdown) -}}
         {%- endif -%}
     </li>
+    {%- endif -%}
 {%- endblock nav_item_widget %}
 
 
