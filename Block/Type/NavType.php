@@ -58,6 +58,10 @@ class NavType extends AbstractType
                 $firstItem = $name;
             }
 
+            if ($options['selected'] === $name) {
+                $child->vars['active'] = true;
+            }
+
             if (isset($child->vars['active']) && $child->vars['active']) {
                 $active = true;
                 break;
@@ -79,11 +83,13 @@ class NavType extends AbstractType
             'justifed' => false,
             'stacked' => false,
             'active_first' => true,
+            'selected' => null,
         ));
 
         $resolver->setAllowedTypes('style', array('null', 'string'));
         $resolver->setAllowedTypes('justifed', 'bool');
         $resolver->setAllowedTypes('active_first', 'bool');
+        $resolver->setAllowedTypes('selected', array('null', 'string'));
 
         $resolver->setAllowedValues('style', array(null, 'tabs', 'pills'));
 
