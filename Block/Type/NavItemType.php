@@ -47,10 +47,12 @@ class NavItemType extends AbstractType
             $view->vars['style'] = $view->parent->vars['style'];
         }
 
-        if ('tabs' === $view->vars['style']) {
-            $view->vars['link_attr']['data-toggle'] = 'tab';
-        } elseif ('pills' === $view->vars['style']) {
-            $view->vars['link_attr']['data-toggle'] = 'pill';
+        if (0 === strpos($options['src'], '#')) {
+            if ('tabs' === $view->vars['style']) {
+                $view->vars['link_attr']['data-toggle'] = 'tab';
+            } elseif ('pills' === $view->vars['style']) {
+                $view->vars['link_attr']['data-toggle'] = 'pill';
+            }
         }
     }
 
