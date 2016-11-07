@@ -3,7 +3,7 @@ Getting Started
 
 ## Prerequisites
 
-This version of the bundle requires Symfony 2.4+.
+This version of the bundle requires Symfony 3.
 
 ## Installation
 
@@ -16,15 +16,9 @@ Installation is a quick, 3 step process:
 
 ### Step 1: Download the bundle using composer
 
-Install the Composer plugin `fxp/composer-asset-plugin` in global:
-
-```bash
-$ php composer.phar global require fxp/composer-asset-plugin:@dev
-```
-
 Add Sonatra BootstrapBundle in your composer.json:
 
-```js
+```json
 {
     "require": {
         "sonatra/bootstrap-bundle": "~1.0"
@@ -35,7 +29,7 @@ Add Sonatra BootstrapBundle in your composer.json:
 Or tell composer to download the bundle by running the command:
 
 ```bash
-$ php composer.phar update sonatra/bootstrap-bundle
+$ php composer.phar require sonatra/bootstrap-bundle:"~1.0"
 ```
 
 Composer will install the bundle to your project's `vendor/sonatra` directory.

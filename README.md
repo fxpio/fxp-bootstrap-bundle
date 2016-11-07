@@ -11,51 +11,10 @@ The Sonatra BootstrapBundle is an twig DSL for construct a Twitter Bootstrap 3 i
 
 Features include:
 
-- Auto configuration of asset packages and default extensions
+- All features of [Sonatra Bootstrap](https://github.com/sonatra/sonatra-bootstrap)
 - Twig base template for the HTML5 responsive container
-- Block type for fundamental HTML element with responsive utilities
-  * Grid system
-  * Typography and links
-  * Code
-  * Tables
-  * Forms
-  * Buttons
-  * Images
-  * Helper classes
-- Block type for components
-  * Glyphicons
-  * Dropdowns
-  * Button groups
-  * Button dropdowns
-  * Input groups
-  * Navs
-  * Navbar
-  * Breadcrumbs
-  * Pagination
-  * Labels
-  * Badges
-  * Jumbotron
-  * Page header
-  * Thumbnails
-  * Alerts
-  * Progress bars
-  * Media object
-  * List group
-  * Panels
-  * Wells
-- Javascript comportment capability for all blocks
-  * Transitions
-  * Modals
-  * Dropdowns
-  * ScrollSpy
-  * Togglable tabs
-  * Tooltips
-  * Popovers
-  * Alert messages
-  * Buttons
-  * Collapse
-  * Carousel
-  * Affix
+- Twig template of all blocks of Bootstrap
+- Twig template of all forms of Bootstrap
 
 Documentation
 -------------
