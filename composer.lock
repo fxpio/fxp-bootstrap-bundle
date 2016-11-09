@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fda7dafed8256c8d3c9480b4cbf7f798",
+    "hash": "c5c04a0f38398e935ed724b80584080b",
     "content-hash": "3607265f18b95d0bcb1e75d87b48b4ec",
     "packages": [
         {
@@ -269,18 +269,18 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/fxpio/FxpRequireAssetBundle.git",
-                "reference": "939ca4b394cb554007fbf0eca108924995d7a973"
+                "url": "https://github.com/fxpio/fxp-require-asset-bundle.git",
+                "reference": "0ff34416903a29d09959c380633a339dca9cf757"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fxpio/FxpRequireAssetBundle/zipball/939ca4b394cb554007fbf0eca108924995d7a973",
-                "reference": "939ca4b394cb554007fbf0eca108924995d7a973",
+                "url": "https://api.github.com/repos/fxpio/fxp-require-asset-bundle/zipball/0ff34416903a29d09959c380633a339dca9cf757",
+                "reference": "0ff34416903a29d09959c380633a339dca9cf757",
                 "shasum": ""
             },
             "require": {
                 "fxp/require-asset": "1.0.*@dev",
-                "php": ">=5.5.0",
+                "php": ">=5.6.0",
                 "symfony/assetic-bundle": "~2.8",
                 "symfony/expression-language": "~3.0",
                 "symfony/framework-bundle": "~3.0",
@@ -314,7 +314,7 @@
                 }
             ],
             "description": "Symfony Bundle for required assets helper for assetic manager and twig",
-            "homepage": "https://github.com/fxpio/FxpRequireAssetBundle",
+            "homepage": "https://github.com/fxpio/fxp-require-asset-bundle",
             "keywords": [
                 "asset",
                 "assetic",
@@ -327,7 +327,7 @@
                 "ui",
                 "user interface"
             ],
-            "time": "2016-10-14 11:32:22"
+            "time": "2016-11-09 09:40:37"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -408,16 +408,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.3",
+            "version": "v2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "c0125896dbb151380ab47e96c621741e79623beb"
+                "reference": "a9b97968bcde1c4de2a5ec6cbd06a0f6c919b46e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/c0125896dbb151380ab47e96c621741e79623beb",
-                "reference": "c0125896dbb151380ab47e96c621741e79623beb",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/a9b97968bcde1c4de2a5ec6cbd06a0f6c919b46e",
+                "reference": "a9b97968bcde1c4de2a5ec6cbd06a0f6c919b46e",
                 "shasum": ""
             },
             "require": {
@@ -452,7 +452,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2016-10-17 15:23:22"
+            "time": "2016-11-07 23:38:38"
         },
         {
             "name": "psr/cache",
@@ -553,12 +553,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonatra/sonatra-block.git",
-                "reference": "8b9fb618b940fb13773f7c9da6faa24c82494b25"
+                "reference": "cd803e19cb0c63bb9c774dbfea23b323e72f934e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonatra/sonatra-block/zipball/8b9fb618b940fb13773f7c9da6faa24c82494b25",
-                "reference": "8b9fb618b940fb13773f7c9da6faa24c82494b25",
+                "url": "https://api.github.com/repos/sonatra/sonatra-block/zipball/cd803e19cb0c63bb9c774dbfea23b323e72f934e",
+                "reference": "cd803e19cb0c63bb9c774dbfea23b323e72f934e",
                 "shasum": ""
             },
             "require": {
@@ -611,20 +611,20 @@
                 "ui",
                 "user interface"
             ],
-            "time": "2016-11-07 14:07:47"
+            "time": "2016-11-07 15:28:16"
         },
         {
             "name": "sonatra/block-bundle",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/sonatra/SonatraBlockBundle.git",
-                "reference": "1aab885ba8b25ede1fb9d3ae750d5becdb78bba4"
+                "url": "https://github.com/sonatra/sonatra-block-bundle.git",
+                "reference": "1239c2fa564200fbb32c3bbe6889e5a090de17f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonatra/SonatraBlockBundle/zipball/1aab885ba8b25ede1fb9d3ae750d5becdb78bba4",
-                "reference": "1aab885ba8b25ede1fb9d3ae750d5becdb78bba4",
+                "url": "https://api.github.com/repos/sonatra/sonatra-block-bundle/zipball/1239c2fa564200fbb32c3bbe6889e5a090de17f6",
+                "reference": "1239c2fa564200fbb32c3bbe6889e5a090de17f6",
                 "shasum": ""
             },
             "require": {
@@ -665,13 +665,13 @@
                 }
             ],
             "description": "Provides tools for defining UI blocks, rendering and mapping response data to related models",
-            "homepage": "https://github.com/sonatra/SonatraBlockBundle",
+            "homepage": "https://github.com/sonatra/sonatra-block-bundle",
             "keywords": [
                 "block",
                 "ui",
                 "user interface"
             ],
-            "time": "2016-11-07 14:22:23"
+            "time": "2016-11-09 11:00:48"
         },
         {
             "name": "symfony/asset",
