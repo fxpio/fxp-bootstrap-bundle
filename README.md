@@ -2,9 +2,9 @@ Sonatra Bootstrap Bundle
 ========================
 
 [![Latest Version](https://img.shields.io/packagist/v/sonatra/bootstrap-bundle.svg)](https://packagist.org/packages/sonatra/bootstrap-bundle)
-[![Build Status](https://img.shields.io/travis/sonatra/SonatraBootstrapBundle/master.svg)](https://travis-ci.org/sonatra/SonatraBootstrapBundle)
-[![Coverage Status](https://img.shields.io/coveralls/sonatra/SonatraBootstrapBundle/master.svg)](https://coveralls.io/r/sonatra/SonatraBootstrapBundle?branch=master)
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/sonatra/SonatraBootstrapBundle/master.svg)](https://scrutinizer-ci.com/g/sonatra/SonatraBootstrapBundle?branch=master)
+[![Build Status](https://img.shields.io/travis/sonatra/sonatra-bootstrap-bundle/master.svg)](https://travis-ci.org/sonatra/sonatra-bootstrap-bundle)
+[![Coverage Status](https://img.shields.io/coveralls/sonatra/sonatra-bootstrap-bundle/master.svg)](https://coveralls.io/r/sonatra/sonatra-bootstrap-bundle?branch=master)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/sonatra/sonatra-bootstrap-bundle/master.svg)](https://scrutinizer-ci.com/g/sonatra/sonatra-bootstrap-bundle?branch=master)
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/08121cec-02b1-444e-8958-dea31cfff0e7.svg)](https://insight.sensiolabs.com/projects/08121cec-02b1-444e-8958-dea31cfff0e7)
 
 The Sonatra BootstrapBundle is an twig DSL for construct a Twitter Bootstrap 3 interface.
@@ -40,12 +40,12 @@ About
 -----
 
 Sonatra BootstrapBundle is a [sonatra](https://github.com/sonatra) initiative.
-See also the list of [contributors](https://github.com/sonatra/SonatraBootstrapBundle/contributors).
+See also the list of [contributors](https://github.com/sonatra/sonatra-bootstrap-bundle/contributors).
 
 Reporting an issue or a feature request
 ---------------------------------------
 
-Issues and feature requests are tracked in the [Github issue tracker](https://github.com/sonatra/SonatraBootstrapBundle/issues).
+Issues and feature requests are tracked in the [Github issue tracker](https://github.com/sonatra/sonatra-bootstrap-bundle/issues).
 
 When reporting a bug, it may be a good idea to reproduce it in a basic project
 built using the [Symfony Standard Edition](https://github.com/symfony/symfony-standard)

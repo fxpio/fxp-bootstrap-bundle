@@ -3,7 +3,7 @@
     "type" : "symfony-bundle",
     "description" : "Twig DSL for construct a Twitter Bootstrap interface",
     "keywords" : ["twitter bootstrap 3", "block", "dsl", "template"],
-    "homepage" : "https://github.com/sonatra/SonatraBootstrapBundle",
+    "homepage" : "https://github.com/sonatra/sonatra-bootstrap-bundle",
     "license": "MIT",
     "authors": [
         {
