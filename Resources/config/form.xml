@@ -6,41 +6,41 @@
 
     <services>
         <service id="form.type_extension.sonatra_form" class="Sonatra\Component\Bootstrap\Form\Extension\FormExtension">
-            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
+            <tag name="form.type_extension" priority="201" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
         </service>
 
         <service id="form.type_extension.sonatra_addon" class="Sonatra\Component\Bootstrap\Form\Extension\AddonExtension">
-            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
+            <tag name="form.type_extension" priority="200" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
         </service>
 
         <service id="form.type_extension.sonatra_money" class="Sonatra\Component\Bootstrap\Form\Extension\MoneyExtension">
-            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\MoneyType" />
+            <tag name="form.type_extension" priority="200" extended-type="Symfony\Component\Form\Extension\Core\Type\MoneyType" />
         </service>
 
         <service id="form.type_extension.sonatra_url" class="Sonatra\Component\Bootstrap\Form\Extension\UrlExtension">
-            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\UrlType" />
+            <tag name="form.type_extension" priority="200" extended-type="Symfony\Component\Form\Extension\Core\Type\UrlType" />
         </service>
 
         <service id="form.type_extension.sonatra_percent" class="Sonatra\Component\Bootstrap\Form\Extension\PercentExtension">
-            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\PercentType" />
+            <tag name="form.type_extension" priority="200" extended-type="Symfony\Component\Form\Extension\Core\Type\PercentType" />
         </service>
 
         <service id="form.type_extension.sonatra_choice" class="Sonatra\Component\Bootstrap\Form\Extension\ChoiceExtension">
-            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\ChoiceType" />
+            <tag name="form.type_extension" priority="200" extended-type="Symfony\Component\Form\Extension\Core\Type\ChoiceType" />
         </service>
 
         <service id="form.type_extension.sonatra_repeated" class="Sonatra\Component\Bootstrap\Form\Extension\RepeatedExtension">
-            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\RepeatedType" />
+            <tag name="form.type_extension" priority="200" extended-type="Symfony\Component\Form\Extension\Core\Type\RepeatedType" />
             <argument type="service" id="form.factory" />
         </service>
 
         <service id="form.type_extension.sonatra_collection" class="Sonatra\Component\Bootstrap\Form\Extension\CollectionExtension">
-            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\CollectionType" />
+            <tag name="form.type_extension" priority="200" extended-type="Symfony\Component\Form\Extension\Core\Type\CollectionType" />
             <argument type="service" id="form.factory" />
         </service>
 
         <service id="form.type_extension.sonatra_button" class="Sonatra\Component\Bootstrap\Form\Extension\ButtonExtension">
-            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\ButtonType" />
+            <tag name="form.type_extension" priority="200" extended-type="Symfony\Component\Form\Extension\Core\Type\ButtonType" />
         </service>
     </services>
 </container>
