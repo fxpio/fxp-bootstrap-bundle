@@ -11,11 +11,11 @@
 
 namespace Sonatra\Bundle\BootstrapBundle;
 
-use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\ConfigurationPass;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\FormTemplatePass;
 use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\BlockTemplatePass;
+use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\ConfigurationPass;
+use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\FormTemplatePass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  * @author François Pluchino <francois.pluchino@sonatra.com>
