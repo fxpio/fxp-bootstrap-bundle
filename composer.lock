@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "11ac084da9b41624cd9b6f7724120d8f",
-    "content-hash": "3306e4189286ed61de3ed96fdf9bc603",
+    "hash": "5ef6c1e0be72533142b6edae90d49b95",
+    "content-hash": "df38b608e5da7d62afd20010c4951787",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -497,16 +497,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonatra/sonatra-block-bundle.git",
-                "reference": "7394c19e82f95814acc9c2ebde56dd00ee280fd8"
+                "reference": "c9df971ba006ad3075bed618ee125228b2d4989a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonatra/sonatra-block-bundle/zipball/7394c19e82f95814acc9c2ebde56dd00ee280fd8",
-                "reference": "7394c19e82f95814acc9c2ebde56dd00ee280fd8",
+                "url": "https://api.github.com/repos/sonatra/sonatra-block-bundle/zipball/c9df971ba006ad3075bed618ee125228b2d4989a",
+                "reference": "c9df971ba006ad3075bed618ee125228b2d4989a",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.6.0",
+                "php": ">=7.0.0",
                 "sonatra/block": "~1.0@dev",
                 "symfony/framework-bundle": "~3.0"
             },
@@ -551,7 +551,7 @@
                 "ui",
                 "user interface"
             ],
-            "time": "2017-01-19 11:48:28"
+            "time": "2017-01-19 16:19:06"
         },
         {
             "name": "sonatra/bootstrap",
@@ -559,16 +559,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonatra/sonatra-bootstrap.git",
-                "reference": "7f26d43632b18697a6c5af17cf49e47ac2943d81"
+                "reference": "b8150212b97cfcc8884b18743177fd23f13445bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonatra/sonatra-bootstrap/zipball/7f26d43632b18697a6c5af17cf49e47ac2943d81",
-                "reference": "7f26d43632b18697a6c5af17cf49e47ac2943d81",
+                "url": "https://api.github.com/repos/sonatra/sonatra-bootstrap/zipball/b8150212b97cfcc8884b18743177fd23f13445bf",
+                "reference": "b8150212b97cfcc8884b18743177fd23f13445bf",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.6.0",
+                "php": ">=7.0.0",
                 "sonatra/block": "1.0.*@dev"
             },
             "require-dev": {
@@ -613,7 +613,7 @@
                 "block",
                 "template"
             ],
-            "time": "2017-01-19 14:41:10"
+            "time": "2017-01-19 16:20:14"
         },
         {
             "name": "symfony/assetic-bundle",
@@ -3095,7 +3095,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.6.0"
+        "php": ">=7.0.0"
     },
     "platform-dev": []
 }
