@@ -431,12 +431,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonatra/sonatra-block.git",
-                "reference": "8e1c461b850fa9429b8911e5639b761f8789e4df"
+                "reference": "e7471801ad6f9e4515eaeb9f5d6564b97c9b2050"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonatra/sonatra-block/zipball/8e1c461b850fa9429b8911e5639b761f8789e4df",
-                "reference": "8e1c461b850fa9429b8911e5639b761f8789e4df",
+                "url": "https://api.github.com/repos/sonatra/sonatra-block/zipball/e7471801ad6f9e4515eaeb9f5d6564b97c9b2050",
+                "reference": "e7471801ad6f9e4515eaeb9f5d6564b97c9b2050",
                 "shasum": ""
             },
             "require": {
@@ -489,7 +489,7 @@
                 "ui",
                 "user interface"
             ],
-            "time": "2017-01-19 09:36:13"
+            "time": "2017-01-19 11:33:44"
         },
         {
             "name": "sonatra/block-bundle",
@@ -497,12 +497,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonatra/sonatra-block-bundle.git",
-                "reference": "d97e40441c59f752b27b6e12ca2ea0f2dac2a4e4"
+                "reference": "7394c19e82f95814acc9c2ebde56dd00ee280fd8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonatra/sonatra-block-bundle/zipball/d97e40441c59f752b27b6e12ca2ea0f2dac2a4e4",
-                "reference": "d97e40441c59f752b27b6e12ca2ea0f2dac2a4e4",
+                "url": "https://api.github.com/repos/sonatra/sonatra-block-bundle/zipball/7394c19e82f95814acc9c2ebde56dd00ee280fd8",
+                "reference": "7394c19e82f95814acc9c2ebde56dd00ee280fd8",
                 "shasum": ""
             },
             "require": {
@@ -551,7 +551,7 @@
                 "ui",
                 "user interface"
             ],
-            "time": "2017-01-19 09:46:00"
+            "time": "2017-01-19 11:48:28"
         },
         {
             "name": "sonatra/bootstrap",
@@ -559,12 +559,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonatra/sonatra-bootstrap.git",
-                "reference": "791b4eaa4b29083a5818bed2941f1a89c511498f"
+                "reference": "7f26d43632b18697a6c5af17cf49e47ac2943d81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonatra/sonatra-bootstrap/zipball/791b4eaa4b29083a5818bed2941f1a89c511498f",
-                "reference": "791b4eaa4b29083a5818bed2941f1a89c511498f",
+                "url": "https://api.github.com/repos/sonatra/sonatra-bootstrap/zipball/7f26d43632b18697a6c5af17cf49e47ac2943d81",
+                "reference": "7f26d43632b18697a6c5af17cf49e47ac2943d81",
                 "shasum": ""
             },
             "require": {
@@ -613,7 +613,7 @@
                 "block",
                 "template"
             ],
-            "time": "2017-01-19 09:48:53"
+            "time": "2017-01-19 14:41:10"
         },
         {
             "name": "symfony/assetic-bundle",
@@ -2683,16 +2683,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.5.8",
+            "version": "v2.5.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "6314d55f60f85f0295c90688397b75c13faf9f0e"
+                "reference": "0d2f8187d4b4c7b72d8e2acba359e25c36feaf5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/6314d55f60f85f0295c90688397b75c13faf9f0e",
-                "reference": "6314d55f60f85f0295c90688397b75c13faf9f0e",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/0d2f8187d4b4c7b72d8e2acba359e25c36feaf5e",
+                "reference": "0d2f8187d4b4c7b72d8e2acba359e25c36feaf5e",
                 "shasum": ""
             },
             "require": {
@@ -2750,7 +2750,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2017-01-17 17:48:38"
+            "time": "2017-01-19 13:27:33"
         },
         {
             "name": "doctrine/inflector",
