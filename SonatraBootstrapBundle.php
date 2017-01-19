@@ -11,6 +11,7 @@
 
 namespace Sonatra\Bundle\BootstrapBundle;
 
+use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\AddTemplatePathPass;
 use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\BlockTemplatePass;
 use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\ConfigurationPass;
 use Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler\FormTemplatePass;
@@ -26,6 +27,7 @@ class SonatraBootstrapBundle extends Bundle
     {
         parent::build($container);
 
+        $container->addCompilerPass(new AddTemplatePathPass());
         $container->addCompilerPass(new FormTemplatePass());
         $container->addCompilerPass(new BlockTemplatePass());
         $container->addCompilerPass(new ConfigurationPass());

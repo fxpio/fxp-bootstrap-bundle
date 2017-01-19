@@ -1,8 +1,0 @@
-{% block glyphicon_widget -%}
-{%- if rendered -%}
-    {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
-    {%- set attr = attr|merge({'class': ('glyphicon glyphicon-' ~ icon ~ ' ' ~ attr.class|default(''))|trim}) -%}
-
-    <span{{ block('widget_container_attributes') }}>{{- value|raw -}}{{ block('block_rows') }}</span>
-{%- endif -%}
-{%- endblock glyphicon_widget %}
