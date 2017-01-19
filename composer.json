@@ -19,7 +19,8 @@
         "fxp/require-asset-bundle" : "1.0.*@dev",
         "fxp/require-asset" : "1.0.*@dev",
         "sonatra/block-bundle" : "1.0.*@dev",
-        "sonatra/block" : "1.0.*@dev"
+        "sonatra/block" : "1.0.*@dev",
+		"sonatra/bootstrap" : "1.0.*@dev"
     },
     "require-dev" : {
         "symfony/console" : "~3.0",
