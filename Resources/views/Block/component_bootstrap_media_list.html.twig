@@ -1,4 +1,5 @@
 {% block media_list_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- set attr = attr|merge({'class': ('media-list ' ~ attr.class|default(''))|trim}) -%}
 
@@ -8,10 +9,12 @@
             {{- block_widget(child) -}}
         {%- endfor -%}
     </ul>
+{%- endif -%}
 {%- endblock media_list_widget %}
 
 
 {% block media_widget -%}
+{%- if rendered -%}
     {%- set attr = attr|merge({'class': ('media ' ~ attr.class|default(''))|trim}) -%}
 
     <{{ tag }}{{ block('widget_container_attributes') }}>
@@ -22,10 +25,12 @@
     {%- endfor -%}
 
     </{{ tag }}>
+{%- endif -%}
 {%- endblock media_widget %}
 
 
 {% block media_body_widget -%}
+{%- if rendered -%}
     {%- set attr = attr|merge({'class': ('media-body ' ~ attr.class|default(''))|trim}) -%}
 
     <div{{ block('widget_container_attributes') }}>
@@ -35,4 +40,5 @@
             {{- block_widget(child) -}}
         {%- endfor -%}
     </div>
+{%- endif -%}
 {%- endblock media_body_widget %}

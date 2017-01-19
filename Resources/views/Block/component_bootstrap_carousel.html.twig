@@ -1,4 +1,5 @@
 {% block carousel_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- require_script '@bower/bootstrap/js/carousel.js' -%}
     {%- set attr = attr|merge({'class': ('carousel slide ' ~ attr.class|default(''))|trim}) -%}
@@ -28,10 +29,12 @@
             </a>
         {%- endif -%}
     </div>
+{%- endif -%}
 {%- endblock carousel_widget %}
 
 
 {% block carousel_item_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- set attr = attr|merge({'class': ('item ' ~ attr.class|default(''))|trim}) -%}
     {%- if active -%}
@@ -49,4 +52,5 @@
             </div>
         {%- endif -%}
     </div>
+{%- endif -%}
 {%- endblock carousel_item_widget %}

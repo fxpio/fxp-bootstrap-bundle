@@ -1,12 +1,15 @@
 {% block list_group_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- set attr = attr|merge({'class': ('list-group ' ~ attr.class|default(''))|trim}) -%}
 
     {{- block('list_widget') -}}
+{%- endif -%}
 {%- endblock list_group_widget %}
 
 
 {% block list_group_item_widget -%}
+{%- if rendered -%}
     {%- set attr = attr|merge({'class': ('list-group-item ' ~ attr.class|default(''))|trim}) -%}
     {%- if style -%}
         {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' list-group-item-' ~ style)|trim}) -%}
@@ -22,18 +25,23 @@
     {%- endif -%}
 
     {{- block('list_item_widget') -}}
+{%- endif -%}
 {%- endblock list_group_item_widget %}
 
 
 {% block list_group_item_heading_widget -%}
+{%- if rendered -%}
     {%- set attr = attr|merge({'class': ('list-group-item-heading ' ~ attr.class|default(''))|trim}) -%}
 
     {{- block('heading_widget') -}}
+{%- endif -%}
 {%- endblock list_group_item_heading_widget %}
 
 
 {% block list_group_item_text_widget -%}
+{%- if rendered -%}
     {%- set attr = attr|merge({'class': ('list-group-item-text ' ~ attr.class|default(''))|trim}) -%}
 
     {{- block('paragraph_widget') -}}
+{%- endif -%}
 {%- endblock list_group_item_text_widget %}

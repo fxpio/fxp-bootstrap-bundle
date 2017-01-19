@@ -1,4 +1,5 @@
 {% block navbar_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
 
     {%- set attr = attr|merge({'class': ('navbar navbar-' ~ style ~ ' ' ~ attr.class|default(''))|trim, role: 'navigation'}) -%}
@@ -16,10 +17,12 @@
             {{- block_widget(child) -}}
         {%- endfor -%}
     </div>
+{%- endif -%}
 {%- endblock navbar_widget %}
 
 
 {% block navbar_header_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- set attr = attr|merge({'class': ('navbar-header ' ~ attr.class|default(''))|trim}) -%}
 
@@ -32,20 +35,24 @@
             {{- block_widget(child) -}}
         {%- endfor -%}
     </div>
+{%- endif -%}
 {%- endblock navbar_header_widget %}
 
 
 {% block navbar_header_toggle_button -%}
+{%- if rendered -%}
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#{{ collapse_id }}">
         <span class="sr-only">{{ label|block_trans({}, translation_domain) }}</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
+{%- endif -%}
 {%- endblock navbar_header_toggle_button %}
 
 
 {% block navbar_brand_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- set attr = attr|merge({'class': ('navbar-brand ' ~ attr.class|default(''))|trim}) -%}
 
@@ -54,10 +61,12 @@
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </a>
+{%- endif -%}
 {%- endblock navbar_brand_widget %}
 
 
 {% block navbar_collapse_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- set attr = attr|merge({'class': ('collapse navbar-collapse ' ~ attr.class|default(''))|trim}) -%}
 
@@ -67,4 +76,5 @@
             {{- block_widget(child) -}}
         {%- endfor -%}
     </div>
+{%- endif -%}
 {%- endblock navbar_collapse_widget %}

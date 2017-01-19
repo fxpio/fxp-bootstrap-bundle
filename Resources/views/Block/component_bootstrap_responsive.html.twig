@@ -1,4 +1,5 @@
 {% block embed_responsive_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- set attr = attr|merge({'class': ('embed-responsive ' ~ attr.class|default(''))|trim}) -%}
 
@@ -8,10 +9,12 @@
 
     {{- value|raw -}}
     {{- block('block_widget_compound') -}}
+{%- endif -%}
 {%- endblock embed_responsive_widget %}
 
 
 {% block embed_responsive_item_widget -%}
+{%- if rendered -%}
     {%- set attr = attr|merge({'class': ('embed-responsive-item ' ~ attr.class|default(''))|trim}) -%}
     {%- if value is not null -%}
         {%- set attr = attr|merge({'src': value}) -%}
@@ -22,4 +25,5 @@
             {{- block_widget(child) -}}
         {%- endfor -%}
     </{{ item_type }}>
+{%- endif -%}
 {%- endblock embed_responsive_item_widget %}

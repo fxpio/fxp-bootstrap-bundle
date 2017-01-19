@@ -1,4 +1,5 @@
 {% block button_group_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- require_script '@bower/bootstrap/js/button.js' -%}
     {%- if vertical -%}
@@ -18,10 +19,12 @@
     {%- endif -%}
     {{- value|raw -}}
     {{- block('block_widget_compound') -}}
+{%- endif -%}
 {%- endblock button_group_widget %}
 
 
 {% block button_toolbar_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- require_script '@bower/bootstrap/js/button.js' -%}
     {%- set attr = attr|merge({'class': ' btn-toolbar' ~ (attr.class|default(''))|trim}) -%}
@@ -31,10 +34,12 @@
             {{- block_widget(child) -}}
         {%- endfor -%}
     </div>
+{%- endif -%}
 {%- endblock button_toolbar_widget %}
 
 
 {% block button_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- require_script '@bower/bootstrap/js/button.js' -%}
     {%- if label is null -%}
@@ -138,6 +143,7 @@
     {%- if btn_group_attr is defined -%}
         </div>
     {%- endif -%}
+{%- endif -%}
 {%- endblock button_widget %}
 
 

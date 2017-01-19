@@ -1,13 +1,16 @@
 {% block breadcrumb_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- set attr = attr|merge({'class': ('breadcrumb ' ~ attr.class|default(''))|trim}) -%}
     <ol{{ block('widget_container_attributes') }}>
         {{- block('block_rows') -}}
     </ol>
+{%- endif -%}
 {%- endblock breadcrumb_widget %}
 
 
 {% block breadcrumb_item_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- if active -%}
         {%- set attr = attr|merge({'class': ('active ' ~ attr.class|default(''))|trim}) -%}
@@ -23,4 +26,5 @@
             </a>
         {%- endif -%}
     </li>
+{%- endif -%}
 {%- endblock breadcrumb_item_widget %}

@@ -1,4 +1,5 @@
 {% block form_content_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- set form_attr = {'row_attr': row_attr, 'display_label': display_label} -%}
     {%- if layout is defined and layout_col_size is defined and layout_col_label is defined and layout_col_control is defined -%}
@@ -10,4 +11,5 @@
         {{- block_widget(child) -}}
     {%- endfor -%}
     {{- form_widget(block_form, form_attr) -}}
+{%- endif -%}
 {%- endblock form_content_widget %}

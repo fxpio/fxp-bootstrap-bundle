@@ -1,4 +1,5 @@
 {% block dropdown_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- require_script '@bower/bootstrap/js/dropdown.js' -%}
     {%- if wrapper -%}
@@ -18,20 +19,24 @@
     {%- if wrapper -%}
         </div>
     {%- endif -%}
+{%- endif -%}
 {%- endblock dropdown_widget %}
 
 
 {% block dropdown_divider_widget -%}
+{%- if rendered -%}
     {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' divider')|trim, role:'presentation'}) -%}
 
     <li{{ block('widget_container_attributes') }}>
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </li>
+{%- endif -%}
 {%- endblock dropdown_divider_widget %}
 
 
 {% block dropdown_item_widget -%}
+{%- if rendered -%}
     {%- set attr = attr|merge({role:'presentation'}) -%}
     {%- set link_attr = link_attr|merge({role:'menuitem'}) -%}
     {%- if disabled -%}
@@ -52,6 +57,7 @@
             {{- block_widget(child) -}}
         {%- endfor -%}
     </li>
+{%- endif -%}
 {%- endblock dropdown_item_widget %}
 
 
@@ -66,6 +72,7 @@
 
 
 {% block dropdown_header_widget -%}
+{%- if rendered -%}
     {%- if divider -%}
         {%- sblock 'dropdown_divider' :-%}
     {%- endif -%}
@@ -77,4 +84,5 @@
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </li>
+{%- endif -%}
 {%- endblock dropdown_header_widget %}

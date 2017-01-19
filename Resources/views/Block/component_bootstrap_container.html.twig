@@ -1,4 +1,5 @@
 {% block container_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- set container_class = 'container' -%}
     {%- if fluid -%}
@@ -11,10 +12,12 @@
             {{- block_widget(child) -}}
         {%- endfor -%}
     </div>
+{%- endif -%}
 {%- endblock container_widget %}
 
 
 {% block row_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- set attr = attr|merge({'class': ('row ' ~ attr.class|default(''))|trim}) -%}
 
@@ -24,10 +27,12 @@
             {{- block_widget(child) -}}
         {%- endfor -%}
     </div>
+{%- endif -%}
 {%- endblock row_widget %}
 
 
 {% block col_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- set col_class = '' -%}
 
@@ -47,10 +52,12 @@
             {{- block_widget(child) -}}
         {%- endfor -%}
     </div>
+{%- endif -%}
 {%- endblock col_widget %}
 
 
 {% block label_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- set attr = attr|merge({'class': ('label label-' ~ style ~ ' ' ~ attr.class|default(''))|trim}) -%}
 
@@ -59,4 +66,5 @@
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </span>
+{%- endif -%}
 {%- endblock label_widget %}

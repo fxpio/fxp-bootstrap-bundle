@@ -1,4 +1,5 @@
 {% block block_widget_simple -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- if layout is defined and layout == 'horizontal' -%}
         <div class="col-{{ layout_col_size }}-{{ layout_col_control }}">
@@ -14,10 +15,12 @@
     {%- if layout is defined and layout == 'horizontal' -%}
         </div>
     {%- endif -%}
+{%- endif -%}
 {%- endblock block_widget_simple %}
 
 
 {% block block_widget_compound -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- if layout is defined and layout != null -%}
         {%- set attr = attr|merge({'class': (' block-' ~ layout ~ ' ' ~ attr.class|default(''))|trim}) -%}
@@ -27,10 +30,12 @@
     {%- endif -%}
 
     {{- block('base_block_widget_compound') -}}
+{%- endif -%}
 {%- endblock block_widget_compound %}
 
 
 {% block block_row -%}
+{%- if rendered -%}
     {%- if block.parent.vars.row|default(false) -%}
         {%- set row_attr = row_attr|default({})|merge({'class': ('block-group ' ~ (row_attr.class|default('')))|trim}) -%}
         <div{% for attrname, attrvalue in row_attr %} {{ attrname }}="{{ attrvalue }}"{%- endfor -%}>
@@ -42,15 +47,19 @@
     {%- if block.parent.vars.row|default(false) -%}
         </div>
     {%- endif -%}
+{%- endif -%}
 {%- endblock block_row %}
 
 
 {% block closure_row -%}
+{%- if rendered -%}
     {{- block_widget(block) -}}
+{%- endif -%}
 {%- endblock closure_row %}
 
 
 {% block block_label -%}
+{%- if rendered -%}
     {%- set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' block-label')|trim}) -%}
     {%- if display_label == false -%}
         {%- set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' sr-only')|trim}) -%}
@@ -60,6 +69,7 @@
     {%- endif -%}
 
     {{- block('base_block_label') -}}
+{%- endif -%}
 {%- endblock block_label %}
 
 

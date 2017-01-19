@@ -1,4 +1,5 @@
 {% block table_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
 
     {%- set attr = attr|merge({'class': ('table ' ~ attr.class|default(''))|trim}) -%}
@@ -64,19 +65,23 @@
     {%- if responsive -%}
         </div>
     {%- endif -%}
+{%- endif -%}
 {%- endblock table_widget %}
 
 
 {% block table_caption_widget -%}
+{%- if rendered -%}
     <caption{{ block('widget_container_attributes') }}>
         {{- label|block_trans({}, translation_domain) -}}
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </caption>
+{%- endif -%}
 {%- endblock table_caption_widget %}
 
 
 {% block table_header_widget -%}
+{%- if rendered -%}
     <thead{{ block('widget_container_attributes') }}>
         {{- value|raw -}}
         {{- block('block_rows') -}}
@@ -88,24 +93,29 @@
             </tr>
         {%- endif -%}
     </thead>
+{%- endif -%}
 {%- endblock table_header_widget %}
 
 
 {% block table_footer_widget -%}
+{%- if rendered -%}
     <tfoot{{ block('widget_container_attributes') }}>
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </tfoot>
+{%- endif -%}
 {%- endblock table_footer_widget %}
 
 
 {% block table_column_label -%}
+{%- if rendered -%}
     {%- set label_attr = label_attr|merge({'data-col-name': name}) -%}
 
     <th{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
         {{- label|block_trans({}, translation_domain) -}}
         {{- block('block_rows') -}}
     </th>
+{%- endif -%}
 {%- endblock table_column_label %}
 
 
@@ -114,15 +124,18 @@
 
 
 {% block table_row_widget -%}
+{%- if rendered -%}
     <tr{{ block('widget_container_attributes') }}>
         {{- label|block_trans({}, translation_domain) -}}
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </tr>
+{%- endif -%}
 {%- endblock table_row_widget %}
 
 
 {% block table_cell_widget -%}
+{%- if rendered -%}
     {%- if rowspan is not empty -%}
         {%- set attr = attr|merge({'rowspan': rowspan}) -%}
     {%- endif -%}
@@ -135,10 +148,12 @@
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </td>
+{%- endif -%}
 {%- endblock table_cell_widget %}
 
 
 {% block table_header_cell_widget -%}
+{%- if rendered -%}
     {%- if rowspan is not empty -%}
         {%- set attr = attr|merge({'rowspan': rowspan}) -%}
     {%- endif -%}
@@ -151,4 +166,5 @@
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </th>
+{%- endif -%}
 {%- endblock table_header_cell_widget %}

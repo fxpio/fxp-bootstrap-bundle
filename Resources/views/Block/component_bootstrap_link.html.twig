@@ -1,4 +1,5 @@
 {% block link_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
 
     {%- if 'link' != style -%}
@@ -16,4 +17,5 @@
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </a>
+{%- endif -%}
 {%- endblock link_widget %}

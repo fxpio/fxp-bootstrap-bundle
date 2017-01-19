@@ -1,4 +1,5 @@
 {% block jumbotron_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- set attr = attr|merge({'class': ('jumbotron ' ~ attr.class|default(''))|trim}) -%}
 
@@ -8,4 +9,5 @@
             {{- block_widget(child) -}}
         {%- endfor -%}
     </div>
+{%- endif -%}
 {%- endblock jumbotron_widget %}

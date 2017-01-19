@@ -1,4 +1,5 @@
 {% block pager_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- set attr = attr|merge({'class': ('pager ' ~ attr.class|default(''))|trim}) -%}
     {%- set previous_wrap_attr = {} -%}
@@ -31,10 +32,12 @@
         {{- value|raw -}}
         {{- block('block_rows') -}}
     </ul>
+{%- endif -%}
 {%- endblock pager_widget %}
 
 
 {% block pagination_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- set attr = attr|merge({'class': ('pagination ' ~ attr.class|default(''))|trim}) -%}
 
@@ -48,10 +51,12 @@
         {{- block('block_rows') -}}
         {%- if block_next is defined %}{{ block_widget(block_next) }}{% endif -%}
     </ul>
+{%- endif -%}
 {%- endblock pagination_widget %}
 
 
 {% block pagination_item_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- if disabled -%}
         {%- set attr = attr|merge({'class': (attr.class|default('') ~ ' disabled')|trim}) -%}
@@ -73,4 +78,5 @@
             </a>
         {%- endif -%}
     </li>
+{%- endif -%}
 {%- endblock pagination_item_widget %}

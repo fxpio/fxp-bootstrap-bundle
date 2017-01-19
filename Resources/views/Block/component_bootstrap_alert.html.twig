@@ -1,4 +1,5 @@
 {% block alert_widget -%}
+{%- if rendered -%}
     {%- require_style '@bower/bootstrap/less/bootstrap.less' -%}
     {%- require_script '@bower/bootstrap/js/alert.js' -%}
     {%- set attr = attr|merge({'class': ('alert alert-' ~ style ~ ' ' ~ attr.class|default(''))|trim}) -%}
@@ -14,4 +15,5 @@
             {{- block_widget(child) -}}
         {%- endfor -%}
     </div>
+{%- endif -%}
 {%- endblock alert_widget %}
