@@ -50,17 +50,7 @@ public function registerBundles()
 }
 ```
 
-### Step 3: Configure your application's config.yml
-
-Add the following configuration to your `config.yml`.
-
-```yaml
-# app/config/config.yml
-assetic:
-        less: ~
-```
-
-### Step 4: Configure the bundle (optionnal)
+### Step 3: Configure the bundle (optionnal)
 
 You can override the default configuration adding `sonatra_bootstrap` tree in `app/config/config.yml`.
 For see the reference of Sonatra Bootstrap Configuration, execute command:
