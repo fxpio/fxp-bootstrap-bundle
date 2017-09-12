@@ -27,7 +27,13 @@
         "gedmo/doctrine-extensions": "^2.4.0",
         "symfony/assetic-bundle": "^2.8.0",
         "kriswallsmith/assetic": "^1.4.0",
-        "fxp/require-asset-bundle" : "^1.0.0"
+        "fxp/require-asset-bundle" : "^1.0.0",
+        "foxy/foxy": "^1.0.0"
+    },
+    "config": {
+        "foxy": {
+            "enabled": false
+        }
     },
     "autoload": {
         "psr-4": { "Sonatra\\Bundle\\BootstrapBundle\\" : "" },
