@@ -35,5 +35,9 @@ class SonatraBootstrapExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('form.xml');
         $loader->load('block.xml');
+
+        if (interface_exists('Doctrine\ORM\EntityManagerInterface')) {
+            $loader->load('block_doctrine.xml');
+        }
     }
 }
