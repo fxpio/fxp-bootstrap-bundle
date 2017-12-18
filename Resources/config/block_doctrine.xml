@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="sonatra_bootstrap.type_extension.table_doctrine_orm" class="Sonatra\Component\Bootstrap\Block\Extension\TableDoctrineOrmExtension">
+        <service id="sonatra_bootstrap.type_extension.table_doctrine_orm" class="Sonatra\Component\Bootstrap\Block\Extension\TableDoctrineOrmExtension" public="true">
             <tag name="sonatra_block.type_extension" extended-type="Sonatra\Component\Bootstrap\Block\Type\TableType" />
             <argument type="service" id="doctrine.orm.entity_manager" />
         </service>

@@ -5,392 +5,392 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="sonatra_bootstrap.type_extension.block" class="Sonatra\Component\Bootstrap\Block\Extension\BlockExtension">
+        <service id="sonatra_bootstrap.type_extension.block" class="Sonatra\Component\Bootstrap\Block\Extension\BlockExtension" public="true">
             <tag name="sonatra_block.type_extension" extended-type="Sonatra\Component\Block\Extension\Core\Type\BlockType" />
         </service>
 
-        <service id="sonatra_bootstrap.type_extension.layout" class="Sonatra\Component\Bootstrap\Block\Extension\LayoutExtension">
+        <service id="sonatra_bootstrap.type_extension.layout" class="Sonatra\Component\Bootstrap\Block\Extension\LayoutExtension" public="true">
             <tag name="sonatra_block.type_extension" extended-type="Sonatra\Component\Block\Extension\Core\Type\ObjectType" />
         </service>
 
-        <service id="sonatra_bootstrap.type_extension.collection" class="Sonatra\Component\Bootstrap\Block\Extension\CollectionExtension">
+        <service id="sonatra_bootstrap.type_extension.collection" class="Sonatra\Component\Bootstrap\Block\Extension\CollectionExtension" public="true">
             <tag name="sonatra_block.type_extension" extended-type="Sonatra\Component\Block\Extension\Core\Type\CollectionType" />
         </service>
 
-        <service id="sonatra_bootstrap.type_extension.repeated" class="Sonatra\Component\Bootstrap\Block\Extension\RepeatedExtension">
+        <service id="sonatra_bootstrap.type_extension.repeated" class="Sonatra\Component\Bootstrap\Block\Extension\RepeatedExtension" public="true">
             <tag name="sonatra_block.type_extension" extended-type="Sonatra\Component\Bootstrap\Form\Extension\RepeatedExtension" />
         </service>
 
-        <service id="sonatra_bootstrap.type_extension.responsive" class="Sonatra\Component\Bootstrap\Block\Extension\ResponsiveExtension">
+        <service id="sonatra_bootstrap.type_extension.responsive" class="Sonatra\Component\Bootstrap\Block\Extension\ResponsiveExtension" public="true">
             <tag name="sonatra_block.type_extension" extended-type="Sonatra\Component\Block\Extension\Core\Type\BlockType" />
         </service>
 
-        <service id="sonatra_bootstrap.type.block_collapse" class="Sonatra\Component\Bootstrap\Block\Type\BlockCollapseType">
+        <service id="sonatra_bootstrap.type.block_collapse" class="Sonatra\Component\Bootstrap\Block\Type\BlockCollapseType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.fieldset" class="Sonatra\Component\Bootstrap\Block\Type\FieldsetType">
+        <service id="sonatra_bootstrap.type.fieldset" class="Sonatra\Component\Bootstrap\Block\Type\FieldsetType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.image" class="Sonatra\Component\Bootstrap\Block\Type\ImageType">
+        <service id="sonatra_bootstrap.type.image" class="Sonatra\Component\Bootstrap\Block\Type\ImageType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.container" class="Sonatra\Component\Bootstrap\Block\Type\ContainerType">
+        <service id="sonatra_bootstrap.type.container" class="Sonatra\Component\Bootstrap\Block\Type\ContainerType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.row" class="Sonatra\Component\Bootstrap\Block\Type\RowType">
+        <service id="sonatra_bootstrap.type.row" class="Sonatra\Component\Bootstrap\Block\Type\RowType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.column" class="Sonatra\Component\Bootstrap\Block\Type\ColumnType">
+        <service id="sonatra_bootstrap.type.column" class="Sonatra\Component\Bootstrap\Block\Type\ColumnType" public="true">
             <tag name="sonatra_block.type" template-alias="col" />
         </service>
 
-        <service id="sonatra_bootstrap.type.clearfix" class="Sonatra\Component\Bootstrap\Block\Type\ClearfixType">
+        <service id="sonatra_bootstrap.type.clearfix" class="Sonatra\Component\Bootstrap\Block\Type\ClearfixType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.glyphicon" class="Sonatra\Component\Bootstrap\Block\Type\GlyphiconType">
+        <service id="sonatra_bootstrap.type.glyphicon" class="Sonatra\Component\Bootstrap\Block\Type\GlyphiconType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.button_group" class="Sonatra\Component\Bootstrap\Block\Type\ButtonGroupType">
+        <service id="sonatra_bootstrap.type.button_group" class="Sonatra\Component\Bootstrap\Block\Type\ButtonGroupType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.button_toolbar" class="Sonatra\Component\Bootstrap\Block\Type\ButtonToolbarType">
+        <service id="sonatra_bootstrap.type.button_toolbar" class="Sonatra\Component\Bootstrap\Block\Type\ButtonToolbarType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.link" class="Sonatra\Component\Bootstrap\Block\Type\LinkType">
+        <service id="sonatra_bootstrap.type.link" class="Sonatra\Component\Bootstrap\Block\Type\LinkType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.embed_responsive" class="Sonatra\Component\Bootstrap\Block\Type\EmbedResponsiveType">
+        <service id="sonatra_bootstrap.type.embed_responsive" class="Sonatra\Component\Bootstrap\Block\Type\EmbedResponsiveType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.embed_responsive_item" class="Sonatra\Component\Bootstrap\Block\Type\EmbedResponsiveItemType">
+        <service id="sonatra_bootstrap.type.embed_responsive_item" class="Sonatra\Component\Bootstrap\Block\Type\EmbedResponsiveItemType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.well" class="Sonatra\Component\Bootstrap\Block\Type\WellType">
+        <service id="sonatra_bootstrap.type.well" class="Sonatra\Component\Bootstrap\Block\Type\WellType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.button" class="Sonatra\Component\Bootstrap\Block\Type\ButtonType">
+        <service id="sonatra_bootstrap.type.button" class="Sonatra\Component\Bootstrap\Block\Type\ButtonType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.dropdown" class="Sonatra\Component\Bootstrap\Block\Type\DropdownType">
+        <service id="sonatra_bootstrap.type.dropdown" class="Sonatra\Component\Bootstrap\Block\Type\DropdownType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.dropdown_item" class="Sonatra\Component\Bootstrap\Block\Type\DropdownItemType">
+        <service id="sonatra_bootstrap.type.dropdown_item" class="Sonatra\Component\Bootstrap\Block\Type\DropdownItemType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.dropdown_item_prepend" class="Sonatra\Component\Bootstrap\Block\Type\DropdownItemPrependType">
+        <service id="sonatra_bootstrap.type.dropdown_item_prepend" class="Sonatra\Component\Bootstrap\Block\Type\DropdownItemPrependType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.dropdown_item_append" class="Sonatra\Component\Bootstrap\Block\Type\DropdownItemAppendType">
+        <service id="sonatra_bootstrap.type.dropdown_item_append" class="Sonatra\Component\Bootstrap\Block\Type\DropdownItemAppendType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.divider" class="Sonatra\Component\Bootstrap\Block\Type\DropdownDividerType">
+        <service id="sonatra_bootstrap.type.divider" class="Sonatra\Component\Bootstrap\Block\Type\DropdownDividerType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.header" class="Sonatra\Component\Bootstrap\Block\Type\DropdownHeaderType">
+        <service id="sonatra_bootstrap.type.header" class="Sonatra\Component\Bootstrap\Block\Type\DropdownHeaderType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.nav" class="Sonatra\Component\Bootstrap\Block\Type\NavType">
+        <service id="sonatra_bootstrap.type.nav" class="Sonatra\Component\Bootstrap\Block\Type\NavType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.nav_item" class="Sonatra\Component\Bootstrap\Block\Type\NavItemType">
+        <service id="sonatra_bootstrap.type.nav_item" class="Sonatra\Component\Bootstrap\Block\Type\NavItemType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.tab_content" class="Sonatra\Component\Bootstrap\Block\Type\TabContentType">
+        <service id="sonatra_bootstrap.type.tab_content" class="Sonatra\Component\Bootstrap\Block\Type\TabContentType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.tab_pane" class="Sonatra\Component\Bootstrap\Block\Type\TabPaneType">
+        <service id="sonatra_bootstrap.type.tab_pane" class="Sonatra\Component\Bootstrap\Block\Type\TabPaneType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.breadcrumb" class="Sonatra\Component\Bootstrap\Block\Type\BreadcrumbType">
+        <service id="sonatra_bootstrap.type.breadcrumb" class="Sonatra\Component\Bootstrap\Block\Type\BreadcrumbType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.breadcrumb_item" class="Sonatra\Component\Bootstrap\Block\Type\BreadcrumbItemType">
+        <service id="sonatra_bootstrap.type.breadcrumb_item" class="Sonatra\Component\Bootstrap\Block\Type\BreadcrumbItemType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.progress_bar" class="Sonatra\Component\Bootstrap\Block\Type\ProgressBarType">
+        <service id="sonatra_bootstrap.type.progress_bar" class="Sonatra\Component\Bootstrap\Block\Type\ProgressBarType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.close" class="Sonatra\Component\Bootstrap\Block\Type\CloseType">
+        <service id="sonatra_bootstrap.type.close" class="Sonatra\Component\Bootstrap\Block\Type\CloseType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.caret" class="Sonatra\Component\Bootstrap\Block\Type\CaretType">
+        <service id="sonatra_bootstrap.type.caret" class="Sonatra\Component\Bootstrap\Block\Type\CaretType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.code" class="Sonatra\Component\Bootstrap\Block\Type\CodeType">
+        <service id="sonatra_bootstrap.type.code" class="Sonatra\Component\Bootstrap\Block\Type\CodeType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.page_header" class="Sonatra\Component\Bootstrap\Block\Type\PageHeaderType">
+        <service id="sonatra_bootstrap.type.page_header" class="Sonatra\Component\Bootstrap\Block\Type\PageHeaderType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.heading" class="Sonatra\Component\Bootstrap\Block\Type\HeadingType">
+        <service id="sonatra_bootstrap.type.heading" class="Sonatra\Component\Bootstrap\Block\Type\HeadingType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.paragraph" class="Sonatra\Component\Bootstrap\Block\Type\ParagraphType">
+        <service id="sonatra_bootstrap.type.paragraph" class="Sonatra\Component\Bootstrap\Block\Type\ParagraphType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.abbreviation" class="Sonatra\Component\Bootstrap\Block\Type\AbbreviationType">
+        <service id="sonatra_bootstrap.type.abbreviation" class="Sonatra\Component\Bootstrap\Block\Type\AbbreviationType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.blockquote" class="Sonatra\Component\Bootstrap\Block\Type\BlockquoteType">
+        <service id="sonatra_bootstrap.type.blockquote" class="Sonatra\Component\Bootstrap\Block\Type\BlockquoteType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.blockquote_body" class="Sonatra\Component\Bootstrap\Block\Type\BlockquoteBodyType">
+        <service id="sonatra_bootstrap.type.blockquote_body" class="Sonatra\Component\Bootstrap\Block\Type\BlockquoteBodyType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.blockquote_footer" class="Sonatra\Component\Bootstrap\Block\Type\BlockquoteFooterType">
+        <service id="sonatra_bootstrap.type.blockquote_footer" class="Sonatra\Component\Bootstrap\Block\Type\BlockquoteFooterType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.list_group" class="Sonatra\Component\Bootstrap\Block\Type\ListGroupType">
+        <service id="sonatra_bootstrap.type.list_group" class="Sonatra\Component\Bootstrap\Block\Type\ListGroupType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.list_group_item" class="Sonatra\Component\Bootstrap\Block\Type\ListGroupItemType">
+        <service id="sonatra_bootstrap.type.list_group_item" class="Sonatra\Component\Bootstrap\Block\Type\ListGroupItemType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.list_group_item_heading" class="Sonatra\Component\Bootstrap\Block\Type\ListGroupItemHeadingType">
+        <service id="sonatra_bootstrap.type.list_group_item_heading" class="Sonatra\Component\Bootstrap\Block\Type\ListGroupItemHeadingType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.list_group_item_text" class="Sonatra\Component\Bootstrap\Block\Type\ListGroupItemTextType">
+        <service id="sonatra_bootstrap.type.list_group_item_text" class="Sonatra\Component\Bootstrap\Block\Type\ListGroupItemTextType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.list" class="Sonatra\Component\Bootstrap\Block\Type\ListType">
+        <service id="sonatra_bootstrap.type.list" class="Sonatra\Component\Bootstrap\Block\Type\ListType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.list_item" class="Sonatra\Component\Bootstrap\Block\Type\ListItemType">
+        <service id="sonatra_bootstrap.type.list_item" class="Sonatra\Component\Bootstrap\Block\Type\ListItemType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.address" class="Sonatra\Component\Bootstrap\Block\Type\AddressType">
+        <service id="sonatra_bootstrap.type.address" class="Sonatra\Component\Bootstrap\Block\Type\AddressType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.label" class="Sonatra\Component\Bootstrap\Block\Type\LabelType">
+        <service id="sonatra_bootstrap.type.label" class="Sonatra\Component\Bootstrap\Block\Type\LabelType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.badge" class="Sonatra\Component\Bootstrap\Block\Type\BadgeType">
+        <service id="sonatra_bootstrap.type.badge" class="Sonatra\Component\Bootstrap\Block\Type\BadgeType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.jumbotron" class="Sonatra\Component\Bootstrap\Block\Type\JumbotronType">
+        <service id="sonatra_bootstrap.type.jumbotron" class="Sonatra\Component\Bootstrap\Block\Type\JumbotronType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.alert" class="Sonatra\Component\Bootstrap\Block\Type\AlertType">
+        <service id="sonatra_bootstrap.type.alert" class="Sonatra\Component\Bootstrap\Block\Type\AlertType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.media_list" class="Sonatra\Component\Bootstrap\Block\Type\MediaListType">
+        <service id="sonatra_bootstrap.type.media_list" class="Sonatra\Component\Bootstrap\Block\Type\MediaListType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.media" class="Sonatra\Component\Bootstrap\Block\Type\MediaType">
+        <service id="sonatra_bootstrap.type.media" class="Sonatra\Component\Bootstrap\Block\Type\MediaType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.media_body" class="Sonatra\Component\Bootstrap\Block\Type\MediaBodyType">
+        <service id="sonatra_bootstrap.type.media_body" class="Sonatra\Component\Bootstrap\Block\Type\MediaBodyType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.thumbnail" class="Sonatra\Component\Bootstrap\Block\Type\ThumbnailType">
+        <service id="sonatra_bootstrap.type.thumbnail" class="Sonatra\Component\Bootstrap\Block\Type\ThumbnailType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.thumbnail_caption" class="Sonatra\Component\Bootstrap\Block\Type\ThumbnailCaptionType">
+        <service id="sonatra_bootstrap.type.thumbnail_caption" class="Sonatra\Component\Bootstrap\Block\Type\ThumbnailCaptionType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.pager" class="Sonatra\Component\Bootstrap\Block\Type\PagerType">
+        <service id="sonatra_bootstrap.type.pager" class="Sonatra\Component\Bootstrap\Block\Type\PagerType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.pagination" class="Sonatra\Component\Bootstrap\Block\Type\PaginationType">
+        <service id="sonatra_bootstrap.type.pagination" class="Sonatra\Component\Bootstrap\Block\Type\PaginationType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.pagination_item" class="Sonatra\Component\Bootstrap\Block\Type\PaginationItemType">
+        <service id="sonatra_bootstrap.type.pagination_item" class="Sonatra\Component\Bootstrap\Block\Type\PaginationItemType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.panel_group" class="Sonatra\Component\Bootstrap\Block\Type\PanelGroupType">
+        <service id="sonatra_bootstrap.type.panel_group" class="Sonatra\Component\Bootstrap\Block\Type\PanelGroupType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.panel" class="Sonatra\Component\Bootstrap\Block\Type\PanelType">
+        <service id="sonatra_bootstrap.type.panel" class="Sonatra\Component\Bootstrap\Block\Type\PanelType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.panel_header" class="Sonatra\Component\Bootstrap\Block\Type\PanelHeaderType">
+        <service id="sonatra_bootstrap.type.panel_header" class="Sonatra\Component\Bootstrap\Block\Type\PanelHeaderType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.panel_body" class="Sonatra\Component\Bootstrap\Block\Type\PanelBodyType">
+        <service id="sonatra_bootstrap.type.panel_body" class="Sonatra\Component\Bootstrap\Block\Type\PanelBodyType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.panel_footer" class="Sonatra\Component\Bootstrap\Block\Type\PanelFooterType">
+        <service id="sonatra_bootstrap.type.panel_footer" class="Sonatra\Component\Bootstrap\Block\Type\PanelFooterType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.modal" class="Sonatra\Component\Bootstrap\Block\Type\ModalType">
+        <service id="sonatra_bootstrap.type.modal" class="Sonatra\Component\Bootstrap\Block\Type\ModalType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.modal_header" class="Sonatra\Component\Bootstrap\Block\Type\ModalHeaderType">
+        <service id="sonatra_bootstrap.type.modal_header" class="Sonatra\Component\Bootstrap\Block\Type\ModalHeaderType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.modal_body" class="Sonatra\Component\Bootstrap\Block\Type\ModalBodyType">
+        <service id="sonatra_bootstrap.type.modal_body" class="Sonatra\Component\Bootstrap\Block\Type\ModalBodyType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.modal_footer" class="Sonatra\Component\Bootstrap\Block\Type\ModalFooterType">
+        <service id="sonatra_bootstrap.type.modal_footer" class="Sonatra\Component\Bootstrap\Block\Type\ModalFooterType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type_extension.button_modal" class="Sonatra\Component\Bootstrap\Block\Extension\ButtonModalExtension">
+        <service id="sonatra_bootstrap.type_extension.button_modal" class="Sonatra\Component\Bootstrap\Block\Extension\ButtonModalExtension" public="true">
             <tag name="sonatra_block.type_extension" extended-type="Sonatra\Component\Bootstrap\Block\Type\ButtonType" />
         </service>
 
-        <service id="sonatra_bootstrap.type_extension.tooltip" class="Sonatra\Component\Bootstrap\Block\Extension\TooltipExtension">
+        <service id="sonatra_bootstrap.type_extension.tooltip" class="Sonatra\Component\Bootstrap\Block\Extension\TooltipExtension" public="true">
             <tag name="sonatra_block.type_extension" extended-type="Sonatra\Component\Block\Extension\Core\Type\BlockType" />
         </service>
 
-        <service id="sonatra_bootstrap.type_extension.popover" class="Sonatra\Component\Bootstrap\Block\Extension\PopoverExtension">
+        <service id="sonatra_bootstrap.type_extension.popover" class="Sonatra\Component\Bootstrap\Block\Extension\PopoverExtension" public="true">
             <tag name="sonatra_block.type_extension" extended-type="Sonatra\Component\Block\Extension\Core\Type\BlockType" />
         </service>
 
-        <service id="sonatra_bootstrap.type_extension.affix" class="Sonatra\Component\Bootstrap\Block\Extension\AffixExtension">
+        <service id="sonatra_bootstrap.type_extension.affix" class="Sonatra\Component\Bootstrap\Block\Extension\AffixExtension" public="true">
             <tag name="sonatra_block.type_extension" extended-type="Sonatra\Component\Block\Extension\Core\Type\BlockType" />
         </service>
 
-        <service id="sonatra_bootstrap.type_extension.panel_group_collapse" class="Sonatra\Component\Bootstrap\Block\Extension\PanelGroupCollapseExtension">
+        <service id="sonatra_bootstrap.type_extension.panel_group_collapse" class="Sonatra\Component\Bootstrap\Block\Extension\PanelGroupCollapseExtension" public="true">
             <tag name="sonatra_block.type_extension" extended-type="Sonatra\Component\Bootstrap\Block\Type\PanelGroupType" />
         </service>
 
-        <service id="sonatra_bootstrap.type_extension.button_collapse" class="Sonatra\Component\Bootstrap\Block\Extension\ButtonCollapseExtension">
+        <service id="sonatra_bootstrap.type_extension.button_collapse" class="Sonatra\Component\Bootstrap\Block\Extension\ButtonCollapseExtension" public="true">
             <tag name="sonatra_block.type_extension" extended-type="Sonatra\Component\Bootstrap\Block\Type\ButtonType" />
         </service>
 
-        <service id="sonatra_bootstrap.type_extension.scroll_spy" class="Sonatra\Component\Bootstrap\Block\Extension\ScrollSpyExtension">
+        <service id="sonatra_bootstrap.type_extension.scroll_spy" class="Sonatra\Component\Bootstrap\Block\Extension\ScrollSpyExtension" public="true">
             <tag name="sonatra_block.type_extension" extended-type="Sonatra\Component\Block\Extension\Core\Type\BlockType" />
         </service>
 
-        <service id="sonatra_bootstrap.type.carousel" class="Sonatra\Component\Bootstrap\Block\Type\CarouselType">
+        <service id="sonatra_bootstrap.type.carousel" class="Sonatra\Component\Bootstrap\Block\Type\CarouselType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.carousel_item" class="Sonatra\Component\Bootstrap\Block\Type\CarouselItemType">
+        <service id="sonatra_bootstrap.type.carousel_item" class="Sonatra\Component\Bootstrap\Block\Type\CarouselItemType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.navbar" class="Sonatra\Component\Bootstrap\Block\Type\NavbarType">
+        <service id="sonatra_bootstrap.type.navbar" class="Sonatra\Component\Bootstrap\Block\Type\NavbarType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.navbar_header" class="Sonatra\Component\Bootstrap\Block\Type\NavbarHeaderType">
+        <service id="sonatra_bootstrap.type.navbar_header" class="Sonatra\Component\Bootstrap\Block\Type\NavbarHeaderType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.navbar_brand" class="Sonatra\Component\Bootstrap\Block\Type\NavbarBrandType">
+        <service id="sonatra_bootstrap.type.navbar_brand" class="Sonatra\Component\Bootstrap\Block\Type\NavbarBrandType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.navbar_collapse" class="Sonatra\Component\Bootstrap\Block\Type\NavbarCollapseType">
+        <service id="sonatra_bootstrap.type.navbar_collapse" class="Sonatra\Component\Bootstrap\Block\Type\NavbarCollapseType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.navbar_nav" class="Sonatra\Component\Bootstrap\Block\Type\NavbarNavType">
+        <service id="sonatra_bootstrap.type.navbar_nav" class="Sonatra\Component\Bootstrap\Block\Type\NavbarNavType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.navbar_form" class="Sonatra\Component\Bootstrap\Block\Type\NavbarFormType">
+        <service id="sonatra_bootstrap.type.navbar_form" class="Sonatra\Component\Bootstrap\Block\Type\NavbarFormType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.navbar_button" class="Sonatra\Component\Bootstrap\Block\Type\NavbarButtonType">
+        <service id="sonatra_bootstrap.type.navbar_button" class="Sonatra\Component\Bootstrap\Block\Type\NavbarButtonType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.navbar_text" class="Sonatra\Component\Bootstrap\Block\Type\NavbarTextType">
+        <service id="sonatra_bootstrap.type.navbar_text" class="Sonatra\Component\Bootstrap\Block\Type\NavbarTextType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.navbar_link" class="Sonatra\Component\Bootstrap\Block\Type\NavbarLinkType">
+        <service id="sonatra_bootstrap.type.navbar_link" class="Sonatra\Component\Bootstrap\Block\Type\NavbarLinkType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.table" class="Sonatra\Component\Bootstrap\Block\Type\TableType">
+        <service id="sonatra_bootstrap.type.table" class="Sonatra\Component\Bootstrap\Block\Type\TableType" public="true">
             <tag name="sonatra_block.type" />
             <argument type="service" id="sonatra_block.twig.renderer" />
         </service>
 
-        <service id="sonatra_bootstrap.type.table_caption" class="Sonatra\Component\Bootstrap\Block\Type\TableCaptionType">
+        <service id="sonatra_bootstrap.type.table_caption" class="Sonatra\Component\Bootstrap\Block\Type\TableCaptionType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.table_header" class="Sonatra\Component\Bootstrap\Block\Type\TableHeaderType">
+        <service id="sonatra_bootstrap.type.table_header" class="Sonatra\Component\Bootstrap\Block\Type\TableHeaderType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.table_footer" class="Sonatra\Component\Bootstrap\Block\Type\TableFooterType">
+        <service id="sonatra_bootstrap.type.table_footer" class="Sonatra\Component\Bootstrap\Block\Type\TableFooterType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.table_column" class="Sonatra\Component\Bootstrap\Block\Type\TableColumnType">
+        <service id="sonatra_bootstrap.type.table_column" class="Sonatra\Component\Bootstrap\Block\Type\TableColumnType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.table_row" class="Sonatra\Component\Bootstrap\Block\Type\TableRowType">
+        <service id="sonatra_bootstrap.type.table_row" class="Sonatra\Component\Bootstrap\Block\Type\TableRowType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.table_cell" class="Sonatra\Component\Bootstrap\Block\Type\TableCellType">
+        <service id="sonatra_bootstrap.type.table_cell" class="Sonatra\Component\Bootstrap\Block\Type\TableCellType" public="true">
             <tag name="sonatra_block.type" />
         </service>
 
-        <service id="sonatra_bootstrap.type.table_header_cell" class="Sonatra\Component\Bootstrap\Block\Type\TableHeaderCellType">
+        <service id="sonatra_bootstrap.type.table_header_cell" class="Sonatra\Component\Bootstrap\Block\Type\TableHeaderCellType" public="true">
             <tag name="sonatra_block.type" />
         </service>
     </services>
