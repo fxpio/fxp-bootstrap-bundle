@@ -5,41 +5,41 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="form.type_extension.sonatra_form" class="Sonatra\Component\Bootstrap\Form\Extension\FormExtension" public="true">
+        <service id="form.type_extension.fxp_form" class="Fxp\Component\Bootstrap\Form\Extension\FormExtension" public="true">
             <tag name="form.type_extension" priority="151" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
         </service>
 
-        <service id="form.type_extension.sonatra_addon" class="Sonatra\Component\Bootstrap\Form\Extension\AddonExtension" public="true">
+        <service id="form.type_extension.fxp_addon" class="Fxp\Component\Bootstrap\Form\Extension\AddonExtension" public="true">
             <tag name="form.type_extension" priority="150" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
         </service>
 
-        <service id="form.type_extension.sonatra_money" class="Sonatra\Component\Bootstrap\Form\Extension\MoneyExtension" public="true">
+        <service id="form.type_extension.fxp_money" class="Fxp\Component\Bootstrap\Form\Extension\MoneyExtension" public="true">
             <tag name="form.type_extension" priority="150" extended-type="Symfony\Component\Form\Extension\Core\Type\MoneyType" />
         </service>
 
-        <service id="form.type_extension.sonatra_url" class="Sonatra\Component\Bootstrap\Form\Extension\UrlExtension" public="true">
+        <service id="form.type_extension.fxp_url" class="Fxp\Component\Bootstrap\Form\Extension\UrlExtension" public="true">
             <tag name="form.type_extension" priority="150" extended-type="Symfony\Component\Form\Extension\Core\Type\UrlType" />
         </service>
 
-        <service id="form.type_extension.sonatra_percent" class="Sonatra\Component\Bootstrap\Form\Extension\PercentExtension" public="true">
+        <service id="form.type_extension.fxp_percent" class="Fxp\Component\Bootstrap\Form\Extension\PercentExtension" public="true">
             <tag name="form.type_extension" priority="150" extended-type="Symfony\Component\Form\Extension\Core\Type\PercentType" />
         </service>
 
-        <service id="form.type_extension.sonatra_choice" class="Sonatra\Component\Bootstrap\Form\Extension\ChoiceExtension" public="true">
+        <service id="form.type_extension.fxp_choice" class="Fxp\Component\Bootstrap\Form\Extension\ChoiceExtension" public="true">
             <tag name="form.type_extension" priority="150" extended-type="Symfony\Component\Form\Extension\Core\Type\ChoiceType" />
         </service>
 
-        <service id="form.type_extension.sonatra_repeated" class="Sonatra\Component\Bootstrap\Form\Extension\RepeatedExtension" public="true">
+        <service id="form.type_extension.fxp_repeated" class="Fxp\Component\Bootstrap\Form\Extension\RepeatedExtension" public="true">
             <tag name="form.type_extension" priority="150" extended-type="Symfony\Component\Form\Extension\Core\Type\RepeatedType" />
             <argument type="service" id="form.factory" />
         </service>
 
-        <service id="form.type_extension.sonatra_collection" class="Sonatra\Component\Bootstrap\Form\Extension\CollectionExtension" public="true">
+        <service id="form.type_extension.fxp_collection" class="Fxp\Component\Bootstrap\Form\Extension\CollectionExtension" public="true">
             <tag name="form.type_extension" priority="150" extended-type="Symfony\Component\Form\Extension\Core\Type\CollectionType" />
             <argument type="service" id="form.factory" />
         </service>
 
-        <service id="form.type_extension.sonatra_button" class="Sonatra\Component\Bootstrap\Form\Extension\ButtonExtension" public="true">
+        <service id="form.type_extension.fxp_button" class="Fxp\Component\Bootstrap\Form\Extension\ButtonExtension" public="true">
             <tag name="form.type_extension" priority="150" extended-type="Symfony\Component\Form\Extension\Core\Type\ButtonType" />
         </service>
     </services>

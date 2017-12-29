@@ -1,14 +1,14 @@
 {
-    "name" : "sonatra/bootstrap-bundle",
+    "name" : "fxp/bootstrap-bundle",
     "type" : "symfony-bundle",
     "description" : "Twig DSL for construct a Twitter Bootstrap interface",
     "keywords" : ["twitter bootstrap 3", "block", "dsl", "template"],
-    "homepage" : "https://github.com/sonatra/sonatra-bootstrap-bundle",
+    "homepage" : "https://github.com/fxpio/fxp-bootstrap-bundle",
     "license": "MIT",
     "authors": [
         {
             "name": "François Pluchino",
-            "email": "francois.pluchino@sonatra.com"
+            "email": "francois.pluchino@gmail.com"
         }
     ],
     "minimum-stability": "dev",
@@ -16,8 +16,8 @@
     "require" : {
         "php" : "^7.1.0",
         "symfony/framework-bundle" : "^3.4.0|^4.0.0",
-        "sonatra/block-bundle" : "^1.0.0",
-		"sonatra/bootstrap" : "^1.0.0"
+        "fxp/block-bundle" : "^1.0.0",
+		"fxp/bootstrap" : "^1.0.0"
     },
     "require-dev" : {
         "symfony/console" : "^3.4.0|^4.0.0",
@@ -36,7 +36,7 @@
         }
     },
     "autoload": {
-        "psr-4": { "Sonatra\\Bundle\\BootstrapBundle\\" : "" },
+        "psr-4": { "Fxp\\Bundle\\BootstrapBundle\\" : "" },
         "exclude-from-classmap": [
             "/Tests/"
         ]

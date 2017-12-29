@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of the Sonatra package.
+ * This file is part of the Fxp package.
  *
- * (c) François Pluchino <francois.pluchino@sonatra.com>
+ * (c) François Pluchino <francois.pluchino@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Sonatra\Bundle\BootstrapBundle\DependencyInjection\Compiler;
+namespace Fxp\Bundle\BootstrapBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 /**
  * Add a custom form template in twig.form.resources.
  *
- * @author François Pluchino <francois.pluchino@sonatra.com>
+ * @author François Pluchino <francois.pluchino@gmail.com>
  */
 class FormTemplatePass implements CompilerPassInterface
 {
@@ -37,7 +37,7 @@ class FormTemplatePass implements CompilerPassInterface
         }
 
         array_splice($resources, $offset, 0, array(
-            '@SonatraBootstrap/Form/form_bootstrap.html.twig',
+            '@FxpBootstrap/Form/form_bootstrap.html.twig',
         ));
 
         $container->setParameter('twig.form.resources', $resources);

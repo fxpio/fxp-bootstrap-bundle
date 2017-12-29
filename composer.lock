@@ -4,8 +4,194 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1bbd30f33cdd05e551a74ef8453b7f71",
+    "content-hash": "ead3bd53661d9197af1e8d754c3bdb62",
     "packages": [
+        {
+            "name": "fxp/block",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fxpio/fxp-block.git",
+                "reference": "884968ccd39875403ac9f35f332033f0e480c59f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fxpio/fxp-block/zipball/884968ccd39875403ac9f35f332033f0e480c59f",
+                "reference": "884968ccd39875403ac9f35f332033f0e480c59f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.0",
+                "symfony/event-dispatcher": "^3.4.0|^4.0.0",
+                "symfony/form": "^3.4.0|^4.0.0",
+                "symfony/options-resolver": "^3.4.0|^4.0.0"
+            },
+            "require-dev": {
+                "doctrine/orm": "^2.6.0",
+                "symfony/dependency-injection": "^3.4.0|^4.0.0",
+                "symfony/doctrine-bridge": "^3.4.0|^4.0.0",
+                "symfony/http-kernel": "^3.4.0|^4.0.0",
+                "symfony/templating": "^3.4.0|^4.0.0",
+                "symfony/translation": "^3.4.0|^4.0.0",
+                "symfony/validator": "^3.4.0|^4.0.0",
+                "twig/twig": "^2.4.0"
+            },
+            "suggest": {
+                "doctrine/orm": "For doctrine block type"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Fxp\\Component\\Block\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Pluchino",
+                    "email": "francois.pluchino@gmail.com"
+                }
+            ],
+            "description": "Provides tools for defining UI blocks, rendering and mapping response data to related models",
+            "homepage": "https://github.com/fxpio/fxp-block",
+            "keywords": [
+                "block",
+                "ui",
+                "user interface"
+            ],
+            "time": "2017-12-29T16:42:13+00:00"
+        },
+        {
+            "name": "fxp/block-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fxpio/fxp-block-bundle.git",
+                "reference": "b61a752f63f1f08caaa63f9be7fe1968c2dfe59a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fxpio/fxp-block-bundle/zipball/b61a752f63f1f08caaa63f9be7fe1968c2dfe59a",
+                "reference": "b61a752f63f1f08caaa63f9be7fe1968c2dfe59a",
+                "shasum": ""
+            },
+            "require": {
+                "fxp/block": "^1.0.0",
+                "php": "^7.1.0",
+                "symfony/framework-bundle": "^3.4.0|^4.0.0"
+            },
+            "require-dev": {
+                "doctrine/orm": "^2.6.0",
+                "symfony/asset": "^3.4.0|^4.0.0",
+                "symfony/templating": "^3.4.0|^4.0.0",
+                "symfony/twig-bundle": "^3.4.0|^4.0.0",
+                "symfony/validator": "^3.4.0|^4.0.0"
+            },
+            "suggest": {
+                "fxp/bootstrap-bundle": "The twitter bootstrap DSL twig tag"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Fxp\\Bundle\\BlockBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Pluchino",
+                    "email": "francois.pluchino@gmail.com"
+                }
+            ],
+            "description": "Provides tools for defining UI blocks, rendering and mapping response data to related models",
+            "homepage": "https://github.com/fxpio/fxp-block-bundle",
+            "keywords": [
+                "block",
+                "ui",
+                "user interface"
+            ],
+            "time": "2017-12-29T16:59:40+00:00"
+        },
+        {
+            "name": "fxp/bootstrap",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fxpio/fxp-bootstrap.git",
+                "reference": "69348c4d5db04c56e927131906d48d484b6b9220"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fxpio/fxp-bootstrap/zipball/69348c4d5db04c56e927131906d48d484b6b9220",
+                "reference": "69348c4d5db04c56e927131906d48d484b6b9220",
+                "shasum": ""
+            },
+            "require": {
+                "fxp/block": "^1.0.0",
+                "php": "^7.1.0"
+            },
+            "require-dev": {
+                "doctrine/orm": "^2.6.0",
+                "foxy/foxy": "^1.0.0",
+                "fxp/doctrine-extensions": "^1.0.0",
+                "gedmo/doctrine-extensions": "^2.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Fxp\\Component\\Bootstrap\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Pluchino",
+                    "email": "francois.pluchino@gmail.com"
+                }
+            ],
+            "description": "Twig DSL for construct a Twitter Bootstrap interface",
+            "homepage": "https://github.com/fxpio/fxp-bootstrap",
+            "keywords": [
+                "DSL",
+                "Twitter Bootstrap 3",
+                "block",
+                "template"
+            ],
+            "time": "2017-12-29T17:11:44+00:00"
+        },
         {
             "name": "psr/cache",
             "version": "1.0.1",
@@ -195,192 +381,6 @@
                 "simple-cache"
             ],
             "time": "2017-01-02T13:31:39+00:00"
-        },
-        {
-            "name": "sonatra/block",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sonatra/sonatra-block.git",
-                "reference": "715ead737a27771752d277c5c8994d9ed70b61ea"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sonatra/sonatra-block/zipball/715ead737a27771752d277c5c8994d9ed70b61ea",
-                "reference": "715ead737a27771752d277c5c8994d9ed70b61ea",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1.0",
-                "symfony/event-dispatcher": "^3.4.0|^4.0.0",
-                "symfony/form": "^3.4.0|^4.0.0",
-                "symfony/options-resolver": "^3.4.0|^4.0.0"
-            },
-            "require-dev": {
-                "doctrine/orm": "^2.6.0",
-                "symfony/dependency-injection": "^3.4.0|^4.0.0",
-                "symfony/doctrine-bridge": "^3.4.0|^4.0.0",
-                "symfony/http-kernel": "^3.4.0|^4.0.0",
-                "symfony/templating": "^3.4.0|^4.0.0",
-                "symfony/translation": "^3.4.0|^4.0.0",
-                "symfony/validator": "^3.4.0|^4.0.0",
-                "twig/twig": "^2.4.0"
-            },
-            "suggest": {
-                "doctrine/orm": "For doctrine block type"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Sonatra\\Component\\Block\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "François Pluchino",
-                    "email": "francois.pluchino@sonatra.com"
-                }
-            ],
-            "description": "Provides tools for defining UI blocks, rendering and mapping response data to related models",
-            "homepage": "https://github.com/sonatra/sonatra-block",
-            "keywords": [
-                "block",
-                "ui",
-                "user interface"
-            ],
-            "time": "2017-12-27T10:03:40+00:00"
-        },
-        {
-            "name": "sonatra/block-bundle",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sonatra/sonatra-block-bundle.git",
-                "reference": "05a40a5189680c428b29b684e388f8f9c6a78353"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sonatra/sonatra-block-bundle/zipball/05a40a5189680c428b29b684e388f8f9c6a78353",
-                "reference": "05a40a5189680c428b29b684e388f8f9c6a78353",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1.0",
-                "sonatra/block": "^1.0.0",
-                "symfony/framework-bundle": "^3.4.0|^4.0.0"
-            },
-            "require-dev": {
-                "doctrine/orm": "^2.6.0",
-                "symfony/asset": "^3.4.0|^4.0.0",
-                "symfony/templating": "^3.4.0|^4.0.0",
-                "symfony/twig-bundle": "^3.4.0|^4.0.0",
-                "symfony/validator": "^3.4.0|^4.0.0"
-            },
-            "suggest": {
-                "sonatra/bootstrap-bundle": "The twitter bootstrap DSL twig tag"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Sonatra\\Bundle\\BlockBundle\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "François Pluchino",
-                    "email": "francois.pluchino@sonatra.com"
-                }
-            ],
-            "description": "Provides tools for defining UI blocks, rendering and mapping response data to related models",
-            "homepage": "https://github.com/sonatra/sonatra-block-bundle",
-            "keywords": [
-                "block",
-                "ui",
-                "user interface"
-            ],
-            "time": "2017-12-27T10:40:18+00:00"
-        },
-        {
-            "name": "sonatra/bootstrap",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sonatra/sonatra-bootstrap.git",
-                "reference": "9d0ecea2318706dc2b9d1f67ffbf808e78445d31"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sonatra/sonatra-bootstrap/zipball/9d0ecea2318706dc2b9d1f67ffbf808e78445d31",
-                "reference": "9d0ecea2318706dc2b9d1f67ffbf808e78445d31",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1.0",
-                "sonatra/block": "^1.0.0"
-            },
-            "require-dev": {
-                "doctrine/orm": "^2.6.0",
-                "foxy/foxy": "^1.0.0",
-                "gedmo/doctrine-extensions": "^2.4.0",
-                "sonatra/doctrine-extensions": "^1.0.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Sonatra\\Component\\Bootstrap\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "François Pluchino",
-                    "email": "francois.pluchino@sonatra.com"
-                }
-            ],
-            "description": "Twig DSL for construct a Twitter Bootstrap interface",
-            "homepage": "https://github.com/sonatra/sonatra-bootstrap",
-            "keywords": [
-                "DSL",
-                "Twitter Bootstrap 3",
-                "block",
-                "template"
-            ],
-            "time": "2017-12-27T10:49:49+00:00"
         },
         {
             "name": "symfony/cache",
@@ -2297,16 +2297,16 @@
         },
         {
             "name": "foxy/foxy",
-            "version": "v1.0.0-beta2",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/foxypkg/foxy.git",
-                "reference": "87af57c641a15fa372caeb0c85a08e9f34f1ea33"
+                "url": "https://github.com/fxpio/foxy.git",
+                "reference": "c8225f715cbe0b9310972e3d67ca15955691a26e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/foxypkg/foxy/zipball/87af57c641a15fa372caeb0c85a08e9f34f1ea33",
-                "reference": "87af57c641a15fa372caeb0c85a08e9f34f1ea33",
+                "url": "https://api.github.com/repos/fxpio/foxy/zipball/c8225f715cbe0b9310972e3d67ca15955691a26e",
+                "reference": "c8225f715cbe0b9310972e3d67ca15955691a26e",
                 "shasum": ""
             },
             "require": {
@@ -2342,7 +2342,7 @@
                 }
             ],
             "description": "Fast, reliable, and secure NPM/Yarn bridge for Composer",
-            "homepage": "https://github.com/foxypkg/foxy",
+            "homepage": "https://github.com/fxpio/foxy",
             "keywords": [
                 "Bridge",
                 "asset",
@@ -2353,7 +2353,7 @@
                 "package",
                 "yarn"
             ],
-            "time": "2017-10-03T14:33:14+00:00"
+            "time": "2017-12-28T12:45:51+00:00"
         },
         {
             "name": "fxp/require-asset",
@@ -2361,12 +2361,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fxpio/fxp-require-asset.git",
-                "reference": "23ee0fb8df6ac89610157433fc3519452a5ca5dc"
+                "reference": "7e724b4280c9ed0a4c34d3c55999be3d20867e5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fxpio/fxp-require-asset/zipball/23ee0fb8df6ac89610157433fc3519452a5ca5dc",
-                "reference": "23ee0fb8df6ac89610157433fc3519452a5ca5dc",
+                "url": "https://api.github.com/repos/fxpio/fxp-require-asset/zipball/7e724b4280c9ed0a4c34d3c55999be3d20867e5f",
+                "reference": "7e724b4280c9ed0a4c34d3c55999be3d20867e5f",
                 "shasum": ""
             },
             "require": {
@@ -2420,7 +2420,7 @@
                 "user interface",
                 "webpack"
             ],
-            "time": "2017-12-26T17:24:40+00:00"
+            "time": "2017-12-28T15:49:26+00:00"
         },
         {
             "name": "fxp/require-asset-bundle",
@@ -2428,12 +2428,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fxpio/fxp-require-asset-bundle.git",
-                "reference": "bdc53995610438f3097a8614ad98ef7c8d368eb0"
+                "reference": "ad82812b3b62c7d8cb12d1ad3bdcc7484e981b6d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fxpio/fxp-require-asset-bundle/zipball/bdc53995610438f3097a8614ad98ef7c8d368eb0",
-                "reference": "bdc53995610438f3097a8614ad98ef7c8d368eb0",
+                "url": "https://api.github.com/repos/fxpio/fxp-require-asset-bundle/zipball/ad82812b3b62c7d8cb12d1ad3bdcc7484e981b6d",
+                "reference": "ad82812b3b62c7d8cb12d1ad3bdcc7484e981b6d",
                 "shasum": ""
             },
             "require": {
@@ -2489,20 +2489,20 @@
                 "user interface",
                 "webpack"
             ],
-            "time": "2017-12-26T17:25:07+00:00"
+            "time": "2017-12-28T15:53:27+00:00"
         },
         {
             "name": "gedmo/doctrine-extensions",
-            "version": "v2.4.31",
+            "version": "v2.4.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "79cd1d49898a21ede9a5dfad41c021abd9a14339"
+                "reference": "a268224b312353be62d72e6390a286f4166a7542"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/79cd1d49898a21ede9a5dfad41c021abd9a14339",
-                "reference": "79cd1d49898a21ede9a5dfad41c021abd9a14339",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/a268224b312353be62d72e6390a286f4166a7542",
+                "reference": "a268224b312353be62d72e6390a286f4166a7542",
                 "shasum": ""
             },
             "require": {
@@ -2515,7 +2515,7 @@
                 "doctrine/mongodb-odm": ">=1.0.2",
                 "doctrine/orm": ">=2.5.0",
                 "phpunit/phpunit": "*",
-                "symfony/yaml": "~2.6|~3.0"
+                "symfony/yaml": "~2.6|~3.0|~4.0"
             },
             "suggest": {
                 "doctrine/mongodb-odm": "to use the extensions with the MongoDB ODM",
@@ -2567,7 +2567,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2017-10-12T06:26:21+00:00"
+            "time": "2017-12-28T14:36:10+00:00"
         },
         {
             "name": "kriswallsmith/assetic",

@@ -16,23 +16,13 @@ Installation is a quick, 3 step process:
 
 ### Step 1: Download the bundle using composer
 
-Add Sonatra BootstrapBundle in your composer.json:
-
-```json
-{
-    "require": {
-        "sonatra/bootstrap-bundle": "~1.0"
-    }
-}
-```
-
-Or tell composer to download the bundle by running the command:
+Tell composer to download the bundle by running the command:
 
 ```bash
-$ php composer.phar require sonatra/bootstrap-bundle:"~1.0"
+$ composer require fxp/bootstrap-bundle
 ```
 
-Composer will install the bundle to your project's `vendor/sonatra` directory.
+Composer will install the bundle to your project's `vendor/fxp` directory.
 
 ### Step 2: Enable the bundle
 
@@ -45,21 +35,21 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new Sonatra\Bundle\BootstrapBundle\SonatraBootstrapBundle(),
+        new Fxp\Bundle\BootstrapBundle\FxpBootstrapBundle(),
     );
 }
 ```
 
-### Step 3: Configure the bundle (optionnal)
+### Step 3: Configure the bundle (optional)
 
-You can override the default configuration adding `sonatra_bootstrap` tree in `app/config/config.yml`.
-For see the reference of Sonatra Bootstrap Configuration, execute command:
+You can override the default configuration adding `fxp_bootstrap` tree in `app/config/config.yml`.
+For see the reference of Fxp Bootstrap Configuration, execute command:
 
 ```bash
-$ php app/console config:dump-reference SonatraBootstrapBundle 
+$ php app/console config:dump-reference FxpBootstrapBundle 
 ```
 
 ### Next Steps
 
 Now that you have completed the basic installation and configuration of the
-Sonatra BootstrapBundle, you are ready to learn about usages of the bundle.
+Fxp BootstrapBundle, you are ready to learn about usages of the bundle.
