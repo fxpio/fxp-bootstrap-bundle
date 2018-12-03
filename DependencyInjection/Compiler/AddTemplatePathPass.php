@@ -33,7 +33,7 @@ class AddTemplatePathPass implements CompilerPassInterface
 
         $refl = new \ReflectionClass(DataSourceInterface::class);
 
-        $path = dirname(dirname(dirname($refl->getFileName()))).'/Resources/views';
+        $path = \dirname(\dirname(\dirname($refl->getFileName()))).'/Resources/views';
         $container->getDefinition('twig.loader.filesystem')->addMethodCall('addPath', [$path, 'FxpBootstrap']);
     }
 }
