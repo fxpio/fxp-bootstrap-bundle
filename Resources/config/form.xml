@@ -6,41 +6,41 @@
 
     <services>
         <service id="form.type_extension.fxp_form" class="Fxp\Component\Bootstrap\Form\Extension\FormExtension" public="true">
-            <tag name="form.type_extension" priority="151" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
+            <tag name="form.type_extension" priority="151" />
         </service>
 
         <service id="form.type_extension.fxp_addon" class="Fxp\Component\Bootstrap\Form\Extension\AddonExtension" public="true">
-            <tag name="form.type_extension" priority="150" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
+            <tag name="form.type_extension" priority="150" />
         </service>
 
         <service id="form.type_extension.fxp_money" class="Fxp\Component\Bootstrap\Form\Extension\MoneyExtension" public="true">
-            <tag name="form.type_extension" priority="150" extended-type="Symfony\Component\Form\Extension\Core\Type\MoneyType" />
+            <tag name="form.type_extension" priority="150" />
         </service>
 
         <service id="form.type_extension.fxp_url" class="Fxp\Component\Bootstrap\Form\Extension\UrlExtension" public="true">
-            <tag name="form.type_extension" priority="150" extended-type="Symfony\Component\Form\Extension\Core\Type\UrlType" />
+            <tag name="form.type_extension" priority="150" />
         </service>
 
         <service id="form.type_extension.fxp_percent" class="Fxp\Component\Bootstrap\Form\Extension\PercentExtension" public="true">
-            <tag name="form.type_extension" priority="150" extended-type="Symfony\Component\Form\Extension\Core\Type\PercentType" />
+            <tag name="form.type_extension" priority="150" />
         </service>
 
         <service id="form.type_extension.fxp_choice" class="Fxp\Component\Bootstrap\Form\Extension\ChoiceExtension" public="true">
-            <tag name="form.type_extension" priority="150" extended-type="Symfony\Component\Form\Extension\Core\Type\ChoiceType" />
+            <tag name="form.type_extension" priority="150" />
         </service>
 
         <service id="form.type_extension.fxp_repeated" class="Fxp\Component\Bootstrap\Form\Extension\RepeatedExtension" public="true">
-            <tag name="form.type_extension" priority="150" extended-type="Symfony\Component\Form\Extension\Core\Type\RepeatedType" />
+            <tag name="form.type_extension" priority="150" />
             <argument type="service" id="form.factory" />
         </service>
 
         <service id="form.type_extension.fxp_collection" class="Fxp\Component\Bootstrap\Form\Extension\CollectionExtension" public="true">
-            <tag name="form.type_extension" priority="150" extended-type="Symfony\Component\Form\Extension\Core\Type\CollectionType" />
+            <tag name="form.type_extension" priority="150" />
             <argument type="service" id="form.factory" />
         </service>
 
         <service id="form.type_extension.fxp_button" class="Fxp\Component\Bootstrap\Form\Extension\ButtonExtension" public="true">
-            <tag name="form.type_extension" priority="150" extended-type="Symfony\Component\Form\Extension\Core\Type\ButtonType" />
+            <tag name="form.type_extension" priority="150" />
         </service>
     </services>
 </container>
