@@ -6,23 +6,23 @@
 
     <services>
         <service id="fxp_bootstrap.type_extension.block" class="Fxp\Component\Bootstrap\Block\Extension\BlockExtension" public="true">
-            <tag name="fxp_block.type_extension" extended-type="Fxp\Component\Block\Extension\Core\Type\BlockType" />
+            <tag name="fxp_block.type_extension" />
         </service>
 
         <service id="fxp_bootstrap.type_extension.layout" class="Fxp\Component\Bootstrap\Block\Extension\LayoutExtension" public="true">
-            <tag name="fxp_block.type_extension" extended-type="Fxp\Component\Block\Extension\Core\Type\ObjectType" />
+            <tag name="fxp_block.type_extension" />
         </service>
 
         <service id="fxp_bootstrap.type_extension.collection" class="Fxp\Component\Bootstrap\Block\Extension\CollectionExtension" public="true">
-            <tag name="fxp_block.type_extension" extended-type="Fxp\Component\Block\Extension\Core\Type\CollectionType" />
+            <tag name="fxp_block.type_extension" />
         </service>
 
         <service id="fxp_bootstrap.type_extension.repeated" class="Fxp\Component\Bootstrap\Block\Extension\RepeatedExtension" public="true">
-            <tag name="fxp_block.type_extension" extended-type="Fxp\Component\Bootstrap\Form\Extension\RepeatedExtension" />
+            <tag name="fxp_block.type_extension" />
         </service>
 
         <service id="fxp_bootstrap.type_extension.responsive" class="Fxp\Component\Bootstrap\Block\Extension\ResponsiveExtension" public="true">
-            <tag name="fxp_block.type_extension" extended-type="Fxp\Component\Block\Extension\Core\Type\BlockType" />
+            <tag name="fxp_block.type_extension" />
         </service>
 
         <service id="fxp_bootstrap.type.block_collapse" class="Fxp\Component\Bootstrap\Block\Type\BlockCollapseType" public="true">
@@ -290,31 +290,31 @@
         </service>
 
         <service id="fxp_bootstrap.type_extension.button_modal" class="Fxp\Component\Bootstrap\Block\Extension\ButtonModalExtension" public="true">
-            <tag name="fxp_block.type_extension" extended-type="Fxp\Component\Bootstrap\Block\Type\ButtonType" />
+            <tag name="fxp_block.type_extension" />
         </service>
 
         <service id="fxp_bootstrap.type_extension.tooltip" class="Fxp\Component\Bootstrap\Block\Extension\TooltipExtension" public="true">
-            <tag name="fxp_block.type_extension" extended-type="Fxp\Component\Block\Extension\Core\Type\BlockType" />
+            <tag name="fxp_block.type_extension" />
         </service>
 
         <service id="fxp_bootstrap.type_extension.popover" class="Fxp\Component\Bootstrap\Block\Extension\PopoverExtension" public="true">
-            <tag name="fxp_block.type_extension" extended-type="Fxp\Component\Block\Extension\Core\Type\BlockType" />
+            <tag name="fxp_block.type_extension" />
         </service>
 
         <service id="fxp_bootstrap.type_extension.affix" class="Fxp\Component\Bootstrap\Block\Extension\AffixExtension" public="true">
-            <tag name="fxp_block.type_extension" extended-type="Fxp\Component\Block\Extension\Core\Type\BlockType" />
+            <tag name="fxp_block.type_extension" />
         </service>
 
         <service id="fxp_bootstrap.type_extension.panel_group_collapse" class="Fxp\Component\Bootstrap\Block\Extension\PanelGroupCollapseExtension" public="true">
-            <tag name="fxp_block.type_extension" extended-type="Fxp\Component\Bootstrap\Block\Type\PanelGroupType" />
+            <tag name="fxp_block.type_extension" />
         </service>
 
         <service id="fxp_bootstrap.type_extension.button_collapse" class="Fxp\Component\Bootstrap\Block\Extension\ButtonCollapseExtension" public="true">
-            <tag name="fxp_block.type_extension" extended-type="Fxp\Component\Bootstrap\Block\Type\ButtonType" />
+            <tag name="fxp_block.type_extension" />
         </service>
 
         <service id="fxp_bootstrap.type_extension.scroll_spy" class="Fxp\Component\Bootstrap\Block\Extension\ScrollSpyExtension" public="true">
-            <tag name="fxp_block.type_extension" extended-type="Fxp\Component\Block\Extension\Core\Type\BlockType" />
+            <tag name="fxp_block.type_extension" />
         </service>
 
         <service id="fxp_bootstrap.type.carousel" class="Fxp\Component\Bootstrap\Block\Type\CarouselType" public="true">

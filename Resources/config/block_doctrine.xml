@@ -6,7 +6,7 @@
 
     <services>
         <service id="fxp_bootstrap.type_extension.table_doctrine_orm" class="Fxp\Component\Bootstrap\Block\Extension\TableDoctrineOrmExtension" public="true">
-            <tag name="fxp_block.type_extension" extended-type="Fxp\Component\Bootstrap\Block\Type\TableType" />
+            <tag name="fxp_block.type_extension" />
             <argument type="service" id="doctrine.orm.entity_manager" />
         </service>
     </services>
